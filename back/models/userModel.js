@@ -4,22 +4,23 @@ const mongoose = require("mongoose");
 const usersSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: true,
   },
-  surname: {
+  email: {
     type: String,
+    required: true,
   },
-  dob: {
+  password: {
     type: String,
+    required: true,
   },
-  program: {
-    type: String,
+  balance: {
+    type: Number,
   },
-  city: {
-    type: String,
-  },
-  group: {
-    type: String,
-  },
+
+  limit: [{ category: String }, { limit: Number }],
+  income: [{ date: Date }, { sum: Number, required: true }, { name: String }],
+  expense: [{ date: Date }, { sum: Number, required: true }, { date_created: Date }, { name: String }, { category: String }],
 });
 
 // Modelis DB lentelės pavadinimas
