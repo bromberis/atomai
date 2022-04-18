@@ -18,24 +18,65 @@ const usersSchema = new mongoose.Schema({
     type: Number,
   },
 
-  limit: [{ category: String }, { limit: Number }],
-  income: [{ date: Date }, { sum: Number, required: true }, { name: String }],
-  expense: [{ date: Date }, { sum: Number, required: true }, { date_created: Date }, { name: String }, { category: String }],
+  limit: [{ limit: { type: Number }, category: { type: String } }],
+  income: [
+    {
+      date: { type: Date },
+      sum: { type: Number, required: true },
+      name: { type: String },
+    },
+  ],
+  expenses: [
+    {
+      date: { type: Date },
+      sum: { type: Number, required: true },
+      date_created: { type: Date },
+      name: { type: String },
+      category: { type: String },
+    },
+  ],
 });
 
 // Modelis DB lentelės pavadinimas
 const Users = new mongoose.model("Users", usersSchema);
 
 // Duomenų siuntimas į DB
-// const testStudents = new Students({
-//   name: "Joana",
-//   surname: "Baldyte",
-//   birthdate: "1999-01-01",
-//   program: "JavaScript",
-//   town: "Kaunas",
-//   group: "JS-1",
+// const testUsers = new Users({
+//   name: "Atomas Linas",
+//   email: "atomas@gmail.com",
+//   password: "123",
+//   balance: 0,
+//   limit: [{ category: "transport", limit: 200 }],
+//   income: [
+//     {
+//       date: "2022-04-10",
+//       sum: "1500",
+//       name: "alga",
+//     },
+//     {
+//       date: "2022-04-05",
+//       sum: "2000",
+//       name: "alga",
+//     },
+//   ],
+//   expenses: [
+//     {
+//       date: "2022-04-14",
+//       sum: "100",
+//       name: "pica",
+//       date_created: "2022-04-12",
+//       category: "pramogos",
+//     },
+//     {
+//       date: "2022-04-03",
+//       sum: "50",
+//       name: "mokesčiai",
+//       date_created: "2022-04-11",
+//       category: "pramogos",
+//     },
+//   ],
 // });
 
-// testStudents.save();
+// testUsers.save();
 
 module.exports = Users;
