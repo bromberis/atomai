@@ -17,11 +17,33 @@ function UsersList() {
 
   let usersList = users.map((user) => {
     return (
-      <HistoryTable key={user._id} name={user.name} expenses={user.expenses} />
+      <HistoryTable
+        key={user._id}
+        name={user.name}
+        email={user.email}
+        expenses={user.expenses}
+      />
     );
   });
 
-  return <>{usersList}</>;
+  return (
+    <>
+      <div className="container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Suma</th>
+              <th scope="col">Kategorija</th>
+              <th scope="col">Pavadinimas</th>
+              <th scope="col">Veiksmai</th>
+            </tr>
+          </thead>
+          <tbody>{usersList}</tbody>
+        </table>
+      </div>
+    </>
+  );
 }
 
 export default UsersList;
