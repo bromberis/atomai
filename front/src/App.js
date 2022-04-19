@@ -1,4 +1,5 @@
 import "./App.css";
+
 import Income from "./components/Income";
 
 function App() {
