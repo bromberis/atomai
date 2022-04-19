@@ -19,7 +19,7 @@ const usersSchema = new mongoose.Schema({
   },
 
   limit: [{ category: String }, { limit: Number }],
-  income: [{ date: Date }, { sum: Number, required: true }, { name: String }],
+  income: [{ sum: Number }, { date: Date }, { category: String }, { name: String }, { category: String }],
   expense: [{ date: Date }, { sum: Number, required: true }, { date_created: Date }, { name: String }, { category: String }],
 });
 
