@@ -5,7 +5,7 @@ export default function Income() {
   let [income, setIncome] = useState({});
 
   const getUser = () => {
-    fetch(`http://localhost:3005/api/v1/users/62598440d1d7cc645c6b821b`)
+    fetch(`http://localhost:3005/api/v1/users/625aa4c1355fc77ad2a6981a`)
       .then((response) => response.json())
       .then((result) => {
         console.log(result.data.users);
