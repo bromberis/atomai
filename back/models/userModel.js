@@ -24,6 +24,7 @@ const usersSchema = new mongoose.Schema({
       date: { type: Date },
       sum: { type: Number, required: true },
       name: { type: String },
+
       category: { type: String },
       date_created: { type: Date },
     },

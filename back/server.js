@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const app = require("./app");
 
-const DB = "mongodb+srv://Justas:Slaptas@cluster0.orbth.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const DB =
+  "mongodb+srv://Justas:Slaptas@cluster0.orbth.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
