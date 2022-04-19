@@ -26,14 +26,14 @@ const usersSchema = new mongoose.Schema({
       name: { type: String },
 
       category: { type: String },
-      date_created: { type: Date },
+      date_created: { type: Date, default: Date.now },
     },
   ],
   expenses: [
     {
       date: { type: Date },
       sum: { type: Number, required: true },
-      date_created: { type: Date },
+      date_created: { type: Date, default: Date.now },
       name: { type: String },
       category: { type: String },
     },
