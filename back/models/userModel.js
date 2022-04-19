@@ -45,8 +45,8 @@ const Users = new mongoose.model("Users", usersSchema);
 
 // Duomenų siuntimas į DB
 // const testUsers = new Users({
-//   name: "Atomas Linas",
-//   email: "atomas@gmail.com",
+//   name: "Atomas Antanas",
+//   email: "antanas@gmail.com",
 //   password: "123",
 //   balance: 0,
 //   limit: [{ category: "transport", limit: 200 }],
@@ -55,11 +55,15 @@ const Users = new mongoose.model("Users", usersSchema);
 //       date: "2022-04-10",
 //       sum: "1500",
 //       name: "alga",
+//       date_created: "",
+//       category: "alga",
 //     },
 //     {
 //       date: "2022-04-05",
 //       sum: "2000",
 //       name: "alga",
+//       date_created: "2022-04-12",
+//       category: "alga",
 //     },
 //   ],
 //   expenses: [
