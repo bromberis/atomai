@@ -1,7 +1,12 @@
 import "./App.css";
+import History from "./components/History";
 
 function App() {
-  return <div className="App">Atomic money app.</div>;
+  return (
+    <div className="App">
+      <History />
+    </div>
+  );
 }
 
 export default App;
