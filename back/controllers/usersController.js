@@ -37,7 +37,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// Gauti studentą pagal ID
+// Gauti naudotoją pagal ID
 exports.getUserById = async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
@@ -55,7 +55,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// Atnaujinti esamą studentą
+// Atnaujinti esamą userį
 exports.updateUser = async (req, res) => {
   try {
     const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
@@ -79,7 +79,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// Pašalinti studentą pagal ID
+// Pašalinti userį pagal ID
 exports.deleteUser = async (req, res) => {
   try {
     await Users.findByIdAndDelete(req.params.id);
