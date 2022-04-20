@@ -7,8 +7,8 @@ function App() {
   return (
     <div>
       {" "}
-      <div className="App">Atomic money app.</div>
-      <Income /> 
+      {/* <div className="App">Atomic money app.</div>
+      <Income /> */}
       <History />
     </div>
   );

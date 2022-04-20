@@ -4,27 +4,78 @@ import HistoryTable from "./HistoryTable.js";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getAllUsersData().then((res) => {
-      setUsers(res.data.data.users);
-      // console.log(res.data.data.users);
+      setUsers(res.data.data.users[0]);
+      console.log(res.data.data.users[0]);
+      setIsLoading(true);
     });
   }, []);
 
-  console.log(users);
-  // console.log(users[0].expenses[0].category);
+  if (isLoading) {
+    let { income } = users;
+    let { expenses } = users;
 
-  let usersList = users.map((user) => {
-    return (
-      <HistoryTable
-        key={user._id}
-        name={user.name}
-        email={user.email}
-        expenses={user.expenses}
-      />
-    );
-  });
+    let incomeExpenses = [...income, ...expenses];
+
+    function sortByDate(a, b) {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    }
+
+    const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
+
+    var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
+      return (
+        <HistoryTable
+          key={item._id}
+          id={item._id}
+          name={item.name}
+          category={item.category}
+          date={item.date}
+          sum={item.sum}
+          dateCreated={item.createdAt}
+        />
+      );
+    });
+
+    // var userIncome = income.map((income) => {
+    //   return (
+    //     <HistoryTable
+    //       key={income._id}
+    //       id={income._id}
+    //       name={income.name}
+    //       category={income.category}
+    //       date={income.date}
+    //       sum={income.sum}
+    //       dateCreated={income.createdAt}
+    //     />
+    //   );
+    // });
+
+    // var userExpenses = expenses.map((expenses) => {
+    //   return (
+    //     <>
+    //       <HistoryTable
+    //         key={expenses._id}
+    //         id={expenses._id}
+    //         name={expenses.name}
+    //         category={expenses.category}
+    //         date={expenses.date}
+    //         sum={expenses.sum}
+    //         dateCreated={expenses.createdAt}
+    //       />
+    //     </>
+    //   );
+    // });
+  }
 
   return (
     <>
@@ -32,6 +83,7 @@ function UsersList() {
         <table className="table">
           <thead>
             <tr>
+              <th scope="col">Įrašymo data</th>
               <th scope="col">Data</th>
               <th scope="col">Suma</th>
               <th scope="col">Kategorija</th>
@@ -39,7 +91,7 @@ function UsersList() {
               <th scope="col">Veiksmai</th>
             </tr>
           </thead>
-          <tbody>{usersList}</tbody>
+          <tbody>{userIncomeExpenses}</tbody>
         </table>
       </div>
     </>
