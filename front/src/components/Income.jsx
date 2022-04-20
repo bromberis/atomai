@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Income.css";
 
 export default function Income() {
   let [user, setUser] = useState({});
@@ -50,21 +51,43 @@ export default function Income() {
   }
   return (
     <div>
-      <form onChange={(e) => updateIncomeObject(e)} onSubmit={(e) => submitNewIncome(e)}>
-        <label htmlFor="sum">Suma</label>
-        <input type="number" name="sum" id="sum" maxLength={5} />
-        <label htmlFor="date">Data</label>
-        <input type="date" name="date" id="date" defaultValue={new Date().toISOString().substr(0, 10)} />
-        <label htmlFor="category">Kategorija</label>
-        <select name="category" id="category">
-          <option value="wage">Alga</option>
-          <option value="prize">Prizas</option>
-          <option value="etc">Kita</option>
-        </select>
-        <label htmlFor="incomeName">Pavadinimas</label>
-        <input type="text" name="incomeName" id="incomeName" />
-        <button type="submit">Submit</button>
-      </form>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-4">
+            <form onChange={(e) => updateIncomeObject(e)} onSubmit={(e) => submitNewIncome(e)}>
+              <div className="form-group">
+                {/* <label htmlFor="sum">Suma</label> */}
+                <input className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
+              </div>
+              <div className="form-group">
+                {/* <label className="form-control" htmlFor="date">
+            Data
+          </label> */}
+                <input className="form-control" type="date" name="date" id="date" defaultValue={new Date().toISOString().substr(0, 10)} />
+              </div>
+              <div className="form-group">
+                {/* <label className="form-control" htmlFor="category">
+            Kategorija
+          </label> */}
+                <select className="form-control" name="category" id="category">
+                  <option value="none">Kategorija 🔽</option>
+                  <option value="wage">Alga</option>
+                  <option value="prize">Prizas</option>
+                  <option value="etc">Kita</option>
+                </select>
+              </div>
+              <div className="form-group">
+                {/* <label className="form-control" htmlFor="incomeName">
+            Pavadinimas
+          </label> */}
+                <input className="form-control" placeholder="Pavadinimas" type="text" name="incomeName" id="incomeName" />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
