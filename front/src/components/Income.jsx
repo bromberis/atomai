@@ -6,12 +6,12 @@ export default function Income() {
   let [income, setIncome] = useState({});
 
   const getUser = () => {
-    fetch(`http://localhost:3005/api/v1/users/625aa4c1355fc77ad2a6981a`)
+    fetch(`http://localhost:3005/api/v1/users`)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.data.users);
-        setUser(result.data.users);
-        user = result.data.users;
+        console.log(result.data.users[0]);
+        setUser(result.data.users[0]);
+        user = result.data.users[0];
         console.log(user);
       })
       .catch((error) => console.log(error));
@@ -49,43 +49,72 @@ export default function Income() {
       console.log(`Request complete! response:`, res);
     });
   }
+
+  // for (var i = 1; i < users.length; i++)
+  //   for (var j = 0; j < i; j++)
+  //     if (user[i].date < user[j].date) {
+  //       var x = user[i];
+  //       user[i] = user[j];
+  //       user[j] = x;
+  //     }
+
   return (
     <div>
-
       <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <form onChange={(e) => updateIncomeObject(e)} onSubmit={(e) => submitNewIncome(e)}>
-              <div className="form-group">
-                {/* <label htmlFor="sum">Suma</label> */}
-                <input className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
+        <div className="col">
+          <form onChange={(e) => updateIncomeObject(e)} onSubmit={(e) => submitNewIncome(e)}>
+            <div className="row">
+              <div className="col">
+                <div className="form-group mb-4">
+                  {/* <label htmlFor="sum">Suma</label> */}
+                  <input className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
+                </div>
               </div>
-              <div className="form-group">
-                {/* <label className="form-control" htmlFor="date">
+              <div className="col">
+                <div className="form-group">
+                  {/* <label className="form-control" htmlFor="date">
             Data
           </label> */}
-                <input className="form-control" type="date" name="date" id="date" defaultValue={new Date().toISOString().substr(0, 10)} />
+                  <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
+                </div>
               </div>
-              <div className="form-group">
-                {/* <label className="form-control" htmlFor="category">
+            </div>
+            <div className="row">
+              <div className="col">
+                <div className="form-group">
+                  {/* <label className="form-control" htmlFor="category">
             Kategorija
           </label> */}
-                <select className="form-control" name="category" id="category">
-                  <option value="none">Kategorija 🔽</option>
-                  <option value="wage">Alga</option>
-                  <option value="prize">Prizas</option>
-                  <option value="etc">Kita</option>
-                </select>
+                  <select className="form-control" name="category" id="category">
+                    <option value="none">Kategorija 🔽</option>
+                    <option value="wage">Alga</option>
+                    <option value="prize">Prizas</option>
+                    <option value="etc">Kita</option>
+                  </select>
+                </div>
               </div>
-              <div className="form-group">
-                {/* <label className="form-control" htmlFor="incomeName">
+              <div className="col">
+                <div className="form-group">
+                  {/* <label className="form-control" htmlFor="incomeName">
             Pavadinimas
           </label> */}
-                <input className="form-control" placeholder="Pavadinimas" type="text" name="incomeName" id="incomeName" />
+                  <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
+                </div>
               </div>
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <h4>Balansas: {user.balance}</h4>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col text-center">
+                <button className="btn btn-success mt-3 w-25" type="submit">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -1,0 +1,13 @@
+.input-sum {
+  position: absolute;
+  width: 429px;
+  height: 46px;
+  left: 280px;
+  top: 222px;
+
+  background: #ffffff;
+  /* Straukas */
+
+  border: 0.5px solid #525e75;
+  border-radius: 0px;
+}
