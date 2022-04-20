@@ -2,9 +2,6 @@ import "./App.css";
 import Income from "./components/Income";
 import History from "./components/History";
 
-import Income from "./components/Income";
-import History from "./components/History";
-
 function App() {
   return (
     <div>
