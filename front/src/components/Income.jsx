@@ -51,6 +51,7 @@ export default function Income() {
   }
   return (
     <div>
+
       <div className="container">
         <div className="row">
           <div className="col-4">
