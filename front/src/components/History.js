@@ -42,6 +42,7 @@ function UsersList() {
           date={item.date}
           sum={item.sum}
           dateCreated={item.createdAt}
+          type={item.type}
         />
       );
     });
@@ -83,7 +84,7 @@ function UsersList() {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">Įrašymo data</th>
+              <th scope="col">Įrašo data</th>
               <th scope="col">Data</th>
               <th scope="col">Suma</th>
               <th scope="col">Kategorija</th>

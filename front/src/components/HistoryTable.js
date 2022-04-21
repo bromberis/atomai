@@ -3,15 +3,23 @@ import "./History.css";
 import { BsTrash } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
 
-function HistoryTable({ name, category, date, sum, dateCreated, id }) {
+function HistoryTable({ name, category, date, sum, dateCreated, id, type }) {
   let UppercaseFirst = (str) => {
     let newStr = str.charAt(0).toUpperCase() + str.slice(1);
     return newStr;
   };
 
+  let colorClass = (str) => {
+    if (str == "income") {
+      return "text-success";
+    } else {
+      return "text-danger";
+    }
+  };
+
   return (
     <>
-      <tr>
+      <tr className={colorClass(type)}>
         <td>{dateCreated.slice(0, 10)}</td>
         <td>{date.slice(0, 10)}</td>
         <td>{sum}</td>
