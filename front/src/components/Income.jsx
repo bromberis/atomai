@@ -12,7 +12,7 @@ export default function Income() {
         console.log(result.data.users[0]);
         setUser(result.data.users[0]);
         user = result.data.users[0];
-        console.log(user);
+        // console.log(user);
       })
       .catch((error) => console.log(error));
   };
@@ -36,12 +36,13 @@ export default function Income() {
     }
 
     e.preventDefault();
+
     user.income.push(income);
-    console.log(user);
+
     fetch(`http://localhost:3005/api/v1/users/${user._id}`, {
       method: "PUT",
       headers: {
-        AAccept: "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
@@ -62,12 +63,22 @@ export default function Income() {
     <div>
       <div className="container">
         <div className="col">
-          <form onChange={(e) => updateIncomeObject(e)} onSubmit={(e) => submitNewIncome(e)}>
+          <form
+            onChange={(e) => updateIncomeObject(e)}
+            onSubmit={(e) => submitNewIncome(e)}
+          >
             <div className="row">
               <div className="col">
                 <div className="form-group mb-4">
                   {/* <label htmlFor="sum">Suma</label> */}
-                  <input className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
+                  <input
+                    className="form-control"
+                    placeholder="Suma"
+                    type="number"
+                    name="sum"
+                    id="sum"
+                    maxLength={5}
+                  />
                 </div>
               </div>
               <div className="col">
@@ -75,7 +86,13 @@ export default function Income() {
                   {/* <label className="form-control" htmlFor="date">
             Data
           </label> */}
-                  <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
+                  <input
+                    className="form-control"
+                    type="date"
+                    name="date"
+                    id="date-inp"
+                    defaultValue={new Date().toISOString().substr(0, 10)}
+                  />
                 </div>
               </div>
             </div>
@@ -85,11 +102,15 @@ export default function Income() {
                   {/* <label className="form-control" htmlFor="category">
             Kategorija
           </label> */}
-                  <select className="form-control" name="category" id="category">
+                  <select
+                    className="form-control"
+                    name="category"
+                    id="category"
+                  >
                     <option value="none">Kategorija 🔽</option>
-                    <option value="wage">Alga</option>
-                    <option value="prize">Prizas</option>
-                    <option value="etc">Kita</option>
+                    <option value="Alga">Alga</option>
+                    <option value="Prizas">Prizas</option>
+                    <option value="Kita">Kita</option>
                   </select>
                 </div>
               </div>
@@ -98,7 +119,13 @@ export default function Income() {
                   {/* <label className="form-control" htmlFor="incomeName">
             Pavadinimas
           </label> */}
-                  <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
+                  <input
+                    className="form-control mb-4"
+                    placeholder="Pavadinimas"
+                    type="text"
+                    name="name"
+                    id="name"
+                  />
                 </div>
               </div>
             </div>

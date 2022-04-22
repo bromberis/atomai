@@ -6,6 +6,8 @@ function UsersList() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(users);
+
   useEffect(() => {
     getAllUsersData().then((res) => {
       setUsers(res.data.data.users[0]);
@@ -32,6 +34,10 @@ function UsersList() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
+    // var userData = users.map((item) => {
+    //   return <HistoryTable userID={item._id} />;
+    // });
+
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
         <HistoryTable
@@ -43,39 +49,10 @@ function UsersList() {
           sum={item.sum}
           dateCreated={item.createdAt}
           type={item.type}
+          userID={users._id}
         />
       );
     });
-
-    // var userIncome = income.map((income) => {
-    //   return (
-    //     <HistoryTable
-    //       key={income._id}
-    //       id={income._id}
-    //       name={income.name}
-    //       category={income.category}
-    //       date={income.date}
-    //       sum={income.sum}
-    //       dateCreated={income.createdAt}
-    //     />
-    //   );
-    // });
-
-    // var userExpenses = expenses.map((expenses) => {
-    //   return (
-    //     <>
-    //       <HistoryTable
-    //         key={expenses._id}
-    //         id={expenses._id}
-    //         name={expenses.name}
-    //         category={expenses.category}
-    //         date={expenses.date}
-    //         sum={expenses.sum}
-    //         dateCreated={expenses.createdAt}
-    //       />
-    //     </>
-    //   );
-    // });
   }
 
   return (
