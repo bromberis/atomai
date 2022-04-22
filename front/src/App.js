@@ -1,14 +1,17 @@
 import "./App.css";
-import Income from "./components/Income";
-import History from "./components/History";
+import IncomeExpenses from "./components/IncomeExpenses";
 
 function App() {
   return (
     <div>
       {" "}
+      <IncomeExpenses />
       <div className="App">Atomic money app.</div>
-      <Income />
-      <History />
+      {/* <IncomeExpensesDesktop /> */}
+      {/* <IncomeExpensesMobile /> */}
+      {/* <IncomeExpenses /> */}
+      {/* <Income /> */}
+      {/* <History /> */}
     </div>
   );
 }

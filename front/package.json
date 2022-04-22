@@ -8,10 +8,12 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
+    "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
     "react-scripts": "5.0.1",
+    "use-debounce": "^7.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
