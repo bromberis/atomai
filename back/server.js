@@ -10,7 +10,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log("Prisijungta prie DB...:)");
+    console.log("MongoDB connected");
   });
 
 const port = 3005;

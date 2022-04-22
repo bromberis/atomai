@@ -1,7 +1,101 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getAllUsersData } from "../api/library/UsersAPI";
+import HistoryTable from "./HistoryTable.js";
 
-function History() {
-  return <div>History</div>;
+function UsersList() {
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    getAllUsersData().then((res) => {
+      setUsers(res.data.data.users[0]);
+      console.log(res.data.data.users[0]);
+      setIsLoading(true);
+    });
+  }, []);
+
+  if (isLoading) {
+    let { income } = users;
+    let { expenses } = users;
+
+    let incomeExpenses = [...income, ...expenses];
+
+    function sortByDate(a, b) {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    }
+
+    const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
+
+    var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
+      return (
+        <HistoryTable
+          key={item._id}
+          id={item._id}
+          name={item.name}
+          category={item.category}
+          date={item.date}
+          sum={item.sum}
+          dateCreated={item.createdAt}
+        />
+      );
+    });
+
+    // var userIncome = income.map((income) => {
+    //   return (
+    //     <HistoryTable
+    //       key={income._id}
+    //       id={income._id}
+    //       name={income.name}
+    //       category={income.category}
+    //       date={income.date}
+    //       sum={income.sum}
+    //       dateCreated={income.createdAt}
+    //     />
+    //   );
+    // });
+
+    // var userExpenses = expenses.map((expenses) => {
+    //   return (
+    //     <>
+    //       <HistoryTable
+    //         key={expenses._id}
+    //         id={expenses._id}
+    //         name={expenses.name}
+    //         category={expenses.category}
+    //         date={expenses.date}
+    //         sum={expenses.sum}
+    //         dateCreated={expenses.createdAt}
+    //       />
+    //     </>
+    //   );
+    // });
+  }
+
+  return (
+    <>
+      <div className="container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Įrašymo data</th>
+              <th scope="col">Data</th>
+              <th scope="col">Suma</th>
+              <th scope="col">Kategorija</th>
+              <th scope="col">Pavadinimas</th>
+              <th scope="col">Veiksmai</th>
+            </tr>
+          </thead>
+          <tbody>{userIncomeExpenses}</tbody>
+        </table>
+      </div>
+    </>
+  );
 }
 
-export default History;
+export default UsersList;
