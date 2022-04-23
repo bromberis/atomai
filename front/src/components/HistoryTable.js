@@ -23,9 +23,9 @@ function HistoryTable({
 
   let colorClass = (str) => {
     if (str === "income") {
-      return "text-success";
+      return "text-income";
     } else {
-      return "text-danger";
+      return "text-expenses";
     }
   };
 

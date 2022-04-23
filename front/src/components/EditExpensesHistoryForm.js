@@ -39,7 +39,7 @@ function EditExpensesHistoryForm({
             e.preventDefault();
 
             findExpensesDataAndUpdate(userUpdateExpenses, userID, id);
-            // console.log("submit");
+            console.log("submit");
           }}
         >
           <div>
