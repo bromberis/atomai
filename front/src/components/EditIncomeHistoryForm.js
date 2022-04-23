@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { MdDoneOutline } from "react-icons/md";
-import { GiCancel } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
+import { FaCheck } from "react-icons/fa";
 import { findIncomeDataAndUpdate } from "../api/library/UsersAPI";
 
-// import "./History.css";
+import "./History.css";
 
 function EditIncomeHistoryForm({
   name,
@@ -14,6 +14,9 @@ function EditIncomeHistoryForm({
   id,
   type,
   userID,
+  editFormStatus,
+  setEditFormStatus,
+  getUsers,
 }) {
   console.log("enter income");
   const [userUpdateIncome, setUserUpdateIncome] = useState({
@@ -32,15 +35,20 @@ function EditIncomeHistoryForm({
 
   return (
     <>
-      <td>
+      <td className="custom-td"></td>
+      <td className="custom-td"></td>
+      <td className="custom-td"></td>
+      <td className="custom-td">
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            findIncomeDataAndUpdate(userUpdateIncome, userID, id);
-            console.log("submit");
+            findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() =>
+              getUsers()
+            );
+            setEditFormStatus(!editFormStatus);
           }}
         >
-          <div>
+          <div className="mb-1">
             <input
               className="form-control"
               type="date"
@@ -50,7 +58,7 @@ function EditIncomeHistoryForm({
               onChange={(e) => updateIncomeObject(e)}
             />
           </div>
-          <div>
+          <div className="mb-1">
             <input
               className="form-control custom-input"
               placeholder="Suma"
@@ -62,7 +70,7 @@ function EditIncomeHistoryForm({
               onChange={(e) => updateIncomeObject(e)}
             />
           </div>
-          <div>
+          <div className="mb-1">
             <select
               className="form-select"
               name="category"
@@ -78,7 +86,7 @@ function EditIncomeHistoryForm({
               <option value="Kita">Kita</option>
             </select>
           </div>
-          <div>
+          <div className="mb-1">
             <input
               className="form-control custom-input"
               placeholder="Name"
@@ -90,14 +98,11 @@ function EditIncomeHistoryForm({
             />
           </div>
           <div>
-            <button
-              type="submit"
-              className="btn btn-outline-warning m-1 custom-button"
-            >
-              <MdDoneOutline />
+            <button type="submit" className="btn m-1 custom-button">
+              <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
-            <button className="btn btn-outline-danger m-1 custom-button">
-              <GiCancel />
+            <button type="button" className="btn  m-1 custom-button">
+              <ImCross color="#bc6e7f" fontSize="1.4em" />
             </button>
           </div>
         </form>
