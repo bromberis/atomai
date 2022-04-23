@@ -30,6 +30,10 @@ function EditExpensesHistoryForm({ getUsers, name, category, date, sum, dateCrea
           onSubmit={(e) => {
             e.preventDefault();
 
+
+//             findExpensesDataAndUpdate(userUpdateExpenses, userID, id);
+//             console.log("submit");
+
             findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() => getUsers());
 
             // console.log("submit");

@@ -1,3 +1,15 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
 .custom-button {
   width: 50px;
+  color: #3a3845;
+}
+
+.text-income {
+  border-left: 5px solid #dbecd6;
+}
+
+.text-expenses {
+  border-left: 5px solid #ecd6db;
 }

@@ -13,9 +13,9 @@ function HistoryTable({ getUsers, name, category, date, sum, dateCreated, id, ty
 
   let colorClass = (str) => {
     if (str === "income") {
-      return "text-success";
+      return "text-income";
     } else {
-      return "text-danger";
+      return "text-expenses";
     }
   };
 

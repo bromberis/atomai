@@ -51,7 +51,7 @@ function UsersList() {
     <>
       <div className="container">
         <table className="table">
-          <thead>
+          <thead className="mb-2">
             <tr>
               <th scope="col">Įrašo data</th>
               <th scope="col">Data</th>
