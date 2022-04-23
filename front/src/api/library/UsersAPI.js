@@ -9,3 +9,14 @@ export async function createUserData(data) {
   const response = await axiosUser.post("/", JSON.stringify(data));
   return response;
 }
+
+export async function findIncomeDataAndUpdate(data, id, subID) {
+  console.log(data);
+  console.log(id);
+  console.log(subID);
+  const response = await axiosUser.patch(
+    `/${id}/${subID}`,
+    JSON.stringify(data)
+  );
+  return response;
+}
