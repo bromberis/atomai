@@ -6,8 +6,8 @@ function App() {
   return (
     <div>
       {" "}
-      <IncomeExpenses />
-      <div className="App">Atomic money app.</div>
+      {/* <IncomeExpenses /> */}
+      {/* <div className="App">Atomic money app.</div> */}
       {/* <IncomeExpensesDesktop /> */}
       {/* <IncomeExpensesMobile /> */}
       {/* <IncomeExpenses /> */}
