@@ -126,3 +126,33 @@ exports.findIncomeDataAndUpdate = async (req, res) => {
     });
   }
 };
+
+exports.findExpensesDataAndUpdate = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+  console.log(req.body);
+  try {
+    const updateExpenses = await Users.findOneAndUpdate(
+      { _id: req.params.id, "expenses._id": req.params.subID },
+      {
+        $set: {
+          "expenses.$.name": req.body.name,
+          "expenses.$.date": req.body.date,
+          "expenses.$.category": req.body.category,
+          "expenses.$.sum": req.body.sum,
+        },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        expenses: updateExpenses,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
