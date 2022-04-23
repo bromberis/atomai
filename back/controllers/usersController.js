@@ -42,10 +42,10 @@ exports.getUserById = async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
     res.status(200).json({
-      status: "success",
-      data: {
-        users: user,
-      },
+      // status: "success",
+      // data: {
+      users: user,
+      // }
     });
   } catch (err) {
     res.status(404).json({
@@ -87,6 +87,37 @@ exports.deleteUser = async (req, res) => {
     res.status(204).json({
       status: "success",
       data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.findIncomeDataAndUpdate = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+  console.log(req.body);
+  try {
+    const updateIncome = await Users.findOneAndUpdate(
+      { _id: req.params.id, "income._id": req.params.subID },
+      {
+        $set: {
+          "income.$.name": req.body.name,
+          "income.$.date": req.body.date,
+          "income.$.category": req.body.category,
+          "income.$.sum": req.body.sum,
+        },
+      }
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        income: updateIncome,
+      },
     });
   } catch (err) {
     res.status(404).json({

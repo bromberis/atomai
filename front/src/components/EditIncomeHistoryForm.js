@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { MdDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
-import { getAllUsersData } from "../api/library/UsersAPI";
+import {
+  getAllUsersData,
+  findIncomeDataAndUpdate,
+} from "../api/library/UsersAPI";
 
 // import "./History.css";
 
@@ -15,37 +18,24 @@ function EditIncomeHistoryForm({
   type,
   userID,
 }) {
-  const [user, setUser] = useState({});
-  const [userUpdateIncome, setUserUpdateIncome] = useState({});
-
-  const getUser = () => {
-    getAllUsersData().then((res) => {
-      setUser(res.data.data.users[0]);
-      console.log(res.data.data.users[0]);
-    });
-  };
-
-  useEffect(() => getUser(), []);
+  // const [user, setUser] = useState({});
+  const [userUpdateIncome, setUserUpdateIncome] = useState({
+    sum: sum,
+    name: name,
+    date: date,
+    category: category,
+  });
 
   function updateIncomeObject(e) {
     e.preventDefault();
     userUpdateIncome[e.target.name] = e.target.value;
+    console.log(userUpdateIncome);
+    // {...userUpdateIncome, id:99, id:777}
   }
 
-  function updateIncome() {
-    user.income.push(userUpdateIncome);
-
-    fetch(`http://localhost:3005/api/v1/users/${userID}`, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userUpdateIncome),
-    }).then((res) => {
-      console.log(`Request complete! response:`, res);
-    });
-  }
+  // findIncomeDataAndUpdate().then((res) => {
+  //   console.log(`Request complete! response:`, res);
+  // });
 
   return (
     <>
@@ -53,7 +43,7 @@ function EditIncomeHistoryForm({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            updateIncome();
+            findIncomeDataAndUpdate(userUpdateIncome, userID, id);
             console.log("submit");
           }}
         >
