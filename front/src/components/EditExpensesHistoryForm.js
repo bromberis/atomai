@@ -2,19 +2,11 @@ import React, { useState, useEffect } from "react";
 import { MdDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import { findExpensesDataAndUpdate } from "../api/library/UsersAPI";
+import { getAllUsersData } from "../api/library/UsersAPI";
 
 // import "./History.css";
 
-function EditExpensesHistoryForm({
-  name,
-  category,
-  date,
-  sum,
-  dateCreated,
-  id,
-  type,
-  userID,
-}) {
+function EditExpensesHistoryForm({ getUsers, name, category, date, sum, dateCreated, id, type, userID }) {
   //console.log("enter expenses");
   // console.log(userID);
   // console.log(id);
@@ -38,19 +30,13 @@ function EditExpensesHistoryForm({
           onSubmit={(e) => {
             e.preventDefault();
 
-            findExpensesDataAndUpdate(userUpdateExpenses, userID, id);
+            findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() => getUsers());
+
             // console.log("submit");
           }}
         >
           <div>
-            <input
-              className="form-control"
-              type="date"
-              name="date"
-              id="date-inp"
-              defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateExpensesObject(e)}
-            />
+            <input className="form-control" type="date" name="date" id="date-inp" defaultValue={date.slice(0, 10)} onChange={(e) => updateExpensesObject(e)} />
           </div>
           <div>
             <input
@@ -65,12 +51,7 @@ function EditExpensesHistoryForm({
             />
           </div>
           <div>
-            <select
-              className="form-select"
-              name="category"
-              id="category"
-              onChange={(e) => updateExpensesObject(e)}
-            >
+            <select className="form-select" name="category" id="category" onChange={(e) => updateExpensesObject(e)}>
               <option defaultValue={category}>{category}</option>
               <option value="Maistas">Pramogos</option>
               <option value="Mokesčiai">Mokesčiai</option>
@@ -80,21 +61,10 @@ function EditExpensesHistoryForm({
             </select>
           </div>
           <div>
-            <input
-              className="form-control custom-input"
-              placeholder="Name"
-              type="text"
-              name="name"
-              id="name"
-              defaultValue={name}
-              onChange={(e) => updateExpensesObject(e)}
-            />
+            <input className="form-control custom-input" placeholder="Name" type="text" name="name" id="name" defaultValue={name} onChange={(e) => updateExpensesObject(e)} />
           </div>
           <div>
-            <button
-              type="submit"
-              className="btn btn-outline-warning m-1 custom-button"
-            >
+            <button type="submit" className="btn btn-outline-warning m-1 custom-button">
               <MdDoneOutline />
             </button>
             <button className="btn btn-outline-danger m-1 custom-button">
