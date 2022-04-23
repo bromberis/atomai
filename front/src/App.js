@@ -1,5 +1,6 @@
 import "./App.css";
 import IncomeExpenses from "./components/IncomeExpenses";
+import History from "./components/History";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       {/* <IncomeExpensesMobile /> */}
       {/* <IncomeExpenses /> */}
       {/* <Income /> */}
-      {/* <History /> */}
+      <History />
     </div>
   );
 }
