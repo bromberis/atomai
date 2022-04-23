@@ -11,11 +11,22 @@ export async function createUserData(data) {
 }
 
 export async function findIncomeDataAndUpdate(data, id, subID) {
-  console.log(data);
-  console.log(id);
-  console.log(subID);
+  // console.log(data);
+  // console.log(id);
+  // console.log(subID);
   const response = await axiosUser.patch(
-    `/${id}/${subID}`,
+    `/${id}/inc/${subID}`,
+    JSON.stringify(data)
+  );
+  return response;
+}
+
+export async function findExpensesDataAndUpdate(data, id, subID) {
+  // console.log(data);
+  // console.log(id);
+  // console.log(subID);
+  const response = await axiosUser.patch(
+    `/${id}/exp/${subID}`,
     JSON.stringify(data)
   );
   return response;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { MdDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
-import { findIncomeDataAndUpdate } from "../api/library/UsersAPI";
+import { findExpensesDataAndUpdate } from "../api/library/UsersAPI";
 
 // import "./History.css";
 
-function EditIncomeHistoryForm({
+function EditExpensesHistoryForm({
   name,
   category,
   date,
@@ -15,19 +15,20 @@ function EditIncomeHistoryForm({
   type,
   userID,
 }) {
-  console.log("enter income");
-  const [userUpdateIncome, setUserUpdateIncome] = useState({
+  //console.log("enter expenses");
+  // console.log(userID);
+  // console.log(id);
+  const [userUpdateExpenses, setUserUpdateExpenses] = useState({
     sum: sum,
     name: name,
     date: date,
     category: category,
   });
 
-  function updateIncomeObject(e) {
+  function updateExpensesObject(e) {
     e.preventDefault();
-    userUpdateIncome[e.target.name] = e.target.value;
-    console.log(userUpdateIncome);
-    // {...userUpdateIncome, id:99, id:777}
+    userUpdateExpenses[e.target.name] = e.target.value;
+    //console.log(userUpdateExpenses);
   }
 
   return (
@@ -36,8 +37,9 @@ function EditIncomeHistoryForm({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            findIncomeDataAndUpdate(userUpdateIncome, userID, id);
-            console.log("submit");
+
+            findExpensesDataAndUpdate(userUpdateExpenses, userID, id);
+            // console.log("submit");
           }}
         >
           <div>
@@ -47,7 +49,7 @@ function EditIncomeHistoryForm({
               name="date"
               id="date-inp"
               defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             />
           </div>
           <div>
@@ -59,7 +61,7 @@ function EditIncomeHistoryForm({
               id="sum"
               // maxLength={5}
               defaultValue={sum}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             />
           </div>
           <div>
@@ -67,14 +69,13 @@ function EditIncomeHistoryForm({
               className="form-select"
               name="category"
               id="category"
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             >
               <option defaultValue={category}>{category}</option>
-              <option value="Alga">Alga</option>
-              <option value="Premija">Premija</option>
-              <option value="Dovana">Dovana</option>
-              <option value="Loterija">Loterija</option>
-              <option value="Išmoka">Išmoka</option>
+              <option value="Maistas">Pramogos</option>
+              <option value="Mokesčiai">Mokesčiai</option>
+              <option value="Rūbai">Rūbai</option>
+              <option value="Transportas">Transportas</option>
               <option value="Kita">Kita</option>
             </select>
           </div>
@@ -86,7 +87,7 @@ function EditIncomeHistoryForm({
               name="name"
               id="name"
               defaultValue={name}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             />
           </div>
           <div>
@@ -106,4 +107,4 @@ function EditIncomeHistoryForm({
   );
 }
 
-export default EditIncomeHistoryForm;
+export default EditExpensesHistoryForm;

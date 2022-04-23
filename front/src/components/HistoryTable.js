@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./History.css";
 import { BsTrash } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
-import EditHistoryForm from "./EditIncomeHistoryForm";
+import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
+import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 
 function HistoryTable({
   name,
@@ -52,7 +53,20 @@ function HistoryTable({
       </tr>
       <tr>
         {editFormStatus && type === "income" && (
-          <EditHistoryForm
+          <EditIncomeHistoryForm
+            key={id}
+            id={id}
+            name={name}
+            category={category}
+            date={date}
+            sum={sum}
+            dateCreated={dateCreated}
+            type={type}
+            userID={userID}
+          />
+        )}
+        {editFormStatus && type === "expenses" && (
+          <EditExpensesHistoryForm
             key={id}
             id={id}
             name={name}
