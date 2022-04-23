@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { MdDoneOutline } from "react-icons/md";
-import { GiCancel } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
+import { FaCheck } from "react-icons/fa";
 import { findExpensesDataAndUpdate } from "../api/library/UsersAPI";
 import { getAllUsersData } from "../api/library/UsersAPI";
 
-// import "./History.css";
+import "./History.css";
 
-function EditExpensesHistoryForm({ getUsers, name, category, date, sum, dateCreated, id, type, userID }) {
-  //console.log("enter expenses");
-  // console.log(userID);
-  // console.log(id);
+function EditExpensesHistoryForm({
+  getUsers,
+  name,
+  category,
+  date,
+  sum,
+  id,
+  //type,
+  userID,
+  editFormStatus,
+  setEditFormStatus,
+}) {
   const [userUpdateExpenses, setUserUpdateExpenses] = useState({
     sum: sum,
     name: name,
@@ -25,26 +33,33 @@ function EditExpensesHistoryForm({ getUsers, name, category, date, sum, dateCrea
 
   return (
     <>
+      <td className="custom-td"></td>
+      <td className="custom-td"></td>
+      <td className="custom-td"></td>
       <td>
         <form
           onSubmit={(e) => {
             e.preventDefault();
 
-
-//             findExpensesDataAndUpdate(userUpdateExpenses, userID, id);
-//             console.log("submit");
-
-            findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() => getUsers());
-
-            // console.log("submit");
+            findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() =>
+              getUsers()
+            );
+            setEditFormStatus(!editFormStatus);
           }}
         >
-          <div>
-            <input className="form-control" type="date" name="date" id="date-inp" defaultValue={date.slice(0, 10)} onChange={(e) => updateExpensesObject(e)} />
-          </div>
-          <div>
+          <div className="mb-1">
             <input
-              className="form-control custom-input"
+              className="form-control"
+              type="date"
+              name="date"
+              id="date-inp"
+              defaultValue={date.slice(0, 10)}
+              onChange={(e) => updateExpensesObject(e)}
+            />
+          </div>
+          <div className="mb-1">
+            <input
+              className="form-control "
               placeholder="Suma"
               type="number"
               name="sum"
@@ -54,8 +69,13 @@ function EditExpensesHistoryForm({ getUsers, name, category, date, sum, dateCrea
               onChange={(e) => updateExpensesObject(e)}
             />
           </div>
-          <div>
-            <select className="form-select" name="category" id="category" onChange={(e) => updateExpensesObject(e)}>
+          <div className="mb-1">
+            <select
+              className="form-select"
+              name="category"
+              id="category"
+              onChange={(e) => updateExpensesObject(e)}
+            >
               <option defaultValue={category}>{category}</option>
               <option value="Maistas">Pramogos</option>
               <option value="Mokesčiai">Mokesčiai</option>
@@ -64,15 +84,23 @@ function EditExpensesHistoryForm({ getUsers, name, category, date, sum, dateCrea
               <option value="Kita">Kita</option>
             </select>
           </div>
-          <div>
-            <input className="form-control custom-input" placeholder="Name" type="text" name="name" id="name" defaultValue={name} onChange={(e) => updateExpensesObject(e)} />
+          <div className="mb-1">
+            <input
+              className="form-control custom-input "
+              placeholder="Name"
+              type="text"
+              name="name"
+              id="name"
+              defaultValue={name}
+              onChange={(e) => updateExpensesObject(e)}
+            />
           </div>
           <div>
-            <button type="submit" className="btn btn-outline-warning m-1 custom-button">
-              <MdDoneOutline />
+            <button type="submit" className="btn m-1 custom-button">
+              <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
-            <button className="btn btn-outline-danger m-1 custom-button">
-              <GiCancel />
+            <button type="button" className="btn  m-1 custom-button">
+              <ImCross color="#bc6e7f" fontSize="1.4em" />
             </button>
           </div>
         </form>

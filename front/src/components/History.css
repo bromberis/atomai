@@ -6,10 +6,28 @@
   color: #3a3845;
 }
 
+.expenses-sum {
+  color: #bc6e7f;
+  font-weight: bolder;
+}
+
+.income-sum {
+  color: #7fbc6e;
+  font-weight: bolder;
+}
 .text-income {
-  border-left: 5px solid #dbecd6;
+  border-left: 5px solid #add4a2;
 }
 
 .text-expenses {
-  border-left: 5px solid #ecd6db;
+  border-left: 5px solid #d4a2ad;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #7fbc6e !important;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+}
+
+.custom-td {
+  border: none;
 }
