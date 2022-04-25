@@ -40,9 +40,9 @@ export default function IncomeExpenses() {
     user.income.push(income);
     console.log(user);
     fetch(`http://localhost:3005/api/v1/users/${user._id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
-        AAccept: "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
@@ -70,7 +70,7 @@ export default function IncomeExpenses() {
     fetch(`http://localhost:3005/api/v1/users/${user._id}`, {
       method: "PATCH",
       headers: {
-        AAccept: "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
@@ -88,12 +88,18 @@ export default function IncomeExpenses() {
           <div className="col">Labas, {"username"}</div>
 
           <div className=" col col-auto">
-            <button onClick={() => setDisplay("income")} className={`btn ${buttonColor("income")}`}>
+            <button
+              onClick={() => setDisplay("income")}
+              className={`btn ${buttonColor("income")}`}
+            >
               Pajamos
             </button>
           </div>
           <div className="col col-auto">
-            <button onClick={(e) => setDisplay("expenses")} className={`btn ${buttonColor("expenses")}`}>
+            <button
+              onClick={(e) => setDisplay("expenses")}
+              className={`btn ${buttonColor("expenses")}`}
+            >
               Islaidos
             </button>
           </div>
@@ -104,23 +110,40 @@ export default function IncomeExpenses() {
                 <form
                   className="mr-2"
                   onChange={(e) => {
-                    display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
+                    display == "income"
+                      ? updateIncomeObject(e)
+                      : updateExpenseObject(e);
                   }}
                   onSubmit={(e) => {
-                    display == "income" ? submitNewIncome(e) : submitNewExpense(e);
+                    display == "income"
+                      ? submitNewIncome(e)
+                      : submitNewExpense(e);
                   }}
                 >
                   <div className="row">
                     <div className="col">
                       <div className="form-group mb-4">
                         {/* SUMA */}
-                        <input className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
+                        <input
+                          className="form-control"
+                          placeholder="Suma"
+                          type="number"
+                          name="sum"
+                          id="sum"
+                          maxLength={5}
+                        />
                       </div>
                     </div>
                     <div className="col">
                       <div className="form-group">
                         {/* DATA */}
-                        <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
+                        <input
+                          className="form-control"
+                          type="date"
+                          name="date"
+                          id="date-inp"
+                          defaultValue={new Date().toISOString().substr(0, 10)}
+                        />
                       </div>
                     </div>
                   </div>
@@ -128,7 +151,11 @@ export default function IncomeExpenses() {
                     <div className="col">
                       <div className="form-group">
                         {/* KATEGORIJA */}
-                        <select className="form-control" name="category" id="category">
+                        <select
+                          className="form-control"
+                          name="category"
+                          id="category"
+                        >
                           <option value="none">Kategorija 🔽</option>
                           <option value="wage">Alga</option>
                           <option value="prize">Prizas</option>
@@ -139,7 +166,13 @@ export default function IncomeExpenses() {
                     <div className="col">
                       <div className="form-group">
                         {/* PAVADINIMAS */}
-                        <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
+                        <input
+                          className="form-control mb-4"
+                          placeholder="Pavadinimas"
+                          type="text"
+                          name="name"
+                          id="name"
+                        />
                       </div>
                     </div>
                   </div>
@@ -152,7 +185,10 @@ export default function IncomeExpenses() {
                   <div className="row">
                     <div className="col text-center">
                       {/* SUBMIT BUTTON */}
-                      <button className="btn btn-success mt-3 w-25" type="submit">
+                      <button
+                        className="btn btn-success mt-3 w-25"
+                        type="submit"
+                      >
                         Submit
                       </button>
                     </div>

@@ -7,6 +7,7 @@ const IncomeSchema = mongoose.Schema(
     name: { type: String },
     category: { type: String },
     type: { type: String, default: "income" },
+    addDate: { type: Date, default: new Date() },
   },
   { timestamps: true }
 );

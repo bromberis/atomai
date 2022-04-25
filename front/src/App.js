@@ -10,7 +10,7 @@ function App() {
       {/* <div className="App">Atomic money app.</div> */}
       {/* <IncomeExpensesDesktop /> */}
       {/* <IncomeExpensesMobile /> */}
-      {/* <IncomeExpenses /> */}
+      <IncomeExpenses />
       {/* <Income /> */}
       <History />
     </div>
