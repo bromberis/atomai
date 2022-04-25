@@ -48,16 +48,16 @@ export default function IncomeExpensesDesktop() {
     console.log(user);
     updateUser(user, user._id);
   }
-  function replaceComma(e) {
-    if (!e.target.value.includes(`.`)) {
-      let newString = document.forms[0].elements[0].value + `.`;
-
-      console.log(newString);
-      document.forms[0].elements[0].value = newString;
+  function sumValidate(e) {
+    // replace comma with dot
+    function replaceComma(e) {
+      if (!e.target.value.includes(`.`)) {
+        let newString = document.forms[0].elements[0].value + `.`;
+        document.forms[0].elements[0].value = newString;
+      }
     }
-  }
 
-  function checkKey(e) {
+    // numbers only
     let charCode = e.which ? e.which : e.keyCode;
     console.log(!/\.\d{1,2}/.test(e.target.value));
 
@@ -69,10 +69,8 @@ export default function IncomeExpensesDesktop() {
     }
     if (charCode == 46 && !e.target.value.includes(`.`)) {
     } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      console.log(e, e.key, e.which);
       e.preventDefault();
     }
-    console.log(Number(e.target.value), typeof Number(e.target.value));
   }
 
   function buttonColor(btnColor) {
@@ -111,7 +109,7 @@ export default function IncomeExpensesDesktop() {
                     <div className="col">
                       <div className="form-group mb-4">
                         {/* SUMA */}
-                        <input onKeyPress={(e) => checkKey(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
+                        <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
                       </div>
                     </div>
                     <div className="col">
