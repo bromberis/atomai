@@ -46,6 +46,7 @@ export default function IncomeExpensesDesktop() {
 
     display == "income" ? user.income.push(income) : user.expenses.push(expense);
     console.log(user);
+
     updateUser(user, user._id);
   }
   function sumValidate(e) {
@@ -71,6 +72,7 @@ export default function IncomeExpensesDesktop() {
     } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       e.preventDefault();
     }
+
   }
 
   function buttonColor(btnColor) {
@@ -83,12 +85,18 @@ export default function IncomeExpensesDesktop() {
           <div className="col">Labas, {"username"}</div>
 
           <div className=" col col-auto">
-            <button onClick={() => setDisplay("income")} className={`btn ${buttonColor("income")}`}>
+            <button
+              onClick={() => setDisplay("income")}
+              className={`btn ${buttonColor("income")}`}
+            >
               Pajamos
             </button>
           </div>
           <div className="col col-auto">
-            <button onClick={(e) => setDisplay("expenses")} className={`btn ${buttonColor("expenses")}`}>
+            <button
+              onClick={(e) => setDisplay("expenses")}
+              className={`btn ${buttonColor("expenses")}`}
+            >
               Islaidos
             </button>
           </div>
@@ -99,23 +107,35 @@ export default function IncomeExpensesDesktop() {
                 <form
                   className="mr-2"
                   onChange={(e) => {
-                    display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
+                    display == "income"
+                      ? updateIncomeObject(e)
+                      : updateExpenseObject(e);
                   }}
                   onSubmit={(e) => {
+
                     submitNewIncomeExpense(e);
+
                   }}
                 >
                   <div className="row">
                     <div className="col">
                       <div className="form-group mb-4">
                         {/* SUMA */}
+
                         <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
+
                       </div>
                     </div>
                     <div className="col">
                       <div className="form-group">
                         {/* DATA */}
-                        <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
+                        <input
+                          className="form-control"
+                          type="date"
+                          name="date"
+                          id="date-inp"
+                          defaultValue={new Date().toISOString().substr(0, 10)}
+                        />
                       </div>
                     </div>
                   </div>
@@ -123,7 +143,11 @@ export default function IncomeExpensesDesktop() {
                     <div className="col">
                       <div className="form-group">
                         {/* KATEGORIJA */}
-                        <select className="form-control" name="category" id="category">
+                        <select
+                          className="form-control"
+                          name="category"
+                          id="category"
+                        >
                           <option value="none">Kategorija 🔽</option>
                           <option value="wage">Alga</option>
                           <option value="prize">Prizas</option>
@@ -134,7 +158,13 @@ export default function IncomeExpensesDesktop() {
                     <div className="col">
                       <div className="form-group">
                         {/* PAVADINIMAS */}
-                        <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
+                        <input
+                          className="form-control mb-4"
+                          placeholder="Pavadinimas"
+                          type="text"
+                          name="name"
+                          id="name"
+                        />
                       </div>
                     </div>
                   </div>
@@ -147,8 +177,10 @@ export default function IncomeExpensesDesktop() {
                   <div className="row">
                     <div className="col text-center">
                       {/* SUBMIT BUTTON */}
+
                       <button className="btn btn-success mt-3 w-25" type="submit">
                         {display == "income" ? `Prideti pajamas` : `Prideti islaidas`}
+
                       </button>
                     </div>
                   </div>

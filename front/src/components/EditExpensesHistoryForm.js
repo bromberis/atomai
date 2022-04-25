@@ -28,6 +28,7 @@ function EditExpensesHistoryForm({
   function updateExpensesObject(e) {
     e.preventDefault();
     userUpdateExpenses[e.target.name] = e.target.value;
+
     //console.log(userUpdateExpenses);
   }
 
@@ -36,7 +37,7 @@ function EditExpensesHistoryForm({
       <td className="custom-td"></td>
       <td className="custom-td"></td>
       <td className="custom-td"></td>
-      <td>
+      <td className="custom-td">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -96,10 +97,15 @@ function EditExpensesHistoryForm({
             />
           </div>
           <div>
-            <button type="submit" className="btn m-1 custom-button">
+            <button type="submit" className="btn m-1 custom-button-edit">
               <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
-            <button type="button" className="btn  m-1 custom-button">
+
+            <button
+              type="button"
+              className="btn  m-1 custom-button-tr"
+              onClick={() => setEditFormStatus(!editFormStatus)}
+            >
               <ImCross color="#bc6e7f" fontSize="1.4em" />
             </button>
           </div>

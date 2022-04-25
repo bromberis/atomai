@@ -28,6 +28,16 @@
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
 }
 
+.custom-button-tr:focus {
+  border-color: #d4a2ad !important;
+  box-shadow: 0 0 0 0.2rem rgba(187, 137, 148, 0.25) !important;
+}
+
+.custom-button-edit:focus {
+  border-color: #575051 !important;
+  box-shadow: 0 0 0 0.2rem rgba(159, 158, 158, 0.25) !important;
+}
+
 .custom-td {
   border: none;
 }
