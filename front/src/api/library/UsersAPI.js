@@ -17,6 +17,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
   // console.log(data);
   // console.log(id);
   // console.log(subID);
+
   const response = await axiosUser
     .patch(`/${id}/inc/upd/${subID}`, JSON.stringify(data))
     .then((result) => {
@@ -31,6 +32,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       swal("Oops", "Klaida!", "error");
     });
   swal("Puiku!", "Klaida ištaisyta!", "success");
+
   return response;
 }
 
@@ -69,8 +71,11 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
       console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
+
   return response;
 }
+
+
 
 export async function findExpensesAndDelete(id, subID) {
   const response = await axiosUser
@@ -86,4 +91,12 @@ export async function findExpensesAndDelete(id, subID) {
       console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
+}
+
+export async function updateUser(data, id) {
+  // console.log(data);
+  // console.log(id);
+  const response = await axiosUser.patch(`/${id}`, JSON.stringify(data));
+
+  return response;
 }
