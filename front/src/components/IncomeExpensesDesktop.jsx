@@ -50,6 +50,15 @@ export default function IncomeExpenses() {
       console.log(`Request complete! response:`, res);
     });
   }
+  function checkKey(e) {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode == 46) {
+    } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      console.log(e, e.key, e.which);
+      e.preventDefault();
+    }
+  }
+
   function updateExpenseObject(e) {
     e.preventDefault();
     expense[e.target.name] = e.target.value;
@@ -124,14 +133,8 @@ export default function IncomeExpenses() {
                     <div className="col">
                       <div className="form-group mb-4">
                         {/* SUMA */}
-                        <input
-                          className="form-control"
-                          placeholder="Suma"
-                          type="number"
-                          name="sum"
-                          id="sum"
-                          maxLength={5}
-                        />
+
+                        <input onKeyPress={(e) => checkKey(e)} className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
                       </div>
                     </div>
                     <div className="col">
