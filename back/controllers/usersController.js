@@ -4,6 +4,7 @@ const Users = require("../models/userModel");
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await Users.find();
+
     res.status(200).json({
       status: "success",
       results: users.length,
@@ -156,3 +157,30 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
     });
   }
 };
+
+// exports.findIncomeAndDelete = async (req, res) => {
+//   // console.log(req.params.id);
+//   // console.log(req.params.subID);
+//   // console.log(req.body);
+//   try {
+//     const updateExpenses = await Users.findOneAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         $pull: {
+//           income: req.params.subID,
+//         },
+//       }
+//     );
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         expenses: updateExpenses,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };

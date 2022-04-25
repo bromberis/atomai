@@ -98,10 +98,14 @@ function EditIncomeHistoryForm({
             />
           </div>
           <div>
-            <button type="submit" className="btn m-1 custom-button">
+            <button type="submit" className="btn m-1 custom-button-edit">
               <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
-            <button type="button" className="btn  m-1 custom-button">
+            <button
+              type="button"
+              className="btn  m-1 custom-button-tr"
+              onClick={() => setEditFormStatus(!editFormStatus)}
+            >
               <ImCross color="#bc6e7f" fontSize="1.4em" />
             </button>
           </div>

@@ -49,12 +49,12 @@ function HistoryTable({
         <td>{name && UppercaseFirst(name)}</td>
         <td>
           <button
-            className="btn m-1 custom-button"
+            className="btn m-1 custom-button-edit"
             onClick={() => setEditFormStatus(!editFormStatus)}
           >
             <BsPencil color="#3a3845" fontSize="1.5em" />
           </button>
-          <button className="btn  m-1 custom-button">
+          <button className="btn  m-1 custom-button-tr">
             <BsTrash color="#bc6e7f" fontSize="1.5em" />
           </button>
         </td>
