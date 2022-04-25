@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { getAllUsersData, updateUser } from "../api/library/UsersAPI";
 
-export default function IncomeExpenses() {
+export default function IncomeExpensesDesktop() {
   const [display, setDisplay] = useState("income");
   let [user, setUser] = useState({});
   let [income, setIncome] = useState({});
   let [expense, setExpense] = useState({});
+  let [noMoreCommas, setNoMoreCommas] = useState(false);
 
   const getUser = () => {
-    fetch(`http://localhost:3005/api/v1/users`)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result.data.users[0]);
-        setUser(result.data.users[0]);
-        user = result.data.users[0];
-        console.log(user);
-      })
-      .catch((error) => console.log(error));
+    getAllUsersData().then((res) => {
+      setUser(res.data.data.users[0]);
+      console.log(res.data.data.users[0]);
+    });
   };
   useEffect(() => getUser(), []);
   // todays date ISO format
@@ -26,8 +23,14 @@ export default function IncomeExpenses() {
     income[e.target.name] = e.target.value;
     console.log(income);
   }
+  function updateExpenseObject(e) {
+    e.preventDefault();
+    expense[e.target.name] = e.target.value;
+    console.log(expense);
+  }
 
-  function submitNewIncome(e) {
+  function submitNewIncomeExpense(e) {
+    e.preventDefault();
     // If no date selected puts current date into income object
     // cant use ! in front of "date"?
     if ("date" in income) {
@@ -35,58 +38,43 @@ export default function IncomeExpenses() {
     } else {
       income.date = new Date().toISOString().substr(0, 10);
     }
-
-    e.preventDefault();
-    user.income.push(income);
-    console.log(user);
-    fetch(`http://localhost:3005/api/v1/users/${user._id}`, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    }).then((res) => {
-      console.log(`Request complete! response:`, res);
-    });
-  }
-  function checkKey(e) {
-    const charCode = e.which ? e.which : e.keyCode;
-    if (charCode == 46) {
-    } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      console.log(e, e.key, e.which);
-      e.preventDefault();
-    }
-  }
-
-  function updateExpenseObject(e) {
-    e.preventDefault();
-    expense[e.target.name] = e.target.value;
-    console.log(expense);
-  }
-  function submitNewExpense(e) {
-    // If no date selected puts current date into income object
-    // cant use ! in front of "date"?
     if ("date" in expense) {
       console.log(expense);
     } else {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    e.preventDefault();
-    user.expenses.push(expense);
+    display == "income" ? user.income.push(income) : user.expenses.push(expense);
     console.log(user);
-    fetch(`http://localhost:3005/api/v1/users/${user._id}`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    }).then((res) => {
-      console.log(`Request complete! response:`, res);
-    });
+
+    updateUser(user, user._id);
   }
+  function sumValidate(e) {
+    // replace comma with dot
+    function replaceComma(e) {
+      if (!e.target.value.includes(`.`)) {
+        let newString = document.forms[0].elements[0].value + `.`;
+        document.forms[0].elements[0].value = newString;
+      }
+    }
+
+    // numbers only
+    let charCode = e.which ? e.which : e.keyCode;
+    console.log(!/\.\d{1,2}/.test(e.target.value));
+
+    if (charCode == 44) {
+      replaceComma(e);
+    }
+    if (/\.\d{2}$/.test(e.target.value)) {
+      e.preventDefault();
+    }
+    if (charCode == 46 && !e.target.value.includes(`.`)) {
+    } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      e.preventDefault();
+    }
+
+  }
+
   function buttonColor(btnColor) {
     return btnColor == display ? "btn-dark" : "btn-secondary";
   }
@@ -124,9 +112,9 @@ export default function IncomeExpenses() {
                       : updateExpenseObject(e);
                   }}
                   onSubmit={(e) => {
-                    display == "income"
-                      ? submitNewIncome(e)
-                      : submitNewExpense(e);
+
+                    submitNewIncomeExpense(e);
+
                   }}
                 >
                   <div className="row">
@@ -134,7 +122,8 @@ export default function IncomeExpenses() {
                       <div className="form-group mb-4">
                         {/* SUMA */}
 
-                        <input onKeyPress={(e) => checkKey(e)} className="form-control" placeholder="Suma" type="number" name="sum" id="sum" maxLength={5} />
+                        <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
+
                       </div>
                     </div>
                     <div className="col">
@@ -188,11 +177,10 @@ export default function IncomeExpenses() {
                   <div className="row">
                     <div className="col text-center">
                       {/* SUBMIT BUTTON */}
-                      <button
-                        className="btn btn-success mt-3 w-25"
-                        type="submit"
-                      >
-                        Submit
+
+                      <button className="btn btn-success mt-3 w-25" type="submit">
+                        {display == "income" ? `Prideti pajamas` : `Prideti islaidas`}
+
                       </button>
                     </div>
                   </div>
