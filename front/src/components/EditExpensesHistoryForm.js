@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { findExpensesDataAndUpdate } from "../api/library/UsersAPI";
-import { getAllUsersData } from "../api/library/UsersAPI";
-
+import swal from "sweetalert";
 import "./History.css";
 
 function EditExpensesHistoryForm({
