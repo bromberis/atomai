@@ -14,10 +14,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
   // console.log(data);
   // console.log(id);
   // console.log(subID);
-  const response = await axiosUser.patch(
-    `/${id}/inc/${subID}`,
-    JSON.stringify(data)
-  );
+  const response = await axiosUser.patch(`/${id}/inc/${subID}`, JSON.stringify(data));
   return response;
 }
 
@@ -25,9 +22,13 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   // console.log(data);
   // console.log(id);
   // console.log(subID);
-  const response = await axiosUser.patch(
-    `/${id}/exp/${subID}`,
-    JSON.stringify(data)
-  );
+  const response = await axiosUser.patch(`/${id}/exp/${subID}`, JSON.stringify(data));
+  return response;
+}
+
+export async function updateUser(data, id) {
+  // console.log(data);
+  // console.log(id);
+  const response = await axiosUser.patch(`/${id}`, JSON.stringify(data));
   return response;
 }
