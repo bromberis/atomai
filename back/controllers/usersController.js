@@ -158,29 +158,56 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
-// exports.findIncomeAndDelete = async (req, res) => {
-//   // console.log(req.params.id);
-//   // console.log(req.params.subID);
-//   // console.log(req.body);
-//   try {
-//     const updateExpenses = await Users.findOneAndUpdate(
-//       { _id: req.params.id },
-//       {
-//         $pull: {
-//           income: req.params.subID,
-//         },
-//       }
-//     );
-//     res.status(200).json({
-//       status: "success",
-//       data: {
-//         expenses: updateExpenses,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };
+// delete income
+
+exports.findIncomeAndDelete = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $pull: {
+          income: { _id: req.params.subID },
+        },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+// delete expenses
+
+exports.findExpensesAndDelete = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $pull: {
+          expenses: { _id: req.params.subID },
+        },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};

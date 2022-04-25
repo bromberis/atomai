@@ -3,6 +3,11 @@ import "./History.css";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
+import {
+  findIncomeAndDelete,
+  findExpensesAndDelete,
+} from "../api/library/UsersAPI";
+import swal from "sweetalert";
 
 function HistoryTable({
   getUsers,
@@ -54,7 +59,24 @@ function HistoryTable({
           >
             <BsPencil color="#3a3845" fontSize="1.5em" />
           </button>
-          <button className="btn  m-1 custom-button-tr">
+          <button
+            className="btn  m-1 custom-button-tr"
+            onClick={() =>
+              swal({
+                title: "Ar tikrai norite ištrinti?",
+                icon: "warning",
+                buttons: ["Atšaukti", "Gerai"],
+              }).then((isConfirm) => {
+                if (isConfirm) {
+                  if (type === "income") {
+                    findIncomeAndDelete(userID, id).then(() => getUsers());
+                  } else if (type === "expenses") {
+                    findExpensesAndDelete(userID, id).then(() => getUsers());
+                  }
+                }
+              })
+            }
+          >
             <BsTrash color="#bc6e7f" fontSize="1.5em" />
           </button>
         </td>
