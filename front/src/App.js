@@ -1,7 +1,10 @@
 import "./App.css";
 import IncomeExpenses from "./components/IncomeExpenses";
 import History from "./components/History";
+
 import NavBar from "./components/NavBar";
+
+import IncomeExpensesInput from "./components/IncomeExpensesInput";
 
 function App() {
   return (
@@ -13,7 +16,9 @@ function App() {
       {/* <IncomeExpensesMobile /> */}
       {/* <NavBar.js /> */}
       <IncomeExpenses />
+      {/* <IncomeExpenses /> */}
       {/* <Income /> */}
+      <IncomeExpensesInput />
       <History />
     </div>
   );
