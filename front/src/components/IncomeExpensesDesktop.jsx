@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData, updateUser } from "../api/library/UsersAPI";
+import { getAllUsersData, createUserIncome } from "../api/library/UsersAPI";
 
 export default function IncomeExpensesDesktop() {
   const [display, setDisplay] = useState("income");
   let [user, setUser] = useState({});
   let [income, setIncome] = useState({});
   let [expense, setExpense] = useState({});
-  let [noMoreCommas, setNoMoreCommas] = useState(false);
 
   const getUser = () => {
     getAllUsersData().then((res) => {
@@ -44,12 +43,13 @@ export default function IncomeExpensesDesktop() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    display == "income"
-      ? user.income.push(income)
-      : user.expenses.push(expense);
+
+    // display == "income" ? user.income.push(income) : user.expenses.push(expense);
+
     console.log(user);
 
-    updateUser(user, user._id);
+    // updateUser(user, user._id);
+    createUserIncome(income, user._id);
   }
   function sumValidate(e) {
     // replace comma with dot
@@ -83,22 +83,16 @@ export default function IncomeExpensesDesktop() {
     <div>
       <div className="container">
         <div className="row">
-          <div className="col">Labas, {"username"}</div>
+          <div className="col">Labas, {user.name}</div>
 
           <div className=" col col-auto">
-            <button
-              onClick={() => setDisplay("income")}
-              className={`btn ${buttonColor("income")}`}
-            >
+            <button onClick={() => setDisplay("income")} className={`btn ${buttonColor("income")}`}>
               Pajamos
             </button>
           </div>
           <div className="col col-auto">
-            <button
-              onClick={(e) => setDisplay("expenses")}
-              className={`btn ${buttonColor("expenses")}`}
-            >
-              Islaidos
+            <button onClick={(e) => setDisplay("expenses")} className={`btn ${buttonColor("expenses")}`}>
+              Išlaidos
             </button>
           </div>
 
@@ -108,9 +102,7 @@ export default function IncomeExpensesDesktop() {
                 <form
                   className="mr-2"
                   onChange={(e) => {
-                    display == "income"
-                      ? updateIncomeObject(e)
-                      : updateExpenseObject(e);
+                    display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
                   }}
                   onSubmit={(e) => {
                     submitNewIncomeExpense(e);
@@ -121,28 +113,13 @@ export default function IncomeExpensesDesktop() {
                       <div className="form-group mb-4">
                         {/* SUMA */}
 
-                        <input
-                          onKeyPress={(e) => sumValidate(e)}
-                          className="form-control"
-                          placeholder="Suma"
-                          type="text"
-                          name="sum"
-                          id="sum"
-                          maxLength={8}
-                          required
-                        />
+                        <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
                       </div>
                     </div>
                     <div className="col">
                       <div className="form-group">
                         {/* DATA */}
-                        <input
-                          className="form-control"
-                          type="date"
-                          name="date"
-                          id="date-inp"
-                          defaultValue={new Date().toISOString().substr(0, 10)}
-                        />
+                        <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
                       </div>
                     </div>
                   </div>
@@ -150,13 +127,9 @@ export default function IncomeExpensesDesktop() {
                     <div className="col">
                       <div className="form-group">
                         {/* KATEGORIJA */}
-                        <select
-                          className="form-control"
-                          name="category"
-                          id="category"
-                        >
-                          <option value="none">Kategorija 🔽</option>
-                          <option value="wage">Alga</option>
+                        <select className="form-select" name="category" id="category">
+                          {/* <option value="none">Kategorija 🔽</option> */}
+                          <option value="alga">Alga</option>
                           <option value="prize">Prizas</option>
                           <option value="etc">Kita</option>
                         </select>
@@ -165,13 +138,7 @@ export default function IncomeExpensesDesktop() {
                     <div className="col">
                       <div className="form-group">
                         {/* PAVADINIMAS */}
-                        <input
-                          className="form-control mb-4"
-                          placeholder="Pavadinimas"
-                          type="text"
-                          name="name"
-                          id="name"
-                        />
+                        <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
                       </div>
                     </div>
                   </div>
@@ -185,13 +152,9 @@ export default function IncomeExpensesDesktop() {
                     <div className="col text-center">
                       {/* SUBMIT BUTTON */}
 
-                      <button
-                        className="btn btn-success mt-3 w-25"
-                        type="submit"
-                      >
-                        {display == "income"
-                          ? `Prideti pajamas`
-                          : `Prideti islaidas`}
+                      <button className="btn btn-success mt-3 w-25" type="submit">
+                        {display == "income" ? `Prideti pajamas` : `Prideti išlaidas`}
+
                       </button>
                     </div>
                   </div>

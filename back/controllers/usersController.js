@@ -211,3 +211,30 @@ exports.findExpensesAndDelete = async (req, res) => {
     });
   }
 };
+
+// Add user income
+exports.createUserIncome = async (req, res) => {
+  console.log(req);
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour: updated,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
