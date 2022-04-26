@@ -110,6 +110,29 @@ export async function createUserIncome(id, data) {
       console.log("Success:", result);
       swal({
         text: "Įrašas išsaugotas!",
+
+        icon: "success",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Oops", "Klaida!", "error");
+    });
+
+  return response;
+}
+
+export async function createUserExpense(id, data) {
+  console.log(`EXPENSE`);
+  console.log(data);
+  console.log(id);
+  const response = await axiosUser
+    .patch(`/${id}/exp/`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Įrašas išsaugotas!",
+
         icon: "success",
       });
     })

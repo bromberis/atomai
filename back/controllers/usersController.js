@@ -237,3 +237,28 @@ exports.createUserIncome = async (req, res) => {
     });
   }
 };
+
+exports.createUserExpense = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { expenses: req.body } },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour: updated,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};

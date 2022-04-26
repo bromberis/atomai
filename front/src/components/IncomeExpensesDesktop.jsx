@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData, createUserIncome } from "../api/library/UsersAPI";
+import { getAllUsersData, createUserIncome, createUserExpense } from "../api/library/UsersAPI";
 import swal from "sweetalert";
 
 export default function IncomeExpensesDesktop() {
@@ -43,13 +43,7 @@ export default function IncomeExpensesDesktop() {
     } else {
       expense.date = new Date().toISOString().substr(0, 10);
     }
-
-    // display == "income" ? user.income.push(income) : user.expenses.push(expense);
-
-    console.log(user);
-
-    // updateUser(user, user._id);
-    createUserIncome(user._id, income);
+    display == "income" ? createUserIncome(user._id, income).then(() => getUser()) : createUserExpense(user._id, expense).then(() => getUser());
   }
   function sumValidate(e) {
     // replace comma with dot
@@ -87,7 +81,7 @@ export default function IncomeExpensesDesktop() {
             <div className="col">Labas, {user.name}</div>
 
             <div className=" col col-auto">
-              <button onClick={() => setDisplay("income")} className={`btn ${buttonColor("income")}`}>
+              <button onClick={() => setDisplay("income")} className={`mb-2 btn ${buttonColor("income")}`}>
                 Pajamos
               </button>
             </div>
@@ -96,70 +90,73 @@ export default function IncomeExpensesDesktop() {
                 Išlaidos
               </button>
             </div>
+          </div>
 
-            <div>
-              <div className="container">
-                <div className="col">
-                  <form
-                    className="mr-2"
-                    onChange={(e) => {
-                      display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
-                    }}
-                    onSubmit={(e) => {
-                      submitNewIncomeExpense(e);
-                    }}
-                  >
-                    <div className="row">
-                      <div className="col">
-                        <div className="form-group mb-4">
-                          {/* SUMA */}
+          <div>
+            <div className="container">
+              <div className="col">
+                <form
+                  className="mr-2"
+                  onChange={(e) => {
+                    display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
+                  }}
+                  onSubmit={(e) => {
+                    submitNewIncomeExpense(e);
+                  }}
+                >
+                  <div className="row">
+                    <div className="col">
+                      <div className="form-group mb-4">
+                        {/* SUMA */}
 
-                          <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
-                        </div>
-                      </div>
-                      <div className="col">
-                        <div className="form-group">
-                          {/* DATA */}
-                          <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
-                        </div>
+                        <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col">
-                        <div className="form-group">
-                          {/* KATEGORIJA */}
-                          <select className="form-select" name="category" id="category">
-                            {/* <option value="none">Kategorija 🔽</option> */}
-                            <option value="alga">Alga</option>
-                            <option value="prize">Prizas</option>
-                            <option value="etc">Kita</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col">
-                        <div className="form-group">
-                          {/* PAVADINIMAS */}
-                          <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
-                        </div>
+                    <div className="col">
+                      <div className="form-group">
+                        {/* DATA */}
+                        <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col">
-                        {/* BALANSAS */}
-                        <h4>Balansas: {user.balance}</h4>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <div className="form-group">
+                        {/* KATEGORIJA */}
+                        <select className="form-select" name="category" id="category">
+                          {/* <option value="none">Kategorija 🔽</option> */}
+                          <option defaultValue="Alga">Alga</option>
+                          <option value="Maistas">Pramogos</option>
+                          <option value="Mokesčiai">Mokesčiai</option>
+                          <option value="Rūbai">Rūbai</option>
+                          <option value="Transportas">Transportas</option>
+                          <option value="Kita">Kita</option>
+                        </select>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col text-center">
-                        {/* SUBMIT BUTTON */}
+                    <div className="col">
+                      <div className="form-group">
+                        {/* PAVADINIMAS */}
+                        <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      {/* BALANSAS */}
+                      <h4>Balansas: {user.balance}</h4>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col text-center">
+                      {/* SUBMIT BUTTON */}
 
-                        <button className="btn btn-success mt-3 w-25" type="submit">
-                          {display == "income" ? `Prideti pajamas` : `Prideti išlaidas`}
-                        </button>
-                      </div>
+                      <button className="btn btn-success mt-3 w-25" type="submit">
+                        {display == "income" ? `Prideti pajamas` : `Prideti išlaidas`}
+                      </button>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
