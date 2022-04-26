@@ -43,7 +43,9 @@ export default function IncomeExpensesDesktop() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
+
     // display == "income" ? user.income.push(income) : user.expenses.push(expense);
+
     console.log(user);
 
     // updateUser(user, user._id);
@@ -152,6 +154,7 @@ export default function IncomeExpensesDesktop() {
 
                       <button className="btn btn-success mt-3 w-25" type="submit">
                         {display == "income" ? `Prideti pajamas` : `Prideti išlaidas`}
+
                       </button>
                     </div>
                   </div>
