@@ -101,14 +101,15 @@ export async function findExpensesAndDelete(id, subID) {
     });
 }
 
-export async function createUserIncome(data, id) {
-  console.log(data, id);
+export async function createUserIncome(id, data) {
+  console.log(data);
+  console.log(id);
   const response = await axiosUser
-    .patch(`/${id}`, JSON.stringify(data))
+    .patch(`/${id}/inc/`, JSON.stringify(data))
     .then((result) => {
       console.log("Success:", result);
       swal({
-        text: "Ištrinta!",
+        text: "Įrašas išsaugotas!",
         icon: "success",
       });
     })
