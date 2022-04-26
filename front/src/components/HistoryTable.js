@@ -28,9 +28,9 @@ function HistoryTable({
 
   let colorClass = (str) => {
     if (str === "income") {
-      return "text-income";
+      return "text-income text-center";
     } else {
-      return "text-expenses";
+      return "text-expenses text-center";
     }
   };
 
@@ -47,12 +47,12 @@ function HistoryTable({
   return (
     <>
       <tr className={colorClass(type)}>
-        <td>{dateCreated.slice(0, 10)}</td>
-        <td>{date.slice(0, 10)}</td>
+        <td className="smaller-td">{dateCreated.slice(0, 10)}</td>
+        <td className="smaller-td">{date.slice(0, 10)}</td>
         <td className={colorClassSum(type)}>{sum}</td>
         <td>{category}</td>
         <td>{name && UppercaseFirst(name)}</td>
-        <td>
+        <td className="smaller-td">
           <button
             className="btn m-1 custom-button-edit"
             onClick={() => setEditFormStatus(!editFormStatus)}
