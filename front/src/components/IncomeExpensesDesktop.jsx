@@ -44,7 +44,9 @@ export default function IncomeExpensesDesktop() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    display == "income" ? user.income.push(income) : user.expenses.push(expense);
+    display == "income"
+      ? user.income.push(income)
+      : user.expenses.push(expense);
     console.log(user);
 
     updateUser(user, user._id);
@@ -72,7 +74,6 @@ export default function IncomeExpensesDesktop() {
     } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       e.preventDefault();
     }
-
   }
 
   function buttonColor(btnColor) {
@@ -112,9 +113,7 @@ export default function IncomeExpensesDesktop() {
                       : updateExpenseObject(e);
                   }}
                   onSubmit={(e) => {
-
                     submitNewIncomeExpense(e);
-
                   }}
                 >
                   <div className="row">
@@ -122,8 +121,16 @@ export default function IncomeExpensesDesktop() {
                       <div className="form-group mb-4">
                         {/* SUMA */}
 
-                        <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
-
+                        <input
+                          onKeyPress={(e) => sumValidate(e)}
+                          className="form-control"
+                          placeholder="Suma"
+                          type="text"
+                          name="sum"
+                          id="sum"
+                          maxLength={8}
+                          required
+                        />
                       </div>
                     </div>
                     <div className="col">
@@ -178,9 +185,13 @@ export default function IncomeExpensesDesktop() {
                     <div className="col text-center">
                       {/* SUBMIT BUTTON */}
 
-                      <button className="btn btn-success mt-3 w-25" type="submit">
-                        {display == "income" ? `Prideti pajamas` : `Prideti islaidas`}
-
+                      <button
+                        className="btn btn-success mt-3 w-25"
+                        type="submit"
+                      >
+                        {display == "income"
+                          ? `Prideti pajamas`
+                          : `Prideti islaidas`}
                       </button>
                     </div>
                   </div>
