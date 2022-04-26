@@ -41,3 +41,7 @@
 .custom-td {
   border: none;
 }
+
+.smaller-td {
+  width: 10vw;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { findIncomeDataAndUpdate } from "../api/library/UsersAPI";
-
+import { useForm } from "react-hook-form";
 import "./History.css";
 
 function EditIncomeHistoryForm({
@@ -10,15 +10,12 @@ function EditIncomeHistoryForm({
   category,
   date,
   sum,
-  dateCreated,
   id,
-  type,
   userID,
   editFormStatus,
   setEditFormStatus,
   getUsers,
 }) {
-  console.log("enter income");
   const [userUpdateIncome, setUserUpdateIncome] = useState({
     sum: sum,
     name: name,
@@ -30,24 +27,27 @@ function EditIncomeHistoryForm({
     e.preventDefault();
     userUpdateIncome[e.target.name] = e.target.value;
     console.log(userUpdateIncome);
-    // {...userUpdateIncome, id:99, id:777}
   }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function onSubmit() {
+    findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() =>
+      getUsers()
+    );
+    setEditFormStatus(!editFormStatus);
+  }
   return (
     <>
       <td className="custom-td"></td>
       <td className="custom-td"></td>
       <td className="custom-td"></td>
       <td className="custom-td">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() =>
-              getUsers()
-            );
-            setEditFormStatus(!editFormStatus);
-          }}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-1">
             <input
               className="form-control"
@@ -65,19 +65,31 @@ function EditIncomeHistoryForm({
               type="number"
               name="sum"
               id="sum"
-              // maxLength={5}
+              step="0.01"
               defaultValue={sum}
+              {...register("sum", {
+                required: true,
+                pattern: /^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/,
+                // min: 1,
+                maxLength: 10,
+              })}
               onChange={(e) => updateIncomeObject(e)}
             />
+            {errors.sum && (
+              <span className="text-danger fw-light">
+                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigimas
+                skaičius.
+              </span>
+            )}
           </div>
           <div className="mb-1">
             <select
               className="form-select"
               name="category"
               id="category"
+              {...register("program", { required: true })}
               onChange={(e) => updateIncomeObject(e)}
             >
-              <option defaultValue={category}>{category}</option>
               <option value="Alga">Alga</option>
               <option value="Premija">Premija</option>
               <option value="Dovana">Dovana</option>
@@ -94,8 +106,17 @@ function EditIncomeHistoryForm({
               name="name"
               id="name"
               defaultValue={name}
+              {...register("name", {
+                pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_. +-]*$/i,
+                maxLength: 40,
+              })}
               onChange={(e) => updateIncomeObject(e)}
             />
+            {errors.name && (
+              <span className="text-danger fw-light">
+                Būtinas laukas. 2-40 simbolių, specialūs simboliai negalimi.
+              </span>
+            )}
           </div>
           <div>
             <button type="submit" className="btn m-1 custom-button-edit">
