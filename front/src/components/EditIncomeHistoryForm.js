@@ -87,7 +87,7 @@ function EditIncomeHistoryForm({
               className="form-select"
               name="category"
               id="category"
-              {...register("program", { required: true })}
+              {...register("category", { required: true })}
               onChange={(e) => updateIncomeObject(e)}
             >
               <option value="Alga">Alga</option>
