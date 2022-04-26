@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getAllUsersData, createUserIncome } from "../api/library/UsersAPI";
 
-export default function IncomeMobile({ user }) {
+export default function IncomeMobile({ user, type }) {
   let [income, setIncome] = useState({});
   let [expense, setExpense] = useState({});
 
@@ -64,7 +64,6 @@ export default function IncomeMobile({ user }) {
   }
   return (
     <div>
-      <div>income</div>
       <div>
         <form onKeyPress={(e) => sumValidate(e)} onSubmit={(e) => submitNewIncomeExpense(e)}>
           <div className="form-group">
@@ -74,18 +73,20 @@ export default function IncomeMobile({ user }) {
             <input type="text" className="form-control" id="date" name="date" defaultValue={new Date().toISOString().substr(0, 10)} />
           </div>
           <div className="form-group">
-            <select className="form-control" name="category" id="category">
-              <option value="none">Kategorija 🔽</option>
-              <option value="wage">Alga</option>
-              <option value="prize">Prizas</option>
-              <option value="etc">Kita</option>
+            <select className="form-select" name="category" id="category">
+              <option defaultValue="Alga">Alga</option>
+              <option value="Maistas">Pramogos</option>
+              <option value="Mokesčiai">Mokesčiai</option>
+              <option value="Rūbai">Rūbai</option>
+              <option value="Transportas">Transportas</option>
+              <option value="Kita">Kita</option>
             </select>
           </div>
           <div className="form-group">
             <input type="text" className="form-control" name="name" id="name" placeholder="Pavadinimas" />
           </div>
           <div>
-            <button className="btn btn-success">Prideti</button>
+            <button className="btn btn-success">Prideti {type == "income" ? "pajamas" : "išlaidas"}</button>
           </div>
         </form>
       </div>

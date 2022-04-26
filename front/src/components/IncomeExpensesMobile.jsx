@@ -29,14 +29,13 @@ export default function IncomeExpensesMobile() {
         </button>
       </div>
 
-      {display == "income" && <FormMobile user={user} />}
       <div>
         <button onClick={() => setDisplay("expenses")} className={`btn ${buttonColor("expenses")}`}>
           Išlaidos
         </button>
       </div>
 
-      {display == "expenses" && <FormMobile user={user} />}
+      {display == "income" ? <FormMobile user={user} type={"income"} /> : <FormMobile user={user} type={"expense"} />}
       <div>Balansas: {}</div>
     </div>
   );
