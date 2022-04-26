@@ -98,7 +98,7 @@ export async function createUserIncome(data, id) {
     .then((result) => {
       console.log("Success:", result);
       swal({
-        text: "Ištrinta!",
+        text: "Prideta!",
         icon: "success",
       });
     })

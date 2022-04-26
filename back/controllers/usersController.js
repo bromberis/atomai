@@ -214,11 +214,11 @@ exports.findExpensesAndDelete = async (req, res) => {
 
 // Add user income
 exports.createUserIncome = async (req, res) => {
-  console.log(req);
+  console.log(`!!!!!!!!!!!!!!!!1 ${req}`);
   console.log(req.params.id);
   console.log(req.params.subId);
   try {
-    await Users.findOneAndUpdate(
+    const updated = await Users.findOneAndUpdate(
       { _id: req.params.id },
       { $push: { income: req.body } },
       {
