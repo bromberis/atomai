@@ -75,8 +75,6 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   return response;
 }
 
-
-
 export async function findExpensesAndDelete(id, subID) {
   const response = await axiosUser
     .patch(`/${id}/exp/dlt/${subID}`)
@@ -93,10 +91,21 @@ export async function findExpensesAndDelete(id, subID) {
     });
 }
 
-export async function updateUser(data, id) {
-  // console.log(data);
-  // console.log(id);
-  const response = await axiosUser.patch(`/${id}`, JSON.stringify(data));
+export async function createUserIncome(data, id) {
+  console.log(data, id);
+  const response = await axiosUser
+    .patch(`/${id}`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Ištrinta!",
+        icon: "success",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Oops", "Klaida!", "error");
+    });
 
   return response;
 }

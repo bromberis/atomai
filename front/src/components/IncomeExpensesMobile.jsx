@@ -19,7 +19,7 @@ export default function IncomeExpensesMobile() {
       {display == "income" && <FormMobile />}
       <div>
         <button onClick={() => setDisplay("expenses")} className={`btn ${buttonColor("expenses")}`}>
-          Islaidos
+          Išlaidos
         </button>
       </div>
 
