@@ -25,13 +25,20 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
       console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
-  swal("Puiku!", "Klaida ištaisyta!", "success");
+
+  swal({
+    title: "Puiku!",
+    text: "Klaida ištaisyta!",
+    icon: "success",
+    button: "Gerai",
+  });
 
   return response;
 }
@@ -44,6 +51,7 @@ export async function findIncomeAndDelete(id, subID) {
       swal({
         text: "Ištrinta!",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
@@ -65,6 +73,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
@@ -75,8 +84,6 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   return response;
 }
 
-
-
 export async function findExpensesAndDelete(id, subID) {
   const response = await axiosUser
     .patch(`/${id}/exp/dlt/${subID}`)
@@ -85,6 +92,7 @@ export async function findExpensesAndDelete(id, subID) {
       swal({
         text: "Ištrinta!",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
