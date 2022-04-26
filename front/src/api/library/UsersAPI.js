@@ -25,13 +25,20 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
       console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
-  swal("Puiku!", "Klaida ištaisyta!", "success");
+
+  swal({
+    title: "Puiku!",
+    text: "Klaida ištaisyta!",
+    icon: "success",
+    button: "Gerai",
+  });
 
   return response;
 }
@@ -44,6 +51,7 @@ export async function findIncomeAndDelete(id, subID) {
       swal({
         text: "Ištrinta!",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
@@ -65,6 +73,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
@@ -83,6 +92,7 @@ export async function findExpensesAndDelete(id, subID) {
       swal({
         text: "Ištrinta!",
         icon: "success",
+        button: "Gerai",
       });
     })
     .catch((error) => {
@@ -91,14 +101,17 @@ export async function findExpensesAndDelete(id, subID) {
     });
 }
 
-export async function createUserIncome(data, id) {
-  console.log(data, id);
+export async function createUserIncome(id, data) {
+  console.log(data);
+  console.log(id);
   const response = await axiosUser
-    .patch(`/${id}`, JSON.stringify(data))
+    .patch(`/${id}/inc/`, JSON.stringify(data))
     .then((result) => {
       console.log("Success:", result);
       swal({
-        text: "Prideta!",
+
+        text: "Įrašas išsaugotas!",
+
         icon: "success",
       });
     })
