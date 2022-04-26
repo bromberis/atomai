@@ -77,7 +77,7 @@ function EditExpensesHistoryForm({
             />
             {errors.sum && (
               <span className="text-danger fw-light">
-                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigimas
+                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
                 skaičius.
               </span>
             )}
