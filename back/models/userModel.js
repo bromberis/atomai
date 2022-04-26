@@ -61,47 +61,83 @@ const usersSchema = new mongoose.Schema(
 const Users = new mongoose.model("Users", usersSchema);
 
 // Duomenų siuntimas į DB
-// const testUsers = new Users({
-//   name: "Atomas Gediminas",
-//   email: "antanas@gmail.com",
-//   password: "123",
-//   balance: 0,
-//   limit: [{ category: "transport", limit: 200 }],
-//   income: [
-//     {
-//       date: "2022-04-10",
-//       sum: "1500",
-//       name: "alga",
-//       category: "alga",
-//     },
-//     {
-//       date: "2022-04-05",
-//       sum: "2000",
-//       name: "alga",
-//       category: "alga",
-//     },
-//   ],
-//   expenses: [
-//     {
-//       date: "2022-04-14",
-//       sum: "100",
-//       name: "pica",
-//       category: "pramogos",
-//     },
-//     {
-//       date: "2022-04-03",
-//       sum: "50",
-//       name: "mokesčiai",
-//       category: "pramogos",
-//     },
-//     {
-//       date: "2022-04-03",
-//       sum: "50",
-//       name: "mokesčiai",
-//       category: "pramogos",
-//     },
-//   ],
-// });
+const testUsers = new Users({
+  name: "Atomas Gediminas",
+  email: "antanas@gmail.com",
+  password: "123",
+  balance: 0,
+  limit: [{ category: "transport", limit: 200 }],
+  income: [
+    {
+      date: "2022-04-10",
+      sum: "1500",
+      name: "alga",
+      category: "alga",
+    },
+    {
+      date: "2022-04-05",
+      sum: "2000",
+      name: "alga",
+      category: "alga",
+    },
+    {
+      date: "2022-04-05",
+      sum: "2000",
+      name: "alga",
+      category: "alga",
+    },
+    {
+      date: "2022-04-05",
+      sum: "2000",
+      name: "alga",
+      category: "alga",
+    },
+    {
+      date: "2022-04-05",
+      sum: "2000",
+      name: "alga",
+      category: "alga",
+    },
+  ],
+  expenses: [
+    {
+      date: "2022-04-14",
+      sum: "100",
+      name: "pica",
+      category: "pramogos",
+    },
+    {
+      date: "2022-04-03",
+      sum: "50",
+      name: "mokesčiai",
+      category: "pramogos",
+    },
+    {
+      date: "2022-04-03",
+      sum: "50",
+      name: "mokesčiai",
+      category: "pramogos",
+    },
+    {
+      date: "2022-04-03",
+      sum: "50",
+      name: "mokesčiai",
+      category: "pramogos",
+    },
+    {
+      date: "2022-04-03",
+      sum: "50",
+      name: "mokesčiai",
+      category: "pramogos",
+    },
+    {
+      date: "2022-04-03",
+      sum: "50",
+      name: "mokesčiai",
+      category: "pramogos",
+    },
+  ],
+});
 
 // testUsers.save();
 

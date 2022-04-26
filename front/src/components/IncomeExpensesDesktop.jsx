@@ -45,11 +45,11 @@ export default function IncomeExpensesDesktop() {
     }
 
     // display == "income" ? user.income.push(income) : user.expenses.push(expense);
+
     console.log(user);
 
     // updateUser(user, user._id);
-    console.log(`!!!!!!!!${(income, user._id)}`);
-    createUserIncome(income, user._id);
+    createUserIncome(user._id, income);
   }
   function sumValidate(e) {
     // replace comma with dot
@@ -92,74 +92,74 @@ export default function IncomeExpensesDesktop() {
               </button>
             </div>
             <div className="col col-auto">
-              <button onClick={(e) => setDisplay("expenses")} className={`mr-n2 mb-2 btn ${buttonColor("expenses")}`}>
+              <button onClick={(e) => setDisplay("expenses")} className={`btn ${buttonColor("expenses")}`}>
                 Išlaidos
               </button>
             </div>
-          </div>
 
-          <div>
-            <div className="container">
-              <div className="col">
-                <form
-                  className="mr-2"
-                  onChange={(e) => {
-                    display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
-                  }}
-                  onSubmit={(e) => {
-                    submitNewIncomeExpense(e);
-                  }}
-                >
-                  <div className="row">
-                    <div className="col">
-                      <div className="form-group mb-4">
-                        {/* SUMA */}
+            <div>
+              <div className="container">
+                <div className="col">
+                  <form
+                    className="mr-2"
+                    onChange={(e) => {
+                      display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
+                    }}
+                    onSubmit={(e) => {
+                      submitNewIncomeExpense(e);
+                    }}
+                  >
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group mb-4">
+                          {/* SUMA */}
 
-                        <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
+                          <input onKeyPress={(e) => sumValidate(e)} className="form-control" placeholder="Suma" type="text" name="sum" id="sum" maxLength={8} required />
+                        </div>
+                      </div>
+                      <div className="col">
+                        <div className="form-group">
+                          {/* DATA */}
+                          <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
+                        </div>
                       </div>
                     </div>
-                    <div className="col">
-                      <div className="form-group">
-                        {/* DATA */}
-                        <input className="form-control" type="date" name="date" id="date-inp" defaultValue={new Date().toISOString().substr(0, 10)} />
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group">
+                          {/* KATEGORIJA */}
+                          <select className="form-select" name="category" id="category">
+                            {/* <option value="none">Kategorija 🔽</option> */}
+                            <option value="alga">Alga</option>
+                            <option value="prize">Prizas</option>
+                            <option value="etc">Kita</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col">
+                        <div className="form-group">
+                          {/* PAVADINIMAS */}
+                          <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <div className="form-group">
-                        {/* KATEGORIJA */}
-                        <select className="form-select" name="category" id="category">
-                          {/* <option value="none">Kategorija 🔽</option> */}
-                          <option value="alga">Alga</option>
-                          <option value="prize">Prizas</option>
-                          <option value="etc">Kita</option>
-                        </select>
+                    <div className="row">
+                      <div className="col">
+                        {/* BALANSAS */}
+                        <h4>Balansas: {user.balance}</h4>
                       </div>
                     </div>
-                    <div className="col">
-                      <div className="form-group">
-                        {/* PAVADINIMAS */}
-                        <input className="form-control mb-4" placeholder="Pavadinimas" type="text" name="name" id="name" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      {/* BALANSAS */}
-                      <h4>Balansas: {user.balance}</h4>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col text-center">
-                      {/* SUBMIT BUTTON */}
+                    <div className="row">
+                      <div className="col text-center">
+                        {/* SUBMIT BUTTON */}
 
-                      <button className="btn btn-success mt-3 w-25" type="submit">
-                        {display == "income" ? `Prideti pajamas` : `Prideti išlaidas`}
-                      </button>
+                        <button className="btn btn-success mt-3 w-25" type="submit">
+                          {display == "income" ? `Prideti pajamas` : `Prideti išlaidas`}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
