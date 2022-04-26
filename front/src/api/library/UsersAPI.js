@@ -109,7 +109,9 @@ export async function createUserIncome(id, data) {
     .then((result) => {
       console.log("Success:", result);
       swal({
+
         text: "Įrašas išsaugotas!",
+
         icon: "success",
       });
     })

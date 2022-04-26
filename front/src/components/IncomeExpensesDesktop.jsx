@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllUsersData, createUserIncome } from "../api/library/UsersAPI";
+import swal from "sweetalert";
 
 export default function IncomeExpensesDesktop() {
   const [display, setDisplay] = useState("income");
@@ -48,6 +49,7 @@ export default function IncomeExpensesDesktop() {
     console.log(user);
 
     // updateUser(user, user._id);
+
     createUserIncome(user._id, income);
   }
   function sumValidate(e) {
@@ -80,25 +82,23 @@ export default function IncomeExpensesDesktop() {
   }
   return (
     <div>
-      <div className="container">
-        <div className="row">
-          <div className="col">Labas, {user.name}</div>
+      <div className="container mt-3">
+        <div className="row mr-2">
+          <div className="row">
+            <div className="col">Labas, {user.name}</div>
 
-          <div className=" col col-auto">
-            <button
-              onClick={() => setDisplay("income")}
-              className={`btn ${buttonColor("income")}`}
-            >
-              Pajamos
-            </button>
-          </div>
-          <div className="col col-auto">
-            <button
-              onClick={(e) => setDisplay("expenses")}
-              className={`btn ${buttonColor("expenses")}`}
-            >
-              Išlaidos
-            </button>
+
+            <div className=" col col-auto">
+              <button onClick={() => setDisplay("income")} className={`btn ${buttonColor("income")}`}>
+                Pajamos
+              </button>
+            </div>
+            <div className="col col-auto">
+              <button onClick={(e) => setDisplay("expenses")} className={`mr-n2 mb-2 btn ${buttonColor("expenses")}`}>
+                Išlaidos
+              </button>
+            </div>
+
           </div>
 
           <div>

@@ -214,6 +214,7 @@ exports.findExpensesAndDelete = async (req, res) => {
 
 // Add user income
 exports.createUserIncome = async (req, res) => {
+
   console.log(req.params.id);
   console.log(req.params.subId);
   try {
