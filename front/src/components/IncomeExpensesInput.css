@@ -1,28 +1,71 @@
 * {
   font-family: "Roboto", sans-serif;
 }
+.hello-msg {
+  font-size: 1.5rem;
+}
+
 .col {
   padding: 0;
 }
 
 .btn-all {
   border: none;
-  /* padding: 5px 10px; */
+  padding: 5px 15px;
 }
 
 .btn-income {
   background-color: #dbecd6;
   width: 10rem;
   font-size: 1.5rem;
+  border-left: 0.5px solid grey;
+  border-right: 0.5px solid grey;
+  border-top: 0.5px solid grey;
 }
 
 .btn-expenses {
   background-color: #ecd6db;
   width: 10rem;
   font-size: 1.5rem;
+  border-right: 0.5px solid grey;
+  border-top: 0.5px solid grey;
 }
 
-.btn-submit {
+.btn-submit-input,
+.btn-submit-expenses {
   background-color: #dbecd6;
   width: 15rem;
+  padding: 10px;
+  margin-bottom: 5vh;
+  border: 0.5px solid grey;
+}
+
+.btn-submit-expenses {
+  background-color: #ecd6db;
+}
+
+input,
+select {
+  height: 3.5rem;
+  width: 100%;
+  border: 0.5px solid grey;
+  padding: 1rem;
+}
+
+.input-custom {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.input:focus {
+}
+
+.bottom-space {
+  padding-bottom: 20vh;
+}
+
+.border-main {
+  border: 0.5px solid grey;
+  margin-bottom: 10vh;
 }
