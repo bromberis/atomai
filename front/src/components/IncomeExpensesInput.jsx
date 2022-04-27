@@ -67,9 +67,9 @@ function IncomeExpensesInput() {
     <>
       <div className="container mt-3 ">
         <div className="row">
-          <div className="col-3 p-0 hello-msg">Labas, {user.name} !</div>
+          <div className="col-lg-3 col-md-3 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center">Labas, {user.name} !</div>
 
-          <div className="col-9 text-end p-0">
+          <div className="col-lg-9 col-md-9 col-sm-12 text-end p-0">
             <button
               onClick={() => {
                 setDisplay("income");
@@ -100,7 +100,7 @@ function IncomeExpensesInput() {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="row">
-              <div className="col-6 p-2">
+              <div className="col-lg-6 col-md-6  p-2">
                 {/* SUMA */}
 
                 <input
@@ -121,14 +121,14 @@ function IncomeExpensesInput() {
                 {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
               </div>
 
-              <div className="col-6 p-2">
+              <div className="col-lg-6 col-md-6 p-2">
                 {/* DATA */}
-                <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" defaultValue={new Date().toISOString().substr(0, 10)} />
+                <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={new Date().toISOString().substr(0, 10)} />
               </div>
             </div>
 
             <div className="row bottom-space">
-              <div className="col-6 p-2">
+              <div className="col-lg-6 col-md-6 p-2">
                 {/* KATEGORIJA */}
                 {display === "income" ? (
                   <select
@@ -162,7 +162,7 @@ function IncomeExpensesInput() {
                 )}
               </div>
 
-              <div className="col-6 p-2 ">
+              <div className="col-lg-6 col-md-6 p-2 ">
                 {/* PAVADINIMAS */}
                 <input
                   className="rounded-0 input-custom "
@@ -186,7 +186,7 @@ function IncomeExpensesInput() {
             </div> */}
 
             <div className="row">
-              <div className="col text-center">
+              <div className="col-12 text-center">
                 {/* SUBMIT BUTTON */}
                 {display == "income" ? (
                   <button className="btn-submit-input btn-all" type="submit">

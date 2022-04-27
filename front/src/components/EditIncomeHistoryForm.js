@@ -55,6 +55,7 @@ function EditIncomeHistoryForm({
               name="date"
               id="date-inp"
               min="2010-01-01"
+              max="2099-01-01"
               defaultValue={date.slice(0, 10)}
               onChange={(e) => updateIncomeObject(e)}
             />
@@ -102,7 +103,7 @@ function EditIncomeHistoryForm({
           <div className="mb-1">
             <input
               className=" custom-input"
-              placeholder="Name"
+              placeholder="Pastabos"
               type="text"
               name="name"
               id="name"
