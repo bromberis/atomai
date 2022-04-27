@@ -123,6 +123,7 @@ function IncomeExpensesInput() {
 
               <div className="col-lg-6 col-md-6 p-2">
                 {/* DATA */}
+
                 <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={new Date().toISOString().substr(0, 10)} />
               </div>
             </div>

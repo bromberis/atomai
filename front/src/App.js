@@ -10,22 +10,39 @@ import { debounce } from "lodash";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
-  function handleResize(test) {
+  function handleResize() {
     setWidth(window.innerWidth);
   }
   const handler = useCallback(debounce(handleResize, 100), []);
-  window.addEventListener("resize", () => handler("test"));
+  window.addEventListener("resize", () => handler());
 
   return (
-    // <div>
-    // <div className="container ml-n3">
-    <div className="row">
-      <div className="col-2 p-0 ">
-        <Navigation />
-      </div>
-      <div className="col-10 p-0">
-        <Outlet />
-      </div>
+    <div className="container p-0 m-0">
+      {width > 768 ? (
+        <>
+          <div className="row">
+            <div className="col-2 p-0 ">
+              <Navigation />
+            </div>
+
+            <div className="col-10 p-0">
+              <Outlet />
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="row">
+            <div className="col-12 p-0 ">
+              <NavigationMobile />
+            </div>
+            <div className="col-12 p-0">
+              <Outlet />
+            </div>
+          </div>
+        </>
+      )}
+
       {/* </div> */}
       {/* </div> */}
 
