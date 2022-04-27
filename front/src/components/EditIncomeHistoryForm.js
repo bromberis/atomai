@@ -54,6 +54,7 @@ function EditIncomeHistoryForm({
               type="date"
               name="date"
               id="date-inp"
+              min="2010-01-01"
               defaultValue={date.slice(0, 10)}
               onChange={(e) => updateIncomeObject(e)}
             />
