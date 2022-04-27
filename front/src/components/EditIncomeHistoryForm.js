@@ -108,14 +108,14 @@ function EditIncomeHistoryForm({
               id="name"
               defaultValue={name}
               {...register("name", {
-                pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_. +-]*$/i,
+                // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_. +-]*$/i,
                 maxLength: 40,
               })}
               onChange={(e) => updateIncomeObject(e)}
             />
             {errors.name && (
               <span className="text-danger fw-light">
-                Daugiausiai 40 simbolių, specialūs simboliai negalimi.
+                Daugiausiai 40 simbolių.
               </span>
             )}
           </div>
