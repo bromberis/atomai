@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { debounce } from "lodash";
 import IncomeExpensesMobile from "./IncomeExpensesMobile";
 import IncomeExpensesDesktop from "./IncomeExpensesDesktop";
+import Navigation from "./Navigation";
 
 export default function IncomeExpenses() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -15,5 +16,12 @@ export default function IncomeExpenses() {
   window.addEventListener("resize", () => handler("test"));
 
   console.log(window.innerWidth);
-  return <div>{width < 600 ? <IncomeExpensesMobile /> : <IncomeExpensesDesktop />}</div>;
+  return (
+    <div>
+      {/* <div>
+        <Navigation />
+      </div>{" "} */}
+      {width < 600 ? <IncomeExpensesMobile /> : <IncomeExpensesDesktop />}
+    </div>
+  );
 }
