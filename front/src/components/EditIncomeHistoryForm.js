@@ -70,7 +70,7 @@ function EditIncomeHistoryForm({
               defaultValue={sum}
               {...register("sum", {
                 required: true,
-                pattern: /^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/,
+                pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
                 // min: 1,
                 maxLength: 10,
               })}
