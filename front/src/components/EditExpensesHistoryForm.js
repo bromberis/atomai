@@ -101,7 +101,7 @@ function EditExpensesHistoryForm({
           <div className="mb-1">
             <input
               className="custom-input"
-              placeholder="Name"
+              placeholder="Pastabos"
               type="text"
               name="name"
               id="name"
