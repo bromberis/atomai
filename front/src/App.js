@@ -15,7 +15,7 @@ function App() {
       {/* <IncomeExpensesDesktop /> */}
       {/* <IncomeExpensesMobile /> */}
       {/* <NavBar.js /> */}
-      <IncomeExpenses />
+      {/* <IncomeExpenses /> */}
       {/* <IncomeExpenses /> */}
       {/* <Income /> */}
       <IncomeExpensesInput />

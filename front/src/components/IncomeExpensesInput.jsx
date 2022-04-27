@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData, createUserIncome } from "../api/library/UsersAPI";
+import {
+  getAllUsersData,
+  createUserIncome,
+  createUserExpense,
+} from "../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
   let [user, setUser] = useState({});
-  let [income, setIncome] = useState({});
-  let [expense, setExpense] = useState({});
+  let [income, setIncome] = useState({ category: "Alga" });
+  let [expense, setExpense] = useState({ category: "Kita" });
 
   const getUser = () => {
     getAllUsersData().then((res) => {
@@ -29,8 +33,8 @@ function IncomeExpensesInput() {
     console.log(expense);
   }
 
-  function submitNewIncomeExpense(e) {
-    e.preventDefault();
+  function submitNewIncomeExpense() {
+    // e.preventDefault();
     // If no date selected puts current date into income object
     // cant use ! in front of "date"?
     if ("date" in income) {
@@ -44,37 +48,10 @@ function IncomeExpensesInput() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    // display == "income" ? user.income.push(income) : user.expenses.push(expense);
-
-    console.log(user);
-
-    // updateUser(user, user._id);
-    createUserIncome(user._id, income);
+    display == "income"
+      ? createUserIncome(user._id, income)
+      : createUserExpense(user._id, expense);
   }
-  //   function sumValidate(e) {
-  //     // replace comma with dot
-  //     function replaceComma(e) {
-  //       if (!e.target.value.includes(`.`)) {
-  //         let newString = document.forms[0].elements[0].value + `.`;
-  //         document.forms[0].elements[0].value = newString;
-  //       }
-  //     }
-
-  //     // numbers only
-  //     let charCode = e.which ? e.which : e.keyCode;
-  //     console.log(!/\.\d{1,2}/.test(e.target.value));
-
-  //     if (charCode == 44) {
-  //       replaceComma(e);
-  //     }
-  //     if (/\.\d{2}$/.test(e.target.value)) {
-  //       e.preventDefault();
-  //     }
-  //     if (charCode == 46 && !e.target.value.includes(`.`)) {
-  //     } else if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-  //       e.preventDefault();
-  //     }
-  //   }
 
   function buttonColor(btnColor) {
     return btnColor == display ? "btn-dark" : "btn-secondary";
@@ -82,8 +59,13 @@ function IncomeExpensesInput() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+
+  function onSubmit() {
+    submitNewIncomeExpense();
+  }
 
   return (
     <>
@@ -93,14 +75,20 @@ function IncomeExpensesInput() {
 
           <div className="col mb-3 ">
             <button
-              onClick={() => setDisplay("income")}
+              onClick={() => {
+                setDisplay("income");
+                reset();
+              }}
               className={`btn rounded-0  ${buttonColor("income")}`}
             >
               Pajamos
             </button>
 
             <button
-              onClick={(e) => setDisplay("expenses")}
+              onClick={(e) => {
+                setDisplay("expenses");
+                reset();
+              }}
               className={`btn rounded-0 ${buttonColor("expenses")}`}
             >
               Išlaidos
@@ -115,9 +103,7 @@ function IncomeExpensesInput() {
                     ? updateIncomeObject(e)
                     : updateExpenseObject(e);
                 }}
-                onSubmit={(e) => {
-                  submitNewIncomeExpense(e);
-                }}
+                onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="row">
                   <div className="col">
@@ -142,52 +128,76 @@ function IncomeExpensesInput() {
                     {errors.sum && (
                       <span className="text-danger fw-light">
                         Būtinas laukas. Ne daugiau 10 simbolių, negali būti
-                        neigimas skaičius.
+                        neigiamas skaičius.
                       </span>
                     )}
                   </div>
 
                   <div className="col">
-                    <div className="">
-                      {/* DATA */}
-                      <input
-                        className="form-control"
-                        type="date"
-                        name="date"
-                        id="date-inp"
-                        defaultValue={new Date().toISOString().substr(0, 10)}
-                      />
-                    </div>
+                    {/* DATA */}
+                    <input
+                      className="form-control"
+                      type="date"
+                      name="date"
+                      id="date-inp"
+                      defaultValue={new Date().toISOString().substr(0, 10)}
+                    />
                   </div>
                 </div>
 
                 <div className="row">
                   <div className="col">
-                    <div className="">
-                      {/* KATEGORIJA */}
+                    {/* KATEGORIJA */}
+                    {display === "income" ? (
                       <select
                         className="form-select"
                         name="category"
                         id="category"
+                        // value="Alga"
+                        {...register("category", { required: true })}
                       >
-                        {/* <option value="none">Kategorija 🔽</option> */}
-                        <option value="alga">Alga</option>
-                        <option value="prize">Prizas</option>
-                        <option value="etc">Kita</option>
+                        <option value="Alga">Alga</option>
+                        <option value="Premija">Premija</option>
+                        <option value="Dovana">Dovana</option>
+                        <option value="Loterija">Loterija</option>
+                        <option value="Išmoka">Išmoka</option>
+                        <option value="Kita">Kita</option>
                       </select>
-                    </div>
+                    ) : (
+                      <select
+                        className="form-select"
+                        name="category"
+                        id="category"
+                        // value="Alga"
+                        {...register("category", { required: true })}
+                      >
+                        <option value="Kita">Kita</option>
+                        <option value="Maistas">Pramogos</option>
+                        <option value="Mokesčiai">Mokesčiai</option>
+                        <option value="Rūbai">Rūbai</option>
+                        <option value="Transportas">Transportas</option>
+                      </select>
+                    )}
                   </div>
+
                   <div className="col">
-                    <div className="">
-                      {/* PAVADINIMAS */}
-                      <input
-                        className="form-control mb-4"
-                        placeholder="Pavadinimas"
-                        type="text"
-                        name="name"
-                        id="name"
-                      />
-                    </div>
+                    {/* PAVADINIMAS */}
+                    <input
+                      className="form-control custom-input "
+                      placeholder="Name"
+                      type="text"
+                      name="name"
+                      id="name"
+                      {...register("name", {
+                        pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
+                        maxLength: 40,
+                      })}
+                    />
+                    {errors.name && (
+                      <span className="text-danger fw-light">
+                        Daugiausiai 40 simbolių, specialūs simboliai negalimi.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="row">

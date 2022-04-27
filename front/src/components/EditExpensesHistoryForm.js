@@ -113,7 +113,7 @@ function EditExpensesHistoryForm({
             />
             {errors.name && (
               <span className="text-danger fw-light">
-                Būtinas laukas. 2-40 simbolių, specialūs simboliai negalimi.
+                Daugiausiai 40 simbolių, specialūs simboliai negalimi.
               </span>
             )}
           </div>
