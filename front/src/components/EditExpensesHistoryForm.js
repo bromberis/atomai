@@ -55,6 +55,7 @@ function EditExpensesHistoryForm({
               name="date"
               id="date-inp"
               min="2010-01-01"
+              max="2099-01-01"
               defaultValue={date.slice(0, 10)}
               onChange={(e) => updateExpensesObject(e)}
             />
