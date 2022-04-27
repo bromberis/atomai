@@ -5,6 +5,7 @@ import {
   createUserExpense,
 } from "../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
+import "./IncomeExpensesInput.css";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
@@ -54,7 +55,7 @@ function IncomeExpensesInput() {
   }
 
   function buttonColor(btnColor) {
-    return btnColor == display ? "btn-dark" : "btn-secondary";
+    return btnColor == display ? " button btn-income" : " button btn-expenses";
   }
   const {
     register,
@@ -79,7 +80,7 @@ function IncomeExpensesInput() {
                 setDisplay("income");
                 reset();
               }}
-              className={`btn rounded-0  ${buttonColor("income")}`}
+              className={`btn rounded-0  btn-income`}
             >
               Pajamos
             </button>
@@ -89,7 +90,7 @@ function IncomeExpensesInput() {
                 setDisplay("expenses");
                 reset();
               }}
-              className={`btn rounded-0 ${buttonColor("expenses")}`}
+              className={`btn rounded-0 btn-expenses`}
             >
               Išlaidos
             </button>
@@ -210,10 +211,10 @@ function IncomeExpensesInput() {
                 <div className="row">
                   <div className="col text-center">
                     {/* SUBMIT BUTTON */}
-                    <button className="btn btn-success mt-3 w-25" type="submit">
+                    <button className="btn btn-submit rounded-0" type="submit">
                       {display == "income"
-                        ? `Prideti pajamas`
-                        : `Prideti išlaidas`}
+                        ? "Pridėti pajamas"
+                        : "Pridėti išlaidas"}
                     </button>
                   </div>
                 </div>
