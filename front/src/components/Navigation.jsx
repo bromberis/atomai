@@ -7,30 +7,32 @@ import { BiSortAlt2 } from "react-icons/bi";
 
 export default function Navigation() {
   return (
-    <div className="test">
-      <nav>
+    <div className="sideNav vh-100" style={{ backgroundColor: "rgb(33, 37, 41)" }}>
+      <nav className="vh-100">
         <div className="logo">
-          <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
-            <GiTakeMyMoney size={60} />
-          </button>
+          <Link to="/">
+            <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
+              <GiTakeMyMoney size={60} />
+            </button>
+          </Link>
         </div>
 
         <div>
-          <Link to="/incexp">
+          <Link to="/">
             <button className="btn btn-dark btn-lg rounded-0" style={{ width: "100%", height: "100px" }}>
               <AiOutlineHome size={30} /> <p>Pradžia</p>
             </button>
           </Link>
         </div>
         <div>
-          <Link to="/incexp">
+          <Link to="/">
             <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
               <GiHistogram size={30} /> <p>Statistika</p>
             </button>
           </Link>
         </div>
         <div>
-          <Link to="/incexp">
+          <Link to="/">
             <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
               <BiSortAlt2 size={30} /> <p>Limitai</p>
             </button>
@@ -39,7 +41,7 @@ export default function Navigation() {
         <div>
           <Link to="/history">
             <button className="btn btn-dark rounded-0 btn-lg " style={{ width: "100%", height: "100px" }}>
-              <AiOutlineHistory size={30} /> <p>History</p>
+              <AiOutlineHistory size={30} /> <p>Istorija</p>
             </button>
           </Link>
         </div>
