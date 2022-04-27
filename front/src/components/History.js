@@ -43,26 +43,13 @@ function UsersList() {
     // });
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-      return (
-        <HistoryTable
-          getUsers={getUsers}
-          key={item._id}
-          id={item._id}
-          name={item.name}
-          category={item.category}
-          date={item.date}
-          sum={item.sum}
-          dateCreated={item.createdAt}
-          type={item.type}
-          userID={users._id}
-        />
-      );
+      return <HistoryTable getUsers={getUsers} key={item._id} id={item._id} name={item.name} category={item.category} date={item.date} sum={item.sum} dateCreated={item.createdAt} type={item.type} userID={users._id} />;
     });
   }
 
   return (
     <>
-      <div className="container">
+      <div className="container ">
         <table className="table">
           <thead className="mb-2">
             <tr className="text-center">
