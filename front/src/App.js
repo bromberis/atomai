@@ -11,10 +11,10 @@ function App() {
     // <div>
     // <div className="container ml-n3">
     <div className="row">
-      <div className="col-2 ">
+      <div className="col-2 p-0 ">
         <Navigation />
       </div>
-      <div className="col-10">
+      <div className="col-10 p-0">
         <Outlet />
       </div>
       {/* </div> */}

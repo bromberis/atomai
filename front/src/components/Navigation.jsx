@@ -7,51 +7,56 @@ import { BiSortAlt2 } from "react-icons/bi";
 
 export default function Navigation() {
   return (
-    <div className="sideNav vh-100" style={{ position: "relative", backgroundColor: "rgb(33, 37, 41)" }}>
-      <nav className="vh-100">
-        <div className="logo">
-          <Link to="/">
-            <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
-              <GiTakeMyMoney size={60} />
-            </button>
-          </Link>
-        </div>
+    <div className="sideNav ">
+      <nav className="text-center">
+        <ul>
+          <li className="logo">
+            <Link to="/">
+              <button className="navigation-button">
+                <GiTakeMyMoney color="#F7F5F2" fontSize="3rem" />
+              </button>
+            </Link>
+          </li>
 
-        <div>
-          <Link to="/">
-            <button className="btn btn-dark btn-lg rounded-0" style={{ width: "100%", height: "100px" }}>
-              <AiOutlineHome size={30} /> <p>Pradžia</p>
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/">
-            <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
-              <GiHistogram size={30} /> <p>Statistika</p>
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/">
-            <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
-              <BiSortAlt2 size={30} /> <p>Limitai</p>
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/history">
-            <button className="btn btn-dark rounded-0 btn-lg " style={{ width: "100%", height: "100px" }}>
-              <AiOutlineHistory size={30} /> <p>Istorija</p>
-            </button>
-          </Link>
-        </div>
-        <div className="" style={{ position: "absolute", bottom: "0px", left: "20%" }}>
-          <Link to="/">
-            <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
-              <BiSortAlt2 size={30} /> <p>Limitai</p>
-            </button>
-          </Link>
-        </div>
+          <li>
+            <Link to="/">
+              <button className="navigation-button">
+                <AiOutlineHome color="#F7F5F2" fontSize="3rem" /> <p>Pradžia</p>
+              </button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <button className="navigation-button ">
+                <GiHistogram color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Statistika</p>
+              </button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <button className="navigation-button ">
+                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" /> <p>Limitai</p>
+              </button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/history">
+              <button className="navigation-button ">
+                <AiOutlineHistory color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Istorija</p>
+              </button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <button className="navigation-button custom-export">
+                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Eksportuoti</p>
+              </button>
+            </Link>
+          </li>
+        </ul>
       </nav>{" "}
     </div>
   );
