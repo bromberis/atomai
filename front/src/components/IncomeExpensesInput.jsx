@@ -71,9 +71,9 @@ function IncomeExpensesInput() {
 
   return (
     <>
-      <div className="container mt-3">
+      <div className="container mt-3 ">
         <div className="row">
-          <div className="col-3 p-0">Labas, {user.name}</div>
+          <div className="col-3 p-0 hello-msg">Labas, {user.name} !</div>
 
           <div className="col-9 text-end p-0">
             <button
@@ -99,7 +99,7 @@ function IncomeExpensesInput() {
           {/* <div className="row">
             <div className="col"> */}
           <form
-            className=""
+            className="border-main"
             onChange={(e) => {
               display == "income"
                 ? updateIncomeObject(e)
@@ -108,11 +108,11 @@ function IncomeExpensesInput() {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="row">
-              <div className="col-6 p-0">
+              <div className="col-6 p-2">
                 {/* SUMA */}
 
                 <input
-                  className="form-control "
+                  className="rounded-0 input-custom "
                   placeholder="Suma"
                   type="number"
                   name="sum"
@@ -134,10 +134,10 @@ function IncomeExpensesInput() {
                 )}
               </div>
 
-              <div className="col-6 p-0">
+              <div className="col-6 p-2">
                 {/* DATA */}
                 <input
-                  className="form-control"
+                  className="rounded-0 input-custom"
                   type="date"
                   name="date"
                   id="date-inp"
@@ -147,12 +147,12 @@ function IncomeExpensesInput() {
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-6 p-0">
+            <div className="row bottom-space">
+              <div className="col-6 p-2">
                 {/* KATEGORIJA */}
                 {display === "income" ? (
                   <select
-                    className="form-select"
+                    className=" input-custom rounded-0"
                     name="category"
                     id="category"
                     // value="Alga"
@@ -167,7 +167,7 @@ function IncomeExpensesInput() {
                   </select>
                 ) : (
                   <select
-                    className="form-select"
+                    className="input-custom rounded-0"
                     name="category"
                     id="category"
                     // value="Alga"
@@ -182,11 +182,11 @@ function IncomeExpensesInput() {
                 )}
               </div>
 
-              <div className="col-6 p-0">
+              <div className="col-6 p-2 ">
                 {/* PAVADINIMAS */}
                 <input
-                  className="form-control custom-input "
-                  placeholder="Name"
+                  className="rounded-0 input-custom "
+                  placeholder="Pastabos"
                   type="text"
                   name="name"
                   id="name"
@@ -212,9 +212,15 @@ function IncomeExpensesInput() {
             <div className="row">
               <div className="col text-center">
                 {/* SUBMIT BUTTON */}
-                <button className="btn-submit btn-all" type="submit">
-                  {display == "income" ? "Pridėti pajamas" : "Pridėti išlaidas"}
-                </button>
+                {display == "income" ? (
+                  <button className="btn-submit-input btn-all" type="submit">
+                    Pridėti pajamas
+                  </button>
+                ) : (
+                  <button className="btn-submit-expenses btn-all" type="submit">
+                    Pridėti išlaidas
+                  </button>
+                )}
               </div>
             </div>
           </form>
