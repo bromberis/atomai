@@ -43,26 +43,13 @@ function UsersList() {
     // });
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-      return (
-        <HistoryTable
-          getUsers={getUsers}
-          key={item._id}
-          id={item._id}
-          name={item.name}
-          category={item.category}
-          date={item.date}
-          sum={item.sum}
-          dateCreated={item.createdAt}
-          type={item.type}
-          userID={users._id}
-        />
-      );
+      return <HistoryTable getUsers={getUsers} key={item._id} id={item._id} name={item.name} category={item.category} date={item.date} sum={item.sum} dateCreated={item.createdAt} type={item.type} userID={users._id} />;
     });
   }
 
   return (
     <>
-      <div className="container">
+      <div className="container ">
         <table className="table">
           <thead className="mb-2">
             <tr className="text-center">
@@ -70,7 +57,7 @@ function UsersList() {
               <th scope="col">Data</th>
               <th scope="col">Suma</th>
               <th scope="col">Kategorija</th>
-              <th scope="col">Pavadinimas</th>
+              <th scope="col">Pastabos</th>
               <th scope="col">Veiksmai</th>
             </tr>
           </thead>
