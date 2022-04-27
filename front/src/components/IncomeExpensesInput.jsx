@@ -55,8 +55,9 @@ function IncomeExpensesInput() {
   }
 
   function buttonColor(btnColor) {
-    return btnColor == display ? " button btn-income" : " button btn-expenses";
+    return btnColor == display ? " btn-income" : " btn-expenses";
   }
+
   const {
     register,
     handleSubmit,
@@ -80,7 +81,7 @@ function IncomeExpensesInput() {
                 setDisplay("income");
                 reset();
               }}
-              className={`btn rounded-0  btn-income`}
+              className={`btn-all   btn-income`}
             >
               Pajamos
             </button>
@@ -90,7 +91,7 @@ function IncomeExpensesInput() {
                 setDisplay("expenses");
                 reset();
               }}
-              className={`btn rounded-0 btn-expenses`}
+              className={`btn-all btn-expenses`}
             >
               Išlaidos
             </button>
@@ -141,6 +142,7 @@ function IncomeExpensesInput() {
                       type="date"
                       name="date"
                       id="date-inp"
+                      min="2010-01-01"
                       defaultValue={new Date().toISOString().substr(0, 10)}
                     />
                   </div>
@@ -211,7 +213,7 @@ function IncomeExpensesInput() {
                 <div className="row">
                   <div className="col text-center">
                     {/* SUBMIT BUTTON */}
-                    <button className="btn btn-submit rounded-0" type="submit">
+                    <button className="btn-submit btn-all" type="submit">
                       {display == "income"
                         ? "Pridėti pajamas"
                         : "Pridėti išlaidas"}

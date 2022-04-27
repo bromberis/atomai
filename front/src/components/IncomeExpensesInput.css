@@ -1,6 +1,14 @@
 * {
   font-family: "Roboto", sans-serif;
 }
+.col {
+  padding: 0;
+}
+
+.btn-all {
+  border: none;
+  /* padding: 5px 10px; */
+}
 
 .btn-income {
   background-color: #dbecd6;
