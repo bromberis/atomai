@@ -28,17 +28,17 @@ function HistoryTable({
 
   let colorClass = (str) => {
     if (str === "income") {
-      return "text-income text-center";
+      return "text-income text-center ";
     } else {
-      return "text-expenses text-center";
+      return "text-expenses text-center ";
     }
   };
 
   let colorClassSum = (str) => {
     if (str === "income") {
-      return "income-sum";
+      return "income-sum smaller-td";
     } else {
-      return "expenses-sum";
+      return "expenses-sum smaller-td";
     }
   };
   let addOperator = (sum, type) => {
@@ -57,7 +57,7 @@ function HistoryTable({
         <td className="smaller-td">{dateCreated.slice(0, 10)}</td>
         <td className="smaller-td">{date.slice(0, 10)}</td>
         <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
-        <td>{category}</td>
+        <td className="smaller-td">{category}</td>
         <td>{name && UppercaseFirst(name)}</td>
         <td className="smaller-td">
           <button

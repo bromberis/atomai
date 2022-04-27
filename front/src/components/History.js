@@ -70,7 +70,7 @@ function UsersList() {
               <th scope="col">Data</th>
               <th scope="col">Suma</th>
               <th scope="col">Kategorija</th>
-              <th scope="col">Pavadinimas</th>
+              <th scope="col">Pastabos</th>
               <th scope="col">Veiksmai</th>
             </tr>
           </thead>
