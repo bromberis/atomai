@@ -45,3 +45,7 @@
 .smaller-td {
   width: 10vw;
 }
+
+.custom-input {
+  border: 0.5px solid grey;
+}

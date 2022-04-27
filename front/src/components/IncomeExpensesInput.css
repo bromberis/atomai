@@ -58,7 +58,9 @@ select {
   margin-right: 10px;
 }
 
-.input:focus {
+input:focus {
+  /* outline-offset: -2px; // negative value to 'squeeze' it inside  */
+  outline-color: grey;
 }
 
 .bottom-space {

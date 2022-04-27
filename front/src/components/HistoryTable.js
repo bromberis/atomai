@@ -41,6 +41,13 @@ function HistoryTable({
       return "expenses-sum";
     }
   };
+  let addOperator = (sum, type) => {
+    if (type === "income") {
+      return "+" + sum;
+    } else {
+      return "-" + sum;
+    }
+  };
 
   const [editFormStatus, setEditFormStatus] = useState(false);
 
@@ -49,7 +56,7 @@ function HistoryTable({
       <tr className={colorClass(type)}>
         <td className="smaller-td">{dateCreated.slice(0, 10)}</td>
         <td className="smaller-td">{date.slice(0, 10)}</td>
-        <td className={colorClassSum(type)}>{sum}</td>
+        <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
         <td>{category}</td>
         <td>{name && UppercaseFirst(name)}</td>
         <td className="smaller-td">
