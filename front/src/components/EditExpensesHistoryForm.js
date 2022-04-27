@@ -77,7 +77,7 @@ function EditExpensesHistoryForm({
             />
             {errors.sum && (
               <span className="text-danger fw-light">
-                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigimas
+                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
                 skaičius.
               </span>
             )}
@@ -87,7 +87,7 @@ function EditExpensesHistoryForm({
               className="form-select"
               name="category"
               id="category"
-              {...register("program", { required: true })}
+              {...register("category", { required: true })}
               onChange={(e) => updateExpensesObject(e)}
             >
               <option value="Maistas">Pramogos</option>
@@ -113,7 +113,7 @@ function EditExpensesHistoryForm({
             />
             {errors.name && (
               <span className="text-danger fw-light">
-                Būtinas laukas. 2-40 simbolių, specialūs simboliai negalimi.
+                Daugiausiai 40 simbolių, specialūs simboliai negalimi.
               </span>
             )}
           </div>

@@ -123,9 +123,10 @@ export async function createUserIncome(id, data) {
 }
 
 export async function createUserExpense(id, data) {
-  console.log(`EXPENSE`);
-  console.log(data);
+  // console.log(`EXPENSE`);
+
   console.log(id);
+  console.log(data);
   const response = await axiosUser
     .patch(`/${id}/exp/`, JSON.stringify(data))
     .then((result) => {

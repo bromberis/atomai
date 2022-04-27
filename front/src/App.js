@@ -1,9 +1,12 @@
 import "./App.css";
 import IncomeExpenses from "./components/IncomeExpenses";
 import History from "./components/History";
+
 import NavBar from "./components/NavBar";
 import { Outlet, Link } from "react-router-dom";
 import Navigation from "./components/Navigation";
+
+import IncomeExpensesInput from "./components/IncomeExpensesInput";
 
 function App() {
   return (
@@ -15,8 +18,10 @@ function App() {
       {/* <IncomeExpensesDesktop /> */}
       {/* <IncomeExpensesMobile /> */}
       {/* <NavBar.js /> */}
-      <IncomeExpenses />
+      {/* <IncomeExpenses /> */}
+      {/* <IncomeExpenses /> */}
       {/* <Income /> */}
+      <IncomeExpensesInput />
       <History />
     </div>
   );
