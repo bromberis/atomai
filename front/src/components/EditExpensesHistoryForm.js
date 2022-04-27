@@ -50,7 +50,7 @@ function EditExpensesHistoryForm({
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-1">
             <input
-              className="form-control"
+              className="custom-input"
               type="date"
               name="date"
               id="date-inp"
@@ -61,7 +61,7 @@ function EditExpensesHistoryForm({
           </div>
           <div className="mb-1">
             <input
-              className="form-control "
+              className="custom-input "
               placeholder="Suma"
               type="number"
               name="sum"
@@ -85,7 +85,7 @@ function EditExpensesHistoryForm({
           </div>
           <div className="mb-1">
             <select
-              className="form-select"
+              className="custom-input"
               name="category"
               id="category"
               {...register("category", { required: true })}
@@ -100,7 +100,7 @@ function EditExpensesHistoryForm({
           </div>
           <div className="mb-1">
             <input
-              className="form-control custom-input "
+              className="custom-input"
               placeholder="Name"
               type="text"
               name="name"
