@@ -17,6 +17,7 @@ function App() {
   window.addEventListener("resize", () => handler("test"));
 
   return (
+
     <div className="container p-0 m-0">
       {width > 768 ? (
         <>
@@ -42,6 +43,7 @@ function App() {
           </div>
         </>
       )}
+
 
       {/* </div> */}
       {/* </div> */}

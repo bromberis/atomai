@@ -28,7 +28,9 @@ export default function Navigation() {
           <li>
             <Link to="/">
               <button className="navigation-button ">
-                <GiHistogram color="#F7F5F2" fontSize="3rem" /> <p>Statistika</p>
+
+                <GiHistogram color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Statistika</p>
               </button>
             </Link>
           </li>
@@ -42,14 +44,20 @@ export default function Navigation() {
           <li>
             <Link to="/history">
               <button className="navigation-button ">
-                <AiOutlineHistory color="#F7F5F2" fontSize="3rem" /> <p>Istorija</p>
+
+                <AiOutlineHistory color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Istorija</p>
+
               </button>
             </Link>
           </li>
           <li>
             <Link to="/">
               <button className="navigation-button custom-export">
-                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" /> <p>Eksportuoti</p>
+
+                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Eksportuoti</p>
+
               </button>
             </Link>
           </li>
