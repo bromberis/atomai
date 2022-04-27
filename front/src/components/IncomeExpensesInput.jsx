@@ -67,9 +67,7 @@ function IncomeExpensesInput() {
     <>
       <div className="container mt-3 ">
         <div className="row">
-          <div className="col-lg-3 col-md-3 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center">
-            Labas, {user.name} !
-          </div>
+          <div className="col-lg-3 col-md-3 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center">Labas, {user.name} !</div>
 
           <div className="col-lg-9 col-md-9 col-sm-12 text-end p-0">
             <button
@@ -126,16 +124,7 @@ function IncomeExpensesInput() {
               <div className="col-lg-6 col-md-6 p-2">
                 {/* DATA */}
 
-                <input
-                  className="rounded-0 input-custom"
-                  type="date"
-                  name="date"
-                  id="date-inp"
-                  min="2010-01-01"
-                  max="2099-01-01"
-                  defaultValue={new Date().toISOString().substr(0, 10)}
-                />
-
+                <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={new Date().toISOString().substr(0, 10)} />
               </div>
             </div>
 

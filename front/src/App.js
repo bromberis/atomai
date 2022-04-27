@@ -10,14 +10,13 @@ import { debounce } from "lodash";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
-  function handleResize(test) {
+  function handleResize() {
     setWidth(window.innerWidth);
   }
-  const handler = useCallback(debounce(handleResize, 10), []);
-  window.addEventListener("resize", () => handler("test"));
+  const handler = useCallback(debounce(handleResize, 100), []);
+  window.addEventListener("resize", () => handler());
 
   return (
-
     <div className="container p-0 m-0">
       {width > 768 ? (
         <>
@@ -43,7 +42,6 @@ function App() {
           </div>
         </>
       )}
-
 
       {/* </div> */}
       {/* </div> */}
