@@ -73,9 +73,9 @@ function IncomeExpensesInput() {
     <>
       <div className="container mt-3">
         <div className="row">
-          <div className="col">Labas, {user.name}</div>
+          <div className="col-3 p-0">Labas, {user.name}</div>
 
-          <div className="col mb-3 ">
+          <div className="col-9 text-end p-0">
             <button
               onClick={() => {
                 setDisplay("income");
@@ -96,135 +96,132 @@ function IncomeExpensesInput() {
               Išlaidos
             </button>
           </div>
-          <div className="row">
-            <div className="col">
-              <form
-                className=""
-                onChange={(e) => {
-                  display == "income"
-                    ? updateIncomeObject(e)
-                    : updateExpenseObject(e);
-                }}
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="row">
-                  <div className="col">
-                    {/* SUMA */}
+          {/* <div className="row">
+            <div className="col"> */}
+          <form
+            className=""
+            onChange={(e) => {
+              display == "income"
+                ? updateIncomeObject(e)
+                : updateExpenseObject(e);
+            }}
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="row">
+              <div className="col-6 p-0">
+                {/* SUMA */}
 
-                    <input
-                      className="form-control "
-                      placeholder="Suma"
-                      type="number"
-                      name="sum"
-                      id="sum"
-                      step="0.01"
-                      // defaultValue={sum}
-                      {...register("sum", {
-                        required: true,
-                        pattern:
-                          /^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/,
-                        // min: 1,
-                        maxLength: 10,
-                      })}
-                    />
-                    {errors.sum && (
-                      <span className="text-danger fw-light">
-                        Būtinas laukas. Ne daugiau 10 simbolių, negali būti
-                        neigiamas skaičius.
-                      </span>
-                    )}
-                  </div>
+                <input
+                  className="form-control "
+                  placeholder="Suma"
+                  type="number"
+                  name="sum"
+                  id="sum"
+                  step="0.01"
+                  // defaultValue={sum}
+                  {...register("sum", {
+                    required: true,
+                    pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
+                    // min: 1,
+                    maxLength: 10,
+                  })}
+                />
+                {errors.sum && (
+                  <span className="text-danger fw-light">
+                    Būtinas laukas. Ne daugiau 10 simbolių, negali būti
+                    neigiamas skaičius.
+                  </span>
+                )}
+              </div>
 
-                  <div className="col">
-                    {/* DATA */}
-                    <input
-                      className="form-control"
-                      type="date"
-                      name="date"
-                      id="date-inp"
-                      min="2010-01-01"
-                      defaultValue={new Date().toISOString().substr(0, 10)}
-                    />
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col">
-                    {/* KATEGORIJA */}
-                    {display === "income" ? (
-                      <select
-                        className="form-select"
-                        name="category"
-                        id="category"
-                        // value="Alga"
-                        {...register("category", { required: true })}
-                      >
-                        <option value="Alga">Alga</option>
-                        <option value="Premija">Premija</option>
-                        <option value="Dovana">Dovana</option>
-                        <option value="Loterija">Loterija</option>
-                        <option value="Išmoka">Išmoka</option>
-                        <option value="Kita">Kita</option>
-                      </select>
-                    ) : (
-                      <select
-                        className="form-select"
-                        name="category"
-                        id="category"
-                        // value="Alga"
-                        {...register("category", { required: true })}
-                      >
-                        <option value="Kita">Kita</option>
-                        <option value="Maistas">Pramogos</option>
-                        <option value="Mokesčiai">Mokesčiai</option>
-                        <option value="Rūbai">Rūbai</option>
-                        <option value="Transportas">Transportas</option>
-                      </select>
-                    )}
-                  </div>
-
-                  <div className="col">
-                    {/* PAVADINIMAS */}
-                    <input
-                      className="form-control custom-input "
-                      placeholder="Name"
-                      type="text"
-                      name="name"
-                      id="name"
-                      {...register("name", {
-                        // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
-                        maxLength: 40,
-                      })}
-                    />
-                    {errors.name && (
-                      <span className="text-danger fw-light">
-                        Daugiausiai 40 simbolių.
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {/* BALANSAS */}
-                    <h4>Balansas: {user.balance}</h4>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col text-center">
-                    {/* SUBMIT BUTTON */}
-                    <button className="btn-submit btn-all" type="submit">
-                      {display == "income"
-                        ? "Pridėti pajamas"
-                        : "Pridėti išlaidas"}
-                    </button>
-                  </div>
-                </div>
-              </form>
+              <div className="col-6 p-0">
+                {/* DATA */}
+                <input
+                  className="form-control"
+                  type="date"
+                  name="date"
+                  id="date-inp"
+                  min="2010-01-01"
+                  defaultValue={new Date().toISOString().substr(0, 10)}
+                />
+              </div>
             </div>
-          </div>
+
+            <div className="row">
+              <div className="col-6 p-0">
+                {/* KATEGORIJA */}
+                {display === "income" ? (
+                  <select
+                    className="form-select"
+                    name="category"
+                    id="category"
+                    // value="Alga"
+                    {...register("category", { required: true })}
+                  >
+                    <option value="Alga">Alga</option>
+                    <option value="Premija">Premija</option>
+                    <option value="Dovana">Dovana</option>
+                    <option value="Loterija">Loterija</option>
+                    <option value="Išmoka">Išmoka</option>
+                    <option value="Kita">Kita</option>
+                  </select>
+                ) : (
+                  <select
+                    className="form-select"
+                    name="category"
+                    id="category"
+                    // value="Alga"
+                    {...register("category", { required: true })}
+                  >
+                    <option value="Kita">Kita</option>
+                    <option value="Maistas">Pramogos</option>
+                    <option value="Mokesčiai">Mokesčiai</option>
+                    <option value="Rūbai">Rūbai</option>
+                    <option value="Transportas">Transportas</option>
+                  </select>
+                )}
+              </div>
+
+              <div className="col-6 p-0">
+                {/* PAVADINIMAS */}
+                <input
+                  className="form-control custom-input "
+                  placeholder="Name"
+                  type="text"
+                  name="name"
+                  id="name"
+                  {...register("name", {
+                    // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
+                    maxLength: 40,
+                  })}
+                />
+                {errors.name && (
+                  <span className="text-danger fw-light">
+                    Daugiausiai 40 simbolių.
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* <div className="row">
+              <div className="col">
+                
+                <h4>Balansas: {user.balance}</h4>
+              </div>
+            </div> */}
+
+            <div className="row">
+              <div className="col text-center">
+                {/* SUBMIT BUTTON */}
+                <button className="btn-submit btn-all" type="submit">
+                  {display == "income" ? "Pridėti pajamas" : "Pridėti išlaidas"}
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
+      {/* </div>
+      </div> */}
     </>
   );
 }
