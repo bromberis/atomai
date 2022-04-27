@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import IncomeExpenses from "./components/IncomeExpenses";
+import IncomeExpensesInput from "./components/IncomeExpensesInput";
 import History from "./components/History";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,8 +15,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="/" element={<IncomeExpenses />} />
-          <Route path="/incexp" element={<IncomeExpenses />} />
+          <Route path="/" element={<IncomeExpensesInput />} />
+          <Route path="/incexp" element={<IncomeExpensesInput />} />
           <Route path="/history" element={<History />} />
         </Route>
       </Routes>

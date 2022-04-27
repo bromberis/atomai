@@ -7,7 +7,7 @@ import { BiSortAlt2 } from "react-icons/bi";
 
 export default function Navigation() {
   return (
-    <div className="sideNav vh-100" style={{ position: "relative", backgroundColor: "rgb(33, 37, 41)" }}>
+    <div className="sideNav vh-100 btn-group-vertical" style={{ backgroundColor: "rgb(33, 37, 41)" }}>
       <nav className="vh-100">
         <div className="logo">
           <Link to="/">
@@ -45,9 +45,10 @@ export default function Navigation() {
             </button>
           </Link>
         </div>
-        <div className="" style={{ position: "absolute", bottom: "0px", left: "20%" }}>
+        <div style={{ height: "37vh" }}></div>
+        <div className="align-items-end">
           <Link to="/">
-            <button className="btn btn-dark btn-lg rounded-0 " style={{ width: "100%", height: "100px" }}>
+            <button className="btn btn-dark btn-lg rounded-0" style={{ width: "100%", height: "100px" }}>
               <BiSortAlt2 size={30} /> <p>Limitai</p>
             </button>
           </Link>
