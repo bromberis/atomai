@@ -107,7 +107,7 @@ function EditIncomeHistoryForm({
               type="text"
               name="name"
               id="name"
-              value={name}
+              defaultValue={name}
               {...register("name", {
                 // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_. +-]*$/i,
                 maxLength: 30,
