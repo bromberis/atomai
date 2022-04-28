@@ -5,47 +5,39 @@ import { SiAtom } from "react-icons/si";
 
 export default function NavigationMobile() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light nav-small-custom">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-light nav-small-custom">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
           <SiAtom fontSize=" 2rem" />
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item text-center">
-              <a class="nav-link" href="/">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item text-center">
+              <a className="nav-link" href="/">
                 Pradžia
               </a>
             </li>
 
-            <li class="nav-item text-center">
-              <a class="nav-link" href="/">
+            <li className="nav-item text-center">
+              <a className="nav-link" href="/">
                 Statistika
               </a>
             </li>
-            <li class="nav-item text-center">
-              <a class="nav-link" href="/">
+            <li className="nav-item text-center">
+              <a className="nav-link" href="/">
                 Limitai
               </a>
             </li>
-            <li class="nav-item text-center">
-              <a class="nav-link" href="/history">
+            <li className="nav-item text-center">
+              <a className="nav-link" href="/history">
                 Istorija
               </a>
             </li>
-            <li class="nav-item text-center no-border">
-              <a class="nav-link" href="/history">
+            <li className="nav-item text-center no-border">
+              <a className="nav-link" href="/history">
                 Eksportavimas
               </a>
             </li>
@@ -58,7 +50,7 @@ export default function NavigationMobile() {
     //   <div>
     //     <button
     //       onClick={() => setOpenMenu(!openMenu)}
-    //       className="button-mob-nav btn border border-4 border-end-0"
+    //       classNameName="button-mob-nav btn border border-4 border-end-0"
     //     >
     //       {" "}
     //       <GiTakeMyMoney fontSize="3rem" /> Meniu
@@ -69,7 +61,7 @@ export default function NavigationMobile() {
     //           <Link to="/">
     //             <button
     //               onClick={() => setOpenMenu(false)}
-    //               className="button-mob-nav  border-bottom"
+    //               classNameName="button-mob-nav  border-bottom"
     //             >
     //               Pradžia
     //             </button>
@@ -79,7 +71,7 @@ export default function NavigationMobile() {
     //           <Link to="/">
     //             <button
     //               onClick={() => setOpenMenu(false)}
-    //               className=" button-mob-nav  border-bottom"
+    //               classNameName=" button-mob-nav  border-bottom"
     //             >
     //               Statistika
     //             </button>
@@ -89,7 +81,7 @@ export default function NavigationMobile() {
     //           <Link to="/">
     //             <button
     //               onClick={() => setOpenMenu(false)}
-    //               className=" button-mob-nav  border-bottom"
+    //               classNameName=" button-mob-nav  border-bottom"
     //             >
     //               Limitai
     //             </button>
@@ -99,7 +91,7 @@ export default function NavigationMobile() {
     //           <Link to="/history">
     //             <button
     //               onClick={() => setOpenMenu(false)}
-    //               className=" button-mob-nav  border-bottom"
+    //               classNameName=" button-mob-nav  border-bottom"
     //             >
     //               Istorija
     //             </button>

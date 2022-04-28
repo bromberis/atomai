@@ -1,11 +1,9 @@
 import React, { useState, useCallback } from "react";
 import "./App.css";
-import IncomeExpenses from "./components/IncomeExpenses";
-import History from "./components/History";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import NavigationMobile from "./components/NavigationMobile";
-import IncomeExpensesInput from "./components/IncomeExpensesInput";
+
 import { debounce } from "lodash";
 
 function App() {
@@ -21,11 +19,11 @@ function App() {
       {width > 768 ? (
         <>
           <div className="row">
-            <div className="col-2 p-0 ">
+            <div className="col-2 p-0 position-fixed">
               <Navigation />
             </div>
 
-            <div className="col-10 ">
+            <div className="col-lg-10 offset-lg-2 log-md-10 offset-md-1 ">
               <Outlet />
             </div>
           </div>
@@ -42,20 +40,6 @@ function App() {
           </div>
         </>
       )}
-
-      {/* </div> */}
-      {/* </div> */}
-
-      {/* <IncomeExpenses /> */}
-      {/* <div className="App">Atomic money app.</div> */}
-      {/* <IncomeExpensesDesktop /> */}
-      {/* <IncomeExpensesMobile /> */}
-      {/* <NavBar.js /> */}
-      {/* <IncomeExpenses /> */}
-      {/* <IncomeExpenses /> */}
-      {/* <Income /> */}
-      {/* <IncomeExpensesInput />
-      <History /> */}
     </>
   );
 }
