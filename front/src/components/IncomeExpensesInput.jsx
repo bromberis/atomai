@@ -151,7 +151,8 @@ function IncomeExpensesInput() {
                     {...register("category", { required: true })}
                   >
                     <option value="Kita">Kita</option>
-                    <option value="Maistas">Pramogos</option>
+                    <option value="Maistas">Maistas</option>
+                    <option value="Pramogos">Pramogos</option>
                     <option value="Mokesčiai">Mokesčiai</option>
                     <option value="Rūbai">Rūbai</option>
                     <option value="Transportas">Transportas</option>
