@@ -88,7 +88,7 @@ function EditExpensesHistoryForm({
               className="custom-input"
               name="category"
               id="category"
-              value={category}
+              defaultValue={category}
               {...register("category", { required: true })}
               onChange={(e) => updateExpensesObject(e)}
             >

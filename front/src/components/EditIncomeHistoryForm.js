@@ -88,7 +88,7 @@ function EditIncomeHistoryForm({
               className="custom-input"
               name="category"
               id="category"
-              value={category}
+              defaultValue={category}
               {...register("category", { required: true })}
               onChange={(e) => updateIncomeObject(e)}
             >
@@ -107,7 +107,7 @@ function EditIncomeHistoryForm({
               type="text"
               name="name"
               id="name"
-              defaultValue={name}
+              value={name}
               {...register("name", {
                 // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_. +-]*$/i,
                 maxLength: 30,
