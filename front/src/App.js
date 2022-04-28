@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      {width > 768 ? (
+      {width > 815 ? (
         <>
           <div className="row">
             <div className="col-2 p-0 position-fixed">
