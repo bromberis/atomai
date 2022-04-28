@@ -92,10 +92,11 @@ function EditExpensesHistoryForm({
               {...register("category", { required: true })}
               onChange={(e) => updateExpensesObject(e)}
             >
-              <option value="Maistas">Pramogos</option>
+              <option value="Maistas">Maistas</option>
               <option value="Mokesčiai">Mokesčiai</option>
               <option value="Rūbai">Rūbai</option>
               <option value="Transportas">Transportas</option>
+              <option value="Pramogos">Pramogos</option>
               <option value="Kita">Kita</option>
             </select>
           </div>
