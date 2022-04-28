@@ -200,7 +200,7 @@ function IncomeExpensesInput() {
                 />
                 {errors.name && (
                   <span className="text-danger fw-light">
-                    Daugiausiai 40 simbolių.
+                    Daugiausiai 30 simbolių.
                   </span>
                 )}
               </div>
