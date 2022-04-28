@@ -10,7 +10,7 @@
 }
 
 .sideNav {
-  /* height: 100vh; */
+  height: 100vh;
   background-color: #f4efe7;
   text-align: center;
   display: flex;
