@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
 import { AiOutlineHome, AiOutlineHistory } from "react-icons/ai";
-import { GiHistogram, GiTakeMyMoney } from "react-icons/gi";
+import { GiHistogram } from "react-icons/gi";
+import { SiAtom } from "react-icons/si";
 import { BiSortAlt2 } from "react-icons/bi";
 
 export default function Navigation() {
@@ -13,7 +14,7 @@ export default function Navigation() {
           <li className="logo">
             <Link to="/">
               <button className="navigation-button">
-                <GiTakeMyMoney color="#F7F5F2" fontSize="3rem" />
+                <SiAtom color="#F7F5F2" fontSize="3rem" />
               </button>
             </Link>
           </li>
@@ -28,7 +29,8 @@ export default function Navigation() {
           <li>
             <Link to="/">
               <button className="navigation-button ">
-                <GiHistogram color="#F7F5F2" fontSize="3rem" /> <p>Statistika</p>
+                <GiHistogram color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Statistika</p>
               </button>
             </Link>
           </li>
@@ -42,14 +44,16 @@ export default function Navigation() {
           <li>
             <Link to="/history">
               <button className="navigation-button ">
-                <AiOutlineHistory color="#F7F5F2" fontSize="3rem" /> <p>Istorija</p>
+                <AiOutlineHistory color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Istorija</p>
               </button>
             </Link>
           </li>
           <li>
             <Link to="/">
               <button className="navigation-button custom-export">
-                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" /> <p>Eksportuoti</p>
+                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" />{" "}
+                <p>Eksportuoti</p>
               </button>
             </Link>
           </li>
