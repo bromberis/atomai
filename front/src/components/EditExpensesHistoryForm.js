@@ -88,6 +88,7 @@ function EditExpensesHistoryForm({
               className="custom-input"
               name="category"
               id="category"
+              value={category}
               {...register("category", { required: true })}
               onChange={(e) => updateExpensesObject(e)}
             >
@@ -115,7 +116,7 @@ function EditExpensesHistoryForm({
             />
             {errors.name && (
               <span className="text-danger fw-light">
-                Daugiausiai 40 simbolių.
+                Daugiausiai 30 simbolių.
               </span>
             )}
           </div>
