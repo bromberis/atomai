@@ -67,13 +67,13 @@ function IncomeExpensesInput() {
 
   return (
     <>
-      <div className="container mt-3 mx-auto p-5 ">
+      <div className="container mt-3  p-5 ">
         <div className="row">
-          <div className="col-lg-4 col-md-4 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
+          <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
             Labas, {user.name} !
           </div>
 
-          <div className="col-lg-8 col-md-8 col-sm-12 text-end p-0">
+          <div className="col-lg-5 col-md-5 col-sm-12 text-end p-0">
             <button
               onClick={() => {
                 setDisplay("income");
