@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData, createUserIncome, createUserExpense } from "../api/library/UsersAPI";
+import {
+  getAllUsersData,
+  createUserIncome,
+  createUserExpense,
+} from "../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
 
@@ -45,7 +49,9 @@ function IncomeExpensesInput() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    display == "income" ? createUserIncome(user._id, income) : createUserExpense(user._id, expense);
+    display == "income"
+      ? createUserIncome(user._id, income)
+      : createUserExpense(user._id, expense);
   }
 
   function buttonColor(btnColor) {
@@ -65,9 +71,11 @@ function IncomeExpensesInput() {
 
   return (
     <>
-      <div className="container mt-3 ">
+      <div className="container mt-3 mx-auto p-5 ">
         <div className="row">
-          <div className="col-lg-3 col-md-3 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center">Labas, {user.name} !</div>
+          <div className="col-lg-3 col-md-3 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
+            Labas, {user.name} !
+          </div>
 
           <div className="col-lg-9 col-md-9 col-sm-12 text-end p-0">
             <button
@@ -95,7 +103,9 @@ function IncomeExpensesInput() {
           <form
             className="border-main"
             onChange={(e) => {
-              display == "income" ? updateIncomeObject(e) : updateExpenseObject(e);
+              display == "income"
+                ? updateIncomeObject(e)
+                : updateExpenseObject(e);
             }}
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -118,13 +128,26 @@ function IncomeExpensesInput() {
                     maxLength: 10,
                   })}
                 />
-                {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
+                {errors.sum && (
+                  <span className="text-danger fw-light">
+                    Būtinas laukas. Ne daugiau 10 simbolių, negali būti
+                    neigiamas skaičius.
+                  </span>
+                )}
               </div>
 
               <div className="col-lg-6 col-md-6 p-2">
                 {/* DATA */}
 
-                <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={new Date().toISOString().substr(0, 10)} />
+                <input
+                  className="rounded-0 input-custom"
+                  type="date"
+                  name="date"
+                  id="date-inp"
+                  min="2010-01-01"
+                  max="2099-01-01"
+                  defaultValue={new Date().toISOString().substr(0, 10)}
+                />
               </div>
             </div>
 
@@ -176,7 +199,11 @@ function IncomeExpensesInput() {
                     maxLength: 40,
                   })}
                 />
-                {errors.name && <span className="text-danger fw-light">Daugiausiai 40 simbolių.</span>}
+                {errors.name && (
+                  <span className="text-danger fw-light">
+                    Daugiausiai 40 simbolių.
+                  </span>
+                )}
               </div>
             </div>
             {/* <div className="row">

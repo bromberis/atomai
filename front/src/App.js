@@ -17,7 +17,7 @@ function App() {
   window.addEventListener("resize", () => handler());
 
   return (
-    <div className="container p-0 m-0">
+    <>
       {width > 768 ? (
         <>
           <div className="row">
@@ -25,7 +25,7 @@ function App() {
               <Navigation />
             </div>
 
-            <div className="col-10 p-0">
+            <div className="col-10 ">
               <Outlet />
             </div>
           </div>
@@ -36,7 +36,7 @@ function App() {
             <div className="col-12 p-0 ">
               <NavigationMobile />
             </div>
-            <div className="col-12 p-0">
+            <div className="col-12">
               <Outlet />
             </div>
           </div>
@@ -56,7 +56,7 @@ function App() {
       {/* <Income /> */}
       {/* <IncomeExpensesInput />
       <History /> */}
-    </div>
+    </>
   );
 }
 
