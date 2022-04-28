@@ -14,7 +14,7 @@ export default function Navigation() {
           <li className="logo">
             <Link to="/">
               <button className="navigation-button">
-                <SiAtom color="#F7F5F2" fontSize="3rem" />
+                <SiAtom color="#f4efe7" fontSize="3rem" />
               </button>
             </Link>
           </li>
@@ -22,14 +22,14 @@ export default function Navigation() {
           <li>
             <Link to="/">
               <button className="navigation-button">
-                <AiOutlineHome color="#F7F5F2" fontSize="3rem" /> <p>Pradžia</p>
+                <AiOutlineHome color="#f4efe7" fontSize="3rem" /> <p>Pradžia</p>
               </button>
             </Link>
           </li>
           <li>
             <Link to="/">
               <button className="navigation-button ">
-                <GiHistogram color="#F7F5F2" fontSize="3rem" />{" "}
+                <GiHistogram color="#f4efe7" fontSize="3rem" />{" "}
                 <p>Statistika</p>
               </button>
             </Link>
@@ -37,14 +37,14 @@ export default function Navigation() {
           <li>
             <Link to="/">
               <button className="navigation-button ">
-                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" /> <p>Limitai</p>
+                <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Limitai</p>
               </button>
             </Link>
           </li>
           <li>
             <Link to="/history">
               <button className="navigation-button ">
-                <AiOutlineHistory color="#F7F5F2" fontSize="3rem" />{" "}
+                <AiOutlineHistory color="#f4efe7" fontSize="3rem" />{" "}
                 <p>Istorija</p>
               </button>
             </Link>
@@ -52,7 +52,7 @@ export default function Navigation() {
           <li>
             <Link to="/">
               <button className="navigation-button custom-export">
-                <BiSortAlt2 color="#F7F5F2" fontSize="3rem" />{" "}
+                <BiSortAlt2 color="#f4efe7" fontSize="3rem" />{" "}
                 <p>Eksportuoti</p>
               </button>
             </Link>

@@ -33,3 +33,12 @@ li:nth-child(6) {
   bottom: 0;
   width: 100%;
 }
+
+button p {
+  color: #f4efe7;
+  margin: 0;
+}
+
+button {
+  border: none;
+}
