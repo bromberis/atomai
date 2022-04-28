@@ -77,7 +77,8 @@ select {
   margin-right: 10px;
 }
 
-input:focus {
+input:focus,
+select:focus {
   outline-color: grey;
 }
 
