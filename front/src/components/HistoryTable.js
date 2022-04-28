@@ -54,7 +54,7 @@ function HistoryTable({
   return (
     <>
       <tr className={colorClass(type)}>
-        <td className="smaller-td">{dateCreated.slice(0, 10)}</td>
+        <td className="smaller-td ">{dateCreated.slice(0, 10)}</td>
         <td className="smaller-td">{date.slice(0, 10)}</td>
         <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
         <td className="smaller-td">{category}</td>

@@ -26,6 +26,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
+        timer: 500,
       });
     })
     .catch((error) => {
@@ -38,6 +39,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
     text: "Klaida ištaisyta!",
     icon: "success",
     button: "Gerai",
+    timer: 500,
   });
 
   return response;
@@ -52,6 +54,7 @@ export async function findIncomeAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
+        timer: 500,
       });
     })
     .catch((error) => {
@@ -74,6 +77,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
+        timer: 500,
       });
     })
     .catch((error) => {
@@ -93,6 +97,7 @@ export async function findExpensesAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
+        timer: 500,
       });
     })
     .catch((error) => {
@@ -112,6 +117,7 @@ export async function createUserIncome(id, data) {
         text: "Įrašas išsaugotas!",
 
         icon: "success",
+        timer: 500,
       });
     })
     .catch((error) => {
@@ -135,6 +141,7 @@ export async function createUserExpense(id, data) {
         text: "Įrašas išsaugotas!",
 
         icon: "success",
+        timer: 500,
       });
     })
     .catch((error) => {

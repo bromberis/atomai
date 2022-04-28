@@ -63,6 +63,7 @@ function IncomeExpensesInput() {
 
   function onSubmit() {
     submitNewIncomeExpense();
+    reset();
   }
 
   return (
@@ -194,7 +195,7 @@ function IncomeExpensesInput() {
                   id="name"
                   {...register("name", {
                     // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
-                    maxLength: 40,
+                    maxLength: 30,
                   })}
                 />
                 {errors.name && (
