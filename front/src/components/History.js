@@ -49,7 +49,7 @@ function UsersList() {
 
   return (
     <>
-      <div className="container ">
+      <div className="container pl-0 ">
         <table className="table">
           <thead className="mb-2">
             <tr className="text-center">
