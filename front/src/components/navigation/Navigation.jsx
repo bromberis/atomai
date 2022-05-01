@@ -27,7 +27,7 @@ export default function Navigation() {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/statistics">
               <button className="navigation-button ">
                 <GiHistogram color="#f4efe7" fontSize="3rem" />{" "}
                 <p>Statistika</p>
@@ -35,7 +35,7 @@ export default function Navigation() {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="#">
               <button className="navigation-button ">
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Limitai</p>
               </button>
@@ -50,7 +50,7 @@ export default function Navigation() {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="#">
               <button className="navigation-button custom-export">
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" />{" "}
                 <p>Eksportuoti</p>

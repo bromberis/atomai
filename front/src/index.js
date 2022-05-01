@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
+import Statistics from "./components/statistics/Statistics";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +19,7 @@ root.render(
           <Route path="/" element={<IncomeExpensesInput />} />
           <Route path="/incexp" element={<IncomeExpensesInput />} />
           <Route path="/history" element={<History />} />
+          <Route path="/statistics" element={<Statistics />} />
         </Route>
       </Routes>
     </BrowserRouter>
