@@ -38,10 +38,6 @@ function UsersList() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
-    // var userData = users.map((item) => {
-    //   return <HistoryTable userID={item._id} />;
-    // });
-
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
         <HistoryTable
