@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./History.css";
 import { BsTrash, BsPencil } from "react-icons/bs";
+import { FiMoreHorizontal } from "react-icons/fi";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 import {
@@ -51,6 +52,20 @@ function HistoryTable({
 
   const [editFormStatus, setEditFormStatus] = useState(false);
 
+  const [nameLength, setNameLength] = useState(findNameStatus);
+
+  function findNameStatus() {
+    if (undefined !== name && name.length <= 15) {
+      return true;
+    } else if (undefined !== name && name.length > 15) {
+      return false;
+    }
+  }
+
+  function changeBtn() {
+    setNameLength(!nameLength);
+  }
+
   return (
     <>
       <tr className={colorClass(type)}>
@@ -58,7 +73,16 @@ function HistoryTable({
         <td className="smaller-td">{date.slice(0, 10)}</td>
         <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
         <td className="smaller-td">{category}</td>
-        <td>{name && UppercaseFirst(name)}</td>
+        <td>
+          {nameLength
+            ? name !== undefined && UppercaseFirst(name)
+            : name !== undefined && UppercaseFirst(name).substring(0, 15)}
+          {name !== undefined && name.length > 15 && (
+            <button onClick={changeBtn} className="btn custom-button-more">
+              <FiMoreHorizontal />
+            </button>
+          )}
+        </td>
         <td className="smaller-td">
           <button
             className="btn m-1 custom-button-edit"
