@@ -62,7 +62,7 @@ function HistoryTable({
     }
   }
 
-  function changeBtn() {
+  function changeNameLengthStatus() {
     setNameLength(!nameLength);
   }
 
@@ -78,7 +78,10 @@ function HistoryTable({
             ? name !== undefined && UppercaseFirst(name)
             : name !== undefined && UppercaseFirst(name).substring(0, 15)}
           {name !== undefined && name.length > 15 && (
-            <button onClick={changeBtn} className="btn custom-button-more">
+            <button
+              onClick={changeNameLengthStatus}
+              className="btn custom-button-more"
+            >
               <FiMoreHorizontal />
             </button>
           )}
