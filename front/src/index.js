@@ -6,8 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import IncomeExpensesInput from "./components/IncomeExpensesInput";
-import History from "./components/History";
+import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
+import History from "./components/history/History";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
