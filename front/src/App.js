@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import NavigationMobile from "./components/NavigationMobile";
+import Navigation from "./components/navigation/Navigation";
+import NavigationMobile from "./components/navigation/NavigationMobile";
 
 import { debounce } from "lodash";
 

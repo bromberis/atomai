@@ -6,7 +6,7 @@ import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 import {
   findIncomeAndDelete,
   findExpensesAndDelete,
-} from "../api/library/UsersAPI";
+} from "../../api/library/UsersAPI";
 import swal from "sweetalert";
 
 function HistoryTable({

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
-import { findIncomeDataAndUpdate } from "../api/library/UsersAPI";
-import { useForm } from "react-hook-form";
+import { findExpensesDataAndUpdate } from "../../api/library/UsersAPI";
 import "./History.css";
+import { useForm } from "react-hook-form";
 
-function EditIncomeHistoryForm({
+function EditExpensesHistoryForm({
+  getUsers,
   name,
   category,
   date,
@@ -14,19 +15,17 @@ function EditIncomeHistoryForm({
   userID,
   editFormStatus,
   setEditFormStatus,
-  getUsers,
 }) {
-  const [userUpdateIncome, setUserUpdateIncome] = useState({
+  const [userUpdateExpenses, setUserUpdateExpenses] = useState({
     sum: sum,
     name: name,
     date: date,
     category: category,
   });
 
-  function updateIncomeObject(e) {
+  function updateExpensesObject(e) {
     e.preventDefault();
-    userUpdateIncome[e.target.name] = e.target.value;
-    console.log(userUpdateIncome);
+    userUpdateExpenses[e.target.name] = e.target.value;
   }
 
   const {
@@ -36,11 +35,12 @@ function EditIncomeHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() =>
+    findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() =>
       getUsers()
     );
     setEditFormStatus(!editFormStatus);
   }
+
   return (
     <>
       <td className="custom-td"></td>
@@ -56,12 +56,12 @@ function EditIncomeHistoryForm({
               min="2010-01-01"
               max="2099-01-01"
               defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             />
           </div>
           <div className="mb-1">
             <input
-              className="custom-input"
+              className="custom-input "
               placeholder="Suma"
               type="number"
               name="sum"
@@ -74,7 +74,7 @@ function EditIncomeHistoryForm({
                 // min: 1,
                 maxLength: 10,
               })}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             />
             {errors.sum && (
               <span className="text-danger fw-light">
@@ -90,29 +90,29 @@ function EditIncomeHistoryForm({
               id="category"
               defaultValue={category}
               {...register("category", { required: true })}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             >
-              <option value="Alga">Alga</option>
-              <option value="Premija">Premija</option>
-              <option value="Dovana">Dovana</option>
-              <option value="Loterija">Loterija</option>
-              <option value="Išmoka">Išmoka</option>
+              <option value="Maistas">Maistas</option>
+              <option value="Mokesčiai">Mokesčiai</option>
+              <option value="Rūbai">Rūbai</option>
+              <option value="Transportas">Transportas</option>
+              <option value="Pramogos">Pramogos</option>
               <option value="Kita">Kita</option>
             </select>
           </div>
           <div className="mb-1">
             <input
-              className=" custom-input"
+              className="custom-input"
               placeholder="Pastabos"
               type="text"
               name="name"
               id="name"
               defaultValue={name}
               {...register("name", {
-                // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_. +-]*$/i,
+                // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
                 maxLength: 30,
               })}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpensesObject(e)}
             />
             {errors.name && (
               <span className="text-danger fw-light">
@@ -120,10 +120,11 @@ function EditIncomeHistoryForm({
               </span>
             )}
           </div>
-          <div>
-            <button type="submit" className="btn m-1 custom-button-edit">
+          <div className="text-end me-4">
+            <button type="submit" className="btn m-1 custom-button-edit ">
               <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
+
             <button
               type="button"
               className="btn  m-1 custom-button-tr"
@@ -138,4 +139,31 @@ function EditIncomeHistoryForm({
   );
 }
 
-export default EditIncomeHistoryForm;
+export default EditExpensesHistoryForm;
+
+// Add user income
+// exports.createUserIncome = async (req, res) => {
+//   console.log(req.params.id);
+//   console.log(req.params.subId);
+//   try {
+//     const updated = await Users.findOneAndUpdate(
+//       { _id: req.params.id },
+//       { $push: { income: req.body } },
+//       {
+//         new: true,
+//       }
+//     );
+//     console.log(updated);
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         tour: updated,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };

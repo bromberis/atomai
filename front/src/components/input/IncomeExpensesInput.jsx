@@ -3,7 +3,7 @@ import {
   getAllUsersData,
   createUserIncome,
   createUserExpense,
-} from "../api/library/UsersAPI";
+} from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
 

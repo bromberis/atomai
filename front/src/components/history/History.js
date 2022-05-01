@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData } from "../api/library/UsersAPI";
+import { getAllUsersData } from "../../api/library/UsersAPI";
 import HistoryTable from "./HistoryTable.js";
 
 function UsersList() {
