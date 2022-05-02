@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
-import { findExpensesDataAndUpdate } from "../api/library/UsersAPI";
+import { findExpensesDataAndUpdate } from "../../api/library/UsersAPI";
 import "./History.css";
 import { useForm } from "react-hook-form";
 
@@ -44,23 +44,24 @@ function EditExpensesHistoryForm({
   return (
     <>
       <td className="custom-td"></td>
-      <td className="custom-td"></td>
-      <td className="custom-td"></td>
-      <td className="custom-td">
+
+      <td className="custom-td" colSpan="4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-1">
             <input
-              className="form-control"
+              className="custom-input"
               type="date"
               name="date"
               id="date-inp"
+              min="2010-01-01"
+              max="2099-01-01"
               defaultValue={date.slice(0, 10)}
               onChange={(e) => updateExpensesObject(e)}
             />
           </div>
           <div className="mb-1">
             <input
-              className="form-control "
+              className="custom-input "
               placeholder="Suma"
               type="number"
               name="sum"
@@ -69,7 +70,7 @@ function EditExpensesHistoryForm({
               defaultValue={sum}
               {...register("sum", {
                 required: true,
-                pattern: /^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/,
+                pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
                 // min: 1,
                 maxLength: 10,
               })}
@@ -77,48 +78,50 @@ function EditExpensesHistoryForm({
             />
             {errors.sum && (
               <span className="text-danger fw-light">
-                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigimas
+                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
                 skaičius.
               </span>
             )}
           </div>
           <div className="mb-1">
             <select
-              className="form-select"
+              className="custom-input"
               name="category"
               id="category"
-              {...register("program", { required: true })}
+              defaultValue={category}
+              {...register("category", { required: true })}
               onChange={(e) => updateExpensesObject(e)}
             >
-              <option value="Maistas">Pramogos</option>
+              <option value="Maistas">Maistas</option>
               <option value="Mokesčiai">Mokesčiai</option>
               <option value="Rūbai">Rūbai</option>
               <option value="Transportas">Transportas</option>
+              <option value="Pramogos">Pramogos</option>
               <option value="Kita">Kita</option>
             </select>
           </div>
           <div className="mb-1">
             <input
-              className="form-control custom-input "
-              placeholder="Name"
+              className="custom-input"
+              placeholder="Pastabos"
               type="text"
               name="name"
               id="name"
               defaultValue={name}
               {...register("name", {
-                pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
-                maxLength: 40,
+                // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
+                maxLength: 30,
               })}
               onChange={(e) => updateExpensesObject(e)}
             />
             {errors.name && (
               <span className="text-danger fw-light">
-                Būtinas laukas. 2-40 simbolių, specialūs simboliai negalimi.
+                Daugiausiai 30 simbolių.
               </span>
             )}
           </div>
-          <div>
-            <button type="submit" className="btn m-1 custom-button-edit">
+          <div className="text-end me-4">
+            <button type="submit" className="btn m-1 custom-button-edit ">
               <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
 

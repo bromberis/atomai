@@ -6,6 +6,11 @@
   color: #3a3845;
 }
 
+.custom-button-more {
+  width: 14%;
+  padding: 2px;
+}
+
 .expenses-sum {
   color: #bc6e7f;
   font-weight: bolder;
@@ -38,6 +43,20 @@
   box-shadow: 0 0 0 0.2rem rgba(159, 158, 158, 0.25) !important;
 }
 
+.custom-button-more:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .custom-td {
   border: none;
+}
+
+.smaller-td {
+  width: 12vw;
+  background-color: red;
+}
+
+.custom-input {
+  border: 0.5px solid grey;
 }

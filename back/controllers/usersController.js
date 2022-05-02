@@ -1,6 +1,6 @@
 const Users = require("../models/userModel");
 
-// Gauti visus studentus
+// Gauti visus userius
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await Users.find();
@@ -20,7 +20,9 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// Sukurti studentą
+//gauti userio
+
+// Sukurti Userį
 exports.createUser = async (req, res) => {
   try {
     const newUser = await Users.create(req.body);
@@ -43,10 +45,10 @@ exports.getUserById = async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
     res.status(200).json({
-      // status: "success",
-      // data: {
-      users: user,
-      // }
+      status: "success",
+      data: {
+        users: user,
+      },
     });
   } catch (err) {
     res.status(404).json({
@@ -214,13 +216,33 @@ exports.findExpensesAndDelete = async (req, res) => {
 
 // Add user income
 exports.createUserIncome = async (req, res) => {
-
-  console.log(req.params.id);
-  console.log(req.params.subId);
   try {
     const updated = await Users.findOneAndUpdate(
       { _id: req.params.id },
       { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour: updated,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.createUserExpense = async (req, res) => {
+  try {
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { expenses: req.body } },
       {
         new: true,
       }

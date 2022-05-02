@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData } from "../api/library/UsersAPI";
+import { getAllUsersData } from "../../api/library/UsersAPI";
 import HistoryTable from "./HistoryTable.js";
 
 function UsersList() {
@@ -38,10 +38,6 @@ function UsersList() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
-    // var userData = users.map((item) => {
-    //   return <HistoryTable userID={item._id} />;
-    // });
-
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
         <HistoryTable
@@ -62,15 +58,15 @@ function UsersList() {
 
   return (
     <>
-      <div className="container">
+      <div className="container pl-0 ">
         <table className="table">
           <thead className="mb-2">
-            <tr>
+            <tr className="text-center">
               <th scope="col">Įrašo data</th>
               <th scope="col">Data</th>
               <th scope="col">Suma</th>
               <th scope="col">Kategorija</th>
-              <th scope="col">Pavadinimas</th>
+              <th scope="col">Pastabos</th>
               <th scope="col">Veiksmai</th>
             </tr>
           </thead>

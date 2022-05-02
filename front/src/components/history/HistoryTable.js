@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./History.css";
 import { BsTrash, BsPencil } from "react-icons/bs";
+import { FiMoreHorizontal } from "react-icons/fi";
+import { ImArrowLeft2 } from "react-icons/im";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 import {
   findIncomeAndDelete,
   findExpensesAndDelete,
-} from "../api/library/UsersAPI";
+} from "../../api/library/UsersAPI";
 import swal from "sweetalert";
 
 function HistoryTable({
@@ -28,31 +30,72 @@ function HistoryTable({
 
   let colorClass = (str) => {
     if (str === "income") {
-      return "text-income";
+      return "text-income text-center ";
     } else {
-      return "text-expenses";
+      return "text-expenses text-center ";
     }
   };
 
   let colorClassSum = (str) => {
     if (str === "income") {
-      return "income-sum";
+      return "income-sum smaller-td";
     } else {
-      return "expenses-sum";
+      return "expenses-sum smaller-td";
+    }
+  };
+  let addOperator = (sum, type) => {
+    if (type === "income") {
+      return "+" + sum;
+    } else {
+      return "-" + sum;
     }
   };
 
   const [editFormStatus, setEditFormStatus] = useState(false);
 
+  const [nameLength, setNameLength] = useState(findNameStatus);
+
+  function findNameStatus() {
+    if (undefined !== name && name.length <= 15) {
+      return true;
+    } else if (undefined !== name && name.length > 15) {
+      return false;
+    }
+  }
+
+  function changeNameLengthStatus() {
+    setNameLength(!nameLength);
+  }
+
   return (
     <>
       <tr className={colorClass(type)}>
-        <td>{dateCreated.slice(0, 10)}</td>
-        <td>{date.slice(0, 10)}</td>
-        <td className={colorClassSum(type)}>{sum}</td>
-        <td>{category}</td>
-        <td>{name && UppercaseFirst(name)}</td>
+        <td className="smaller-td ">{dateCreated.slice(0, 10)}</td>
+        <td className="smaller-td">{date.slice(0, 10)}</td>
+        <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
+        <td className="smaller-td">{category}</td>
         <td>
+          {nameLength
+            ? name !== undefined && UppercaseFirst(name)
+            : name !== undefined && UppercaseFirst(name).substring(0, 15)}
+          {name !== undefined && name.length > 15 && nameLength === false && (
+            <button
+              onClick={changeNameLengthStatus}
+              className="btn custom-button-more"
+            >
+              <FiMoreHorizontal />
+            </button>
+          )}
+          {name !== undefined && name.length > 15 && nameLength === true && (
+            <button
+              onClick={changeNameLengthStatus}
+              className="btn custom-button-more"
+            >
+              <ImArrowLeft2 />
+            </button>
+          )}
+        </td>
+        <td className="smaller-td">
           <button
             className="btn m-1 custom-button-edit"
             onClick={() => setEditFormStatus(!editFormStatus)}

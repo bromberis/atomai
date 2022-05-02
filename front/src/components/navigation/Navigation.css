@@ -1,0 +1,41 @@
+.sideNav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 98vh;
+  position: relative;
+}
+
+.sideNav {
+  height: 100vh;
+  background-color: #f4efe7;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-button {
+  background-color: #3a3845;
+  border: none;
+  margin: 1px;
+  padding: 6px;
+  width: 100%;
+}
+
+.custom-export {
+  align-self: flex-end;
+}
+li:nth-child(6) {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+button p {
+  color: #f4efe7;
+  margin: 0;
+}
+
+button {
+  border: none;
+}

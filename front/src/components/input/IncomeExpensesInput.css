@@ -1,0 +1,92 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+.hello-msg {
+  font-size: 1.5rem;
+}
+
+.col {
+  padding: 0;
+}
+
+.btn-all {
+  border: none;
+  padding: 5px 15px;
+}
+
+.btn-income,
+.btn-expenses {
+  box-shadow: 0px 3px 10px -4px rgba(128, 128, 128, 0.69);
+  -webkit-box-shadow: 0px 3px 10px -4px rgba(128, 128, 128, 0.69);
+  -moz-box-shadow: 0px 3px 10px -4px rgba(128, 128, 128, 0.69);
+}
+
+.btn-income {
+  background-color: #dbecd6;
+  width: 50%;
+  font-size: 1.5rem;
+  border-left: 0.5px solid grey;
+  border-right: 0.5px solid grey;
+  border-top: 0.5px solid grey;
+}
+
+.btn-expenses {
+  background-color: #ecd6db;
+  width: 50%;
+  font-size: 1.5rem;
+  border-right: 0.5px solid grey;
+  border-top: 0.5px solid grey;
+}
+
+.btn-submit-input,
+.btn-submit-expenses {
+  background-color: #dbecd6;
+  width: 25%;
+  padding: 10px;
+  margin-bottom: 5vh;
+  border: 0.5px solid grey;
+  box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
+  -webkit-box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
+  -moz-box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
+}
+
+.btn-submit-expenses {
+  background-color: #ecd6db;
+}
+
+.btn-income:active,
+.btn-expenses:active,
+.btn-submit-input:active,
+.btn-submit-expenses:active {
+  box-shadow: 2px 8px 14px 2px rgba(128, 128, 128, 0.69);
+  -webkit-box-shadow: 2px 8px 14px 2px rgba(128, 128, 128, 0.69);
+  -moz-box-shadow: 2px 8px 14px 2px rgba(128, 128, 128, 0.69);
+}
+
+input,
+select {
+  height: 3.5rem;
+  width: 100%;
+  border: 0.5px solid grey;
+  padding: 1rem;
+}
+
+.input-custom {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+input:focus,
+select:focus {
+  outline-color: grey;
+}
+
+.bottom-space {
+  padding-bottom: 10vh;
+}
+
+.border-main {
+  border: 0.5px solid grey;
+  margin-bottom: 10vh;
+}

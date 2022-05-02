@@ -5,11 +5,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
+import History from "./components/history/History";
+import Statistics from "./components/statistics/Statistics";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="/" element={<IncomeExpensesInput />} />
+          <Route path="/incexp" element={<IncomeExpensesInput />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/statistics" element={<Statistics />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,0 +1,11 @@
+.nav-small-custom {
+  background-color: #f4efe7;
+}
+
+li {
+  border-bottom: 0.5px solid grey;
+}
+
+.no-border {
+  border-bottom: none;
+}
