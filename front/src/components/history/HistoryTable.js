@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./History.css";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import { FiMoreHorizontal } from "react-icons/fi";
+import { ImArrowLeft2 } from "react-icons/im";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 import {
@@ -77,12 +78,20 @@ function HistoryTable({
           {nameLength
             ? name !== undefined && UppercaseFirst(name)
             : name !== undefined && UppercaseFirst(name).substring(0, 15)}
-          {name !== undefined && name.length > 15 && (
+          {name !== undefined && name.length > 15 && nameLength === false && (
             <button
               onClick={changeNameLengthStatus}
               className="btn custom-button-more"
             >
               <FiMoreHorizontal />
+            </button>
+          )}
+          {name !== undefined && name.length > 15 && nameLength === true && (
+            <button
+              onClick={changeNameLengthStatus}
+              className="btn custom-button-more"
+            >
+              <ImArrowLeft2 />
             </button>
           )}
         </td>
