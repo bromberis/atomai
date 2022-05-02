@@ -37,8 +37,8 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 2,
-      maxlength: 12,
+      minLength: 2,
+      maxLength: 12,
     },
     email: {
       type: String,
@@ -49,8 +49,8 @@ const usersSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 8,
-      // maxlength:
+      minLength: 8,
+      maxLength: 20,
     },
     balance: {
       type: Number,
