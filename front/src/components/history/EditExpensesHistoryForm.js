@@ -45,7 +45,7 @@ function EditExpensesHistoryForm({
     <>
       <td className="custom-td"></td>
 
-      <td className="custom-td" colspan="4">
+      <td className="custom-td" colSpan="4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-1">
             <input
