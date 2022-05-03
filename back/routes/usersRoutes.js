@@ -1,10 +1,24 @@
 const express = require("express");
 
-const { getAllUsers, createUser, getUserById, updateUser, deleteUser, findIncomeDataAndUpdate, findExpensesDataAndUpdate, findIncomeAndDelete, findExpensesAndDelete, createUserIncome, createUserExpense } = require("../controllers/usersController");
+const {
+  getAllUsers,
+  createUser,
+  getUserById,
+  updateUser,
+  deleteUser,
+  findIncomeDataAndUpdate,
+  findExpensesDataAndUpdate,
+  findIncomeAndDelete,
+  findExpensesAndDelete,
+  createUserIncome,
+  createUserExpense,
+  getEmail,
+} = require("../controllers/usersController");
 
 const router = express.Router();
 
 router.route("/").get(getAllUsers).post(createUser);
+router.route("/email").get(getEmail);
 
 router.route("/:id").get(getUserById).patch(updateUser).delete(deleteUser);
 

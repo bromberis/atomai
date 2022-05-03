@@ -20,6 +20,27 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+//get user email
+
+exports.getEmail = async (req, res) => {
+  try {
+    const email = await Users.exists(req.email);
+
+    res.status(200).json({
+      status: "success",
+      results: email.length,
+      data: {
+        email: email,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 //gauti userio
 
 // Sukurti Userį

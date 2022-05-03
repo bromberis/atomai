@@ -6,9 +6,15 @@ export async function getAllUsersData() {
   return res;
 }
 
-export async function createUserData(data) {
+export async function createUser(data) {
   const response = await axiosUser.post("/", JSON.stringify(data));
-  return response;
+  console.log(response);
+}
+// find email
+export async function getEmail(email) {
+  const res = await axiosUser.get("/email", email);
+  console.log(res);
+  return res;
 }
 
 // INCOME

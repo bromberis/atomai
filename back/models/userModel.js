@@ -50,7 +50,7 @@ const usersSchema = new mongoose.Schema(
       required: true,
       trim: true,
       minLength: 8,
-      maxLength: 20,
+      maxLength: 100,
     },
     balance: {
       type: Number,
