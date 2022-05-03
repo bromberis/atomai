@@ -31,9 +31,11 @@ export default function Registration() {
     console.log(res.data.data.email == email);
     res.data.data.email == email && setEmailAlreadyExists(true);
   }
+
   function test() {
     getEmail({ email: "neratokioemailo@gmail.com" }).then((res) => console.log(res));
   }
+
   let password = watch("password");
   let passwordRepeat = watch("passwordRepeat");
 

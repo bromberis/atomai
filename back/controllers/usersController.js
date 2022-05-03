@@ -23,8 +23,10 @@ exports.getAllUsers = async (req, res) => {
 //get user email
 
 exports.getEmail = async (req, res) => {
+  console.log(req.params.email);
+
   try {
-    const email = await Users.exists(req.email);
+    const email = await Users.findOne({ email: req.body.email });
 
     res.status(200).json({
       status: "success",

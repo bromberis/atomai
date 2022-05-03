@@ -12,7 +12,7 @@ export async function createUser(data) {
 }
 // find email
 export async function getEmail(email) {
-  const res = await axiosUser.get("/email", email);
+  const res = await axiosUser.get(`/${email}`, JSON.stringify(email));
   console.log(res);
   return res;
 }
