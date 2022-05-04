@@ -23,16 +23,15 @@ exports.getAllUsers = async (req, res) => {
 //get user email
 
 exports.getEmail = async (req, res) => {
-  console.log(req.params.email);
+  console.log(req.body);
 
   try {
-    const email = await Users.findOne({ email: req.body.email });
-
+    const data = await Users.findOne({ email: req.body.email });
     res.status(200).json({
       status: "success",
-      results: email.length,
+      results: data.length,
       data: {
-        email: email,
+        data: data,
       },
     });
   } catch (err) {
@@ -126,6 +125,7 @@ exports.findIncomeDataAndUpdate = async (req, res) => {
   console.log(req.params.id);
   console.log(req.params.subID);
   console.log(req.body);
+  console.log(req);
   try {
     const updateIncome = await Users.findOneAndUpdate(
       { _id: req.params.id, "income._id": req.params.subID },

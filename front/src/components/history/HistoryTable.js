@@ -5,24 +5,10 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import { ImArrowLeft2 } from "react-icons/im";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
-import {
-  findIncomeAndDelete,
-  findExpensesAndDelete,
-} from "../../api/library/UsersAPI";
+import { findIncomeAndDelete, findExpensesAndDelete } from "../../api/library/UsersAPI";
 import swal from "sweetalert";
 
-function HistoryTable({
-  getUsers,
-  name,
-  category,
-  date,
-  sum,
-  dateCreated,
-  id,
-  type,
-  income,
-  userID,
-}) {
+function HistoryTable({ getUsers, name, category, date, sum, dateCreated, id, type, income, userID }) {
   let UppercaseFirst = (str) => {
     let newStr = str.charAt(0).toUpperCase() + str.slice(1);
     return newStr;
@@ -75,31 +61,20 @@ function HistoryTable({
         <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
         <td className="smaller-td">{category}</td>
         <td>
-          {nameLength
-            ? name !== undefined && UppercaseFirst(name)
-            : name !== undefined && UppercaseFirst(name).substring(0, 15)}
+          {nameLength ? name !== undefined && UppercaseFirst(name) : name !== undefined && UppercaseFirst(name).substring(0, 15)}
           {name !== undefined && name.length > 15 && nameLength === false && (
-            <button
-              onClick={changeNameLengthStatus}
-              className="btn custom-button-more"
-            >
+            <button onClick={changeNameLengthStatus} className="btn custom-button-more">
               <FiMoreHorizontal />
             </button>
           )}
           {name !== undefined && name.length > 15 && nameLength === true && (
-            <button
-              onClick={changeNameLengthStatus}
-              className="btn custom-button-more"
-            >
+            <button onClick={changeNameLengthStatus} className="btn custom-button-more">
               <ImArrowLeft2 />
             </button>
           )}
         </td>
         <td className="smaller-td">
-          <button
-            className="btn m-1 custom-button-edit"
-            onClick={() => setEditFormStatus(!editFormStatus)}
-          >
+          <button className="btn m-1 custom-button-edit" onClick={() => setEditFormStatus(!editFormStatus)}>
             <BsPencil color="#3a3845" fontSize="1.5em" />
           </button>
           <button
@@ -126,20 +101,7 @@ function HistoryTable({
       </tr>
       <tr>
         {editFormStatus && type === "income" && (
-          <EditIncomeHistoryForm
-            key={id}
-            id={id}
-            name={name}
-            category={category}
-            date={date}
-            sum={sum}
-            dateCreated={dateCreated}
-            type={type}
-            userID={userID}
-            editFormStatus={editFormStatus}
-            setEditFormStatus={setEditFormStatus}
-            getUsers={getUsers}
-          />
+          <EditIncomeHistoryForm key={id} id={id} name={name} category={category} date={date} sum={sum} dateCreated={dateCreated} type={type} userID={userID} editFormStatus={editFormStatus} setEditFormStatus={setEditFormStatus} getUsers={getUsers} />
         )}
         {editFormStatus && type === "expenses" && (
           <EditExpensesHistoryForm
