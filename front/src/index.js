@@ -9,20 +9,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
-
+import { IncomeProvider } from "./components/context/IncomeContext";
+import { ExpensesProvider } from "./components/context/ExpensesContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/" element={<IncomeExpensesInput />} />
-          <Route path="/incexp" element={<IncomeExpensesInput />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/statistics" element={<Statistics />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ExpensesProvider>
+      <IncomeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="/" element={<IncomeExpensesInput />} />
+              <Route path="/incexp" element={<IncomeExpensesInput />} />
+              <Route path="/history" element={<History />} />
+
+              <Route path="/statistics" element={<Statistics />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </IncomeProvider>
+    </ExpensesProvider>
   </React.StrictMode>
 );
 
