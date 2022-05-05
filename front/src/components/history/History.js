@@ -6,7 +6,7 @@ function UsersList() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(users);
+  // console.log(users);
 
   useEffect(() => {
     getUsers();

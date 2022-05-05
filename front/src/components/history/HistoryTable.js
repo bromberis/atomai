@@ -56,9 +56,9 @@ function HistoryTable({
   const [nameLength, setNameLength] = useState(findNameStatus);
 
   function findNameStatus() {
-    if (undefined !== name && name.length <= 15) {
+    if (undefined !== name && name !== null && name.length <= 15) {
       return true;
-    } else if (undefined !== name && name.length > 15) {
+    } else if (undefined !== name && name !== null && name.length > 15) {
       return false;
     }
   }

@@ -20,7 +20,90 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-//gauti userio
+//Gauti user income
+exports.getUserIncomeByMonth = async (req, res) => {
+  // console.log(req.params.id);
+  try {
+    const users = await Users.find({ _id: req.params.id });
+
+    const { income } = users[0];
+    // console.log(income);
+
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+
+    const filteredYear = income.filter(
+      (incItem) => incItem.date.getFullYear() === currentYear
+    );
+
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() === currentMonth
+    );
+
+    const allIncomeCurrentMonth = filteredMonth.reduce(
+      (n, { sum }) => n + sum,
+      0
+    );
+
+    // console.log(allIncomeCurrentMonth);
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        income: allIncomeCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
+
+//Gauti ekspenses
+
+exports.getUserExpensesByMonth = async (req, res) => {
+  // console.log(req.params.id);
+  try {
+    const users = await Users.find({ _id: req.params.id });
+
+    const { expenses } = users[0];
+    // console.log(income);
+
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+
+    const filteredYear = expenses.filter(
+      (expItem) => expItem.date.getFullYear() === currentYear
+    );
+
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() === currentMonth
+    );
+
+    const allExpensesCurrentMonth = filteredMonth.reduce(
+      (n, { sum }) => n + sum,
+      0
+    );
+
+    // console.log(allIncomeCurrentMonth);
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        expenses: allExpensesCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
 
 // Sukurti Userį
 exports.createUser = async (req, res) => {
@@ -100,9 +183,6 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.findIncomeDataAndUpdate = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
-  console.log(req.body);
   try {
     const updateIncome = await Users.findOneAndUpdate(
       { _id: req.params.id, "income._id": req.params.subID },

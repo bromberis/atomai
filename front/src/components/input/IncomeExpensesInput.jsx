@@ -10,8 +10,8 @@ import "./IncomeExpensesInput.css";
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
   let [user, setUser] = useState({});
-  let [income, setIncome] = useState({ category: "Alga" });
-  let [expense, setExpense] = useState({ category: "Kita" });
+  let [income, setIncome] = useState({ category: "Alga", name: "" });
+  let [expense, setExpense] = useState({ category: "Kita", name: "" });
 
   const getUser = () => {
     getAllUsersData().then((res) => {
@@ -49,7 +49,7 @@ function IncomeExpensesInput() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    display == "income"
+    display === "income"
       ? createUserIncome(user._id, income)
       : createUserExpense(user._id, expense);
   }
@@ -100,7 +100,7 @@ function IncomeExpensesInput() {
           <form
             className="border-main"
             onChange={(e) => {
-              display == "income"
+              display === "income"
                 ? updateIncomeObject(e)
                 : updateExpenseObject(e);
             }}
@@ -215,7 +215,7 @@ function IncomeExpensesInput() {
             <div className="row">
               <div className="col-12 text-center">
                 {/* SUBMIT BUTTON */}
-                {display == "income" ? (
+                {display === "income" ? (
                   <button className="btn-submit-input btn-all" type="submit">
                     Pridėti pajamas
                   </button>
