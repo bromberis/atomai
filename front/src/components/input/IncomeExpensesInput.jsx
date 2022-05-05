@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
+import { Link } from "react-router-dom";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
@@ -21,7 +22,6 @@ function IncomeExpensesInput() {
   const getUser = () => {
     getAllUsersData().then((res) => {
       setUser(res.data.data.users[0]);
-      // console.log(res.data.data.users[0]);
     });
   };
   useEffect(() => getUser(), []);
@@ -215,7 +215,10 @@ function IncomeExpensesInput() {
               <div className="col-12 text-center">
                 {/* SUBMIT BUTTON */}
                 {display === "income" ? (
-                  <button className="btn-submit-input btn-all" type="submit">
+                  <button
+                    className=" col-5 col-lg-4 btn-submit-input btn-all"
+                    type="submit"
+                  >
                     Pridėti pajamas
                   </button>
                 ) : (
@@ -226,12 +229,17 @@ function IncomeExpensesInput() {
               </div>
             </div>
             <div className="row text-center bottom-space">
-              <div className="col-5 col-lg-4   balance bg-light">
-                Šio mėnesio balansas:{" "}
-                <span className="fw-bold">
-                  {(incomeThisMonth - expensesThisMonth).toFixed(2)}
-                </span>
-              </div>
+              <Link to="/statistics">
+                <button
+                  type="button"
+                  className="col-5 col-lg-4   balance bg-light"
+                >
+                  Šio mėnesio balansas:{" "}
+                  <span className="fw-bold">
+                    {(incomeThisMonth - expensesThisMonth).toFixed(2)}
+                  </span>
+                </button>
+              </Link>
             </div>
           </form>
         </div>

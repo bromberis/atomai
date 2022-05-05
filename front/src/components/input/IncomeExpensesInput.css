@@ -42,9 +42,9 @@
 .btn-submit-input,
 .btn-submit-expenses {
   background-color: #dbecd6;
-  width: 25%;
+  /* width: 25%; */
   padding: 10px;
-  margin-bottom: 5vh;
+  margin-bottom: 2vh;
   border: 0.5px solid grey;
   /* box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
   -webkit-box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
@@ -93,8 +93,6 @@ select:focus {
 }
 
 .balance {
-  border-right: 0.5px solid grey;
-  border-top: 0.5px solid grey;
-  border-bottom: 0.5px solid grey;
+  border: 0.5px solid grey;
   padding: 10px;
 }
