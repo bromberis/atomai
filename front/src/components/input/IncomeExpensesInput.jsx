@@ -230,10 +230,7 @@ function IncomeExpensesInput() {
             </div>
             <div className="row text-center bottom-space">
               <Link to="/statistics">
-                <button
-                  type="button"
-                  className="col-5 col-lg-4   balance bg-light"
-                >
+                <button type="button" className="col-5 col-lg-4   balance ">
                   Šio mėnesio balansas:{" "}
                   <span className="fw-bold">
                     {(incomeThisMonth - expensesThisMonth).toFixed(2)}
