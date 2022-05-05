@@ -7,7 +7,7 @@ import {
 const ExpensesContext = createContext();
 
 const ExpensesProvider = ({ children }) => {
-  const [expenses, setExpenses] = useState([]);
+  const [expensesThisMonth, setExpensesThisMonth] = useState([]);
   const [userID, setUserID] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +20,7 @@ const ExpensesProvider = ({ children }) => {
 
   if (isLoading) {
     getUserExpensesByMonth(userID).then((res) => {
-      setExpenses(res.data.data.expenses);
+      setExpensesThisMonth(res.data.data.expenses);
     });
     setIsLoading(false);
   }
@@ -31,7 +31,12 @@ const ExpensesProvider = ({ children }) => {
 
   return (
     <ExpensesContext.Provider
-      value={{ expenses, userID, getExpUserID, getUserExpensesByMonth }}
+      value={{
+        expensesThisMonth,
+        userID,
+        getExpUserID,
+        getUserExpensesByMonth,
+      }}
     >
       {children}
     </ExpensesContext.Provider>

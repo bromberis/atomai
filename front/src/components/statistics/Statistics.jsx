@@ -27,11 +27,11 @@ ChartJS.register(
 );
 
 function Statistics() {
-  const { income, getUserID } = useGlobalContext();
-  const { expenses, getExpUserID } = useGlobalExpensesContext();
+  const { incomeThisMonth, getUserID } = useGlobalContext();
+  const { expensesThisMonth, getExpUserID } = useGlobalExpensesContext();
 
-  console.log(income);
-  console.log(expenses);
+  console.log(incomeThisMonth);
+  console.log(expensesThisMonth);
   useEffect(() => {
     getUserID();
     getExpUserID();
@@ -86,13 +86,13 @@ function Statistics() {
     datasets: [
       {
         label: "Pajamos",
-        data: [income],
+        data: [incomeThisMonth],
         borderColor: "rgb(173,212,162)",
         backgroundColor: "rgb(173,212,162, 0.8)",
       },
       {
         label: "Išlaidos",
-        data: [expenses],
+        data: [expensesThisMonth],
         borderColor: "rgb(187, 137, 148)",
         backgroundColor: "rgb(187, 137, 148, 0.8)",
       },

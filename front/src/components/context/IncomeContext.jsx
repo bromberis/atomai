@@ -7,7 +7,7 @@ import {
 const IncomeContext = createContext();
 
 const IncomeProvider = ({ children }) => {
-  const [income, setIncome] = useState([]);
+  const [incomeThisMonth, setIncomeThisMonth] = useState([]);
   const [userID, setUserID] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +20,7 @@ const IncomeProvider = ({ children }) => {
 
   if (isLoading) {
     getUserIncomeByMonth(userID).then((res) => {
-      setIncome(res.data.data.income);
+      setIncomeThisMonth(res.data.data.income);
     });
     setIsLoading(false);
   }
@@ -31,7 +31,7 @@ const IncomeProvider = ({ children }) => {
 
   return (
     <IncomeContext.Provider
-      value={{ income, userID, getUserID, getUserIncomeByMonth }}
+      value={{ incomeThisMonth, userID, getUserID, getUserIncomeByMonth }}
     >
       {children}
     </IncomeContext.Provider>
