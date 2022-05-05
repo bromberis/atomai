@@ -109,7 +109,6 @@ function EditExpensesHistoryForm({
               id="name"
               defaultValue={name}
               {...register("name", {
-                // pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
                 maxLength: 30,
               })}
               onChange={(e) => updateExpensesObject(e)}
