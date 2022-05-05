@@ -104,9 +104,13 @@ function Statistics() {
       <div className="container pt-3">
         <div className="row">
           <div className="col ">
-            <h3 className="text-center  custom-title">
-              Einamojo mėnesio statistika
-            </h3>
+            <h2 className="text-center  custom-title mb-3 ">Einamasis mėnuo</h2>
+            <p className="text-center fs-4 ">
+              Balansas:{" "}
+              <span className="fw-bold">
+                {(incomeThisMonth - expensesThisMonth).toFixed(2)}
+              </span>
+            </p>
             <div className="horizontal-bar mx-auto">
               <Bar options={options} data={data} />
             </div>

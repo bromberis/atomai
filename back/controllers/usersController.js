@@ -70,7 +70,6 @@ exports.getUserExpensesByMonth = async (req, res) => {
     const users = await Users.find({ _id: req.params.id });
 
     const { expenses } = users[0];
-    // console.log(income);
 
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
@@ -87,8 +86,6 @@ exports.getUserExpensesByMonth = async (req, res) => {
       (n, { sum }) => n + sum,
       0
     );
-
-    // console.log(allIncomeCurrentMonth);
 
     res.status(200).json({
       status: "success",
