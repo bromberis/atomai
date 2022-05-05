@@ -30,14 +30,15 @@ exports.getUserIncomeByMonth = async (req, res) => {
     // console.log(income);
 
     const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
+    const currentMonth = new Date().getMonth() + 1;
+    console.log(currentMonth);
 
     const filteredYear = income.filter(
       (incItem) => incItem.date.getFullYear() === currentYear
     );
 
     const filteredMonth = filteredYear.filter(
-      (item) => item.date.getMonth() === currentMonth
+      (item) => item.date.getMonth() + 1 === currentMonth
     );
 
     const allIncomeCurrentMonth = filteredMonth.reduce(
@@ -72,14 +73,15 @@ exports.getUserExpensesByMonth = async (req, res) => {
     const { expenses } = users[0];
 
     const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
+    const currentMonth = new Date().getMonth() + 1;
+    console.log(currentMonth);
 
     const filteredYear = expenses.filter(
       (expItem) => expItem.date.getFullYear() === currentYear
     );
 
     const filteredMonth = filteredYear.filter(
-      (item) => item.date.getMonth() === currentMonth
+      (item) => item.date.getMonth() + 1 === currentMonth
     );
 
     const allExpensesCurrentMonth = filteredMonth.reduce(
