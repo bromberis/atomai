@@ -15,7 +15,8 @@
 }
 
 .btn-income,
-.btn-expenses {
+.btn-expenses,
+.balance {
   box-shadow: 0px 3px 10px -4px rgba(128, 128, 128, 0.69);
   -webkit-box-shadow: 0px 3px 10px -4px rgba(128, 128, 128, 0.69);
   -moz-box-shadow: 0px 3px 10px -4px rgba(128, 128, 128, 0.69);
@@ -45,11 +46,11 @@
   padding: 10px;
   margin-bottom: 5vh;
   border: 0.5px solid grey;
-  box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
+  /* box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
   -webkit-box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
   -moz-box-shadow: 10px 9px 14px -8px rgba(128, 128, 128, 0.75);
+} */
 }
-
 .btn-submit-expenses {
   background-color: #ecd6db;
 }
@@ -83,10 +84,17 @@ select:focus {
 }
 
 .bottom-space {
-  padding-bottom: 10vh;
+  padding-bottom: 3vh;
 }
 
 .border-main {
   border: 0.5px solid grey;
   margin-bottom: 10vh;
+}
+
+.balance {
+  border-right: 0.5px solid grey;
+  border-top: 0.5px solid grey;
+  border-bottom: 0.5px solid grey;
+  padding: 10px;
 }

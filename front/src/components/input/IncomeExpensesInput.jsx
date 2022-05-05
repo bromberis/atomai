@@ -6,6 +6,8 @@ import {
 } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
+import { useGlobalContext } from "../context/IncomeContext";
+import { useGlobalExpensesContext } from "../context/ExpensesContext";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
@@ -13,25 +15,26 @@ function IncomeExpensesInput() {
   let [income, setIncome] = useState({ category: "Alga", name: "" });
   let [expense, setExpense] = useState({ category: "Kita", name: "" });
 
+  const { incomeThisMonth, getUserID } = useGlobalContext();
+  const { expensesThisMonth, getExpUserID } = useGlobalExpensesContext();
+
   const getUser = () => {
     getAllUsersData().then((res) => {
       setUser(res.data.data.users[0]);
-      console.log(res.data.data.users[0]);
+      // console.log(res.data.data.users[0]);
     });
   };
   useEffect(() => getUser(), []);
   // todays date ISO format
-  console.log(new Date().toISOString().substr(0, 10));
+  // console.log(new Date().toISOString().substr(0, 10));
 
   function updateIncomeObject(e) {
     e.preventDefault();
     income[e.target.name] = e.target.value;
-    console.log(income);
   }
   function updateExpenseObject(e) {
     e.preventDefault();
     expense[e.target.name] = e.target.value;
-    console.log(expense);
   }
 
   function submitNewIncomeExpense() {
@@ -52,6 +55,9 @@ function IncomeExpensesInput() {
     display === "income"
       ? createUserIncome(user._id, income)
       : createUserExpense(user._id, expense);
+
+    getUserID();
+    getExpUserID();
   }
 
   const {
@@ -95,8 +101,7 @@ function IncomeExpensesInput() {
               Išlaidos
             </button>
           </div>
-          {/* <div className="row">
-            <div className="col"> */}
+
           <form
             className="border-main"
             onChange={(e) => {
@@ -205,12 +210,6 @@ function IncomeExpensesInput() {
                 )}
               </div>
             </div>
-            {/* <div className="row">
-              <div className="col">
-                
-                <h4>Balansas: {user.balance}</h4>
-              </div>
-            </div> */}
 
             <div className="row">
               <div className="col-12 text-center">
@@ -226,11 +225,17 @@ function IncomeExpensesInput() {
                 )}
               </div>
             </div>
+            <div className="row text-center bottom-space">
+              <div className="col-5 col-lg-4   balance bg-light">
+                Šio mėnesio balansas:{" "}
+                <span className="fw-bold">
+                  {(incomeThisMonth - expensesThisMonth).toFixed(2)}
+                </span>
+              </div>
+            </div>
           </form>
         </div>
       </div>
-      {/* </div>
-      </div> */}
     </>
   );
 }
