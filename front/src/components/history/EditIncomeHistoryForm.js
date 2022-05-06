@@ -3,6 +3,7 @@ import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { findIncomeDataAndUpdate } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
+import Tooltip from "@mui/material/Tooltip";
 import "./History.css";
 
 function EditIncomeHistoryForm({
@@ -121,16 +122,20 @@ function EditIncomeHistoryForm({
             )}
           </div>
           <div>
-            <button type="submit" className="btn m-1 custom-button-edit">
-              <FaCheck color="#7fbc6e" fontSize="1.5em" />
-            </button>
-            <button
-              type="button"
-              className="btn  m-1 custom-button-tr"
-              onClick={() => setEditFormStatus(!editFormStatus)}
-            >
-              <ImCross color="#bc6e7f" fontSize="1.4em" />
-            </button>
+            <Tooltip title="Gerai">
+              <button type="submit" className="btn m-1 custom-button-edit">
+                <FaCheck color="#7fbc6e" fontSize="1.5em" />
+              </button>
+            </Tooltip>
+            <Tooltip title="Atšaukti">
+              <button
+                type="button"
+                className="btn  m-1 custom-button-tr"
+                onClick={() => setEditFormStatus(!editFormStatus)}
+              >
+                <ImCross color="#bc6e7f" fontSize="1.4em" />
+              </button>
+            </Tooltip>
           </div>
         </form>
       </td>

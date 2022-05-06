@@ -10,6 +10,7 @@ import {
   findExpensesAndDelete,
 } from "../../api/library/UsersAPI";
 import swal from "sweetalert";
+import Tooltip from "@mui/material/Tooltip";
 
 function HistoryTable({
   getUsers,
@@ -79,49 +80,57 @@ function HistoryTable({
             ? name !== undefined && UppercaseFirst(name)
             : name !== undefined && UppercaseFirst(name).substring(0, 15)}
           {name !== undefined && name.length > 15 && nameLength === false && (
-            <button
-              onClick={changeNameLengthStatus}
-              className="btn custom-button-more"
-            >
-              <FiMoreHorizontal />
-            </button>
+            <Tooltip title="Pilnas tekstas">
+              <button
+                onClick={changeNameLengthStatus}
+                className="btn custom-button-more"
+              >
+                <FiMoreHorizontal />
+              </button>
+            </Tooltip>
           )}
           {name !== undefined && name.length > 15 && nameLength === true && (
-            <button
-              onClick={changeNameLengthStatus}
-              className="btn custom-button-more"
-            >
-              <ImArrowLeft2 />
-            </button>
+            <Tooltip title="Atgal">
+              <button
+                onClick={changeNameLengthStatus}
+                className="btn custom-button-more"
+              >
+                <ImArrowLeft2 />
+              </button>
+            </Tooltip>
           )}
         </td>
         <td className="smaller-td">
-          <button
-            className="btn m-1 custom-button-edit"
-            onClick={() => setEditFormStatus(!editFormStatus)}
-          >
-            <BsPencil color="#3a3845" fontSize="1.5em" />
-          </button>
-          <button
-            className="btn  m-1 custom-button-tr"
-            onClick={() =>
-              swal({
-                title: "Ar tikrai norite ištrinti?",
-                icon: "warning",
-                buttons: ["Atšaukti", "Gerai"],
-              }).then((isConfirm) => {
-                if (isConfirm) {
-                  if (type === "income") {
-                    findIncomeAndDelete(userID, id).then(() => getUsers());
-                  } else if (type === "expenses") {
-                    findExpensesAndDelete(userID, id).then(() => getUsers());
+          <Tooltip title="Redaguoti">
+            <button
+              className="btn m-1 custom-button-edit"
+              onClick={() => setEditFormStatus(!editFormStatus)}
+            >
+              <BsPencil color="#3a3845" fontSize="1.5em" />
+            </button>
+          </Tooltip>
+          <Tooltip title="Ištrinti">
+            <button
+              className="btn  m-1 custom-button-tr"
+              onClick={() =>
+                swal({
+                  title: "Ar tikrai norite ištrinti?",
+                  icon: "warning",
+                  buttons: ["Atšaukti", "Gerai"],
+                }).then((isConfirm) => {
+                  if (isConfirm) {
+                    if (type === "income") {
+                      findIncomeAndDelete(userID, id).then(() => getUsers());
+                    } else if (type === "expenses") {
+                      findExpensesAndDelete(userID, id).then(() => getUsers());
+                    }
                   }
-                }
-              })
-            }
-          >
-            <BsTrash color="#bc6e7f" fontSize="1.5em" />
-          </button>
+                })
+              }
+            >
+              <BsTrash color="#bc6e7f" fontSize="1.5em" />
+            </button>
+          </Tooltip>
         </td>
       </tr>
       <tr>
