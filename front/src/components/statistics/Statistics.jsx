@@ -32,6 +32,7 @@ function Statistics() {
 
   console.log(incomeThisMonth);
   console.log(expensesThisMonth);
+  
   useEffect(() => {
     getUserID();
     getExpUserID();
