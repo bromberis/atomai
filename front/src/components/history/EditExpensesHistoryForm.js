@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import { findExpensesDataAndUpdate } from "../../api/library/UsersAPI";
 import "./History.css";
 import { useForm } from "react-hook-form";
+import Tooltip from "@mui/material/Tooltip";
 
 function EditExpensesHistoryForm({
   getUsers,
@@ -120,17 +121,20 @@ function EditExpensesHistoryForm({
             )}
           </div>
           <div className="text-end me-4">
-            <button type="submit" className="btn m-1 custom-button-edit ">
-              <FaCheck color="#7fbc6e" fontSize="1.5em" />
-            </button>
-
-            <button
-              type="button"
-              className="btn  m-1 custom-button-tr"
-              onClick={() => setEditFormStatus(!editFormStatus)}
-            >
-              <ImCross color="#bc6e7f" fontSize="1.4em" />
-            </button>
+            <Tooltip title="Gerai">
+              <button type="submit" className="btn m-1 custom-button-edit ">
+                <FaCheck color="#7fbc6e" fontSize="1.5em" />
+              </button>
+            </Tooltip>
+            <Tooltip title="Atšaukti">
+              <button
+                type="button"
+                className="btn  m-1 custom-button-tr"
+                onClick={() => setEditFormStatus(!editFormStatus)}
+              >
+                <ImCross color="#bc6e7f" fontSize="1.4em" />
+              </button>
+            </Tooltip>
           </div>
         </form>
       </td>
