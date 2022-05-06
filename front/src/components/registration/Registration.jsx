@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createUser, getEmail } from "../../api/library/UsersAPI";
+import { createUser, getUserEmailFront, getUserById } from "../../api/library/UsersAPI";
+import "./Registration.css";
+
+import axios from "axios";
 
 export default function Registration() {
   const {
@@ -11,14 +14,9 @@ export default function Registration() {
     formState: { errors },
   } = useForm();
   let [emailAlreadyExists, setEmailAlreadyExists] = useState(false);
-  //   const bcrypt = require("bcrypt");
-  //   const saltRounds = 10;
-  //   const myPlaintextPassword = "s0//P4$$w0rD";
-  //   const someOtherPlaintextPassword = "not_bacon";
+
   var bcrypt = require("bcryptjs");
   var salt = bcrypt.genSaltSync(10);
-  // var hash = bcrypt.hashSync("B4c0//", salt);
-  // console.log(hash);
 
   function onSubmit(data) {
     let hashedPassword = bcrypt.hashSync(data.password, salt);
@@ -26,68 +24,67 @@ export default function Registration() {
     console.log(data);
     createUser(data);
   }
-  function doesEmailExist(res, email) {
-    console.log(res.data.data.email, email);
-    console.log(res.data.data.email == email);
-    res.data.data.email == email && setEmailAlreadyExists(true);
+  function doesEmailExist(res) {
+    console.log(res.data.data.users);
+    res.data.data.users ? setEmailAlreadyExists(false) : setEmailAlreadyExists(true);
   }
 
-  // function test(email) {
-  //   console.log(email;
-  //   getEmail("onrj@gmail.com");
-  // }
-  let email = "onrj@gmail.com";
-  getEmail(email);
+  //let email = { email: "onrj@gmail.com" };
 
   let password = watch("password");
-  let passwordRepeat = watch("passwordRepeat");
 
-  let testEmail = "Meda@gmail.com";
-  let tt = "onrj@gmail.com";
+  function check() {}
 
   return (
     <div>
+      {" "}
+      Registracija
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="reg-input-div">
           <input
+            className="reg-input"
             type="text"
             id="name"
             placeholder="Vardas"
             {...register("name", {
-              required: "Vardas butinas",
+              required: "Vardas būtinas",
               maxLength: 12,
               minLength: 2,
               pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
             })}
           />
-          {errors.name?.type === "required" && "Vardas butinas"}
+          {errors.name?.type === "pattern" && "Negali būti specialų simbolių"}
+          {errors.name?.type === "required" && "Vardas būtinas"}
           {errors.name?.type === "minLength" && "Bent 2 simboliai"}
-          {errors.name?.type === "maxLength" && "Ne daugiau kaip 12 simboliu"}
+          {errors.name?.type === "maxLength" && "Ne daugiau kaip 12 simbolių"}
           {/* {errors.name && <span className="text-danger fw-light">Vardas butinas. (Bent 2 simboliai ir ne daugiau kaip 12)</span>} */}
         </div>
-        <div>
+        <div className="reg-input-div">
           <input
+            className="reg-input"
             type="email"
             id="email"
             placeholder="El. paštas"
             {...register("email", {
               required: true,
               maxLength: 50,
-              validate: {
-                emailExists: (value) => {
-                  getEmail({ email: value }).then((res) => doesEmailExist(res, value));
-                  console.log(emailAlreadyExists, emailAlreadyExists);
-                  return !emailAlreadyExists;
-                },
-              },
+              // validate: {
+              //   emailExists: (value) => {
+              //     let pass;
+              //     getUserEmailFront(value, pass).then((res) => doesEmailExist(res, value));
+
+              //     return pass;
+              //   },
+              // },
             })}
           />
-          {errors.name?.type === "required" && "El.pasštas butinas"}
-          {errors.name?.type === "maxLength" && "Ne daugiau kaip 50 simboliu"}
-          {errors.email?.type === "emailExists" && "jau egzistuoja"}
+          {errors.email?.type === "required" && "El.paštas butinas"}
+          {errors.email?.type === "maxLength" && "Ne daugiau kaip 50 simbolių"}
+          {errors.email?.type === "emailExists" && "El. paštas jau naudojamas."}
         </div>
-        <div>
+        <div className="reg-input-div">
           <input
+            className="reg-input"
             type="password"
             id="password"
             name="password"
@@ -99,12 +96,13 @@ export default function Registration() {
             })}
           />
 
-          {errors?.password?.type === "required" && "Slaptažodis butinas"}
+          {errors?.password?.type === "required" && "Slaptažodis būtinas"}
           {errors?.password?.type === "minLength" && "Bent 8 simboliai"}
-          {errors?.password?.type === "maxLength" && "Ne daugiau kaip 20 simboliu"}
+          {errors?.password?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
         </div>
-        <div>
+        <div className="reg-input-div">
           <input
+            className="reg-input"
             type="password"
             id="passwordRepeat"
             placeholder="Pakartokite slaptažodį"
@@ -115,28 +113,32 @@ export default function Registration() {
               validate: { passwordMatch: (value) => value == password },
             })}
           />
-          {errors.passwordRepeat?.type === "required" && "Slaptažodis butinas"}
-          {errors.name?.type === "minLength" && "Bent 8 simboliai"}
-          {errors.name?.type === "maxLength" && "Ne daugiau kaip 20 simboliu"}
-          {errors.passwordRepeat?.type === "passwordMatch" && "Slaptazodziai turi sutapti"}
+          {errors.passwordRepeat?.type === "required" && "Slaptažodis būtinas"}
+          {errors.passwordRepeat?.type === "minLength" && "Bent 8 simboliai"}
+          {errors.passwordRepeat?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
+          {errors.passwordRepeat?.type === "passwordMatch" && "Slaptažodžiai turi sutapti"}
         </div>
-        <input
-          type="number"
-          name="balance"
-          id="balance"
-          placeholder="Pradinis balansas (neprivalomas)"
-          {...register("balance", {
-            required: false,
-            maxLength: 10,
-          })}
-        />
-        {errors.name?.type === "maxLength" && "Ne daugiau kaip 10 skaiciu"}
+        <div className="reg-input-div">
+          <input
+            className="reg-input"
+            type="number"
+            name="balance"
+            id="balance"
+            placeholder="Pradinis balansas (neprivalomas)"
+            {...register("balance", {
+              required: false,
+              maxLength: 10,
+            })}
+          />
+          {errors.balance?.type === "maxLength" && "Ne daugiau kaip 10 skaicių"}
+        </div>
 
         <p>
-          <button type="submit">Register</button>
+          <button className="reg-button-register" type="submit">
+            Register
+          </button>
         </p>
       </form>
-      <button onClick={() => test()}>find</button>
     </div>
   );
 }

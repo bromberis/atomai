@@ -6,18 +6,55 @@ export async function getAllUsersData() {
   return res;
 }
 
+// export async function createUser(data) {
+//   const response = await axiosUser
+//     .post("/", JSON.stringify(data))
+//     .then((result) => {
+//       console.log("Success:", result);
+//       swal({
+//         text: "Registracija sekminga, dabar galite prisijungti",
+//         icon: "success",
+//         button: "Gerai",
+//         timer: 1000,
+//       });
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//       swal({
+//         text: "Toks el. pastas jau egzistuoja",
+//         icon: "error",
+//         button: "Gerai",
+//         timer: 5000,
+//       });
+//     });
+// }
 export async function createUser(data) {
-  const response = await axiosUser.post("/", JSON.stringify(data));
-  console.log(response);
+  const res = await axiosUser
+    .post("/", JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Registracija sekminga, dabar galite prisijungti",
+        icon: "success",
+        button: "Puiku",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
+    });
 }
 // find email
-export async function getEmail(email) {
-  console.log(email);
-  const res = await axiosUser.get("/email", email);
-  console.log(res);
+export async function getUserEmailFront(email) {
+  const res = await axiosUser.get(`/email?email=${email}`);
+  //console.log(res);
   return res;
 }
 
+export async function getUserById(id) {
+  const res = await axiosUser.get(`/${id}`);
+  return res;
+}
 // INCOME
 
 export async function findIncomeDataAndUpdate(data, id, subID) {

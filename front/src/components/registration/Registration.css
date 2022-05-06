@@ -1,0 +1,13 @@
+.reg-input-div {
+  padding-top: 20px;
+}
+.reg-input {
+  width: 50%;
+}
+.reg-button-register {
+  height: 50px;
+  width: 150px;
+  background-color: rgb(37, 70, 129);
+  font-size: 1.7rem;
+  margin-top: 50px;
+}

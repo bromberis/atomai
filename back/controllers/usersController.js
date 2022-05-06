@@ -20,18 +20,35 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-//get user email
-
-exports.getEmail = async (req, res) => {
-  console.log(req.body);
-
+exports.getUserById = async (req, res) => {
   try {
-    const data = await Users.findOne({ email: req.body.email });
+    const user = await Users.findById("6270e33af734a1481c1e32b6");
     res.status(200).json({
       status: "success",
-      results: data.length,
+      results: user.length,
       data: {
-        data: data,
+        user: user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+//get user email
+
+exports.getUserEmail = async (req, res) => {
+  try {
+    const user = await Users.exists(req.query);
+    console.log(user);
+    res.status(200).json({
+      status: "success",
+      results: user.length,
+      data: {
+        users: user,
       },
     });
   } catch (err) {
@@ -63,22 +80,22 @@ exports.createUser = async (req, res) => {
 };
 
 // Gauti naudotoją pagal ID
-exports.getUserById = async (req, res) => {
-  try {
-    const user = await Users.findById(req.params.id);
-    res.status(200).json({
-      status: "success",
-      data: {
-        users: user,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
+// exports.getUserById = async (req, res) => {
+//   try {
+//     const user = await Users.findById(req.params.id);
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         users: user,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };
 
 // Atnaujinti esamą userį
 exports.updateUser = async (req, res) => {

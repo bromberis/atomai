@@ -13,12 +13,14 @@ const {
   createUserIncome,
   createUserExpense,
   getEmail,
+  getUserEmail,
 } = require("../controllers/usersController");
 
 const router = express.Router();
 
+// router.route("/email").get(getUserEmail);
 router.route("/").get(getAllUsers).post(createUser);
-router.route("/email").get(getEmail);
+router.route("/email").get(getUserEmail);
 
 router.route("/:id").get(getUserById).patch(updateUser).delete(deleteUser);
 

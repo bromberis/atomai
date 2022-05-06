@@ -10,20 +10,23 @@ import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
 import Registration from "./components/registration/Registration";
+import { UserProvider } from "./components/context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/" element={<Registration />} />
-          <Route path="/incexp" element={<IncomeExpensesInput />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/statistics" element={<Statistics />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="/" element={<Registration />} />
+            <Route path="/incexp" element={<IncomeExpensesInput />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/statistics" element={<Statistics />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );
 
