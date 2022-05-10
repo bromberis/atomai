@@ -1,4 +1,4 @@
-# atomai
+# Atomai
 # Personal Budget Planning
 
 #Framework Used
