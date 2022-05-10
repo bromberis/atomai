@@ -13,8 +13,23 @@ function UsersList() {
   console.log(userData);
 
   useEffect(() => {
-    setUsers(userData);
-    setIsLoading(true);
+    console.log(JSON.parse(localStorage.getItem("user")));
+
+    if (userData == true) {
+      console.log(`HEREHERE`);
+      setUsers(userData);
+      setIsLoading(true);
+    } else {
+      console.log(localStorage.user);
+      const loggedInUser = JSON.parse(localStorage.getItem("user"));
+      console.log(`HEREHERE`);
+      if (loggedInUser) {
+        console.log(`HEREHERE`);
+        setUsers(loggedInUser);
+        setIsLoading(true);
+      }
+    }
+
     //getUsers();
   }, []);
 

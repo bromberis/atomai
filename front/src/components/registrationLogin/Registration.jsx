@@ -68,14 +68,17 @@ export default function Registration() {
             {...register("email", {
               required: true,
               maxLength: 50,
-              // validate: {
-              //   emailExists: (value) => {
-              //     let pass;
-              //     getUserEmailFront(value, pass).then((res) => doesEmailExist(res, value));
+              validate: {
+                emailExists: (value) => {
+                  let pass;
+                  getUserEmailFront(value, pass).then(function (res) {
+                    doesEmailExist(res, value);
+                    return res.data.data.users.email === value;
+                  });
 
-              //     return pass;
-              //   },
-              // },
+                  return pass;
+                },
+              },
             })}
           />
           {errors.email?.type === "required" && "El.paštas butinas"}

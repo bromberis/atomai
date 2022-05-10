@@ -22,6 +22,8 @@ const UserProvider = ({ children }) => {
     loginUser(loginData).then((res) => {
       console.log(res);
       setUserData(res);
+      localStorage.setItem("user", JSON.stringify(res));
+      console.log(JSON.parse(localStorage.user));
     });
     setIsLoading(false);
   }
