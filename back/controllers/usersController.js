@@ -21,17 +21,14 @@ exports.getAllUsers = async (req, res) => {
 };
 
 //Gauti user income
+
 exports.getUserIncomeByMonth = async (req, res) => {
   // console.log(req.params.id);
   try {
     const users = await Users.find({ _id: req.params.id });
-
     const { income } = users[0];
-    // console.log(income);
-
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
-    console.log(currentMonth);
 
     const filteredYear = income.filter(
       (incItem) => incItem.date.getFullYear() === currentYear
@@ -46,13 +43,74 @@ exports.getUserIncomeByMonth = async (req, res) => {
       0
     );
 
-    // console.log(allIncomeCurrentMonth);
-
     res.status(200).json({
       status: "success",
       results: users.length,
       data: {
         income: allIncomeCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
+
+exports.getAllUserIncomeByMonth = async (req, res) => {
+  try {
+    const users = await Users.find({ _id: req.params.id });
+    const { income } = users[0];
+
+    var sortedIncomeByDate = income.sort(function (a, b) {
+      var c = new Date(a.date);
+      var d = new Date(b.date);
+      return c - d;
+    });
+
+    const startYear = sortedIncomeByDate[0].date.getFullYear();
+    const endYear =
+      sortedIncomeByDate[sortedIncomeByDate.length - 1].date.getFullYear();
+    const incomeArray = [];
+
+    for (var i = startYear; i <= endYear; i++) {
+      var filteredYear = sortedIncomeByDate.filter(
+        (item) => item.date.getFullYear() === i
+      );
+
+      var yearArray = [];
+      yearArray.push({ year: i });
+      var monthArray = [];
+
+      for (var y = 1; y <= 12; y++) {
+        if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
+          var filteredMonth = filteredYear.filter(
+            (item) => item.date.getMonth() + 1 === y
+          );
+          var allIncome = filteredMonth.reduce((n, { sum }) => n + sum, 0);
+          monthArray.push(allIncome);
+        } else {
+          monthArray.push(0);
+        }
+      }
+
+      var merged = [];
+
+      yearArray.map((year) => {
+        merged.push({
+          yearInc: year.year,
+          dataInc: monthArray,
+        });
+      });
+      incomeArray.push(...merged);
+    }
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        income: incomeArray,
       },
     });
   } catch (err) {
@@ -74,7 +132,6 @@ exports.getUserExpensesByMonth = async (req, res) => {
 
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
-    console.log(currentMonth);
 
     const filteredYear = expenses.filter(
       (expItem) => expItem.date.getFullYear() === currentYear
@@ -94,6 +151,74 @@ exports.getUserExpensesByMonth = async (req, res) => {
       results: users.length,
       data: {
         expenses: allExpensesCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
+
+exports.getAllUserExpensesByMonth = async (req, res) => {
+  try {
+    const users = await Users.find({ _id: req.params.id });
+    const { expenses } = users[0];
+
+    console.log(expenses);
+
+    var sortedExpensesByDate = expenses.sort(function (a, b) {
+      var c = new Date(a.date);
+      var d = new Date(b.date);
+      return c - d;
+    });
+
+    const startYear = sortedExpensesByDate[0].date.getFullYear();
+    const endYear =
+      sortedExpensesByDate[sortedExpensesByDate.length - 1].date.getFullYear();
+    const expensesArray = [];
+
+    for (var i = startYear; i <= endYear; i++) {
+      var filteredYear = sortedExpensesByDate.filter(
+        (item) => item.date.getFullYear() === i
+      );
+
+      var yearArray = [];
+      yearArray.push({ year: i });
+      var monthArray = [];
+
+      for (var y = 1; y <= 12; y++) {
+        if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
+          var filteredMonth = filteredYear.filter(
+            (item) => item.date.getMonth() + 1 === y
+          );
+          var allExpenses = filteredMonth.reduce((n, { sum }) => n + sum, 0);
+          monthArray.push(allExpenses);
+        } else {
+          monthArray.push(0);
+        }
+      }
+
+      var merged = [];
+
+      yearArray.map((year) => {
+        merged.push({
+          yearExp: year.year,
+          dataExp: monthArray,
+        });
+      });
+
+      console.log(merged);
+
+      expensesArray.push(...merged);
+    }
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        expenses: expensesArray,
       },
     });
   } catch (err) {
@@ -210,9 +335,9 @@ exports.findIncomeDataAndUpdate = async (req, res) => {
 };
 
 exports.findExpensesDataAndUpdate = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
-  console.log(req.body);
+  // console.log(req.params.id);
+  // console.log(req.params.subID);
+  // console.log(req.body);
   try {
     const updateExpenses = await Users.findOneAndUpdate(
       { _id: req.params.id, "expenses._id": req.params.subID },
@@ -242,8 +367,8 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
 // delete income
 
 exports.findIncomeAndDelete = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
+  // console.log(req.params.id);
+  // console.log(req.params.subID);
 
   try {
     await Users.findOneAndUpdate(
@@ -269,8 +394,8 @@ exports.findIncomeAndDelete = async (req, res) => {
 // delete expenses
 
 exports.findExpensesAndDelete = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
+  // console.log(req.params.id);
+  // console.log(req.params.subID);
 
   try {
     await Users.findOneAndUpdate(

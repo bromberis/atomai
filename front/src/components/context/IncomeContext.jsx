@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import {
   getUserIncomeByMonth,
   getAllUsersData,
+  getAllUserIncomeByMonth,
 } from "../../api/library/UsersAPI";
 
 const IncomeContext = createContext();
@@ -10,6 +11,7 @@ const IncomeProvider = ({ children }) => {
   const [incomeThisMonth, setIncomeThisMonth] = useState([]);
   const [userID, setUserID] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [incomeByMonthData, setIncomeByMonthData] = useState([]);
 
   function getUserID() {
     getAllUsersData().then((res) => {
@@ -22,6 +24,11 @@ const IncomeProvider = ({ children }) => {
     getUserIncomeByMonth(userID).then((res) => {
       setIncomeThisMonth(res.data.data.income);
     });
+
+    getAllUserIncomeByMonth(userID).then((res) => {
+      setIncomeByMonthData(res.data.data.income);
+    });
+
     setIsLoading(false);
   }
 
@@ -29,9 +36,21 @@ const IncomeProvider = ({ children }) => {
     getUserID();
   }, []);
 
+  // var sortedInc = incomeByMonthData.sort(function (a, b) {
+  //   var c = new Date(a.year);
+  //   var d = new Date(b.year);
+  //   return d - c;
+  // });
+
   return (
     <IncomeContext.Provider
-      value={{ incomeThisMonth, userID, getUserID, getUserIncomeByMonth }}
+      value={{
+        incomeThisMonth,
+        userID,
+        getUserID,
+        getUserIncomeByMonth,
+        incomeByMonthData,
+      }}
     >
       {children}
     </IncomeContext.Provider>
