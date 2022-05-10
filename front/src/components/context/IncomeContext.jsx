@@ -36,11 +36,11 @@ const IncomeProvider = ({ children }) => {
     getUserID();
   }, []);
 
-  var sortedInc = incomeByMonthData.sort(function (a, b) {
-    var c = new Date(a.year);
-    var d = new Date(b.year);
-    return d - c;
-  });
+  // var sortedInc = incomeByMonthData.sort(function (a, b) {
+  //   var c = new Date(a.year);
+  //   var d = new Date(b.year);
+  //   return d - c;
+  // });
 
   return (
     <IncomeContext.Provider

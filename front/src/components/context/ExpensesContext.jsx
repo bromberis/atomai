@@ -36,11 +36,11 @@ const ExpensesProvider = ({ children }) => {
     getExpUserID();
   }, []);
 
-  var sortedExp = expensesByMonthData.sort(function (a, b) {
-    var c = new Date(a.year);
-    var d = new Date(b.year);
-    return d - c;
-  });
+  // var sortedExp = expensesByMonthData.sort(function (a, b) {
+  //   var c = new Date(a.year);
+  //   var d = new Date(b.year);
+  //   return d - c;
+  // });
 
   return (
     <ExpensesContext.Provider

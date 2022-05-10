@@ -5,6 +5,7 @@ import { useGlobalExpensesContext } from "../context/ExpensesContext";
 import { v4 as uuidv4 } from "uuid";
 import StatisticsMonthCard from "./StatisticsMonthCard.jsx";
 import "./Statistics.css";
+import _ from "lodash";
 
 import {
   Chart as ChartJS,
@@ -103,27 +104,44 @@ function Statistics() {
   console.log(incomeByMonthData);
   console.log(expensesByMonthData);
 
-  let inc = incomeByMonthData.map((item) => {
-    return (
-      <StatisticsMonthCard
-        key={uuidv4()}
-        year={item.year}
-        dataInc={item.data}
-        type={item.type}
-      />
-    );
-  });
+  // const mergedIncExp = incomeByMonthData.map((obj) =>
+  //   Object.assign(
+  //     obj,
+  //     expensesByMonthData.find((exp) => obj.year === exp.year)
+  //   )
+  // );
+  //1
+  // let mergedIncExp = incomeByMonthData.map((item, i) =>
+  //   Object.assign({}, item, expensesByMonthData[i])
+  // );
 
-  let exp = expensesByMonthData.map((item) => {
-    return (
-      <StatisticsMonthCard
-        key={uuidv4()}
-        yearExp={item.year}
-        dataExp={item.data}
-        type={item.type}
-      />
-    );
-  });
+  //2
+  // const map = new Map();
+  // incomeByMonthData.forEach((item) => map.set(item.year, item));
+  // expensesByMonthData.forEach((item) => map.set(item.year, item));
+  // const mergedIncExp = Array.from(map.values());
+
+  var merged = _.merge(
+    _.keyBy(incomeByMonthData, "yearInc"),
+    _.keyBy(expensesByMonthData, "yearExp")
+  );
+  var mergedIncExp = _.values(merged);
+
+  console.log(mergedIncExp);
+
+  let mergedData = mergedIncExp
+    .sort()
+    .reverse()
+    .map((item) => {
+      return (
+        <StatisticsMonthCard
+          key={uuidv4()}
+          year={item.yearInc}
+          dataInc={item.dataInc}
+          dataExp={item.dataExp}
+        />
+      );
+    });
 
   return (
     <>
@@ -143,7 +161,7 @@ function Statistics() {
             <h3 className="text-center  custom-title mt-5">
               Praėjusių mėnesių suvestinės
             </h3>
-            <div>{inc}</div>
+            <div>{mergedData}</div>
           </div>
         </div>
       </div>

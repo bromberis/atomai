@@ -15,10 +15,6 @@ import "./Statistics.css";
 import { Line } from "react-chartjs-2";
 
 function StatisticsMonthCard(year) {
-  //   console.log(year.year);
-  //   console.log(year.dataInc);
-
-  // console.log(yearExp);
   console.log(year);
 
   const data = {
@@ -45,14 +41,51 @@ function StatisticsMonthCard(year) {
         borderColor: "rgb(173,212,162)",
         tension: 0.3,
         maintainAspectRatio: false,
+        order: 2,
       },
       {
-        label: "Second dataset",
-        data: [333, 2500, 395, 501, 1154, 1176],
+        label: "Išlaidos",
+        data: year.dataExp,
         fill: false,
-        borderColor: "#742774",
+        tension: 0.3,
+        borderColor: "rgb(187, 137, 148)",
+        order: 1,
       },
     ],
+  };
+  const options = {
+    type: "line",
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Chart.js Line Chart",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        position: "top",
+        labels: {
+          font: {
+            size: 15,
+          },
+        },
+      },
+      datalabels: {
+        anchor: "start",
+        align: "top",
+        font: {
+          weight: "bold",
+          size: "13px",
+        },
+      },
+    },
   };
 
   return (
@@ -60,7 +93,7 @@ function StatisticsMonthCard(year) {
       <div className="row">
         <div className="col chart-card">
           <h4 className="text-center fs-2  mt-3">{year.year}</h4>
-          <Line data={data} />
+          <Line data={data} options={options} />
         </div>
       </div>
     </div>

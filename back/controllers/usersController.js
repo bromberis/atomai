@@ -99,9 +99,8 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
 
       yearArray.map((year) => {
         merged.push({
-          year: year.year,
-          data: monthArray,
-          type: "income",
+          yearInc: year.year,
+          dataInc: monthArray,
         });
       });
       incomeArray.push(...merged);
@@ -205,9 +204,8 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
 
       yearArray.map((year) => {
         merged.push({
-          year: year.year,
-          data: monthArray,
-          type: "expenses",
+          yearExp: year.year,
+          dataExp: monthArray,
         });
       });
 
