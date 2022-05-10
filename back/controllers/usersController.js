@@ -63,7 +63,7 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
     const users = await Users.find({ _id: req.params.id });
     const { income } = users[0];
 
-    const sortedIncomeByDate = income.sort(function (a, b) {
+    var sortedIncomeByDate = income.sort(function (a, b) {
       var c = new Date(a.date);
       var d = new Date(b.date);
       return c - d;
@@ -74,14 +74,38 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
       sortedIncomeByDate[sortedIncomeByDate.length - 1].date.getFullYear();
     const incomeArray = [];
 
-    for (let i = startYear; i <= endYear; i++) {
-      const filteredYear = sortedIncomeByDate.filter(
+    for (var i = startYear; i <= endYear; i++) {
+      var filteredYear = sortedIncomeByDate.filter(
         (item) => item.date.getFullYear() === i
       );
-      incomeArray.push({ year: i, data: filteredYear });
-    }
 
-    console.log(incomeArray);
+      var yearArray = [];
+      yearArray.push({ year: i });
+      var monthArray = [];
+
+      for (var y = 1; y <= 12; y++) {
+        if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
+          var filteredMonth = filteredYear.filter(
+            (item) => item.date.getMonth() + 1 === y
+          );
+          var allIncome = filteredMonth.reduce((n, { sum }) => n + sum, 0);
+          monthArray.push(allIncome);
+        } else {
+          monthArray.push(0);
+        }
+      }
+
+      var merged = [];
+
+      yearArray.map((year) => {
+        merged.push({
+          year: year.year,
+          data: monthArray,
+          type: "income",
+        });
+      });
+      incomeArray.push(...merged);
+    }
 
     res.status(200).json({
       status: "success",
@@ -128,6 +152,75 @@ exports.getUserExpensesByMonth = async (req, res) => {
       results: users.length,
       data: {
         expenses: allExpensesCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
+
+exports.getAllUserExpensesByMonth = async (req, res) => {
+  try {
+    const users = await Users.find({ _id: req.params.id });
+    const { expenses } = users[0];
+
+    console.log(expenses);
+
+    var sortedExpensesByDate = expenses.sort(function (a, b) {
+      var c = new Date(a.date);
+      var d = new Date(b.date);
+      return c - d;
+    });
+
+    const startYear = sortedExpensesByDate[0].date.getFullYear();
+    const endYear =
+      sortedExpensesByDate[sortedExpensesByDate.length - 1].date.getFullYear();
+    const expensesArray = [];
+
+    for (var i = startYear; i <= endYear; i++) {
+      var filteredYear = sortedExpensesByDate.filter(
+        (item) => item.date.getFullYear() === i
+      );
+
+      var yearArray = [];
+      yearArray.push({ year: i });
+      var monthArray = [];
+
+      for (var y = 1; y <= 12; y++) {
+        if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
+          var filteredMonth = filteredYear.filter(
+            (item) => item.date.getMonth() + 1 === y
+          );
+          var allExpenses = filteredMonth.reduce((n, { sum }) => n + sum, 0);
+          monthArray.push(allExpenses);
+        } else {
+          monthArray.push(0);
+        }
+      }
+
+      var merged = [];
+
+      yearArray.map((year) => {
+        merged.push({
+          year: year.year,
+          data: monthArray,
+          type: "expenses",
+        });
+      });
+
+      console.log(merged);
+
+      expensesArray.push(...merged);
+    }
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        expenses: expensesArray,
       },
     });
   } catch (err) {

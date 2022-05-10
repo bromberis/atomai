@@ -15,6 +15,7 @@ const {
   getUserIncomeByMonth,
   getUserExpensesByMonth,
   getAllUserIncomeByMonth,
+  getAllUserExpensesByMonth,
 } = require("../controllers/usersController");
 
 const router = express.Router();
@@ -29,10 +30,11 @@ router.route("/:id/inc/upd/:subID").patch(findIncomeDataAndUpdate);
 router.route("/:id/inc/dlt/:subID").patch(findIncomeAndDelete);
 router.route("/:id/inc/all").get(getAllUserIncomeByMonth);
 router.route("/:id/inc").patch(createUserIncome).get(getUserIncomeByMonth);
-router.route("/:id/exp").patch(createUserExpense).get(getUserExpensesByMonth);
 
 //expenses
 router.route("/:id/exp/upd/:subID").patch(findExpensesDataAndUpdate);
 router.route("/:id/exp/dlt/:subID").patch(findExpensesAndDelete);
+router.route("/:id/exp/all").get(getAllUserExpensesByMonth);
+router.route("/:id/exp").patch(createUserExpense).get(getUserExpensesByMonth);
 
 module.exports = router;

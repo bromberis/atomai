@@ -86,6 +86,11 @@ export async function getUserIncomeByMonth(id) {
   return res;
 }
 
+export async function getAllUserIncomeByMonth(id) {
+  const res = await axiosUser.get(`/${id}/inc/all`);
+  return res;
+}
+
 // EXPENSES
 
 export async function findExpensesDataAndUpdate(data, id, subID) {
@@ -149,5 +154,10 @@ export async function createUserExpense(id, data) {
 }
 export async function getUserExpensesByMonth(id) {
   const res = await axiosUser.get(`/${id}/exp`);
+  return res;
+}
+
+export async function getAllUserExpensesByMonth(id) {
+  const res = await axiosUser.get(`/${id}/exp/all`);
   return res;
 }

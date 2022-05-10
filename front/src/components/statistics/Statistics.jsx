@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
+import { v4 as uuidv4 } from "uuid";
+import StatisticsMonthCard from "./StatisticsMonthCard.jsx";
 import "./Statistics.css";
 
 import {
@@ -27,12 +29,10 @@ ChartJS.register(
 );
 
 function Statistics() {
-  const { incomeThisMonth, getUserID } = useGlobalContext();
-  const { expensesThisMonth, getExpUserID } = useGlobalExpensesContext();
+  const { incomeThisMonth, getUserID, incomeByMonthData } = useGlobalContext();
+  const { expensesThisMonth, getExpUserID, expensesByMonthData } =
+    useGlobalExpensesContext();
 
-  console.log(incomeThisMonth);
-  console.log(expensesThisMonth);
-  
   useEffect(() => {
     getUserID();
     getExpUserID();
@@ -100,6 +100,31 @@ function Statistics() {
     ],
   };
 
+  console.log(incomeByMonthData);
+  console.log(expensesByMonthData);
+
+  let inc = incomeByMonthData.map((item) => {
+    return (
+      <StatisticsMonthCard
+        key={uuidv4()}
+        year={item.year}
+        dataInc={item.data}
+        type={item.type}
+      />
+    );
+  });
+
+  let exp = expensesByMonthData.map((item) => {
+    return (
+      <StatisticsMonthCard
+        key={uuidv4()}
+        yearExp={item.year}
+        dataExp={item.data}
+        type={item.type}
+      />
+    );
+  });
+
   return (
     <>
       <div className="container pt-3">
@@ -115,6 +140,10 @@ function Statistics() {
             <div className="horizontal-bar mx-auto">
               <Bar options={options} data={data} />
             </div>
+            <h3 className="text-center  custom-title mt-5">
+              Praėjusių mėnesių suvestinės
+            </h3>
+            <div>{inc}</div>
           </div>
         </div>
       </div>
