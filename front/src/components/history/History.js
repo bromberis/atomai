@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getAllUsersData } from "../../api/library/UsersAPI";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import HistoryTable from "./HistoryTable.js";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { userData } = useGlobalUserContext(UserContext);
+
   console.log(users);
+  console.log(userData);
 
   useEffect(() => {
-    getUsers();
+    setUsers(userData);
+    setIsLoading(true);
+    //getUsers();
   }, []);
 
   function getUsers() {
@@ -39,20 +45,7 @@ function UsersList() {
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-      return (
-        <HistoryTable
-          getUsers={getUsers}
-          key={item._id}
-          id={item._id}
-          name={item.name}
-          category={item.category}
-          date={item.date}
-          sum={item.sum}
-          dateCreated={item.createdAt}
-          type={item.type}
-          userID={users._id}
-        />
-      );
+      return <HistoryTable getUsers={getUsers} key={item._id} id={item._id} name={item.name} category={item.category} date={item.date} sum={item.sum} dateCreated={item.createdAt} type={item.type} userID={users._id} />;
     });
   }
 

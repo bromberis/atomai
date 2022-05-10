@@ -1,5 +1,6 @@
 import axiosUser from "../apiUsers";
 import swal from "sweetalert";
+//import { setUser } from "../../components/context/UserContext";
 
 export async function getAllUsersData() {
   const res = await axiosUser.get("/");
@@ -30,7 +31,7 @@ export async function getAllUsersData() {
 // }
 export async function createUser(data) {
   const res = await axiosUser
-    .post("/", JSON.stringify(data))
+    .post("/register", JSON.stringify(data))
     .then((result) => {
       console.log("Success:", result);
       swal({
@@ -43,6 +44,7 @@ export async function createUser(data) {
       console.error("Error:", error);
       swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
     });
+  console.log(res);
 }
 // find email
 export async function getUserEmailFront(email) {
@@ -185,4 +187,30 @@ export async function createUserExpense(id, data) {
     });
 
   return response;
+}
+
+export async function loginUser(data) {
+  console.log(data);
+  let response;
+  const res = await axiosUser
+    .get(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
+    .then((result) => {
+      response = result;
+      console.log("Success:", result.data.data.user);
+      // setUser(result.data.data.user);
+      swal({
+        text: "Pavyko prisijungti!",
+        icon: "success",
+        button: "Puiku",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
+    });
+
+  console.log(`here`, response.data.data.user);
+  return response.data.data.user;
+
+  //return res;
 }

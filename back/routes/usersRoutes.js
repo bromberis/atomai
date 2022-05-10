@@ -14,12 +14,15 @@ const {
   createUserExpense,
   getEmail,
   getUserEmail,
+  loginUser,
 } = require("../controllers/usersController");
 
 const router = express.Router();
 
+router.route("/login").get(loginUser);
+router.route("/register").post(createUser);
 // router.route("/email").get(getUserEmail);
-router.route("/").get(getAllUsers).post(createUser);
+router.route("/").get(getAllUsers);
 router.route("/email").get(getUserEmail);
 
 router.route("/:id").get(getUserById).patch(updateUser).delete(deleteUser);

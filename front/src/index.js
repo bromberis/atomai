@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
-import Registration from "./components/registration/Registration";
+import RegistrationLogin from "./components/registrationLogin/RegistrationLogin";
 import { UserProvider } from "./components/context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -19,7 +19,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="/" element={<Registration />} />
+            <Route path="/" element={<RegistrationLogin />} />
             <Route path="/incexp" element={<IncomeExpensesInput />} />
             <Route path="/history" element={<History />} />
             <Route path="/statistics" element={<Statistics />} />

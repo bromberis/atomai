@@ -1,4 +1,7 @@
 const Users = require("../models/userModel");
+var bcrypt = require("bcryptjs");
+var salt = bcrypt.genSaltSync(10);
+bodyParser = require("body-parser");
 
 // Gauti visus userius
 exports.getAllUsers = async (req, res) => {
@@ -64,11 +67,20 @@ exports.getUserEmail = async (req, res) => {
 // Sukurti Userį
 exports.createUser = async (req, res) => {
   try {
-    const newUser = await Users.create(req.body);
+    let newUser = req.body;
+    console.log(`a`, newUser);
+
+    let hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    newUser.password = hashedPassword;
+    //newUser.password = bcrypt.hashSync(request.body.password, 10);
+    console.log(`avvvvv`, newUser);
+
+    var result = await Users.create(newUser);
+    //const newUser = await Users.create(req.body);
     res.status(201).json({
       status: "success",
       data: {
-        user: newUser,
+        user: result,
       },
     });
   } catch (err) {
@@ -298,5 +310,31 @@ exports.createUserExpense = async (req, res) => {
       status: "fail",
       message: err,
     });
+  }
+};
+
+exports.loginUser = async (req, res, next) => {
+  console.log(req.query.email);
+  try {
+    const user = await Users.findOne({ email: req.query.email });
+    console.log(user);
+    if (user) {
+      const cmp = await bcrypt.compare(req.query.password, user.password);
+      if (!cmp) {
+        console.log(`here`, user);
+        res.status(404).json(`Error 1`);
+        //   ..... further code to maintain authentication like jwt or sessions
+      }
+      //return user;
+    }
+    res.status(200).json({
+      status: "success",
+      data: {
+        user: user,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server error Occured");
   }
 };

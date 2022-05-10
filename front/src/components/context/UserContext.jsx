@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 // import { getAllUsersData } from "../../src/api/libraries/apiLibraries"
+import { loginUser } from "../../api/library/UsersAPI";
 
 const UserContext = createContext();
 
@@ -8,6 +9,7 @@ const UserProvider = ({ children }) => {
   //   const [userID, setUserID] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState([]);
+  const [userData, setUserData] = useState({});
 
   //   function getUserInfo() {
   //     getAllUsersData().then((res) => {
@@ -16,10 +18,13 @@ const UserProvider = ({ children }) => {
   //     });
   //   }
 
-  //   if (isLoading) {
-  //     loginUser(loginData);
-  //     setIsLoading(false);
-  //   }
+  if (isLoading) {
+    loginUser(loginData).then((res) => {
+      console.log(res);
+      setUserData(res);
+    });
+    setIsLoading(false);
+  }
 
   return (
     <UserContext.Provider
@@ -27,6 +32,8 @@ const UserProvider = ({ children }) => {
         setLoginData,
         loginData,
         setIsLoading,
+        setUserData,
+        userData,
       }}
     >
       {children}

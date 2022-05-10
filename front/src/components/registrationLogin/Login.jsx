@@ -14,18 +14,15 @@ function Login() {
   function onSubmit(data) {
     // loginUser(data);
     console.log(data);
-    setLoginData(data);
     setIsLoading(true);
+    setLoginData(data);
   }
   console.log(loginData);
 
   return (
     <div className="Login-container">
+      Prisijungimas
       <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <img src={img} alt="springfield" />
-        </div>
-        <label>Elektroninis paštas</label>
         <input
           type="email"
           id="email"
@@ -39,7 +36,7 @@ function Login() {
           })}
         />
         <span className="error">{errors.email?.message}</span>
-        <label>Slaptažodis</label>
+
         <input
           type="password"
           name="password"

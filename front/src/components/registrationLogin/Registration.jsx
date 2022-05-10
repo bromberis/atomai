@@ -19,8 +19,8 @@ export default function Registration() {
   var salt = bcrypt.genSaltSync(10);
 
   function onSubmit(data) {
-    let hashedPassword = bcrypt.hashSync(data.password, salt);
-    data.password = hashedPassword;
+    // let hashedPassword = bcrypt.hashSync(data.password, salt);
+    // data.password = hashedPassword;
     console.log(data);
     createUser(data);
   }
