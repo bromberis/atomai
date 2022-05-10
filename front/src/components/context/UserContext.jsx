@@ -11,22 +11,34 @@ const UserProvider = ({ children }) => {
   const [loginData, setLoginData] = useState([]);
   const [userData, setUserData] = useState({});
 
+  useEffect(() => {
+    setUserData(JSON.parse(localStorage.getItem("user")));
+  }, []);
   //   function getUserInfo() {
   //     getAllUsersData().then((res) => {
   //       setUserID(res.data.data.users[0]._id);
   //       setUserLogin(res.data.data.users)
   //     });
   //   }
-
-  if (isLoading) {
-    loginUser(loginData).then((res) => {
-      console.log(res);
-      setUserData(res);
-      localStorage.setItem("user", JSON.stringify(res));
-      console.log(JSON.parse(localStorage.user));
+  function doLogin(data) {
+    loginUser(data).then((res) => {
+      //setUserData(res);
+      console.log(res.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", JSON.stringify(res.data.token));
     });
-    setIsLoading(false);
   }
+
+  // if (isLoading) {
+  //   loginUser(loginData).then((res) => {
+  //     console.log(res);
+  //     setUserData(res);
+  //     localStorage.setItem("user", JSON.stringify(res.data.data.user));
+  //     localStorage.setItem("token", JSON.stringify(res.data.data.token));
+  //     console.log(JSON.parse(localStorage.user));
+  //   });
+  //   setIsLoading(false);
+  // }
 
   return (
     <UserContext.Provider
@@ -36,6 +48,7 @@ const UserProvider = ({ children }) => {
         setIsLoading,
         setUserData,
         userData,
+        doLogin,
       }}
     >
       {children}

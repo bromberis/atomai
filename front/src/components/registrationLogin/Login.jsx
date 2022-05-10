@@ -9,13 +9,14 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const { setLoginData, loginData, setIsLoading } = useGlobalUserContext(UserContext);
+  const { setLoginData, doLogin, loginData, setIsLoading } = useGlobalUserContext(UserContext);
 
   function onSubmit(data) {
     // loginUser(data);
     console.log(data);
     setIsLoading(true);
-    setLoginData(data);
+    // setLoginData(data);
+    doLogin(data);
   }
   console.log(loginData);
 

@@ -193,10 +193,10 @@ export async function loginUser(data) {
   console.log(data);
   let response;
   const res = await axiosUser
-    .get(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
+    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
     .then((result) => {
       response = result;
-      console.log("Success:", result.data.data.user);
+      console.log("Success:", result.data.user);
       // setUser(result.data.data.user);
       swal({
         text: "Pavyko prisijungti!",
@@ -209,8 +209,8 @@ export async function loginUser(data) {
       swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
     });
 
-  console.log(`here`, response.data.data.user);
-  return response.data.data.user;
+  console.log(`here`, response);
+  return response;
 
   //return res;
 }
