@@ -14,25 +14,24 @@ The personal budget analysis application is designed to manage your finances wis
 # clone the project
 git clone https://github.com/bromberis/atomai.git
 
-# enter the backend directory
+# open Visual Studio code
+code .
+
+# in the terminal enter the backend directory
 cd ../ATOMAI/back
 
-# install dependencies
+# backend install dependencies and run in development mode
 npm install
-
-# run in development mode
 npm start
 
-# enter the frontend directory
+# in the terminal enter the frontend directory
 cd ../ATOMAI/front
 
-# install dependencies
+# frontend install dependencies and run in development mode
 npm install
-
-# run in development mode
 npm start
 
-# open browser and enter the address
+# application will open on your browser at
 http://localhost:3000
 ```
 # Team
