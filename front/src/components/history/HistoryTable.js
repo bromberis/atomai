@@ -81,7 +81,7 @@ function HistoryTable({
           {nameLength
             ? name !== undefined && UppercaseFirst(name)
             : name !== undefined && UppercaseFirst(name).substring(0, 15)}
-          {name !== undefined && name.length > 15 && nameLength === false && (
+          {name !== undefined && nameLength === false && name.length > 15 && (
             <Tooltip title="Pilnas tekstas">
               <button
                 onClick={changeNameLengthStatus}
