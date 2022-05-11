@@ -101,33 +101,14 @@ function Statistics() {
     ],
   };
 
-  console.log(incomeByMonthData);
-  console.log(expensesByMonthData);
-
-  // const mergedIncExp = incomeByMonthData.map((obj) =>
-  //   Object.assign(
-  //     obj,
-  //     expensesByMonthData.find((exp) => obj.year === exp.year)
-  //   )
-  // );
-  //1
-  // let mergedIncExp = incomeByMonthData.map((item, i) =>
-  //   Object.assign({}, item, expensesByMonthData[i])
-  // );
-
-  //2
-  // const map = new Map();
-  // incomeByMonthData.forEach((item) => map.set(item.year, item));
-  // expensesByMonthData.forEach((item) => map.set(item.year, item));
-  // const mergedIncExp = Array.from(map.values());
+  // console.log(incomeByMonthData);
+  // console.log(expensesByMonthData);
 
   var merged = _.merge(
     _.keyBy(incomeByMonthData, "yearInc"),
     _.keyBy(expensesByMonthData, "yearExp")
   );
   var mergedIncExp = _.values(merged);
-
-  console.log(mergedIncExp);
 
   let mergedData = mergedIncExp
     .sort()

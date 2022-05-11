@@ -15,7 +15,7 @@ import "./Statistics.css";
 import { Line } from "react-chartjs-2";
 
 function StatisticsMonthCard(year) {
-  console.log(year);
+  // console.log(year);
 
   const data = {
     labels: [

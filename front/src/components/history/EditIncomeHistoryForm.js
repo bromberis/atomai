@@ -121,7 +121,7 @@ function EditIncomeHistoryForm({
               </span>
             )}
           </div>
-          <div>
+          <div className="text-end me-4">
             <Tooltip title="Gerai">
               <button type="submit" className="btn m-1 custom-button-edit">
                 <FaCheck color="#7fbc6e" fontSize="1.5em" />
