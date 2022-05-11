@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    console.log(localStorage.user === undefined);
+    console.log(localStorage.user !== undefined);
     if (localStorage.user !== undefined) {
       console.log(localStorage.user == undefined);
       console.log(typeof JSON.parse(localStorage.user));
@@ -38,6 +38,12 @@ const UserProvider = ({ children }) => {
     });
   }
 
+  function signOut() {
+    setUserData({});
+    localStorage.clear();
+    console.log(`Atsijungta`);
+  }
+
   // if (isLoading) {
   //   loginUser(loginData).then((res) => {
   //     console.log(res);
@@ -59,6 +65,7 @@ const UserProvider = ({ children }) => {
         userData,
         doLogin,
         updateUserData,
+        signOut,
       }}
     >
       {children}
