@@ -80,7 +80,11 @@ function IncomeExpensesInput() {
     <>
       <div className="container mt-3  p-5 ">
         <div className="row">
-          <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">{/* Labas, {user.name} ! */}</div>
+
+          <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
+            Labas, {user.name} !
+          </div>
+
 
           <div className="col-lg-5 col-md-5 col-sm-12 text-end p-0">
             <button
@@ -202,7 +206,10 @@ function IncomeExpensesInput() {
                     Pridėti pajamas
                   </button>
                 ) : (
-                  <button className="btn-submit-expenses btn-all" type="submit">
+                  <button
+                    className=" col-5 col-lg-4 btn-submit-expenses btn-all"
+                    type="submit"
+                  >
                     Pridėti išlaidas
                   </button>
                 )}
