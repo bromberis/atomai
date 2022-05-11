@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-content: center;
+
   gap: 20px;
 }
 
@@ -30,7 +30,8 @@
 }
 
 .Registration-button {
-  text-align: center;
+  display: flex;
+  gap: 10px;
 }
 
 .Registration-button button:hover {

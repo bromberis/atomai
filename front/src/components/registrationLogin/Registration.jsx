@@ -41,12 +41,12 @@ export default function Registration() {
             required: "Vardas būtinas",
             maxLength: 12,
             minLength: 2,
-            pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
+            pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ ]*$/i,
           })}
         />
         {errors.name?.type === "pattern" && "Negali būti specialų simbolių"}
         {errors.name?.type === "required" && "Vardas būtinas"}
-        {errors.name?.type === "minLength" && "Bent 2 simboliai"}
+        {errors.name?.type === "minLength" && "Turi būti bent 2 simboliai"}
         {errors.name?.type === "maxLength" && "Ne daugiau kaip 12 simbolių"}
         {/* {errors.name && <span className="text-danger fw-light">Vardas butinas. (Bent 2 simboliai ir ne daugiau kaip 12)</span>} */}
 
@@ -71,7 +71,7 @@ export default function Registration() {
             },
           })}
         />
-        {errors.email?.type === "required" && "El.paštas butinas"}
+        {errors.email?.type === "required" && "El.paštas būtinas"}
         {errors.email?.type === "maxLength" && "Ne daugiau kaip 50 simbolių"}
         {errors.email?.type === "emailExists" && "El. paštas jau naudojamas."}
 
@@ -88,7 +88,7 @@ export default function Registration() {
           })}
         />
         {errors?.password?.type === "required" && "Slaptažodis būtinas"}
-        {errors?.password?.type === "minLength" && "Bent 8 simboliai"}
+        {errors?.password?.type === "minLength" && "Turi būti bent 8 simboliai"}
         {errors?.password?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
         <input
           className="reg-input"
@@ -103,7 +103,7 @@ export default function Registration() {
           })}
         />
         {errors.passwordRepeat?.type === "required" && "Slaptažodis būtinas"}
-        {errors.passwordRepeat?.type === "minLength" && "Bent 8 simboliai"}
+        {errors.passwordRepeat?.type === "minLength" && "Turi būti bent 8 simboliai"}
         {errors.passwordRepeat?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
         {errors.passwordRepeat?.type === "passwordMatch" && "Slaptažodžiai turi sutapti"}
         <input
@@ -119,7 +119,10 @@ export default function Registration() {
         />
         {errors.balance?.type === "maxLength" && "Ne daugiau kaip 10 skaicių"}
         <div className="Registration-button">
-          <button type="submit">Register</button>
+          <button type="submit">Registruotis</button>
+          <button className="" type="reset">
+            Anuliuoti
+          </button>
         </div>
       </form>
     </div>
