@@ -42,7 +42,7 @@ export async function createUser(data) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
+      swal("Nepavyko", "Toks vartotojas jau regsitruotas!", "error");
     });
   console.log(res);
 }
@@ -108,9 +108,11 @@ export async function findIncomeAndDelete(id, subID) {
 export async function createUserIncome(id, data) {
   console.log(data);
   console.log(id);
+  let resultUser;
   const response = await axiosUser
     .patch(`/${id}/inc/`, JSON.stringify(data))
     .then((result) => {
+      resultUser = result.data.data.user;
       console.log("Success:", result);
       swal({
         text: "Įrašas išsaugotas!",
@@ -124,7 +126,7 @@ export async function createUserIncome(id, data) {
       swal("Oops", "Klaida!", "error");
     });
 
-  return response;
+  return resultUser;
 }
 
 // EXPENSES

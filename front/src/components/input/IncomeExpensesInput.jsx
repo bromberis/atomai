@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData, createUserIncome, createUserExpense } from "../../api/library/UsersAPI";
+import { getAllUsersData, createUserIncome, createUserExpense, getUserById } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
@@ -10,7 +10,7 @@ function IncomeExpensesInput() {
   let [income, setIncome] = useState({ category: "Alga" });
   let [expense, setExpense] = useState({ category: "Kita" });
 
-  const { userData } = useGlobalUserContext(UserContext);
+  const { userData, setUserData, updateUserData } = useGlobalUserContext(UserContext);
 
   const getUser = () => {
     getAllUsersData().then((res) => {
@@ -19,11 +19,10 @@ function IncomeExpensesInput() {
     });
   };
   useEffect(() => {
-    console.log(userData);
     setUser(userData);
+    console.log(userData);
     console.log(user);
-    //getUser();
-  }, []);
+  });
   // todays date ISO format
   console.log(new Date().toISOString().substr(0, 10));
 
@@ -39,6 +38,8 @@ function IncomeExpensesInput() {
   }
 
   function submitNewIncomeExpense() {
+    console.log(userData);
+    console.log(user);
     // e.preventDefault();
     // If no date selected puts current date into income object
     // cant use ! in front of "date"?
@@ -53,7 +54,11 @@ function IncomeExpensesInput() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    display == "income" ? createUserIncome(user._id, income) : createUserExpense(user._id, expense);
+    display == "income"
+      ? createUserIncome(user._id, income).then(() => {
+          updateUserData(user._id);
+        })
+      : createUserExpense(user._id, expense);
   }
 
   const {

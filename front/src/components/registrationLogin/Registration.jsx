@@ -19,9 +19,6 @@ export default function Registration() {
   var salt = bcrypt.genSaltSync(10);
 
   function onSubmit(data) {
-    // let hashedPassword = bcrypt.hashSync(data.password, salt);
-    // data.password = hashedPassword;
-    console.log(data);
     createUser(data);
   }
   function doesEmailExist(res) {
@@ -29,11 +26,7 @@ export default function Registration() {
     res.data.data.users ? setEmailAlreadyExists(false) : setEmailAlreadyExists(true);
   }
 
-  //let email = { email: "onrj@gmail.com" };
-
   let password = watch("password");
-
-  function check() {}
 
   return (
     <div>

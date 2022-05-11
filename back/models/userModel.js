@@ -7,7 +7,7 @@ const IncomeSchema = mongoose.Schema(
   {
     date: { type: Date },
     sum: { type: Number, required: true },
-    name: { type: String, trim: true, maxLength: 30 },
+    name: { type: String, trim: true, maxLength: 30, default: "DEFAULTAS" },
     category: { type: String },
     type: { type: String, default: "income" },
   },

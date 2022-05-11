@@ -4,18 +4,10 @@ import { FaCheck } from "react-icons/fa";
 import { findExpensesDataAndUpdate } from "../../api/library/UsersAPI";
 import "./History.css";
 import { useForm } from "react-hook-form";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
-function EditExpensesHistoryForm({
-  getUsers,
-  name,
-  category,
-  date,
-  sum,
-  id,
-  userID,
-  editFormStatus,
-  setEditFormStatus,
-}) {
+function EditExpensesHistoryForm({ getUsers, name, category, date, sum, id, userID, editFormStatus, setEditFormStatus }) {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const [userUpdateExpenses, setUserUpdateExpenses] = useState({
     sum: sum,
     name: name,
@@ -35,9 +27,9 @@ function EditExpensesHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() =>
-      getUsers()
-    );
+    findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() => {
+      updateUserData(userID);
+    });
     setEditFormStatus(!editFormStatus);
   }
 
@@ -48,16 +40,7 @@ function EditExpensesHistoryForm({
       <td className="custom-td" colSpan="4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-1">
-            <input
-              className="custom-input"
-              type="date"
-              name="date"
-              id="date-inp"
-              min="2010-01-01"
-              max="2099-01-01"
-              defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateExpensesObject(e)}
-            />
+            <input className="custom-input" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={date.slice(0, 10)} onChange={(e) => updateExpensesObject(e)} />
           </div>
           <div className="mb-1">
             <input
@@ -76,22 +59,10 @@ function EditExpensesHistoryForm({
               })}
               onChange={(e) => updateExpensesObject(e)}
             />
-            {errors.sum && (
-              <span className="text-danger fw-light">
-                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
-                skaičius.
-              </span>
-            )}
+            {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
           </div>
           <div className="mb-1">
-            <select
-              className="custom-input"
-              name="category"
-              id="category"
-              defaultValue={category}
-              {...register("category", { required: true })}
-              onChange={(e) => updateExpensesObject(e)}
-            >
+            <select className="custom-input" name="category" id="category" defaultValue={category} {...register("category", { required: true })} onChange={(e) => updateExpensesObject(e)}>
               <option value="Maistas">Maistas</option>
               <option value="Mokesčiai">Mokesčiai</option>
               <option value="Rūbai">Rūbai</option>
@@ -114,22 +85,14 @@ function EditExpensesHistoryForm({
               })}
               onChange={(e) => updateExpensesObject(e)}
             />
-            {errors.name && (
-              <span className="text-danger fw-light">
-                Daugiausiai 30 simbolių.
-              </span>
-            )}
+            {errors.name && <span className="text-danger fw-light">Daugiausiai 30 simbolių.</span>}
           </div>
           <div className="text-end me-4">
             <button type="submit" className="btn m-1 custom-button-edit ">
               <FaCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
 
-            <button
-              type="button"
-              className="btn  m-1 custom-button-tr"
-              onClick={() => setEditFormStatus(!editFormStatus)}
-            >
+            <button type="button" className="btn  m-1 custom-button-tr" onClick={() => setEditFormStatus(!editFormStatus)}>
               <ImCross color="#bc6e7f" fontSize="1.4em" />
             </button>
           </div>
@@ -140,30 +103,3 @@ function EditExpensesHistoryForm({
 }
 
 export default EditExpensesHistoryForm;
-
-// Add user income
-// exports.createUserIncome = async (req, res) => {
-//   console.log(req.params.id);
-//   console.log(req.params.subId);
-//   try {
-//     const updated = await Users.findOneAndUpdate(
-//       { _id: req.params.id },
-//       { $push: { income: req.body } },
-//       {
-//         new: true,
-//       }
-//     );
-//     console.log(updated);
-//     res.status(200).json({
-//       status: "success",
-//       data: {
-//         tour: updated,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };

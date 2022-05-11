@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 // import { getAllUsersData } from "../../src/api/libraries/apiLibraries"
-import { loginUser } from "../../api/library/UsersAPI";
+import { getUserById, loginUser } from "../../api/library/UsersAPI";
 
 const UserContext = createContext();
 
@@ -12,14 +12,18 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
+    let test = localStorage.getItem("user");
+    test = JSON.parse(test);
+    console.log(test);
     setUserData(JSON.parse(localStorage.getItem("user")));
   }, []);
-  //   function getUserInfo() {
-  //     getAllUsersData().then((res) => {
-  //       setUserID(res.data.data.users[0]._id);
-  //       setUserLogin(res.data.data.users)
-  //     });
-  //   }
+
+  function updateUserData(id) {
+    getUserById(id).then((res) => {
+      setUserData(res.data.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.data.user));
+    });
+  }
   function doLogin(data) {
     loginUser(data).then((res) => {
       //setUserData(res);
@@ -49,6 +53,7 @@ const UserProvider = ({ children }) => {
         setUserData,
         userData,
         doLogin,
+        updateUserData,
       }}
     >
       {children}

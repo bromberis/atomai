@@ -27,7 +27,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUserById = async (req, res) => {
   try {
-    const user = await Users.findById("6270e33af734a1481c1e32b6");
+    const user = await Users.findById(req.params.id);
     res.status(200).json({
       status: "success",
       results: user.length,
@@ -69,6 +69,10 @@ exports.getUserEmail = async (req, res) => {
 // Sukurti Userį
 exports.createUser = async (req, res) => {
   try {
+    let email = req.body.email;
+    let user = await Users.findOne({ email });
+    if (user) return res.status(400).send("User already registered.");
+
     var result = await Users.create({
       name: req.body.name,
       email: req.body.email,
@@ -312,7 +316,7 @@ exports.createUserIncome = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        tour: updated,
+        user: updated,
       },
     });
   } catch (err) {

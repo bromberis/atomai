@@ -7,8 +7,11 @@ import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 import { findIncomeAndDelete, findExpensesAndDelete } from "../../api/library/UsersAPI";
 import swal from "sweetalert";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
 function HistoryTable({ getUsers, name, category, date, sum, dateCreated, id, type, income, userID }) {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
+
   let UppercaseFirst = (str) => {
     let newStr = str.charAt(0).toUpperCase() + str.slice(1);
     return newStr;
@@ -87,9 +90,13 @@ function HistoryTable({ getUsers, name, category, date, sum, dateCreated, id, ty
               }).then((isConfirm) => {
                 if (isConfirm) {
                   if (type === "income") {
-                    findIncomeAndDelete(userID, id).then(() => getUsers());
+                    findIncomeAndDelete(userID, id).then(() => {
+                      updateUserData(userID);
+                    });
                   } else if (type === "expenses") {
-                    findExpensesAndDelete(userID, id).then(() => getUsers());
+                    findExpensesAndDelete(userID, id).then(() => {
+                      updateUserData(userID);
+                    });
                   }
                 }
               })

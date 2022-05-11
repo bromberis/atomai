@@ -7,7 +7,7 @@ function UsersList() {
   const [users, setUsers] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { userData } = useGlobalUserContext(UserContext);
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
     setUsers(userData);
