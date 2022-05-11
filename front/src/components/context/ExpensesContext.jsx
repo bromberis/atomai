@@ -4,7 +4,7 @@ import {
   getAllUsersData,
   getAllUserExpensesByMonth,
 } from "../../api/library/UsersAPI";
-
+import { useGlobalUserContext } from "./UserContext";
 const ExpensesContext = createContext();
 
 const ExpensesProvider = ({ children }) => {
@@ -12,6 +12,8 @@ const ExpensesProvider = ({ children }) => {
   const [userID, setUserID] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [expensesByMonthData, setExpensesByMonthData] = useState([]);
+
+  const { userData } = useGlobalUserContext();
 
   function getExpUserID() {
     getAllUsersData().then((res) => {
@@ -21,11 +23,11 @@ const ExpensesProvider = ({ children }) => {
   }
 
   if (isLoading) {
-    getUserExpensesByMonth(userID).then((res) => {
+    getUserExpensesByMonth(userData._id).then((res) => {
       setExpensesThisMonth(res.data.data.expenses);
     });
 
-    getAllUserExpensesByMonth(userID).then((res) => {
+    getAllUserExpensesByMonth(userData._id).then((res) => {
       setExpensesByMonthData(res.data.data.expenses);
     });
 
