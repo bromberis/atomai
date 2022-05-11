@@ -4,6 +4,7 @@ import {
   getAllUsersData,
   getAllUserIncomeByMonth,
 } from "../../api/library/UsersAPI";
+import { useGlobalUserContext } from "./UserContext";
 
 const IncomeContext = createContext();
 
@@ -13,6 +14,8 @@ const IncomeProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [incomeByMonthData, setIncomeByMonthData] = useState([]);
 
+  const { userData } = useGlobalUserContext();
+
   function getUserID() {
     getAllUsersData().then((res) => {
       setUserID(res.data.data.users[0]._id);
@@ -21,11 +24,11 @@ const IncomeProvider = ({ children }) => {
   }
 
   if (isLoading) {
-    getUserIncomeByMonth(userID).then((res) => {
+    getUserIncomeByMonth(userData._id).then((res) => {
       setIncomeThisMonth(res.data.data.income);
     });
 
-    getAllUserIncomeByMonth(userID).then((res) => {
+    getAllUserIncomeByMonth(userData._id).then((res) => {
       setIncomeByMonthData(res.data.data.income);
     });
 
