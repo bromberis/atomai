@@ -8,7 +8,8 @@
 
 .sideNav {
   height: 100vh;
-  background-color: #f4efe7;
+  background-color: #3a3845;
+  border: 3px solid #3a3845;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -22,14 +23,14 @@
   width: 100%;
 }
 
-.custom-export {
+/* .custom-export {
   align-self: flex-end;
-}
-li:nth-child(6) {
+} */
+/* li:nth-child(6) {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
+} */
 
 button p {
   color: #f4efe7;

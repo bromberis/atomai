@@ -12,10 +12,12 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    let test = localStorage.getItem("user");
-    test = JSON.parse(test);
-    console.log(test);
+    // let test = localStorage.getItem("user");
+    // test = JSON.parse(test);
+    // console.log(test);
+
     setUserData(JSON.parse(localStorage.getItem("user")));
+    console.log(userData);
   }, []);
 
   function updateUserData(id) {

@@ -129,6 +129,16 @@ export async function createUserIncome(id, data) {
   return resultUser;
 }
 
+export async function getUserIncomeByMonth(id) {
+  const res = await axiosUser.get(`/${id}/inc`);
+  return res;
+}
+
+export async function getAllUserIncomeByMonth(id) {
+  const res = await axiosUser.get(`/${id}/inc/all`);
+  return res;
+}
+
 // EXPENSES
 
 export async function findExpensesDataAndUpdate(data, id, subID) {
@@ -195,7 +205,10 @@ export async function loginUser(data) {
   console.log(data);
   let response;
   const res = await axiosUser
-    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
+    .post(
+      `/login?email=${data.email}&password=${data.password}`,
+      JSON.stringify(data)
+    )
     .then((result) => {
       response = result;
       console.log("Success:", result.data.user);
@@ -208,11 +221,23 @@ export async function loginUser(data) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
+      swal(
+        "Nepavyko",
+        "Duomenys blogai suvesti, galimai rašybos klaida!",
+        "error"
+      );
     });
 
   console.log(`here`, response);
   return response;
+}
+//return res;
+export async function getUserExpensesByMonth(id) {
+  const res = await axiosUser.get(`/${id}/exp`);
+  return res;
+}
 
-  //return res;
+export async function getAllUserExpensesByMonth(id) {
+  const res = await axiosUser.get(`/${id}/exp/all`);
+  return res;
 }

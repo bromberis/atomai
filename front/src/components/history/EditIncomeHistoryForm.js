@@ -3,10 +3,21 @@ import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { findIncomeDataAndUpdate } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
+import Tooltip from "@mui/material/Tooltip";
 import "./History.css";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
-function EditIncomeHistoryForm({ name, category, date, sum, id, userID, editFormStatus, setEditFormStatus, getUsers }) {
+function EditIncomeHistoryForm({
+  name,
+  category,
+  date,
+  sum,
+  id,
+  userID,
+  editFormStatus,
+  setEditFormStatus,
+  getUsers,
+}) {
   const [userUpdateIncome, setUserUpdateIncome] = useState({
     sum: sum,
     name: name,
@@ -40,7 +51,16 @@ function EditIncomeHistoryForm({ name, category, date, sum, id, userID, editForm
       <td className="custom-td" colSpan="4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-1">
-            <input className="custom-input" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={date.slice(0, 10)} onChange={(e) => updateIncomeObject(e)} />
+            <input
+              className="custom-input"
+              type="date"
+              name="date"
+              id="date-inp"
+              min="2010-01-01"
+              max="2099-01-01"
+              defaultValue={date.slice(0, 10)}
+              onChange={(e) => updateIncomeObject(e)}
+            />
           </div>
           <div className="mb-1">
             <input
@@ -59,10 +79,22 @@ function EditIncomeHistoryForm({ name, category, date, sum, id, userID, editForm
               })}
               onChange={(e) => updateIncomeObject(e)}
             />
-            {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
+            {errors.sum && (
+              <span className="text-danger fw-light">
+                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
+                skaičius.
+              </span>
+            )}
           </div>
           <div className="mb-1">
-            <select className="custom-input" name="category" id="category" defaultValue={category} {...register("category", { required: true })} onChange={(e) => updateIncomeObject(e)}>
+            <select
+              className="custom-input"
+              name="category"
+              id="category"
+              defaultValue={category}
+              {...register("category", { required: true })}
+              onChange={(e) => updateIncomeObject(e)}
+            >
               <option value="Alga">Alga</option>
               <option value="Premija">Premija</option>
               <option value="Dovana">Dovana</option>
@@ -85,15 +117,27 @@ function EditIncomeHistoryForm({ name, category, date, sum, id, userID, editForm
               })}
               onChange={(e) => updateIncomeObject(e)}
             />
-            {errors.name && <span className="text-danger fw-light">Daugiausiai 30 simbolių.</span>}
+            {errors.name && (
+              <span className="text-danger fw-light">
+                Daugiausiai 30 simbolių.
+              </span>
+            )}
           </div>
-          <div>
-            <button type="submit" className="btn m-1 custom-button-edit">
-              <FaCheck color="#7fbc6e" fontSize="1.5em" />
-            </button>
-            <button type="button" className="btn  m-1 custom-button-tr" onClick={() => setEditFormStatus(!editFormStatus)}>
-              <ImCross color="#bc6e7f" fontSize="1.4em" />
-            </button>
+          <div className="text-end me-4">
+            <Tooltip title="Gerai">
+              <button type="submit" className="btn m-1 custom-button-edit">
+                <FaCheck color="#7fbc6e" fontSize="1.5em" />
+              </button>
+            </Tooltip>
+            <Tooltip title="Atšaukti">
+              <button
+                type="button"
+                className="btn  m-1 custom-button-tr"
+                onClick={() => setEditFormStatus(!editFormStatus)}
+              >
+                <ImCross color="#bc6e7f" fontSize="1.4em" />
+              </button>
+            </Tooltip>
           </div>
         </form>
       </td>

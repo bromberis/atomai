@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./NavigationMobile.css";
 import { SiAtom } from "react-icons/si";
 
@@ -10,7 +10,15 @@ export default function NavigationMobile() {
         <a className="navbar-brand" href="#">
           <SiAtom fontSize=" 2rem" />
         </a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -22,7 +30,7 @@ export default function NavigationMobile() {
             </li>
 
             <li className="nav-item text-center">
-              <a className="nav-link" href="/">
+              <a className="nav-link" href="/statistics">
                 Statistika
               </a>
             </li>
@@ -45,61 +53,5 @@ export default function NavigationMobile() {
         </div>
       </div>
     </nav>
-
-    // <>
-    //   <div>
-    //     <button
-    //       onClick={() => setOpenMenu(!openMenu)}
-    //       classNameName="button-mob-nav btn border border-4 border-end-0"
-    //     >
-    //       {" "}
-    //       <GiTakeMyMoney fontSize="3rem" /> Meniu
-    //     </button>
-    //     {openMenu && (
-    //       <ul>
-    //         <li>
-    //           <Link to="/">
-    //             <button
-    //               onClick={() => setOpenMenu(false)}
-    //               classNameName="button-mob-nav  border-bottom"
-    //             >
-    //               Pradžia
-    //             </button>
-    //           </Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/">
-    //             <button
-    //               onClick={() => setOpenMenu(false)}
-    //               classNameName=" button-mob-nav  border-bottom"
-    //             >
-    //               Statistika
-    //             </button>
-    //           </Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/">
-    //             <button
-    //               onClick={() => setOpenMenu(false)}
-    //               classNameName=" button-mob-nav  border-bottom"
-    //             >
-    //               Limitai
-    //             </button>
-    //           </Link>
-    //         </li>
-    //         <li>
-    //           <Link to="/history">
-    //             <button
-    //               onClick={() => setOpenMenu(false)}
-    //               classNameName=" button-mob-nav  border-bottom"
-    //             >
-    //               Istorija
-    //             </button>
-    //           </Link>
-    //         </li>
-    //       </ul>
-    //     )}
-    //   </div>
-    // </>
   );
 }

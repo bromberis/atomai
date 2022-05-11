@@ -33,7 +33,19 @@ function UsersList() {
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-      return <HistoryTable key={item._id} id={item._id} name={item.name} category={item.category} date={item.date} sum={item.sum} dateCreated={item.createdAt} type={item.type} userID={users._id} />;
+      return (
+        <HistoryTable
+          key={item._id}
+          id={item._id}
+          name={item.name}
+          category={item.category}
+          date={item.date}
+          sum={item.sum}
+          dateCreated={item.createdAt}
+          type={item.type}
+          userID={users._id}
+        />
+      );
     });
   }
 
