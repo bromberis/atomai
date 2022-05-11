@@ -5,6 +5,7 @@ import { findIncomeDataAndUpdate } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import Tooltip from "@mui/material/Tooltip";
 import "./History.css";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
 function EditIncomeHistoryForm({
   name,
@@ -23,6 +24,7 @@ function EditIncomeHistoryForm({
     date: date,
     category: category,
   });
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
   function updateIncomeObject(e) {
     e.preventDefault();
@@ -37,9 +39,9 @@ function EditIncomeHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() =>
-      getUsers()
-    );
+    findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() => {
+      updateUserData(userID);
+    });
     setEditFormStatus(!editFormStatus);
   }
   return (

@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import { findExpensesDataAndUpdate } from "../../api/library/UsersAPI";
 import "./History.css";
 import { useForm } from "react-hook-form";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import Tooltip from "@mui/material/Tooltip";
 
 function EditExpensesHistoryForm({
@@ -17,6 +18,7 @@ function EditExpensesHistoryForm({
   editFormStatus,
   setEditFormStatus,
 }) {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const [userUpdateExpenses, setUserUpdateExpenses] = useState({
     sum: sum,
     name: name,
@@ -36,9 +38,9 @@ function EditExpensesHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() =>
-      getUsers()
-    );
+    findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() => {
+      updateUserData(userID);
+    });
     setEditFormStatus(!editFormStatus);
   }
 
@@ -143,30 +145,3 @@ function EditExpensesHistoryForm({
 }
 
 export default EditExpensesHistoryForm;
-
-// Add user income
-// exports.createUserIncome = async (req, res) => {
-//   console.log(req.params.id);
-//   console.log(req.params.subId);
-//   try {
-//     const updated = await Users.findOneAndUpdate(
-//       { _id: req.params.id },
-//       { $push: { income: req.body } },
-//       {
-//         new: true,
-//       }
-//     );
-//     console.log(updated);
-//     res.status(200).json({
-//       status: "success",
-//       data: {
-//         tour: updated,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };

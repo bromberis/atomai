@@ -3,9 +3,11 @@ import {
   getAllUsersData,
   createUserIncome,
   createUserExpense,
+  getUserById,
 } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
 import { Link } from "react-router-dom";
@@ -19,12 +21,14 @@ function IncomeExpensesInput() {
   const { incomeThisMonth, getUserID } = useGlobalContext();
   const { expensesThisMonth, getExpUserID } = useGlobalExpensesContext();
 
-  const getUser = () => {
-    getAllUsersData().then((res) => {
-      setUser(res.data.data.users[0]);
-    });
-  };
-  useEffect(() => getUser(), []);
+  const { userData, setUserData, updateUserData } =
+    useGlobalUserContext(UserContext);
+
+  useEffect(() => {
+    setUser(userData);
+    console.log(userData);
+    console.log(user);
+  });
   // todays date ISO format
   // console.log(new Date().toISOString().substr(0, 10));
 
@@ -38,6 +42,8 @@ function IncomeExpensesInput() {
   }
 
   function submitNewIncomeExpense() {
+    console.log(userData);
+    console.log(user);
     // e.preventDefault();
     // If no date selected puts current date into income object
     // cant use ! in front of "date"?
@@ -52,8 +58,10 @@ function IncomeExpensesInput() {
       expense.date = new Date().toISOString().substr(0, 10);
     }
 
-    display === "income"
-      ? createUserIncome(user._id, income)
+    display == "income"
+      ? createUserIncome(user._id, income).then(() => {
+          updateUserData(user._id);
+        })
       : createUserExpense(user._id, expense);
 
     getUserID();
@@ -77,7 +85,7 @@ function IncomeExpensesInput() {
       <div className="container mt-3  p-5 ">
         <div className="row">
           <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
-            Labas, {user.name} !
+            {/* Labas, {user.name} ! */}
           </div>
 
           <div className="col-lg-5 col-md-5 col-sm-12 text-end p-0">

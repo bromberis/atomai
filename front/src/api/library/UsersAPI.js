@@ -1,16 +1,62 @@
 import axiosUser from "../apiUsers";
 import swal from "sweetalert";
+//import { setUser } from "../../components/context/UserContext";
 
 export async function getAllUsersData() {
   const res = await axiosUser.get("/");
   return res;
 }
 
-export async function createUserData(data) {
-  const response = await axiosUser.post("/", JSON.stringify(data));
-  return response;
+// export async function createUser(data) {
+//   const response = await axiosUser
+//     .post("/", JSON.stringify(data))
+//     .then((result) => {
+//       console.log("Success:", result);
+//       swal({
+//         text: "Registracija sekminga, dabar galite prisijungti",
+//         icon: "success",
+//         button: "Gerai",
+//         timer: 1000,
+//       });
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//       swal({
+//         text: "Toks el. pastas jau egzistuoja",
+//         icon: "error",
+//         button: "Gerai",
+//         timer: 5000,
+//       });
+//     });
+// }
+export async function createUser(data) {
+  const res = await axiosUser
+    .post("/register", JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Registracija sekminga, dabar galite prisijungti",
+        icon: "success",
+        button: "Puiku",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Nepavyko", "Toks vartotojas jau regsitruotas!", "error");
+    });
+  console.log(res);
+}
+// find email
+export async function getUserEmailFront(email) {
+  const res = await axiosUser.get(`/email?email=${email}`);
+  //console.log(res);
+  return res;
 }
 
+export async function getUserById(id) {
+  const res = await axiosUser.get(`/${id}`);
+  return res;
+}
 // INCOME
 
 export async function findIncomeDataAndUpdate(data, id, subID) {
@@ -62,9 +108,11 @@ export async function findIncomeAndDelete(id, subID) {
 export async function createUserIncome(id, data) {
   console.log(data);
   console.log(id);
+  let resultUser;
   const response = await axiosUser
     .patch(`/${id}/inc/`, JSON.stringify(data))
     .then((result) => {
+      resultUser = result.data.data.user;
       console.log("Success:", result);
       swal({
         text: "Įrašas išsaugotas!",
@@ -78,7 +126,7 @@ export async function createUserIncome(id, data) {
       swal("Oops", "Klaida!", "error");
     });
 
-  return response;
+  return resultUser;
 }
 
 export async function getUserIncomeByMonth(id) {
@@ -152,6 +200,38 @@ export async function createUserExpense(id, data) {
 
   return response;
 }
+
+export async function loginUser(data) {
+  console.log(data);
+  let response;
+  const res = await axiosUser
+    .post(
+      `/login?email=${data.email}&password=${data.password}`,
+      JSON.stringify(data)
+    )
+    .then((result) => {
+      response = result;
+      console.log("Success:", result.data.user);
+      // setUser(result.data.data.user);
+      swal({
+        text: "Pavyko prisijungti!",
+        icon: "success",
+        button: "Puiku",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal(
+        "Nepavyko",
+        "Duomenys blogai suvesti, galimai rašybos klaida!",
+        "error"
+      );
+    });
+
+  console.log(`here`, response);
+  return response;
+}
+//return res;
 export async function getUserExpensesByMonth(id) {
   const res = await axiosUser.get(`/${id}/exp`);
   return res;

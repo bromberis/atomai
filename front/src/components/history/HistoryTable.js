@@ -10,8 +10,8 @@ import {
   findExpensesAndDelete,
 } from "../../api/library/UsersAPI";
 import swal from "sweetalert";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import Tooltip from "@mui/material/Tooltip";
-
 function HistoryTable({
   getUsers,
   name,
@@ -24,6 +24,8 @@ function HistoryTable({
   income,
   userID,
 }) {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
+
   let UppercaseFirst = (str) => {
     let newStr = str.charAt(0).toUpperCase() + str.slice(1);
     return newStr;
@@ -120,9 +122,13 @@ function HistoryTable({
                 }).then((isConfirm) => {
                   if (isConfirm) {
                     if (type === "income") {
-                      findIncomeAndDelete(userID, id).then(() => getUsers());
+                      findIncomeAndDelete(userID, id).then(() =>
+                        updateUserData(userID)
+                      );
                     } else if (type === "expenses") {
-                      findExpensesAndDelete(userID, id).then(() => getUsers());
+                      findExpensesAndDelete(userID, id).then(() =>
+                        updateUserData(userID)
+                      );
                     }
                   }
                 })
