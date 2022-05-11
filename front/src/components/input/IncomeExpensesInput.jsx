@@ -85,7 +85,7 @@ function IncomeExpensesInput() {
 
   return (
     <>
-      <div className="container mt-3  p-5 ">
+      <div className="container mt-3  p-3 ">
         <div className="row">
           <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
             Labas, {user.name} !
