@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData, createUserIncome, createUserExpense, getUserById } from "../../api/library/UsersAPI";
+import {
+  getAllUsersData,
+  createUserIncome,
+  createUserExpense,
+  getUserById,
+} from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
 import { Link } from "react-router-dom";
+import LastThree from "./LastThree";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
@@ -16,7 +22,8 @@ function IncomeExpensesInput() {
   const { incomeThisMonth, getUserID } = useGlobalContext();
   const { expensesThisMonth, getExpUserID } = useGlobalExpensesContext();
 
-  const { userData, setUserData, updateUserData } = useGlobalUserContext(UserContext);
+  const { userData, setUserData, updateUserData } =
+    useGlobalUserContext(UserContext);
 
   useEffect(() => {
     setUser(userData);
@@ -80,11 +87,9 @@ function IncomeExpensesInput() {
     <>
       <div className="container mt-3  p-5 ">
         <div className="row">
-
           <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
             Labas, {user.name} !
           </div>
-
 
           <div className="col-lg-5 col-md-5 col-sm-12 text-end p-0">
             <button
@@ -111,7 +116,9 @@ function IncomeExpensesInput() {
           <form
             className="border-main"
             onChange={(e) => {
-              display === "income" ? updateIncomeObject(e) : updateExpenseObject(e);
+              display === "income"
+                ? updateIncomeObject(e)
+                : updateExpenseObject(e);
             }}
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -134,13 +141,26 @@ function IncomeExpensesInput() {
                     maxLength: 10,
                   })}
                 />
-                {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
+                {errors.sum && (
+                  <span className="text-danger fw-light">
+                    Būtinas laukas. Ne daugiau 10 simbolių, negali būti
+                    neigiamas skaičius.
+                  </span>
+                )}
               </div>
 
               <div className="col-lg-6 col-md-6 p-2">
                 {/* DATA */}
 
-                <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={new Date().toISOString().substr(0, 10)} />
+                <input
+                  className="rounded-0 input-custom"
+                  type="date"
+                  name="date"
+                  id="date-inp"
+                  min="2010-01-01"
+                  max="2099-01-01"
+                  defaultValue={new Date().toISOString().substr(0, 10)}
+                />
               </div>
             </div>
 
@@ -194,7 +214,11 @@ function IncomeExpensesInput() {
                     maxLength: 30,
                   })}
                 />
-                {errors.name && <span className="text-danger fw-light">Daugiausiai 30 simbolių.</span>}
+                {errors.name && (
+                  <span className="text-danger fw-light">
+                    Daugiausiai 30 simbolių.
+                  </span>
+                )}
               </div>
             </div>
 
@@ -202,7 +226,10 @@ function IncomeExpensesInput() {
               <div className="col-12 text-center">
                 {/* SUBMIT BUTTON */}
                 {display === "income" ? (
-                  <button className=" col-5 col-lg-4 btn-submit-input btn-all" type="submit">
+                  <button
+                    className=" col-5 col-lg-4 btn-submit-input btn-all"
+                    type="submit"
+                  >
                     Pridėti pajamas
                   </button>
                 ) : (
@@ -218,11 +245,17 @@ function IncomeExpensesInput() {
             <div className="row text-center bottom-space">
               <Link to="/statistics">
                 <button type="button" className="col-5 col-lg-4   balance ">
-                  Šio mėnesio balansas: <span className="fw-bold">{(incomeThisMonth - expensesThisMonth).toFixed(2)}</span>
+                  Šio mėnesio balansas:{" "}
+                  <span className="fw-bold">
+                    {(incomeThisMonth - expensesThisMonth).toFixed(2)}
+                  </span>
                 </button>
               </Link>
             </div>
           </form>
+        </div>
+        <div className="row">
+          <LastThree />
         </div>
       </div>
     </>
