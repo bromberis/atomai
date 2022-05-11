@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./History.css";
+import "../history/History.css";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { ImArrowLeft2 } from "react-icons/im";
-import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
-import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
+import EditIncomeHistoryForm from "../history/EditIncomeHistoryForm";
+import EditExpensesHistoryForm from "../history/EditExpensesHistoryForm";
 import {
   findIncomeAndDelete,
   findExpensesAndDelete,
@@ -12,6 +12,7 @@ import {
 import swal from "sweetalert";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import Tooltip from "@mui/material/Tooltip";
+
 function HistoryTable({
   getUsers,
   name,
@@ -81,7 +82,7 @@ function HistoryTable({
           {nameLength
             ? name !== undefined && UppercaseFirst(name)
             : name !== undefined && UppercaseFirst(name).substring(0, 15)}
-          {name !== undefined && nameLength === false && name.length > 15 && (
+          {name !== undefined && name.length > 15 && nameLength === false && (
             <Tooltip title="Pilnas tekstas">
               <button
                 onClick={changeNameLengthStatus}
@@ -122,12 +123,12 @@ function HistoryTable({
                 }).then((isConfirm) => {
                   if (isConfirm) {
                     if (type === "income") {
-                      findIncomeAndDelete(userID, id).then(() =>
-                        updateUserData(userID)
+                      findIncomeAndDelete(userData._id, id).then(() =>
+                        updateUserData(userData._id)
                       );
                     } else if (type === "expenses") {
-                      findExpensesAndDelete(userID, id).then(() =>
-                        updateUserData(userID)
+                      findExpensesAndDelete(userData._id, id).then(() =>
+                        updateUserData(userData._id)
                       );
                     }
                   }
@@ -142,6 +143,7 @@ function HistoryTable({
       <tr>
         {editFormStatus && type === "income" && (
           <EditIncomeHistoryForm
+            getUsers={getUsers}
             key={id}
             id={id}
             name={name}
@@ -150,10 +152,8 @@ function HistoryTable({
             sum={sum}
             dateCreated={dateCreated}
             type={type}
-            userID={userID}
             editFormStatus={editFormStatus}
             setEditFormStatus={setEditFormStatus}
-            getUsers={getUsers}
           />
         )}
         {editFormStatus && type === "expenses" && (
@@ -167,7 +167,6 @@ function HistoryTable({
             sum={sum}
             dateCreated={dateCreated}
             type={type}
-            userID={userID}
             editFormStatus={editFormStatus}
             setEditFormStatus={setEditFormStatus}
           />

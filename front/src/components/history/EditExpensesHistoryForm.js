@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { findExpensesDataAndUpdate } from "../../api/library/UsersAPI";
@@ -18,13 +18,13 @@ function EditExpensesHistoryForm({
   editFormStatus,
   setEditFormStatus,
 }) {
-  const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const [userUpdateExpenses, setUserUpdateExpenses] = useState({
     sum: sum,
     name: name,
     date: date,
     category: category,
   });
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
   function updateExpensesObject(e) {
     e.preventDefault();
@@ -38,8 +38,8 @@ function EditExpensesHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findExpensesDataAndUpdate(userUpdateExpenses, userID, id).then(() => {
-      updateUserData(userID);
+    findExpensesDataAndUpdate(userUpdateExpenses, userData._id, id).then(() => {
+      updateUserData(userData._id);
     });
     setEditFormStatus(!editFormStatus);
   }

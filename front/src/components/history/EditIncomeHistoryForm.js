@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { findIncomeDataAndUpdate } from "../../api/library/UsersAPI";
@@ -29,7 +29,6 @@ function EditIncomeHistoryForm({
   function updateIncomeObject(e) {
     e.preventDefault();
     userUpdateIncome[e.target.name] = e.target.value;
-    console.log(userUpdateIncome);
   }
 
   const {
@@ -39,8 +38,8 @@ function EditIncomeHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() => {
-      updateUserData(userID);
+    findIncomeDataAndUpdate(userUpdateIncome, userData._id, id).then(() => {
+      updateUserData(userData._id);
     });
     setEditFormStatus(!editFormStatus);
   }
