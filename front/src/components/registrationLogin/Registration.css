@@ -1,4 +1,4 @@
-.reg-input-div {
+/* .reg-input-div {
   padding-top: 20px;
 }
 .reg-input {
@@ -10,4 +10,41 @@
   background-color: rgb(37, 70, 129);
   font-size: 1.7rem;
   margin-top: 50px;
+} */
+
+.Registration-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+}
+
+.Registration-form input {
+  max-width: 50%;
+}
+
+.Registration-container {
+  padding: 1em;
+}
+
+.Registration-button {
+  text-align: center;
+}
+
+.Registration-button button:hover {
+  background-color: #c6c8c9;
+}
+
+.Registration-button button {
+  padding: 0.5em 1em;
+  border-radius: 7px;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #dfe1e2;
+}
+
+h1 {
+  text-align: center;
 }

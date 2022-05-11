@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
+import "./style/Login.css";
 
 function Login() {
   const {
@@ -22,7 +23,7 @@ function Login() {
 
   return (
     <div className="Login-container">
-      Prisijungimas
+      <h1>Prisijungimas</h1>
       <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
         <input
           type="email"
@@ -55,12 +56,14 @@ function Login() {
           })}
         />
         <span className="error">{errors.password?.message}</span>
-        <button className="Login-form-btn" type="submit">
-          Prisijungti
-        </button>
-        <button className="Login-form-btn" type="reset">
-          Anuliuoti
-        </button>
+        <div className="Login-button">
+          <button className="" type="submit">
+            Prisijungti
+          </button>
+          <button className="" type="reset">
+            Anuliuoti
+          </button>
+        </div>
       </form>
     </div>
   );
