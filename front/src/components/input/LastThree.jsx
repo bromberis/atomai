@@ -4,39 +4,41 @@ import HistoryTableThree from "./HistoryTableThree.jsx";
 
 function LastThree() {
   const { userData } = useGlobalUserContext();
+  console.log(userData);
+  if (Object.keys(userData).length !== 0) {
+    let incomeExpenses = [...userData.income, ...userData.expenses];
 
-  let incomeExpenses = [...userData.income, ...userData.expenses];
+    function sortByDate(a, b) {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    }
 
-  function sortByDate(a, b) {
-    if (a.createdAt < b.createdAt) {
-      return 1;
-    }
-    if (a.createdAt > b.createdAt) {
-      return -1;
-    }
-    return 0;
+    const incomeExpensesSortedByDate = incomeExpenses
+      .sort(sortByDate)
+      .slice(0, 3);
+
+    console.log(incomeExpensesSortedByDate);
+
+    var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
+      return (
+        <HistoryTableThree
+          key={item._id}
+          id={item._id}
+          name={item.name}
+          category={item.category}
+          date={item.date}
+          sum={item.sum}
+          dateCreated={item.createdAt}
+          type={item.type}
+        />
+      );
+    });
   }
-
-  const incomeExpensesSortedByDate = incomeExpenses
-    .sort(sortByDate)
-    .slice(0, 3);
-
-  console.log(incomeExpensesSortedByDate);
-
-  var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-    return (
-      <HistoryTableThree
-        key={item._id}
-        id={item._id}
-        name={item.name}
-        category={item.category}
-        date={item.date}
-        sum={item.sum}
-        dateCreated={item.createdAt}
-        type={item.type}
-      />
-    );
-  });
   return (
     <>
       <div className="container pl-0 ">
