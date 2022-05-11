@@ -30,32 +30,32 @@ function Login() {
           id="email"
           placeholder="El. paštas"
           {...register("email", {
-            required: "Laukelis privalomas",
+            required: "El.paštas būtinas",
             maxLength: {
               value: 50,
-              message: "Daugiausia simbolių galima įvesti 50",
+              message: "Nedaugiau kaip 50 simbolių",
             },
           })}
         />
-        <span className="error">{errors.email?.message}</span>
+        <span className="error text-danger fw-light">{errors.email?.message}</span>
 
         <input
           type="password"
           name="password"
           placeholder="Slaptažodis"
           {...register("password", {
-            required: "Laukelis privalomas",
+            required: "Slaptažodis būtinas",
             minLength: {
               value: 8,
-              message: "Mažiausia simbolių galima įvesti 8",
+              message: "Turi būti bent 8 simboliai",
             },
             maxLength: {
               value: 20,
-              message: "Daugiausia simbolių galima įvesti 20",
+              message: "Nedaugiau kaip 20 simbolių",
             },
           })}
         />
-        <span className="error">{errors.password?.message}</span>
+        <span className="error text-danger fw-light">{errors.password?.message}</span>
         <div className="Login-button">
           <button className="" type="submit">
             Prisijungti
