@@ -7,14 +7,14 @@ function UsersList() {
   const [users, setUsers] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { userData, updateUserData } = useGlobalUserContext(UserContext);
+  const { userData, updateUserData, refreshUserData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
     setUsers(userData);
     //setUsers({ ...users });
   });
 
-  if (users.hasOwnProperty("email")) {
+  if (users != undefined && users.hasOwnProperty("email")) {
     let { income } = users;
     let { expenses } = users;
 
@@ -33,19 +33,7 @@ function UsersList() {
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-      return (
-        <HistoryTable
-          key={item._id}
-          id={item._id}
-          name={item.name}
-          category={item.category}
-          date={item.date}
-          sum={item.sum}
-          dateCreated={item.createdAt}
-          type={item.type}
-          userID={users._id}
-        />
-      );
+      return <HistoryTable key={item._id} id={item._id} name={item.name} category={item.category} date={item.date} sum={item.sum} dateCreated={item.createdAt} type={item.type} userID={users._id} />;
     });
   }
 
