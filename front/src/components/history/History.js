@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsersData } from "../../api/library/UsersAPI";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import HistoryTable from "./HistoryTable.js";
 
 function UsersList() {
   const [users, setUsers] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
 
-  const { userData, updateUserData, refreshUserData } = useGlobalUserContext(UserContext);
+  const { userData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
     setUsers(userData);
-    //setUsers({ ...users });
   });
 
   if (users != undefined && users.hasOwnProperty("email")) {

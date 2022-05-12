@@ -11,23 +11,16 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const { setLoginData, doLogin, loginData, setIsLoading } =
-    useGlobalUserContext(UserContext);
+  const { doLogin } = useGlobalUserContext(UserContext);
 
   let navigate = useNavigate();
   function onSubmit(data) {
-    // loginUser(data);
-    console.log(data);
-    setIsLoading(true);
-    // setLoginData(data);
     doLogin(data).then(() => {
       setTimeout(() => {
         navigate("/incexp");
       }, 1000);
-      //navigate("/incexp");
     });
   }
-  console.log(loginData);
 
   return (
     <div className="Login-container container">
@@ -39,7 +32,7 @@ function Login() {
           <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
             <input
               type="email"
-              id="email"
+              id="email-login"
               placeholder="El. paštas"
               {...register("email", {
                 required: "El.paštas būtinas",
@@ -49,10 +42,7 @@ function Login() {
                 },
               })}
             />
-            <span className="error text-danger fw-light">
-              {errors.email?.message}
-            </span>
-
+            <span className="error text-danger fw-light">{errors.email?.message}</span>
 
             <input
               type="password"
@@ -70,9 +60,7 @@ function Login() {
                 },
               })}
             />
-            <span className="error text-danger fw-light">
-              {errors.password?.message}
-            </span>
+            <span className="error text-danger fw-light">{errors.password?.message}</span>
             <div className="Login-button">
               <button className="custom-button" type="submit">
                 Prisijungti
@@ -84,7 +72,6 @@ function Login() {
               </button>
             </div>
           </form>
-
         </div>
       </div>
     </div>

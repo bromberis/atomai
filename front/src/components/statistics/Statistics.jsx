@@ -1,43 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import { v4 as uuidv4 } from "uuid";
 import StatisticsMonthCard from "./StatisticsMonthCard.jsx";
 import "./Statistics.css";
 import _ from "lodash";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ChartDataLabels
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 function Statistics() {
-  const { incomeThisMonth, getUserID, incomeByMonthData } = useGlobalContext();
-  const { expensesThisMonth, getExpUserID, expensesByMonthData } =
-    useGlobalExpensesContext();
+  const [user, setUser] = useState({});
+  const { incomeThisMonth, incomeByMonthData } = useGlobalContext();
+  const { expensesThisMonth, expensesByMonthData } = useGlobalExpensesContext();
+  const { userData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    getUserID();
-    getExpUserID();
-  }, []);
+    setUser(userData._id);
+  }, [userData]);
 
   const options = {
     indexAxis: "y",
@@ -104,24 +89,14 @@ function Statistics() {
   // console.log(incomeByMonthData);
   // console.log(expensesByMonthData);
 
-  var merged = _.merge(
-    _.keyBy(incomeByMonthData, "yearInc"),
-    _.keyBy(expensesByMonthData, "yearExp")
-  );
+  var merged = _.merge(_.keyBy(incomeByMonthData, "yearInc"), _.keyBy(expensesByMonthData, "yearExp"));
   var mergedIncExp = _.values(merged);
 
   let mergedData = mergedIncExp
     .sort()
     .reverse()
     .map((item) => {
-      return (
-        <StatisticsMonthCard
-          key={uuidv4()}
-          year={item.yearInc}
-          dataInc={item.dataInc}
-          dataExp={item.dataExp}
-        />
-      );
+      return <StatisticsMonthCard key={uuidv4()} year={item.yearInc} dataInc={item.dataInc} dataExp={item.dataExp} />;
     });
 
   return (
@@ -131,17 +106,12 @@ function Statistics() {
           <div className="col ">
             <h2 className="text-center  custom-title mb-3 ">Einamasis mėnuo</h2>
             <p className="text-center fs-4 ">
-              Balansas:{" "}
-              <span className="fw-bold">
-                {(incomeThisMonth - expensesThisMonth).toFixed(2)}
-              </span>
+              Balansas: <span className="fw-bold">{(incomeThisMonth - expensesThisMonth).toFixed(2)}</span>
             </p>
             <div className="horizontal-bar mx-auto">
               <Bar options={options} data={data} />
             </div>
-            <h3 className="text-center  custom-title mt-5">
-              Praėjusių mėnesių suvestinės
-            </h3>
+            <h3 className="text-center  custom-title mt-5">Praėjusių mėnesių suvestinės</h3>
             <div>{mergedData}</div>
           </div>
         </div>

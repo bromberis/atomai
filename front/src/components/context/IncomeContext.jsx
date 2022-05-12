@@ -1,43 +1,34 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import {
-  getUserIncomeByMonth,
-  getAllUsersData,
-  getAllUserIncomeByMonth,
-} from "../../api/library/UsersAPI";
-import { useGlobalUserContext } from "./UserContext";
+import { getUserIncomeByMonth, getAllUsersData, getAllUserIncomeByMonth } from "../../api/library/UsersAPI";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
 const IncomeContext = createContext();
 
 const IncomeProvider = ({ children }) => {
   const [incomeThisMonth, setIncomeThisMonth] = useState([]);
   const [userID, setUserID] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+
   const [incomeByMonthData, setIncomeByMonthData] = useState([]);
 
-  const { userData } = useGlobalUserContext();
-
-  function getUserID() {
-    getAllUsersData().then((res) => {
-      setUserID(res.data.data.users[0]._id);
-      setIsLoading(true);
-    });
-  }
-
-  if (isLoading) {
-    getUserIncomeByMonth(userData._id).then((res) => {
-      setIncomeThisMonth(res.data.data.income);
-    });
-
-    getAllUserIncomeByMonth(userData._id).then((res) => {
-      setIncomeByMonthData(res.data.data.income);
-    });
-
-    setIsLoading(false);
-  }
+  const { userData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    getUserID();
-  }, []);
+    console.log(`a`);
+    setUserID(userData._id);
+  }, [userData]);
+
+  useEffect(() => {
+    console.log(`b`);
+    if (userData != undefined && userData.hasOwnProperty("email")) {
+      getUserIncomeByMonth(userData._id).then((res) => {
+        setIncomeThisMonth(res.data.data.income);
+      });
+
+      getAllUserIncomeByMonth(userData._id).then((res) => {
+        setIncomeByMonthData(res.data.data.income);
+      });
+    }
+  }, [userData]);
 
   // var sortedInc = incomeByMonthData.sort(function (a, b) {
   //   var c = new Date(a.year);
@@ -50,7 +41,7 @@ const IncomeProvider = ({ children }) => {
       value={{
         incomeThisMonth,
         userID,
-        getUserID,
+
         getUserIncomeByMonth,
         incomeByMonthData,
       }}

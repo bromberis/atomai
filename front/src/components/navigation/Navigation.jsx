@@ -7,6 +7,7 @@ import { SiAtom } from "react-icons/si";
 import { BiSortAlt2, BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
+import swal from "sweetalert";
 
 export default function Navigation() {
   const { signOut, userData } = useGlobalUserContext(UserContext);
@@ -22,7 +23,7 @@ export default function Navigation() {
       <nav className="text-center">
         <ul>
           <li className="logo">
-            <Link to="/">
+            <Link to={userData != undefined && userData.hasOwnProperty("email") ? "/incexp" : "/"}>
               <button className={`navigation-button `}>
                 <SiAtom color="#f4efe7" fontSize="3rem" />
               </button>
@@ -39,10 +40,7 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <Link to="/statistics">
               <button className={`navigation-button ${isDisabled()}`}>
-
-                <GiHistogram color="#f4efe7" fontSize="3rem" />{" "}
-                <p>Statistika</p>
-
+                <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Statistika</p>
               </button>
             </Link>
           </li>
@@ -62,7 +60,6 @@ export default function Navigation() {
           </li>
           <li className={`${isDisabled()}`}>
             <Link to="#">
-
               <button className={`navigation-button custom-export ${isDisabled()}`}>
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
               </button>
@@ -71,15 +68,24 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <button
               onClick={() => {
-                signOut();
-                navigate("/");
+                swal({
+                  title: "Ar tikrai atsijungti?",
+                  icon: "warning",
+                  buttons: ["Atšaukti", "Gerai"],
+                }).then((isConfirm) => {
+                  if (isConfirm) {
+                    signOut();
+                    navigate("/");
+                  }
+                });
+                //signOut();
+                // navigate("/");
               }}
               className={`navigation-button custom-export`}
             >
               <BiLogOut color="#f4efe7" fontSize="3rem" />
               <p>Atsijungti</p>
             </button>
-
           </li>
         </ul>
       </nav>{" "}
