@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createUser, getUserEmailFront, getUserById } from "../../api/library/UsersAPI";
+import {
+  createUser,
+  getUserEmailFront,
+  getUserById,
+} from "../../api/library/UsersAPI";
 import "./Registration.css";
 
 import axios from "axios";
@@ -23,7 +27,9 @@ export default function Registration() {
   }
   function doesEmailExist(res) {
     console.log(res.data.data.users);
-    res.data.data.users ? setEmailAlreadyExists(false) : setEmailAlreadyExists(true);
+    res.data.data.users
+      ? setEmailAlreadyExists(false)
+      : setEmailAlreadyExists(true);
   }
 
   let password = watch("password");
@@ -96,9 +102,12 @@ export default function Registration() {
         />
         <span className="text-danger fw-light">
           {errors?.password?.type === "required" && "Slaptažodis būtinas"}
-          {errors?.password?.type === "minLength" && "Turi būti bent 8 simboliai"}
-          {errors?.password?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
-          {errors?.password?.type === "pattern" && "Turi būti bent 1 didžioji raidė ir bent 1 simbolis"}
+          {errors?.password?.type === "minLength" &&
+            "Turi būti bent 8 simboliai"}
+          {errors?.password?.type === "maxLength" &&
+            "Ne daugiau kaip 20 simbolių"}
+          {errors?.password?.type === "pattern" &&
+            "Turi būti bent 1 didžioji raidė ir bent 1 simbolis"}
         </span>
         <input
           className="reg-input"
@@ -114,9 +123,12 @@ export default function Registration() {
         />
         <span className="text-danger fw-light">
           {errors.passwordRepeat?.type === "required" && "Slaptažodis būtinas"}
-          {errors.passwordRepeat?.type === "minLength" && "Turi būti bent 8 simboliai"}
-          {errors.passwordRepeat?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
-          {errors.passwordRepeat?.type === "passwordMatch" && "Slaptažodžiai turi sutapti"}
+          {errors.passwordRepeat?.type === "minLength" &&
+            "Turi būti bent 8 simboliai"}
+          {errors.passwordRepeat?.type === "maxLength" &&
+            "Ne daugiau kaip 20 simbolių"}
+          {errors.passwordRepeat?.type === "passwordMatch" &&
+            "Slaptažodžiai turi sutapti"}
         </span>
         <input
           className="reg-input"
@@ -129,12 +141,14 @@ export default function Registration() {
             maxLength: 10,
           })}
         />
-        <span className="text-danger fw-light">{errors.balance?.type === "maxLength" && "Ne daugiau kaip 10 skaičių"}</span>
+        <span className="text-danger fw-light">
+          {errors.balance?.type === "maxLength" && "Ne daugiau kaip 10 skaičių"}
+        </span>
         <div className="Registration-button">
           <button type="submit">Registruotis</button>
-          <button className="" type="reset">
-            Anuliuoti
-          </button>
+        </div>
+        <div className="Registration-button">
+          <button type="reset">Anuliuoti</button>
         </div>
       </form>
     </div>

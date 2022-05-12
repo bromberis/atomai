@@ -20,7 +20,7 @@ function LastThree() {
 
     const incomeExpensesSortedByDate = incomeExpenses
       .sort(sortByDate)
-      .slice(0, 3);
+      .slice(0, 5);
 
     console.log(incomeExpensesSortedByDate);
 

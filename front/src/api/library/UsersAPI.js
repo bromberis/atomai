@@ -205,7 +205,10 @@ export async function loginUser(data) {
   console.log(data);
   let response;
   const res = await axiosUser
-    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
+    .post(
+      `/login?email=${data.email}&password=${data.password}`,
+      JSON.stringify(data)
+    )
     .then((result) => {
       response = result;
       console.log("Success:", result.data.user);
@@ -214,11 +217,16 @@ export async function loginUser(data) {
         text: "Pavyko prisijungti!",
         icon: "success",
         button: "Puiku",
+        timer: 500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Nepavyko", "Duomenys blogai suvesti, galimai rašybos klaida!", "error");
+      swal(
+        "Nepavyko",
+        "Duomenys blogai suvesti, galimai rašybos klaida!",
+        "error"
+      );
     });
 
   console.log(`here`, response);
