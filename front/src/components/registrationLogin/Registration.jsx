@@ -3,8 +3,6 @@ import { useForm } from "react-hook-form";
 import { createUser, getUserEmailFront, getUserById } from "../../api/library/UsersAPI";
 import "./Registration.css";
 
-import axios from "axios";
-
 export default function Registration() {
   const {
     watch,
@@ -133,7 +131,7 @@ export default function Registration() {
         <div className="Registration-button">
           <button type="submit">Registruotis</button>
           <button className="" type="reset">
-            Anuliuoti
+            Atšaukti
           </button>
         </div>
       </form>

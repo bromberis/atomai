@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { Navigat, useNavigate } from "react-router-dom";
 // import { getAllUsersData } from "../../src/api/libraries/apiLibraries"
 import { getUserById, loginUser } from "../../api/library/UsersAPI";
 
@@ -28,13 +29,14 @@ const UserProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(res.data.data.users));
     });
   }
-  function doLogin(data) {
+  async function doLogin(data) {
     loginUser(data).then((res) => {
       //setUserData(res);
       console.log(res.data.user);
       setUserData(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       localStorage.setItem("token", JSON.stringify(res.data.token));
+      return res;
     });
   }
 
