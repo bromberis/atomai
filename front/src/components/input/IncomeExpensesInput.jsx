@@ -224,7 +224,7 @@ function IncomeExpensesInput() {
               </div>
             </div>
             <div className="row text-center bottom-space">
-              <div className="col-12 text-center">
+              <div className="text-center col-12 ">
                 <Link to="/statistics">
                   <button type="button" className="col-5 col-lg-4   balance ">
                     Šio mėnesio balansas:{" "}
