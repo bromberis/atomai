@@ -214,8 +214,6 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
         });
       });
 
-      console.log(merged);
-
       expensesArray.push(...merged);
     }
 
