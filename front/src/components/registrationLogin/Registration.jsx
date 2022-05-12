@@ -7,8 +7,6 @@ import {
 } from "../../api/library/UsersAPI";
 import "./Registration.css";
 
-import axios from "axios";
-
 export default function Registration() {
   const {
     watch,
@@ -146,9 +144,11 @@ export default function Registration() {
         </span>
         <div className="Registration-button">
           <button type="submit">Registruotis</button>
-        </div>
-        <div className="Registration-button">
-          <button type="reset">Anuliuoti</button>
+
+          <button className="" type="reset">
+            Atšaukti
+          </button>
+
         </div>
       </form>
     </div>

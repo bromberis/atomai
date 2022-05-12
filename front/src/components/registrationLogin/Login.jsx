@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import "./style/Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const {
@@ -13,12 +14,18 @@ function Login() {
   const { setLoginData, doLogin, loginData, setIsLoading } =
     useGlobalUserContext(UserContext);
 
+  let navigate = useNavigate();
   function onSubmit(data) {
     // loginUser(data);
     console.log(data);
     setIsLoading(true);
     // setLoginData(data);
-    doLogin(data);
+    doLogin(data).then(() => {
+      setTimeout(() => {
+        navigate("/incexp");
+      }, 1000);
+      //navigate("/incexp");
+    });
   }
   console.log(loginData);
 
@@ -46,6 +53,7 @@ function Login() {
               {errors.email?.message}
             </span>
 
+
             <input
               type="password"
               name="password"
@@ -72,10 +80,11 @@ function Login() {
             </div>
             <div className="Login-button">
               <button className="custom-button" type="reset">
-                Anuliuoti
+                Atšaukti
               </button>
             </div>
           </form>
+
         </div>
       </div>
     </div>
