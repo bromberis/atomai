@@ -8,9 +8,10 @@ import { BiSortAlt2, BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import swal from "sweetalert";
+import CsvDownload from "react-json-to-csv";
 
 export default function Navigation() {
-  const { signOut, userData } = useGlobalUserContext(UserContext);
+  const { signOut, userData, exportJSON } = useGlobalUserContext(UserContext);
 
   function isDisabled() {
     if (!userData.hasOwnProperty("email")) {
@@ -20,6 +21,7 @@ export default function Navigation() {
   let navigate = useNavigate();
   return (
     <div className="sideNav ">
+      <CsvDownload data={userData.expenses} />;
       <nav className="text-center">
         <ul>
           <li className="logo">
@@ -60,7 +62,7 @@ export default function Navigation() {
           </li>
           <li className={`${isDisabled()}`}>
             <Link to="#">
-              <button className={`navigation-button custom-export ${isDisabled()}`}>
+              <button onClick={() => exportJSON()} className={`navigation-button custom-export ${isDisabled()}`}>
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
               </button>
             </Link>

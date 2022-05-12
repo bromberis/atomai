@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { Navigat, useNavigate } from "react-router-dom";
 // import { getAllUsersData } from "../../src/api/libraries/apiLibraries"
 import { getUserById, loginUser } from "../../api/library/UsersAPI";
+import CsvDownload from "react-json-to-csv";
 
 const UserContext = createContext();
 
@@ -33,6 +34,11 @@ const UserProvider = ({ children }) => {
     setUserData({});
     localStorage.clear();
   }
+  function exportJSON() {
+    console.log(userData);
+
+    console.log(`testes`);
+  }
 
   return (
     <UserContext.Provider
@@ -42,6 +48,7 @@ const UserProvider = ({ children }) => {
         doLogin,
         updateUserData,
         signOut,
+        exportJSON,
       }}
     >
       {children}
