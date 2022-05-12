@@ -43,7 +43,12 @@ export async function createUser(data) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Nepavyko", "Toks vartotojas jau registruotas!", "error");
+      swal({
+        text: "Toks vartotojas jau egzistuoja",
+        icon: "error",
+        button: "Gerai",
+        timer: 5000,
+      });
     });
   console.log(res);
 }
