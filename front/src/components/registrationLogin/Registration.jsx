@@ -144,11 +144,9 @@ export default function Registration() {
         </span>
         <div className="Registration-button">
           <button type="submit">Registruotis</button>
-
-          <button className="" type="reset">
-            Atšaukti
-          </button>
-
+        </div>
+        <div className="Registration-button">
+          <button type="reset">Atšaukti</button>
         </div>
       </form>
     </div>
