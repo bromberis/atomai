@@ -114,7 +114,7 @@ export default function Registration() {
           {errors.passwordRepeat?.type === "maxLength" && "Ne daugiau kaip 20 simbolių"}
           {errors.passwordRepeat?.type === "passwordMatch" && "Slaptažodžiai turi sutapti"}
         </span>
-        <input
+        {/* <input
           className="reg-input"
           type="number"
           name="balance"
@@ -124,7 +124,7 @@ export default function Registration() {
             required: false,
             maxLength: 10,
           })}
-        />
+        /> */}
         <span className="text-danger fw-light">{errors.balance?.type === "maxLength" && "Ne daugiau kaip 10 skaičių"}</span>
         <div className="Registration-button">
           <button type="submit">Registruotis</button>
