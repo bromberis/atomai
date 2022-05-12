@@ -223,7 +223,7 @@ export async function loginUser(data) {
         text: "Pavyko prisijungti!",
         icon: "success",
         button: "Puiku",
-        timer: 500,
+        timer: 5000,
       });
     })
     .catch((error) => {
