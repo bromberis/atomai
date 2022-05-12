@@ -41,7 +41,7 @@ export default function Registration() {
             required: "Vardas būtinas",
             maxLength: 12,
             minLength: 2,
-            pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_]*$/i,
+            pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9]*$/i,
           })}
         />
         {/* /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/ */}
@@ -90,7 +90,7 @@ export default function Registration() {
             required: true,
             minLength: 8,
             maxLength: 20,
-            pattern: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]/,
+            pattern: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9?!@#$%^&*]/,
             // /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
           })}
         />
