@@ -38,7 +38,7 @@ export async function createUser(data) {
         text: "Registracija sekminga, dabar galite prisijungti",
         icon: "success",
         button: "Puiku",
-        timer: 500,
+        timer: 2000,
       });
     })
     .catch((error) => {
