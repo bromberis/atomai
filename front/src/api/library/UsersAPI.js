@@ -176,7 +176,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      sswal({
+      swal({
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
