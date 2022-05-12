@@ -52,7 +52,7 @@ exports.getUserIncomeByMonth = async (req, res) => {
       status: "success",
       results: users.length,
       data: {
-        income: allIncomeCurrentMonth,
+        income: allIncomeCurrentMonth.toFixed(2),
       },
     });
   } catch (err) {
@@ -94,7 +94,7 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
             (item) => item.date.getMonth() + 1 === y
           );
           var allIncome = filteredMonth.reduce((n, { sum }) => n + sum, 0);
-          monthArray.push(allIncome);
+          monthArray.push(allIncome.toFixed(2));
         } else {
           monthArray.push(0);
         }
@@ -155,7 +155,7 @@ exports.getUserExpensesByMonth = async (req, res) => {
       status: "success",
       results: users.length,
       data: {
-        expenses: allExpensesCurrentMonth,
+        expenses: allExpensesCurrentMonth.toFixed(2),
       },
     });
   } catch (err) {
@@ -199,7 +199,7 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
             (item) => item.date.getMonth() + 1 === y
           );
           var allExpenses = filteredMonth.reduce((n, { sum }) => n + sum, 0);
-          monthArray.push(allExpenses);
+          monthArray.push(allExpenses.toFixed(2));
         } else {
           monthArray.push(0);
         }
