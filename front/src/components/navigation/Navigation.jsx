@@ -21,7 +21,6 @@ export default function Navigation() {
   let navigate = useNavigate();
   return (
     <div className="sideNav ">
-      <CsvDownload data={userData.expenses} />;
       <nav className="text-center">
         <ul>
           <li className="logo">
@@ -88,6 +87,30 @@ export default function Navigation() {
               <BiLogOut color="#f4efe7" fontSize="3rem" />
               <p>Atsijungti</p>
             </button>
+          </li>
+          <li className={`${isDisabled()}`}>
+            <Link to="/history">
+              <CsvDownload
+                data={userData.expenses}
+                style={{
+                  //pass other props, like styles
+                  boxShadow: "inset 0px 1px 0px 0px #e184f3",
+                  background: "linear-gradient(to bottom, #c123de 5%, #a20dbd 100%)",
+                  backgroundColor: "#c123de",
+                  borderRadius: "6px",
+                  border: "1px solid #a511c0",
+                  display: "inline-block",
+                  cursor: "pointer",
+                  color: "#ffffff",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  padding: "6px 24px",
+                  textDecoration: "none",
+                  textShadow: "0px 1px 0px #9b14b3",
+                }}
+              />
+              ;
+            </Link>
           </li>
         </ul>
       </nav>{" "}
