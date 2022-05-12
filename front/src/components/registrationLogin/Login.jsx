@@ -15,10 +15,13 @@ function Login() {
 
   let navigate = useNavigate();
   function onSubmit(data) {
-    doLogin(data).then(() => {
-      setTimeout(() => {
-        navigate("/incexp");
-      }, 1000);
+    doLogin(data).then((res) => {
+      console.log(res);
+      if (res.status == 200) {
+        setTimeout(() => {
+          navigate("/incexp");
+        }, 1000);
+      }
     });
   }
 
