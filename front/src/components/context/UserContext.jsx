@@ -21,12 +21,14 @@ const UserProvider = ({ children }) => {
     });
   }
   async function doLogin(data) {
-    loginUser(data).then((res) => {
+    let result = await loginUser(data).then((res) => {
       setUserData(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       localStorage.setItem("token", JSON.stringify(res.data.token));
+      console.log(res.status);
       return res;
     });
+    return result;
   }
 
   function signOut() {
