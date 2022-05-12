@@ -51,9 +51,6 @@ function IncomeExpensesInput() {
       : createUserExpense(user._id, expense).then(() => {
           updateUserData(user._id);
         });
-
-    getUserID();
-    getExpUserID();
   }
 
   const {

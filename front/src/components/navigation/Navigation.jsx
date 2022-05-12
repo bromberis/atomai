@@ -7,6 +7,7 @@ import { SiAtom } from "react-icons/si";
 import { BiSortAlt2, BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
+import swal from "sweetalert";
 
 export default function Navigation() {
   const { signOut, userData } = useGlobalUserContext(UserContext);
@@ -67,8 +68,18 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <button
               onClick={() => {
-                signOut();
-                navigate("/");
+                swal({
+                  title: "Ar tikrai atsijungti?",
+                  icon: "warning",
+                  buttons: ["Atšaukti", "Gerai"],
+                }).then((isConfirm) => {
+                  if (isConfirm) {
+                    signOut();
+                    navigate("/");
+                  }
+                });
+                //signOut();
+                // navigate("/");
               }}
               className={`navigation-button custom-export`}
             >
