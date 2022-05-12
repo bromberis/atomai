@@ -91,6 +91,7 @@ function StatisticsMonthCard(year) {
     },
   };
 
+  console.log(year.dataInc.reduce(add, 0));
   return (
     <div className="container">
       <div className="row">
