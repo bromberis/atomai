@@ -9,3 +9,11 @@ li {
 .no-border {
   border-bottom: none;
 }
+.signout-button {
+  color: rgb(110, 108, 129) !important;
+}
+hr {
+  color: rgb(192, 189, 184);
+  border-top: 2px solid rgb(128, 128, 128) !important;
+  margin: 0px 0px 5px 0px !important;
+}
