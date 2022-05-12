@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./NavigationMobile.css";
 import { SiAtom } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
 export default function NavigationMobile() {
+  let navigate = useNavigate();
+  const { signOut } = useGlobalUserContext(UserContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-light nav-small-custom">
       <div className="container-fluid">
@@ -40,10 +45,27 @@ export default function NavigationMobile() {
                 Eksportavimas
               </a>
             </li>
+            <hr />
             <li className="nav-item text-center no-border">
-              <a className="nav-link" href="/">
+              <button
+                onClick={() => {
+                  swal({
+                    title: "Ar tikrai atsijungti?",
+                    icon: "warning",
+                    buttons: ["Atšaukti", "Gerai"],
+                  }).then((isConfirm) => {
+                    if (isConfirm) {
+                      signOut();
+                      navigate("/");
+                    }
+                  });
+                  //signOut();
+                  // navigate("/");
+                }}
+                className={`signout-button`}
+              >
                 Atsijungti
-              </a>
+              </button>
             </li>
           </ul>
         </div>
