@@ -19,10 +19,6 @@ export default function Registration() {
   function onSubmit(data) {
     createUser(data);
   }
-  function doesEmailExist(res) {
-    console.log(res.data.data.users);
-    res.data.data.users ? setEmailAlreadyExists(false) : setEmailAlreadyExists(true);
-  }
 
   let password = watch("password");
 
@@ -58,17 +54,6 @@ export default function Registration() {
           {...register("email", {
             required: true,
             maxLength: 50,
-            validate: {
-              emailExists: (value) => {
-                let pass;
-                getUserEmailFront(value, pass).then(function (res) {
-                  doesEmailExist(res, value);
-                  return res.data.data.users.email === value;
-                });
-
-                return pass;
-              },
-            },
           })}
         />
         <span className="text-danger fw-light">
