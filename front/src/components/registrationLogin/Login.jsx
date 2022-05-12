@@ -11,7 +11,8 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const { setLoginData, doLogin, loginData, setIsLoading } = useGlobalUserContext(UserContext);
+  const { setLoginData, doLogin, loginData, setIsLoading } =
+    useGlobalUserContext(UserContext);
 
   let navigate = useNavigate();
   function onSubmit(data) {
@@ -29,50 +30,63 @@ function Login() {
   console.log(loginData);
 
   return (
-    <div className="Login-container">
-      <h1>Prisijungimas</h1>
-      <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="email"
-          id="email"
-          placeholder="El. paštas"
-          {...register("email", {
-            required: "El.paštas būtinas",
-            maxLength: {
-              value: 50,
-              message: "Nedaugiau kaip 50 simbolių",
-            },
-          })}
-        />
-        <span className="error text-danger fw-light">{errors.email?.message}</span>
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Slaptažodis"
-          {...register("password", {
-            required: "Slaptažodis būtinas",
-            minLength: {
-              value: 8,
-              message: "Turi būti bent 8 simboliai",
-            },
-            maxLength: {
-              value: 20,
-              message: "Nedaugiau kaip 20 simbolių",
-            },
-          })}
-        />
-        <span className="error text-danger fw-light">{errors.password?.message}</span>
-        <div className="Login-button">
-          <button className="" type="submit">
-            Prisijungti
-          </button>
-
-          <button className="" type="reset">
-            Atšaukti
-          </button>
+    <div className="Login-container container">
+      <div className="row">
+        <div className="col">
+          <h1>Prisijungimas</h1>
         </div>
-      </form>
+        <div className="row">
+          <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="email"
+              id="email"
+              placeholder="El. paštas"
+              {...register("email", {
+                required: "El.paštas būtinas",
+                maxLength: {
+                  value: 50,
+                  message: "Nedaugiau kaip 50 simbolių",
+                },
+              })}
+            />
+            <span className="error text-danger fw-light">
+              {errors.email?.message}
+            </span>
+
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Slaptažodis"
+              {...register("password", {
+                required: "Slaptažodis būtinas",
+                minLength: {
+                  value: 8,
+                  message: "Turi būti bent 8 simboliai",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Nedaugiau kaip 20 simbolių",
+                },
+              })}
+            />
+            <span className="error text-danger fw-light">
+              {errors.password?.message}
+            </span>
+            <div className="Login-button">
+              <button className="custom-button" type="submit">
+                Prisijungti
+              </button>
+            </div>
+            <div className="Login-button">
+              <button className="custom-button" type="reset">
+                Atšaukti
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
     </div>
   );
 }

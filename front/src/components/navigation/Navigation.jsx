@@ -39,7 +39,10 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <Link to="/statistics">
               <button className={`navigation-button ${isDisabled()}`}>
-                <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Statistika</p>
+
+                <GiHistogram color="#f4efe7" fontSize="3rem" />{" "}
+                <p>Statistika</p>
+
               </button>
             </Link>
           </li>
@@ -59,6 +62,7 @@ export default function Navigation() {
           </li>
           <li className={`${isDisabled()}`}>
             <Link to="#">
+
               <button className={`navigation-button custom-export ${isDisabled()}`}>
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
               </button>
@@ -75,6 +79,7 @@ export default function Navigation() {
               <BiLogOut color="#f4efe7" fontSize="3rem" />
               <p>Atsijungti</p>
             </button>
+
           </li>
         </ul>
       </nav>{" "}

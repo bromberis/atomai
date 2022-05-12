@@ -35,15 +35,17 @@
 }
 
 .Registration-button button:hover {
-  background-color: #c6c8c9;
+  background-color: #3a3845;
+  color: #f4efe7;
 }
 
 .Registration-button button {
   padding: 0.5em 1em;
-  border-radius: 7px;
   transition: 0.3s;
   cursor: pointer;
-  background-color: #dfe1e2;
+  background-color: #f4efe7;
+  width: 19.5vw;
+  border: 0.5px solid grey;
 }
 
 h1 {
