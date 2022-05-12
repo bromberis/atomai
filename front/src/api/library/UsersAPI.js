@@ -132,7 +132,7 @@ export async function createUserIncome(id, data) {
       console.log("Success:", result);
       swal({
         text: "Įrašas išsaugotas!",
-
+        button: "Gerai",
         icon: "success",
         timer: 1500,
       });
@@ -219,7 +219,7 @@ export async function createUserExpense(id, data) {
       console.log("Success:", result);
       swal({
         text: "Įrašas išsaugotas!",
-
+        button: "Gerai",
         icon: "success",
         timer: 1500,
       });
