@@ -23,7 +23,7 @@ export default function Navigation() {
         <ul>
           <li className="logo">
             <Link to="/">
-              <button className="navigation-button">
+              <button className={`navigation-button `}>
                 <SiAtom color="#f4efe7" fontSize="3rem" />
               </button>
             </Link>
@@ -31,21 +31,21 @@ export default function Navigation() {
 
           <li>
             <Link to="/incexp">
-              <button className="navigation-button">
+              <button className={`navigation-button ${isDisabled()}`}>
                 <AiOutlineHome color="#f4efe7" fontSize="3rem" /> <p>Pradžia</p>
               </button>
             </Link>
           </li>
           <li>
             <Link to="/statistics">
-              <button className="navigation-button ">
+              <button className={`navigation-button ${isDisabled()}`}>
                 <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Statistika</p>
               </button>
             </Link>
           </li>
           <li>
             <Link to="#">
-              <button className="navigation-button ">
+              <button className={`navigation-button ${isDisabled()}`}>
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Limitai</p>
               </button>
             </Link>
@@ -59,7 +59,7 @@ export default function Navigation() {
           </li>
           <li>
             <Link to="#">
-              <button className="navigation-button custom-export">
+              <button className={`navigation-button custom-export ${isDisabled()}`}>
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
               </button>
             </Link>
