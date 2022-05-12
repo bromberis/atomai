@@ -49,6 +49,11 @@ export default function NavigationMobile() {
                 Eksportavimas
               </a>
             </li>
+            <li className="nav-item text-center no-border">
+              <a className="nav-link" href="/">
+                Atsijungti
+              </a>
+            </li>
           </ul>
         </div>
       </div>

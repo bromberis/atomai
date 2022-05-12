@@ -4,7 +4,8 @@ import "./Navigation.css";
 import { AiOutlineHome, AiOutlineHistory } from "react-icons/ai";
 import { GiHistogram } from "react-icons/gi";
 import { SiAtom } from "react-icons/si";
-import { BiSortAlt2 } from "react-icons/bi";
+import { BiSortAlt2, BiLogOut } from "react-icons/bi";
+
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
 export default function Navigation() {
@@ -39,7 +40,8 @@ export default function Navigation() {
           <li>
             <Link to="/statistics">
               <button className="navigation-button ">
-                <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Statistika</p>
+                <GiHistogram color="#f4efe7" fontSize="3rem" />{" "}
+                <p>Statistika</p>
               </button>
             </Link>
           </li>
@@ -53,19 +55,27 @@ export default function Navigation() {
           <li>
             <Link to="/history">
               <button className={`navigation-button ${isDisabled()}`}>
-                <AiOutlineHistory color="#f4efe7" fontSize="3rem" /> <p>Istorija</p>
+                <AiOutlineHistory color="#f4efe7" fontSize="3rem" />{" "}
+                <p>Istorija</p>
               </button>
             </Link>
           </li>
           <li>
             <Link to="#">
               <button className="navigation-button custom-export">
-                <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
+                <BiSortAlt2 color="#f4efe7" fontSize="3rem" />{" "}
+                <p>Eksportuoti</p>
               </button>
             </Link>
           </li>
           <li>
-            <button onClick={() => signOut()}>Atsijungti</button>
+            <button
+              onClick={() => signOut()}
+              className="navigation-button custom-export"
+            >
+              <BiLogOut color="#f4efe7" fontSize="3rem" />
+              <p>Atsijungti</p>
+            </button>
           </li>
         </ul>
       </nav>{" "}
