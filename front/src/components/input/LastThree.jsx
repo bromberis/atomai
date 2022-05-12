@@ -4,7 +4,7 @@ import HistoryTableThree from "./HistoryTableThree.jsx";
 
 function LastThree() {
   const { userData } = useGlobalUserContext();
-  console.log(userData);
+
   if (Object.keys(userData).length !== 0) {
     let incomeExpenses = [...userData.income, ...userData.expenses];
 
@@ -18,25 +18,10 @@ function LastThree() {
       return 0;
     }
 
-    const incomeExpensesSortedByDate = incomeExpenses
-      .sort(sortByDate)
-      .slice(0, 5);
-
-    console.log(incomeExpensesSortedByDate);
+    const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate).slice(0, 5);
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
-      return (
-        <HistoryTableThree
-          key={item._id}
-          id={item._id}
-          name={item.name}
-          category={item.category}
-          date={item.date}
-          sum={item.sum}
-          dateCreated={item.createdAt}
-          type={item.type}
-        />
-      );
+      return <HistoryTableThree key={item._id} id={item._id} name={item.name} category={item.category} date={item.date} sum={item.sum} dateCreated={item.createdAt} type={item.type} />;
     });
   }
   return (

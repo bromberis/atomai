@@ -6,20 +6,11 @@ import { getUserById, loginUser } from "../../api/library/UsersAPI";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  //   const [userLogin, setUserLogin] = useState([]);
-  //   const [userID, setUserID] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [loginData, setLoginData] = useState({});
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    console.log(localStorage.user !== undefined);
     if (localStorage.user !== undefined) {
-      console.log(localStorage.user == undefined);
-      console.log(typeof JSON.parse(localStorage.user));
       setUserData(JSON.parse(localStorage.getItem("user")));
-
-      console.log(userData);
     }
   }, []);
 
@@ -31,8 +22,6 @@ const UserProvider = ({ children }) => {
   }
   async function doLogin(data) {
     loginUser(data).then((res) => {
-      //setUserData(res);
-      console.log(res.data.user);
       setUserData(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       localStorage.setItem("token", JSON.stringify(res.data.token));
@@ -43,26 +32,11 @@ const UserProvider = ({ children }) => {
   function signOut() {
     setUserData({});
     localStorage.clear();
-    console.log(`Atsijungta`);
   }
-
-  // if (isLoading) {
-  //   loginUser(loginData).then((res) => {
-  //     console.log(res);
-  //     setUserData(res);
-  //     localStorage.setItem("user", JSON.stringify(res.data.data.user));
-  //     localStorage.setItem("token", JSON.stringify(res.data.data.token));
-  //     console.log(JSON.parse(localStorage.user));
-  //   });
-  //   setIsLoading(false);
-  // }
 
   return (
     <UserContext.Provider
       value={{
-        setLoginData,
-        loginData,
-        setIsLoading,
         setUserData,
         userData,
         doLogin,
