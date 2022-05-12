@@ -238,7 +238,7 @@ export async function createUserExpense(id, data) {
 }
 
 export async function loginUser(data) {
-  console.log(data);
+  // console.log(data);
   let response;
   const res = await axiosUser
     .post(
@@ -247,7 +247,7 @@ export async function loginUser(data) {
     )
     .then((result) => {
       response = result;
-      console.log("Success:", result.data.user);
+      // console.log("Success:", result.data.user);
       // setUser(result.data.data.user);
       swal({
         text: "Pavyko prisijungti!",
@@ -266,7 +266,7 @@ export async function loginUser(data) {
       });
     });
 
-  console.log(`here`, response);
+  // console.log(`here`, response);
   return response;
 }
 //return res;
