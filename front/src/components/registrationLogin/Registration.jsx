@@ -50,7 +50,7 @@ export default function Registration() {
         />
         {/* /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/ */}
         {/* /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_]*$/i */}
-        <span className="text-danger fw-light">
+        <span className="text-danger fw-light ">
           {errors.name?.type === "pattern" && "Negali būti specialų simbolių"}
           {errors.name?.type === "required" && "Vardas būtinas"}
           {errors.name?.type === "minLength" && "Turi būti bent 2 simboliai"}

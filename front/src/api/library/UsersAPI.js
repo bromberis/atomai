@@ -74,12 +74,17 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 
   swal({
@@ -87,7 +92,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
     text: "Klaida ištaisyta!",
     icon: "success",
     button: "Gerai",
-    timer: 500,
+    timer: 1500,
   });
 
   return response;
@@ -102,12 +107,17 @@ export async function findIncomeAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 }
 
@@ -124,12 +134,17 @@ export async function createUserIncome(id, data) {
         text: "Įrašas išsaugotas!",
 
         icon: "success",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 
   return resultUser;
@@ -156,12 +171,17 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Klaida!", "error");
+      sswal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 
   return response;
@@ -176,12 +196,17 @@ export async function findExpensesAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 }
 
@@ -196,12 +221,17 @@ export async function createUserExpense(id, data) {
         text: "Įrašas išsaugotas!",
 
         icon: "success",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 
   return response;
@@ -228,11 +258,12 @@ export async function loginUser(data) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal(
-        "Nepavyko",
-        "Duomenys blogai suvesti, galimai rašybos klaida!",
-        "error"
-      );
+      swal({
+        text: "Duomenys blogai suvesti, galimai rašybos klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 
   console.log(`here`, response);
