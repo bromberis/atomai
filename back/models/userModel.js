@@ -7,7 +7,7 @@ const IncomeSchema = mongoose.Schema(
   {
     date: { type: Date },
     sum: { type: Number, required: true },
-    name: { type: String, trim: true, maxLength: 30, default: "DEFAULTAS" },
+    name: { type: String, trim: true, maxLength: 30, default: "" },
     category: { type: String },
     type: { type: String, default: "income" },
   },
@@ -83,7 +83,10 @@ usersSchema.pre("save", async function (next) {
   next();
 });
 
-usersSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+usersSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
