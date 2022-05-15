@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createUser, getUserEmailFront, getUserById } from "../../api/library/UsersAPI";
+import { createUser, getEmail, getUserById } from "../../api/library/UsersAPI";
 import "./Registration.css";
 
 export default function Registration() {
