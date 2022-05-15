@@ -1,18 +1,21 @@
 const mongoose = require("mongoose");
 
-const categoriesSchema = mongoose.Schema(
+const expCategoriesSchema = mongoose.Schema(
   {
     category: { type: String, trim: true, maxLength: 20 },
   },
   { timestamps: true }
 );
 
-const Categories = new mongoose.model("Categories", categoriesSchema);
+const CategoriesExp = new mongoose.model(
+  "ExpensesCategories",
+  expCategoriesSchema
+);
 
-// const testCategories = new Categories({
+// const testCategories = new CategoriesExp({
 //   category: "Kita",
 // });
 
 // testCategories.save();
 
-module.exports = Categories;
+module.exports = CategoriesExp;
