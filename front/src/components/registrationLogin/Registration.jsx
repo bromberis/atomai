@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createUser, getEmail, getUserById } from "../../api/library/UsersAPI";
+import { createUser, getUserEmailFront, getUserById } from "../../api/library/UsersAPI";
 import "./Registration.css";
 
 export default function Registration() {
@@ -18,6 +18,7 @@ export default function Registration() {
 
   function onSubmit(data) {
     createUser(data);
+    reset();
   }
 
   let password = watch("password");

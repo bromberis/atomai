@@ -15,13 +15,25 @@ import "./Statistics.css";
 import { Line } from "react-chartjs-2";
 
 function StatisticsMonthCard(year) {
-  // console.log(year);
   function add(accumulator, a) {
     return accumulator + a;
   }
 
   const data = {
-    labels: ["Sausis", "Vasaris", "Kovas", "Balandis", "Gegužė", "Birželis", "Liepa", "Rugpjūtis", "Rugsėjis", "Spalis", "Lapkritis", "Gruodis"],
+    labels: [
+      "Sausis",
+      "Vasaris",
+      "Kovas",
+      "Balandis",
+      "Gegužė",
+      "Birželis",
+      "Liepa",
+      "Rugpjūtis",
+      "Rugsėjis",
+      "Spalis",
+      "Lapkritis",
+      "Gruodis",
+    ],
     datasets: [
       {
         label: "Pajamos",
@@ -81,7 +93,9 @@ function StatisticsMonthCard(year) {
   return (
     <div className="container">
       <div className="row">
-        {((year.dataInc !== undefined && year.dataInc.reduce(add, 0) !== 0) || (year.dataExp !== undefined && year.dataExp.reduce(add, 0) !== 0)) && (
+        {((year.dataInc !== undefined && year.dataInc.reduce(add, 0) !== 0) ||
+          (year.dataExp !== undefined &&
+            year.dataExp.reduce(add, 0) !== 0)) && (
           <div className="col chart-card">
             <h4 className="text-center fs-2  mt-3">{year.year}</h4>
             <Line data={data} options={options} />

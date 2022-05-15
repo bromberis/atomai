@@ -53,7 +53,7 @@ export default function Navigation() {
             </Link>
           </li>
           <li className={`${isDisabled()}`}>
-            <Link to="#">
+            <Link to="/limits">
               <button className={`navigation-button ${isDisabled()}`}>
                 <BiSortAlt2 color="#f4efe7" fontSize="3rem" /> <p>Limitai</p>
               </button>

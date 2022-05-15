@@ -11,7 +11,7 @@ import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
 import { Link } from "react-router-dom";
-import LastThree from "./LastThree";
+import LastInputs from "./LastInputs";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
@@ -238,7 +238,7 @@ function IncomeExpensesInput() {
           </form>
         </div>
         <div className="row">
-          <LastThree />
+          <LastInputs />
         </div>
       </div>
     </>
