@@ -1,6 +1,6 @@
 const Categories = require("./../models/categoriesModel");
 
-exports.getAllCategories = async (req, res) => {
+exports.getAllExpCategories = async (req, res) => {
   try {
     const categories = await Categories.find();
 
@@ -19,7 +19,7 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
-exports.createCategory = async (req, res) => {
+exports.createExpCategory = async (req, res) => {
   try {
     const newCategory = await Categories.create(req.body);
     res.status(201).json({
@@ -36,7 +36,7 @@ exports.createCategory = async (req, res) => {
   }
 };
 
-exports.getCategoryById = async (req, res) => {
+exports.getExpCategoryById = async (req, res) => {
   try {
     const category = await Categories.findById(req.params.id);
     res.status(200).json({
@@ -53,7 +53,7 @@ exports.getCategoryById = async (req, res) => {
   }
 };
 
-exports.updateCategory = async (req, res) => {
+exports.updateExpCategory = async (req, res) => {
   try {
     const category = await Categories.findByIdAndUpdate(
       req.params.id,
@@ -78,7 +78,7 @@ exports.updateCategory = async (req, res) => {
   }
 };
 
-exports.deleteCategory = async (req, res) => {
+exports.deleteExpCategory = async (req, res) => {
   try {
     await Categories.findByIdAndDelete(req.params.id);
 

@@ -1,21 +1,21 @@
 const express = require("express");
 
 const {
-  getAllCategories,
-  createCategory,
-  getCategoryById,
-  updateCategory,
-  deleteCategory,
+  getAllExpCategories,
+  createExpCategory,
+  getExpCategoryById,
+  updateExpCategory,
+  deleteExpCategory,
 } = require("./../controllers/categoriesController");
 
 const router = express.Router();
 
-router.route("/categories").get(getAllCategories).post(createCategory);
+router.route("/expcategories").get(getAllExpCategories).post(createExpCategory);
 
 router
-  .route("/categories/:id")
-  .get(getCategoryById)
-  .put(updateCategory)
-  .delete(deleteCategory);
+  .route("/expcategories/:id")
+  .get(getExpCategoryById)
+  .put(updateExpCategory)
+  .delete(deleteExpCategory);
 
 module.exports = router;
