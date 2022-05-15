@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { createUser, getUserEmailFront, getUserById } from "../../api/library/UsersAPI";
+import { createUser, getEmail, getUserById } from "../../api/library/UsersAPI";
 import "./Registration.css";
 
 export default function Registration() {
@@ -54,12 +54,20 @@ export default function Registration() {
           {...register("email", {
             required: true,
             maxLength: 50,
+            validate: {
+              checkEmail: async (value) => {
+                let pass = await getEmail(value);
+                console.log(pass, !pass);
+                return !pass;
+                //await getEmail(value);
+              },
+            },
           })}
         />
         <span className="text-danger fw-light">
           {errors.email?.type === "required" && "El.paštas būtinas"}
           {errors.email?.type === "maxLength" && "Ne daugiau kaip 50 simbolių"}
-          {errors.email?.type === "emailExists" && "El. paštas jau naudojamas."}
+          {errors.email?.type === "checkEmail" && "El. paštas jau naudojamas."}
         </span>
 
         <input
