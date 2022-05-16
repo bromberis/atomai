@@ -4,7 +4,8 @@ import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import "./style/Login.css";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login(props) {
+  console.log(props);
   const {
     register,
     handleSubmit,

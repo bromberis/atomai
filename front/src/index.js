@@ -13,7 +13,7 @@ import RegistrationLogin from "./components/registrationLogin/RegistrationLogin"
 import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
-
+import Login from "./components/registrationLogin/Login";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";

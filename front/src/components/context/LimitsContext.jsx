@@ -37,6 +37,8 @@ const LimitsProvider = ({ children }) => {
       value={{
         limits,
         setNewLimit,
+        getAllUserLimits,
+        refreshLimitsData,
       }}
     >
       {children}

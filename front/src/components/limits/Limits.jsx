@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 import { useGlobalUserContext } from "../context/UserContext";
 import { useGlobalLimitsContext } from "../context/LimitsContext";
 import { useForm } from "react-hook-form";
 import LimitsTable from "./LimitsTable";
+import { createUserLimits } from "../../api/library/UsersAPI";
 
 function Limits() {
+  useEffect(() => {}, []);
   const { expensesCategories } = useGlobalCategoriesContext();
   const { userData } = useGlobalUserContext();
-  const { limits, setNewLimit } = useGlobalLimitsContext();
+  const { limits, getAllUserLimits, refreshLimitsData } = useGlobalLimitsContext();
+
+  useEffect(() => {}, [limits]);
 
   const {
     register,
@@ -18,24 +22,21 @@ function Limits() {
   } = useForm();
 
   function onSubmit(data) {
-    setNewLimit(data);
+    createUserLimits(userData._id, data).then(() => {
+      refreshLimitsData(userData._id);
+    });
     reset();
   }
 
   let limitsData = limits.map((item) => {
-    return (
-      <LimitsTable key={item._id} category={item.category} limit={item.limit} />
-    );
+    return <LimitsTable key={item._id} category={item.category} limit={item.limit} />;
   });
 
   return (
     <div className="container pt-3">
       <div className="row">
         <h3 className="col text-center">Limitai</h3>
-        <p className="text-center">
-          Čia galite nusistatyti norimus limitus pasirinktoms išlaidų
-          kategorijoms.
-        </p>
+        <p className="text-center">Čia galite nusistatyti norimus limitus pasirinktoms išlaidų kategorijoms.</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
@@ -60,11 +61,7 @@ function Limits() {
                 );
               })}
             </select>
-            {errors.category && errors.category !== "find" && (
-              <span className="text-danger fw-light">
-                Ši kategorija jau panaudota.
-              </span>
-            )}
+            {errors.category && errors.category !== "find" && <span className="text-danger fw-light">Ši kategorija jau panaudota.</span>}
           </div>
           <div className="col-lg-5 col-12 p-2">
             <input
@@ -81,9 +78,7 @@ function Limits() {
                 maxLength: 10,
               })}
             />
-            {errors.limit && (
-              <span className="text-danger fw-light">Būtinas laukas.</span>
-            )}
+            {errors.limit && <span className="text-danger fw-light">Būtinas laukas.</span>}
           </div>
           <div className="col-lg-2 col-12 Registration-button p-2">
             <button type="submit">Nustatyti</button>
