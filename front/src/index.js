@@ -12,7 +12,8 @@ import Statistics from "./components/statistics/Statistics";
 import RegistrationLogin from "./components/registrationLogin/RegistrationLogin";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
-import PrivateRoutes from "./components/PrivateRoutes";
+
+import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
 import Limits from "./components/limits/Limits";
@@ -25,13 +26,21 @@ root.render(
           <IncomeProvider>
             <BrowserRouter>
               <Routes>
-                <Route></Route>
+                {/* Private Routes */}
+                <Route element={<ProtectedRoutes />}>
+                  <Route element={<App />}>
+                    <Route path="/history" element={<History />} />
+
+                    <Route path="/incexp" element={<IncomeExpensesInput />} />
+
+                    <Route path="/statistics" element={<Statistics />} />
+                    <Route path="/limits" element={<Limits />} />
+                  </Route>
+                </Route>
+
+                {/* Public Routes */}
                 <Route path="/" element={<App />}>
                   <Route path="/" element={<RegistrationLogin />} />
-                  <Route path="/incexp" element={<IncomeExpensesInput />} />
-                  <Route path="/history" element={<History />} />
-                  <Route path="/statistics" element={<Statistics />} />
-                  <Route path="/limits" element={<Limits />} />
                 </Route>
               </Routes>
             </BrowserRouter>
