@@ -14,6 +14,7 @@ const LimitsProvider = ({ children }) => {
   useEffect(() => {
     if (userData != undefined && userData.hasOwnProperty("email")) {
       getAllUserLimits(userData._id).then((res) => {
+        console.log(res.data.data.limits);
         setLimits(res.data.data.limits);
       });
     }
@@ -21,16 +22,17 @@ const LimitsProvider = ({ children }) => {
 
   function refreshLimitsData(id) {
     getAllUserLimits(id).then((res) => {
+      console.log(res.data.data.limits);
       setLimits(res.data.data.limits);
     });
   }
 
-  useEffect(() => {
-    if (userData != undefined && userData.hasOwnProperty("email")) {
-      createUserLimits(userData._id, newLimit);
-      refreshLimitsData(userData._id);
-    }
-  }, [newLimit]);
+  // useEffect(() => {
+  //   if (userData != undefined && userData.hasOwnProperty("email")) {
+
+  //     refreshLimitsData(userData._id);
+  //   }
+  // }, []);
 
   return (
     <LimitsContext.Provider

@@ -14,7 +14,7 @@ export default function ProtectedRoutes(props) {
   //   }, 1000);
   //   return "";
   // }
-
+  console.log(userData?.role);
   function test() {}
 
   if (userData.hasOwnProperty("email")) {
