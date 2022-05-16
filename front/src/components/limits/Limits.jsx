@@ -3,24 +3,30 @@ import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 import { useGlobalUserContext } from "../context/UserContext";
 import { useGlobalLimitsContext } from "../context/LimitsContext";
 import { useForm } from "react-hook-form";
+import LimitsTable from "./LimitsTable";
 
 function Limits() {
   const { expensesCategories } = useGlobalCategoriesContext();
   const { userData } = useGlobalUserContext();
   const { limits, setNewLimit } = useGlobalLimitsContext();
 
-  console.log(limits);
-
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm();
 
   function onSubmit(data) {
     setNewLimit(data);
+    reset();
   }
+
+  let limitsData = limits.map((item) => {
+    return (
+      <LimitsTable key={item._id} category={item.category} limit={item.limit} />
+    );
+  });
 
   return (
     <div className="container pt-3">
@@ -85,7 +91,7 @@ function Limits() {
         </div>
       </form>
       <div className="row">
-        <div className="col">{JSON.stringify(limits)}</div>
+        <div className="col">{limitsData}</div>
       </div>
     </div>
   );

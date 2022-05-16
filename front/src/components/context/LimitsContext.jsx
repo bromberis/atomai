@@ -19,9 +19,16 @@ const LimitsProvider = ({ children }) => {
     }
   }, [userData]);
 
+  function refreshLimitsData(id) {
+    getAllUserLimits(id).then((res) => {
+      setLimits(res.data.data.limits);
+    });
+  }
+
   useEffect(() => {
     if (userData != undefined && userData.hasOwnProperty("email")) {
       createUserLimits(userData._id, newLimit);
+      refreshLimitsData(userData._id);
     }
   }, [newLimit]);
 
