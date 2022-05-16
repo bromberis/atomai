@@ -12,9 +12,9 @@ const CategoriesExp = new mongoose.model(
   expCategoriesSchema
 );
 
-// const testCategories = new CategoriesExp({
-//   category: "Kita",
-// });
+const testCategories = new CategoriesExp({
+  category: "Maistas",
+});
 
 // testCategories.save();
 
