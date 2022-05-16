@@ -11,6 +11,7 @@ function Limits() {
   const { expensesCategories } = useGlobalCategoriesContext();
   const { userData } = useGlobalUserContext();
   const { limits, getAllUserLimits, refreshLimitsData } = useGlobalLimitsContext();
+  let { limitsData, setLimitsData } = useState([]);
 
   useEffect(() => {}, [limits]);
 
@@ -27,10 +28,12 @@ function Limits() {
     });
     reset();
   }
-
-  let limitsData = limits.map((item) => {
-    return <LimitsTable key={item._id} category={item.category} limit={item.limit} />;
-  });
+  if (limits.length > 0) {
+    console.log(limits);
+    limitsData = limits.map((item) => {
+      return <LimitsTable key={item._id} category={item.category} limit={item.limit} />;
+    });
+  }
 
   return (
     <div className="container pt-3">
@@ -86,7 +89,7 @@ function Limits() {
         </div>
       </form>
       <div className="row">
-        <div className="col">{limitsData}</div>
+        <div className="col">{limitsData != undefined ? limitsData : false}</div>
       </div>
     </div>
   );
