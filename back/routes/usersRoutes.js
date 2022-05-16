@@ -18,6 +18,10 @@ const {
   getUserExpensesByMonth,
   getAllUserIncomeByMonth,
   getAllUserExpensesByMonth,
+  getAllUserLimits,
+  createUserLimits,
+  findLimitAndUpdate,
+  findLimitAndDelete,
 } = require("../controllers/usersController");
 
 const router = express.Router();
@@ -42,5 +46,11 @@ router.route("/:id/exp/upd/:subID").patch(findExpensesDataAndUpdate);
 router.route("/:id/exp/dlt/:subID").patch(findExpensesAndDelete);
 router.route("/:id/exp/all").get(getAllUserExpensesByMonth);
 router.route("/:id/exp").patch(createUserExpense).get(getUserExpensesByMonth);
+
+//limits
+
+router.route("/:id/limits/upd/:subID").patch(findLimitAndUpdate);
+router.route("/:id/limits/dlt/:subID").patch(findLimitAndDelete);
+router.route("/:id/limits").get(getAllUserLimits).patch(createUserLimits);
 
 module.exports = router;

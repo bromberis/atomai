@@ -9,10 +9,6 @@ const CategoriesProvider = ({ children }) => {
   const [expensesCategories, setExpensesCategories] = useState([]);
   const { userData } = useGlobalUserContext(UserContext);
 
-  // useEffect(() => {
-  //   setUserID(userData._id);
-  // }, [userData]);
-
   useEffect(() => {
     if (userData != undefined && userData.hasOwnProperty("email")) {
       getAllExpCategories().then((res) => {

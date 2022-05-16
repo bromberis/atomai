@@ -10,46 +10,46 @@ import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
 import RegistrationLogin from "./components/registrationLogin/RegistrationLogin";
+import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
 import Login from "./components/registrationLogin/Login";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
-import Limits from "./components/limits/Limits";
-import Admin from "./components/admin/Admin";
+import { LimitsProvider } from "./components/context/LimitsContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
       <CategoriesProvider>
-        <ExpensesProvider>
-          <IncomeProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<App />}>
-                  <Route path="/" element={<RegistrationLogin />} />
-                </Route>
-                {/* Private Routes */}
-                <Route element={<ProtectedRoutes />}>
-                  <Route element={<App />}>
-                    <Route element={<ProtectedRoutes roleRequired="admin" />}>
-                      <Route path="/history" element={<History testas="testas" />} />
-                      <Route path="/admin" element={<Admin testas="testas" />} />
-                    </Route>
+        <LimitsProvider>
+          <ExpensesProvider>
+            <IncomeProvider>
+              <BrowserRouter>
+                <Routes>
+                  {/* Private Routes */}
+                  <Route element={<ProtectedRoutes />}>
+                    <Route element={<App />}>
+                      <Route path="/history" element={<History />} />
 
-                    <Route path="/incexp" element={<IncomeExpensesInput />} />
-                    <Route path="/statistics" element={<Statistics />} />
-                    <Route path="/limits" element={<Limits />} />
+                      <Route path="/incexp" element={<IncomeExpensesInput />} />
+
+                      <Route path="/statistics" element={<Statistics />} />
+                      <Route path="/limits" element={<Limits />} />
+                    </Route>
+                  </Route>
+
+                  {/* Public Routes */}
+                  <Route path="/" element={<App />}>
                     <Route path="/" element={<RegistrationLogin />} />
                   </Route>
-                </Route>
-
-                {/* Public Routes */}
-              </Routes>
-            </BrowserRouter>
-          </IncomeProvider>
-        </ExpensesProvider>
+                </Routes>
+              </BrowserRouter>
+            </IncomeProvider>
+          </ExpensesProvider>
+        </LimitsProvider>
       </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>
