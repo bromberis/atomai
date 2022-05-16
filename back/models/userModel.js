@@ -56,6 +56,12 @@ const usersSchema = new mongoose.Schema(
       minLength: 8,
       maxLength: 100,
     },
+    role: {
+      type: String,
+      default: "user",
+      enum: ["user", "admin"],
+    },
+
     balance: {
       type: Number,
     },
@@ -83,10 +89,7 @@ usersSchema.pre("save", async function (next) {
   next();
 });
 
-usersSchema.methods.correctPassword = async function (
-  candidatePassword,
-  userPassword
-) {
+usersSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 

@@ -12,6 +12,7 @@ import Statistics from "./components/statistics/Statistics";
 import RegistrationLogin from "./components/registrationLogin/RegistrationLogin";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
+import PrivateRoutes from "./components/PrivateRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
 import Limits from "./components/limits/Limits";
@@ -24,6 +25,7 @@ root.render(
           <IncomeProvider>
             <BrowserRouter>
               <Routes>
+                <Route></Route>
                 <Route path="/" element={<App />}>
                   <Route path="/" element={<RegistrationLogin />} />
                   <Route path="/incexp" element={<IncomeExpensesInput />} />

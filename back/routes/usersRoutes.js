@@ -13,7 +13,6 @@ const {
   createUserIncome,
   createUserExpense,
   getEmail,
-
   loginUser,
   getUserIncomeByMonth,
   getUserExpensesByMonth,
