@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import HistoryTable from "./HistoryTable.js";
 
-function UsersList() {
+function UsersList(props) {
+  console.log(props.testas);
   const [users, setUsers] = useState({});
 
   const { userData } = useGlobalUserContext(UserContext);
