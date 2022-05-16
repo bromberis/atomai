@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, BrowserHistory } from "react-router-dom";
 import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
@@ -13,7 +13,7 @@ import RegistrationLogin from "./components/registrationLogin/RegistrationLogin"
 import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
-import Login from "./components/registrationLogin/Login";
+import Admin from "./components/admin/Admin";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
@@ -32,12 +32,15 @@ root.render(
                   {/* Private Routes */}
                   <Route element={<ProtectedRoutes />}>
                     <Route element={<App />}>
-                      <Route path="/history" element={<History />} />
-
-                      <Route path="/incexp" element={<IncomeExpensesInput />} />
+                      <Route element={<ProtectedRoutes roleRequired="admin" />}>
+                        <Route path="/admin" element={<Admin />} />
+                      </Route>
+                      <Route exact path="/history" element={<History />} />
 
                       <Route path="/statistics" element={<Statistics />} />
                       <Route path="/limits" element={<Limits />} />
+
+                      <Route path="/incexp" element={<IncomeExpensesInput />} />
                     </Route>
                   </Route>
 
