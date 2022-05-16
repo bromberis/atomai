@@ -1,5 +1,10 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { getUserExpensesByMonth, getAllUsersData, getAllUserExpensesByMonth, getUserById } from "../../api/library/UsersAPI";
+import {
+  getUserExpensesByMonth,
+  getAllUsersData,
+  getAllUserExpensesByMonth,
+  getUserById,
+} from "../../api/library/UsersAPI";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 const ExpensesContext = createContext();
 

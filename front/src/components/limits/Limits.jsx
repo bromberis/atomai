@@ -1,6 +1,9 @@
 import React from "react";
-
+import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 function Limits() {
+  const { expensesCategories } = useGlobalCategoriesContext();
+
+  console.log(expensesCategories);
   return (
     <>
       <div className="container pt-3">
@@ -17,3 +20,14 @@ function Limits() {
 }
 
 export default Limits;
+
+// <select>
+//   {studiesData.map((data) => {
+//     const { id, program } = data;
+//     return (
+//       <option key={id} value={program}>
+//         {program}
+//       </option>
+//     );
+//   })}
+// </select>;
