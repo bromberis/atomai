@@ -2,10 +2,13 @@ import React from "react";
 import Tooltip from "@mui/material/Tooltip";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import swal from "sweetalert";
-
+import { findLimitAndDelete } from "../../api/library/UsersAPI";
+import { useGlobalUserContext } from "../context/UserContext";
+import { useGlobalLimitsContext } from "../context/LimitsContext";
 function LimitsTable(props) {
-  const { limit, category } = props;
-
+  const { limit, category, subID } = props;
+  const { userData } = useGlobalUserContext();
+  const { refreshLimitsData, findLimitAndUpdate } = useGlobalLimitsContext();
   return (
     <div className="row limits-table text-center mt-3py-1 justify-content-center ">
       <div className="col-3 col-lg-2 cell">{category}</div>
@@ -30,15 +33,9 @@ function LimitsTable(props) {
                 buttons: ["Atšaukti", "Gerai"],
               }).then((isConfirm) => {
                 if (isConfirm) {
-                  //   if (type === "income") {
-                  //     // findIncomeAndDelete(userID, id).then(() =>
-                  //     //   updateUserData(userID)
-                  //     // );
-                  //   } else if (type === "expenses") {
-                  //     // findExpensesAndDelete(userID, id).then(() =>
-                  //     //   updateUserData(userID)
-                  //     // );
-                  //   }
+                  findLimitAndDelete(userData._id, subID).then(() => {
+                    refreshLimitsData(userData._id);
+                  });
                 }
               })
             }

@@ -35,6 +35,7 @@ function Limits() {
       return (
         <LimitsTable
           key={item._id}
+          subID={item._id}
           category={item.category}
           limit={item.limit}
         />
