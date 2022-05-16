@@ -13,7 +13,6 @@ const {
   createUserIncome,
   createUserExpense,
   getEmail,
-  getUserEmail,
   loginUser,
   getUserIncomeByMonth,
   getUserExpensesByMonth,
@@ -31,7 +30,7 @@ router.route("/login").post(loginUser);
 router.route("/register").post(createUser);
 // router.route("/email").get(getUserEmail);
 router.route("/").get(getAllUsers);
-router.route("/email").get(getUserEmail);
+router.route("/email").get(getEmail);
 
 router.route("/:id").get(getUserById).patch(updateUser).delete(deleteUser);
 

@@ -13,6 +13,8 @@ import RegistrationLogin from "./components/registrationLogin/RegistrationLogin"
 import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
+
+import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
 import { LimitsProvider } from "./components/context/LimitsContext";
@@ -22,24 +24,32 @@ root.render(
   <React.StrictMode>
     <UserProvider>
       <CategoriesProvider>
-        <LimitsProvider>
-          <ExpensesProvider>
-            <IncomeProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<App />}>
-                    <Route path="/" element={<RegistrationLogin />} />
-                    <Route path="/incexp" element={<IncomeExpensesInput />} />
+  <LimitsProvider>
+        <ExpensesProvider>
+          <IncomeProvider>
+            <BrowserRouter>
+              <Routes>
+                {/* Private Routes */}
+                <Route element={<ProtectedRoutes />}>
+                  <Route element={<App />}>
                     <Route path="/history" element={<History />} />
-                    <Route path="/statistics" element={<Statistics />} />
 
+                    <Route path="/incexp" element={<IncomeExpensesInput />} />
+
+                    <Route path="/statistics" element={<Statistics />} />
                     <Route path="/limits" element={<Limits />} />
                   </Route>
-                </Routes>
-              </BrowserRouter>
-            </IncomeProvider>
-          </ExpensesProvider>
-        </LimitsProvider>
+                </Route>
+
+                {/* Public Routes */}
+                <Route path="/" element={<App />}>
+                  <Route path="/" element={<RegistrationLogin />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </IncomeProvider>
+        </ExpensesProvider>
+  </LimitsProvider>
       </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>

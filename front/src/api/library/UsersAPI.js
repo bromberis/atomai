@@ -53,10 +53,11 @@ export async function createUser(data) {
   console.log(res);
 }
 // find email
-export async function getUserEmailFront(email) {
+export async function getEmail(email) {
   const res = await axiosUser.get(`/email?email=${email}`);
   //console.log(res);
-  return res;
+  console.log(res.data.data.users);
+  return res.data.data.users;
 }
 
 export async function getUserById(id) {
@@ -239,10 +240,7 @@ export async function loginUser(data) {
   // console.log(data);
   let response;
   const res = await axiosUser
-    .post(
-      `/login?email=${data.email}&password=${data.password}`,
-      JSON.stringify(data)
-    )
+    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
     .then((result) => {
       response = result;
       // console.log("Success:", result.data.user);
@@ -274,6 +272,7 @@ export async function getUserExpensesByMonth(id) {
 }
 
 export async function getAllUserExpensesByMonth(id) {
+  console.log(id);
   const res = await axiosUser.get(`/${id}/exp/all`);
   return res;
 }
