@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { Navigat, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 // import { getAllUsersData } from "../../src/api/libraries/apiLibraries"
 import { getUserById, loginUser } from "../../api/library/UsersAPI";
 
