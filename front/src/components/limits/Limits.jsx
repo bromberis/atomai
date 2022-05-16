@@ -56,7 +56,7 @@ function Limits() {
             </select>
             {errors.category && errors.category !== "find" && (
               <span className="text-danger fw-light">
-                Tokia kategorija jau buvo pasirinkta.
+                Ši kategorija jau panaudota.
               </span>
             )}
           </div>
