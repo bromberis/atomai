@@ -122,8 +122,6 @@ export async function findIncomeAndDelete(id, subID) {
 }
 
 export async function createUserIncome(id, data) {
-  console.log(data);
-  console.log(id);
   let resultUser;
   const response = await axiosUser
     .patch(`/${id}/inc/`, JSON.stringify(data))
@@ -269,7 +267,7 @@ export async function loginUser(data) {
   // console.log(`here`, response);
   return response;
 }
-//return res;
+
 export async function getUserExpensesByMonth(id) {
   const res = await axiosUser.get(`/${id}/exp`);
   return res;
@@ -278,4 +276,82 @@ export async function getUserExpensesByMonth(id) {
 export async function getAllUserExpensesByMonth(id) {
   const res = await axiosUser.get(`/${id}/exp/all`);
   return res;
+}
+
+// LIMITS
+
+export async function getAllUserLimits(id) {
+  const res = await axiosUser.get(`/${id}/limits`);
+  return res;
+}
+
+export async function createUserLimits(id, data) {
+  const response = await axiosUser
+    .patch(`/${id}/limits/`, JSON.stringify(data))
+    .then((result) => {
+      swal({
+        text: "Įrašas išsaugotas!",
+        button: "Gerai",
+        icon: "success",
+        timer: 1500,
+      });
+    })
+    .catch((error) => {
+      // console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
+    });
+
+  return response;
+}
+
+export async function findLimitAndUpdate(data, id, subID) {
+  const response = await axiosUser
+    .patch(`/${id}/limits/updateExpCategory/${subID}`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Atnaujinta!",
+        icon: "success",
+        button: "Gerai",
+        timer: 1500,
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
+    });
+
+  return response;
+}
+
+export async function findLimitAndDelete(id, subID) {
+  const response = await axiosUser
+    .patch(`/${id}/limits/dlt/${subID}`)
+    .then((result) => {
+      swal({
+        text: "Ištrinta!",
+        icon: "success",
+        button: "Gerai",
+        timer: 1500,
+      });
+    })
+    .catch((error) => {
+      // console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
+    });
 }

@@ -10,31 +10,36 @@ import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
 import RegistrationLogin from "./components/registrationLogin/RegistrationLogin";
+import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
-import Limits from "./components/limits/Limits";
+import { LimitsProvider } from "./components/context/LimitsContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
       <CategoriesProvider>
-        <ExpensesProvider>
-          <IncomeProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<App />}>
-                  <Route path="/" element={<RegistrationLogin />} />
-                  <Route path="/incexp" element={<IncomeExpensesInput />} />
-                  <Route path="/history" element={<History />} />
-                  <Route path="/statistics" element={<Statistics />} />
-                  <Route path="/limits" element={<Limits />} />
-                </Route>
-              </Routes>
-            </BrowserRouter>
-          </IncomeProvider>
-        </ExpensesProvider>
+        <LimitsProvider>
+          <ExpensesProvider>
+            <IncomeProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<App />}>
+                    <Route path="/" element={<RegistrationLogin />} />
+                    <Route path="/incexp" element={<IncomeExpensesInput />} />
+                    <Route path="/history" element={<History />} />
+                    <Route path="/statistics" element={<Statistics />} />
+
+                    <Route path="/limits" element={<Limits />} />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </IncomeProvider>
+          </ExpensesProvider>
+        </LimitsProvider>
       </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>
