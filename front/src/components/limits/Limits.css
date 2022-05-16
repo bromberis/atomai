@@ -1,0 +1,26 @@
+/* .limits-table {
+  border-bottom: 0.5px solid grey;
+} */
+
+.cell {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  border-bottom: 0.5px solid grey;
+}
+
+.limits-button {
+  padding: 0.5em 1em;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #f4efe7;
+  border: 0.5px solid grey;
+  height: 3rem;
+  width: 100%;
+}
+
+input,
+select {
+  height: 3rem;
+  padding: 0 1rem;
+}
