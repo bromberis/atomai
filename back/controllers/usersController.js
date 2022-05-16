@@ -523,7 +523,7 @@ exports.createUserExpense = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        tour: updated,
+        user: updated,
       },
     });
   } catch (err) {
@@ -600,4 +600,97 @@ exports.protect = async (req, res, next) => {
   // GRANT ACCESS TO PROTECTED ROUTE
   req.user = currentUser;
   next();
+};
+
+//LIMITS
+
+exports.getAllUserLimits = async (req, res) => {
+  try {
+    const users = await Users.find({ _id: req.params.id });
+    const { limit } = users[0];
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        limits: limit,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
+
+exports.createUserLimits = async (req, res) => {
+  try {
+    const updatedLimits = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { limit: req.body } },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        limit: updatedLimits,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.findLimitAndUpdate = async (req, res) => {
+  try {
+    const updateLimit = await Users.findOneAndUpdate(
+      { _id: req.params.id, "limit._id": req.params.subID },
+      {
+        $set: {
+          "limit.$.limit": req.body.limit,
+          "limit.$.category": req.body.category,
+        },
+      }
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        limit: updateLimit,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.findLimitAndDelete = async (req, res) => {
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $pull: {
+          limit: { _id: req.params.subID },
+        },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
 };

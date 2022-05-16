@@ -107,7 +107,6 @@ function IncomeExpensesInput() {
                 <input
                   className="rounded-0 input-custom "
                   placeholder="Suma"
-                  type="number"
                   name="sum"
                   id="sum"
                   step="0.01"

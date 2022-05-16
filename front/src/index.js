@@ -10,18 +10,21 @@ import IncomeExpensesInput from "./components/input/IncomeExpensesInput";
 import History from "./components/history/History";
 import Statistics from "./components/statistics/Statistics";
 import RegistrationLogin from "./components/registrationLogin/RegistrationLogin";
+import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
 
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
-import Limits from "./components/limits/Limits";
+import { LimitsProvider } from "./components/context/LimitsContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
       <CategoriesProvider>
+  <LimitsProvider>
         <ExpensesProvider>
           <IncomeProvider>
             <BrowserRouter>
@@ -46,6 +49,7 @@ root.render(
             </BrowserRouter>
           </IncomeProvider>
         </ExpensesProvider>
+  </LimitsProvider>
       </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>
