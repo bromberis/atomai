@@ -24,32 +24,32 @@ root.render(
   <React.StrictMode>
     <UserProvider>
       <CategoriesProvider>
-  <LimitsProvider>
-        <ExpensesProvider>
-          <IncomeProvider>
-            <BrowserRouter>
-              <Routes>
-                {/* Private Routes */}
-                <Route element={<ProtectedRoutes />}>
-                  <Route element={<App />}>
-                    <Route path="/history" element={<History />} />
+        <LimitsProvider>
+          <ExpensesProvider>
+            <IncomeProvider>
+              <BrowserRouter>
+                <Routes>
+                  {/* Private Routes */}
+                  <Route element={<ProtectedRoutes />}>
+                    <Route element={<App />}>
+                      <Route path="/history" element={<History />} />
 
-                    <Route path="/incexp" element={<IncomeExpensesInput />} />
+                      <Route path="/incexp" element={<IncomeExpensesInput />} />
 
-                    <Route path="/statistics" element={<Statistics />} />
-                    <Route path="/limits" element={<Limits />} />
+                      <Route path="/statistics" element={<Statistics />} />
+                      <Route path="/limits" element={<Limits />} />
+                    </Route>
                   </Route>
-                </Route>
 
-                {/* Public Routes */}
-                <Route path="/" element={<App />}>
-                  <Route path="/" element={<RegistrationLogin />} />
-                </Route>
-              </Routes>
-            </BrowserRouter>
-          </IncomeProvider>
-        </ExpensesProvider>
-  </LimitsProvider>
+                  {/* Public Routes */}
+                  <Route path="/" element={<App />}>
+                    <Route path="/" element={<RegistrationLogin />} />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </IncomeProvider>
+          </ExpensesProvider>
+        </LimitsProvider>
       </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>

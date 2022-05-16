@@ -34,7 +34,17 @@ function Limits() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <div className="col-lg-5 col-12 p-2">
-            <select {...register("category", { required: true })}>
+            <select
+              {...register("category", {
+                required: true,
+                validate: {
+                  find: (value) => {
+                    let result = limits.map((a) => a.category);
+                    return !result.includes(value);
+                  },
+                },
+              })}
+            >
               {expensesCategories.map((data) => {
                 const { _id, category } = data;
                 return (
@@ -44,11 +54,17 @@ function Limits() {
                 );
               })}
             </select>
+            {errors.category && errors.category !== "find" && (
+              <span className="text-danger fw-light">
+                Tokia kategorija jau buvo pasirinkta.
+              </span>
+            )}
           </div>
           <div className="col-lg-5 col-12 p-2">
             <input
               className="rounded-0 "
               placeholder="Limitas"
+              type="number"
               name="limit"
               id="limit"
               step="0.01"
@@ -59,11 +75,8 @@ function Limits() {
                 maxLength: 10,
               })}
             />
-            {errors.sum && (
-              <span className="text-danger fw-light">
-                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
-                skaičius.
-              </span>
+            {errors.limit && (
+              <span className="text-danger fw-light">Būtinas laukas.</span>
             )}
           </div>
           <div className="col-lg-2 col-12 Registration-button p-2">
