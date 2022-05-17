@@ -5,13 +5,14 @@ import { useGlobalLimitsContext } from "../context/LimitsContext";
 import { useForm } from "react-hook-form";
 import LimitsTable from "./LimitsTable";
 import { createUserLimits } from "../../api/library/UsersAPI";
+import "./Limits.css";
 
 function Limits() {
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   const { expensesCategories } = useGlobalCategoriesContext();
   const { userData } = useGlobalUserContext();
-  const { limits, getAllUserLimits, refreshLimitsData } = useGlobalLimitsContext();
-  let { limitsData, setLimitsData } = useState([]);
+  const { limits, refreshLimitsData } = useGlobalLimitsContext();
+  let { limitsData } = useState([]);
 
   useEffect(() => {}, [limits]);
 
@@ -31,19 +32,29 @@ function Limits() {
   if (limits.length > 0) {
     console.log(limits);
     limitsData = limits.map((item) => {
-      return <LimitsTable key={item._id} category={item.category} limit={item.limit} />;
+      return (
+        <LimitsTable
+          key={item._id}
+          subID={item._id}
+          category={item.category}
+          limit={item.limit}
+        />
+      );
     });
   }
 
   return (
-    <div className="container pt-3">
+    <div className="container py-4">
       <div className="row">
         <h3 className="col text-center">Limitai</h3>
-        <p className="text-center">Čia galite nusistatyti norimus limitus pasirinktoms išlaidų kategorijoms.</p>
+        <p className="text-center">
+          Čia galite nusistatyti norimus limitus pasirinktoms išlaidų
+          kategorijoms.
+        </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="row">
-          <div className="col-lg-5 col-12 p-2">
+        <div className="row justify-content-center">
+          <div className="col-lg-4 col-12 p-0 my-2 me-lg-1">
             <select
               {...register("category", {
                 required: true,
@@ -64,9 +75,13 @@ function Limits() {
                 );
               })}
             </select>
-            {errors.category && errors.category !== "find" && <span className="text-danger fw-light">Ši kategorija jau panaudota.</span>}
+            {errors.category && errors.category !== "find" && (
+              <span className="text-danger fw-light">
+                Ši kategorija jau panaudota.
+              </span>
+            )}
           </div>
-          <div className="col-lg-5 col-12 p-2">
+          <div className="col-lg-4 col-12 p-0 my-2 me-lg-1">
             <input
               className="rounded-0 "
               placeholder="Limitas"
@@ -81,16 +96,21 @@ function Limits() {
                 maxLength: 10,
               })}
             />
-            {errors.limit && <span className="text-danger fw-light">Būtinas laukas.</span>}
+            {errors.limit && (
+              <span className="text-danger fw-light">
+                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
+                skaičius.
+              </span>
+            )}
           </div>
-          <div className="col-lg-2 col-12 Registration-button p-2">
-            <button type="submit">Nustatyti</button>
+          <div className="col-lg-2 col-12 text-center my-2 p-0 me-lg-1">
+            <button className="limits-button" type="submit">
+              Nustatyti
+            </button>
           </div>
         </div>
       </form>
-      <div className="row">
-        <div className="col">{limitsData != undefined ? limitsData : false}</div>
-      </div>
+      <div className="pt-4">{limitsData !== undefined && limitsData}</div>
     </div>
   );
 }
