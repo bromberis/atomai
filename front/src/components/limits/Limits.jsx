@@ -46,8 +46,8 @@ function Limits() {
   return (
     <div className="container py-4">
       <div className="row">
-        <h3 className="col text-center">Limitai</h3>
-        <p className="text-center">
+        {/* <h3 className="col text-center">Limitai</h3> */}
+        <p className="text-center fs-4">
           Čia galite nusistatyti norimus limitus pasirinktoms išlaidų
           kategorijoms.
         </p>
