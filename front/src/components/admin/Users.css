@@ -1,0 +1,26 @@
+.admin-page-titles {
+  padding-left: 12vw;
+  padding-bottom: 3vh;
+  padding-top: 3vh;
+}
+.add-new-user-button {
+  padding-top: 20vh;
+  margin-top: 3vh;
+  padding: 0.5em 1em;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #f4efe7;
+  width: 19.5vw;
+  border: 0.5px solid grey;
+}
+
+.find-users-button {
+  padding-top: 20vh;
+  margin-top: 3vh;
+  padding: 0.5em 1em;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #f4efe7;
+  width: 19.5vw;
+  border: 0.5px solid grey;
+}

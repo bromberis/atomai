@@ -231,6 +231,27 @@ exports.createUser = async (req, res) => {
   }
 };
 
+// get user BY email
+exports.getUsersByEmail = async (req, res) => {
+  console.log(`HERE`, req.body);
+  try {
+    const user = await Users.find({ email: req.body.email });
+    console.log(user);
+    res.status(200).json({
+      status: "success",
+      results: user.length,
+      data: {
+        users: user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 //get user email
 
 exports.getEmail = async (req, res) => {

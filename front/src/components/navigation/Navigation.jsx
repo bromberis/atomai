@@ -12,7 +12,12 @@ import swal from "sweetalert";
 
 export default function Navigation() {
   const { signOut, userData } = useGlobalUserContext(UserContext);
-
+  function isDisabledAdmin() {
+    console.log(!userData.role === "admin");
+    if (userData.role === "user") {
+      return `d-none`;
+    }
+  }
   function isDisabled() {
     if (!userData.hasOwnProperty("email")) {
       return `d-none`;
@@ -90,7 +95,7 @@ export default function Navigation() {
           </li>
           <li className={`${isDisabled()}`}>
             <Link to="/admin">
-              <button className={`navigation-button ${isDisabled()}`}>
+              <button className={`navigation-button ${isDisabledAdmin()}`}>
                 <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Admin</p>
               </button>
             </Link>

@@ -13,7 +13,7 @@ import RegistrationLogin from "./components/registrationLogin/RegistrationLogin"
 import Limits from "./components/limits/Limits";
 import { IncomeProvider } from "./components/context/IncomeContext";
 import { ExpensesProvider } from "./components/context/ExpensesContext";
-import Admin from "./components/admin/Admin";
+import AdminPage from "./components/admin/AdminPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
@@ -33,7 +33,7 @@ root.render(
                   <Route element={<ProtectedRoutes />}>
                     <Route element={<App />}>
                       <Route element={<ProtectedRoutes roleRequired="admin" />}>
-                        <Route path="/admin" element={<Admin />} />
+                        <Route path="/admin" element={<AdminPage />} />
                       </Route>
                       <Route exact path="/history" element={<History />} />
 
