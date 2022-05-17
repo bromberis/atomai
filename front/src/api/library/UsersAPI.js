@@ -52,11 +52,18 @@ export async function createUser(data) {
     });
   console.log(res);
 }
+
+// find user By email
+export async function getUsersByEmail(email) {
+  console.log(email);
+  const res = await axiosUser.post(`/userByEmail`, JSON.stringify(email));
+  return res;
+}
 // find email
 export async function getEmail(email) {
   const res = await axiosUser.get(`/email?email=${email}`);
   //console.log(res);
-  console.log(res.data.data.users);
+
   return res.data.data.users;
 }
 
