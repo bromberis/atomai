@@ -4,15 +4,19 @@ import {
   getAllUsersData,
   getAllUserExpensesByMonth,
   getUserById,
+  getUserExpensesThisMonth,
 } from "../../api/library/UsersAPI";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 const ExpensesContext = createContext();
 
 const ExpensesProvider = ({ children }) => {
   const [expensesThisMonth, setExpensesThisMonth] = useState([]);
+  const [expensesThisMonthByCategory, setExpensesThisMonthByCategory] =
+    useState([]);
   const [userID, setUserID] = useState();
   const [expensesByMonthData, setExpensesByMonthData] = useState([]);
   const { userData } = useGlobalUserContext(UserContext);
+
   useEffect(() => {
     setUserID(userData._id);
   }, [userData]);
@@ -25,6 +29,10 @@ const ExpensesProvider = ({ children }) => {
 
       getAllUserExpensesByMonth(userData._id).then((res) => {
         setExpensesByMonthData(res.data.data.expenses);
+      });
+
+      getUserExpensesThisMonth(userData._id).then((res) => {
+        setExpensesThisMonthByCategory(res.data.data.expenses);
       });
     }
   }, [userData]);
@@ -40,9 +48,9 @@ const ExpensesProvider = ({ children }) => {
       value={{
         expensesThisMonth,
         userID,
-
         getUserExpensesByMonth,
         expensesByMonthData,
+        expensesThisMonthByCategory,
       }}
     >
       {children}

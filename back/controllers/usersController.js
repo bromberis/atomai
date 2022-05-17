@@ -35,11 +35,18 @@ exports.getUserIncomeByMonth = async (req, res) => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
 
-    const filteredYear = income.filter((incItem) => incItem.date.getFullYear() === currentYear);
+    const filteredYear = income.filter(
+      (incItem) => incItem.date.getFullYear() === currentYear
+    );
 
-    const filteredMonth = filteredYear.filter((item) => item.date.getMonth() + 1 === currentMonth);
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() + 1 === currentMonth
+    );
 
-    const allIncomeCurrentMonth = filteredMonth.reduce((n, { sum }) => n + sum, 0);
+    const allIncomeCurrentMonth = filteredMonth.reduce(
+      (n, { sum }) => n + sum,
+      0
+    );
 
     res.status(200).json({
       status: "success",
@@ -70,11 +77,14 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
       });
 
       const startYear = sortedIncomeByDate[0].date.getFullYear();
-      const endYear = sortedIncomeByDate[sortedIncomeByDate.length - 1].date.getFullYear();
+      const endYear =
+        sortedIncomeByDate[sortedIncomeByDate.length - 1].date.getFullYear();
       const incomeArray = [];
 
       for (var i = startYear; i <= endYear; i++) {
-        var filteredYear = sortedIncomeByDate.filter((item) => item.date.getFullYear() === i);
+        var filteredYear = sortedIncomeByDate.filter(
+          (item) => item.date.getFullYear() === i
+        );
 
         var yearArray = [];
         yearArray.push({ year: i });
@@ -82,7 +92,9 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
 
         for (var y = 1; y <= 12; y++) {
           if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
-            var filteredMonth = filteredYear.filter((item) => item.date.getMonth() + 1 === y);
+            var filteredMonth = filteredYear.filter(
+              (item) => item.date.getMonth() + 1 === y
+            );
             var allIncome = filteredMonth.reduce((n, { sum }) => n + sum, 0);
             monthArray.push(allIncome);
           } else {
@@ -129,17 +141,61 @@ exports.getUserExpensesByMonth = async (req, res) => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
 
-    const filteredYear = expenses.filter((expItem) => expItem.date.getFullYear() === currentYear);
+    const filteredYear = expenses.filter(
+      (expItem) => expItem.date.getFullYear() === currentYear
+    );
 
-    const filteredMonth = filteredYear.filter((item) => item.date.getMonth() + 1 === currentMonth);
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() + 1 === currentMonth
+    );
 
-    const allExpensesCurrentMonth = filteredMonth.reduce((n, { sum }) => n + sum, 0);
+    const allExpensesCurrentMonth = filteredMonth.reduce(
+      (n, { sum }) => n + sum,
+      0
+    );
 
     res.status(200).json({
       status: "success",
       results: users.length,
       data: {
         expenses: allExpensesCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
+
+exports.getUserExpensesThisMonth = async (req, res) => {
+  try {
+    const users = await Users.find({ _id: req.params.id });
+
+    const { expenses } = users[0];
+
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1;
+
+    const filteredYear = expenses.filter(
+      (expItem) => expItem.date.getFullYear() === currentYear
+    );
+
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() + 1 === currentMonth
+    );
+
+    // const allExpensesCurrentMonth = filteredMonth.reduce(
+    //   (n, { sum }) => n + sum,
+    //   0
+    // );
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        expenses: filteredMonth,
       },
     });
   } catch (err) {
@@ -164,11 +220,16 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
       });
 
       const startYear = sortedExpensesByDate[0].date.getFullYear();
-      const endYear = sortedExpensesByDate[sortedExpensesByDate.length - 1].date.getFullYear();
+      const endYear =
+        sortedExpensesByDate[
+          sortedExpensesByDate.length - 1
+        ].date.getFullYear();
       const expensesArray = [];
 
       for (var i = startYear; i <= endYear; i++) {
-        var filteredYear = sortedExpensesByDate.filter((item) => item.date.getFullYear() === i);
+        var filteredYear = sortedExpensesByDate.filter(
+          (item) => item.date.getFullYear() === i
+        );
 
         var yearArray = [];
         yearArray.push({ year: i });
@@ -176,7 +237,9 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
 
         for (var y = 1; y <= 12; y++) {
           if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
-            var filteredMonth = filteredYear.filter((item) => item.date.getMonth() + 1 === y);
+            var filteredMonth = filteredYear.filter(
+              (item) => item.date.getMonth() + 1 === y
+            );
             var allExpenses = filteredMonth.reduce((n, { sum }) => n + sum, 0);
             monthArray.push(allExpenses);
           } else {
@@ -376,6 +439,8 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+//INCOME
+
 exports.findIncomeDataAndUpdate = async (req, res) => {
   try {
     const updateIncome = await Users.findOneAndUpdate(
@@ -403,6 +468,53 @@ exports.findIncomeDataAndUpdate = async (req, res) => {
     });
   }
 };
+
+exports.createUserIncome = async (req, res) => {
+  try {
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        user: updated,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.findIncomeAndDelete = async (req, res) => {
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $pull: {
+          income: { _id: req.params.subID },
+        },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+//EXPENSES
 
 exports.findExpensesDataAndUpdate = async (req, res) => {
   // console.log(req.params.id);
@@ -434,38 +546,7 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
-// delete income
-
-exports.findIncomeAndDelete = async (req, res) => {
-  // console.log(req.params.id);
-  // console.log(req.params.subID);
-
-  try {
-    await Users.findOneAndUpdate(
-      { _id: req.params.id },
-      {
-        $pull: {
-          income: { _id: req.params.subID },
-        },
-      }
-    );
-    res.status(200).json({
-      status: "success",
-      data: null,
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-
-// delete expenses
-
 exports.findExpensesAndDelete = async (req, res) => {
-  // console.log(req.params.id);
-  // console.log(req.params.subID);
   try {
     await Users.findOneAndUpdate(
       { _id: req.params.id },
@@ -478,30 +559,6 @@ exports.findExpensesAndDelete = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: null,
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-
-// Add user income
-exports.createUserIncome = async (req, res) => {
-  try {
-    const updated = await Users.findOneAndUpdate(
-      { _id: req.params.id },
-      { $push: { income: req.body } },
-      {
-        new: true,
-      }
-    );
-    res.status(200).json({
-      status: "success",
-      data: {
-        user: updated,
-      },
     });
   } catch (err) {
     res.status(404).json({
@@ -533,6 +590,8 @@ exports.createUserExpense = async (req, res) => {
     });
   }
 };
+
+//USER
 
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body;
@@ -574,7 +633,10 @@ exports.loginUser = async (req, res, next) => {
 exports.protect = async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
-  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
     token = req.headers.authorization.split(" ")[1];
   }
 
