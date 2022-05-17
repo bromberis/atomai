@@ -240,7 +240,10 @@ export async function loginUser(data) {
   // console.log(data);
   let response;
   const res = await axiosUser
-    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
+    .post(
+      `/login?email=${data.email}&password=${data.password}`,
+      JSON.stringify(data)
+    )
     .then((result) => {
       response = result;
       // console.log("Success:", result.data.user);
@@ -310,7 +313,7 @@ export async function createUserLimits(id, data) {
 
 export async function findLimitAndUpdate(data, id, subID) {
   const response = await axiosUser
-    .patch(`/${id}/limits/updateExpCategory/${subID}`, JSON.stringify(data))
+    .patch(`/${id}/limits/upd/${subID}`, JSON.stringify(data))
     .then((result) => {
       console.log("Success:", result);
       swal({
