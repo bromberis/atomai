@@ -5,13 +5,27 @@ import swal from "sweetalert";
 import { findLimitAndDelete } from "../../api/library/UsersAPI";
 import { useGlobalUserContext } from "../context/UserContext";
 import { useGlobalLimitsContext } from "../context/LimitsContext";
+import { useGlobalExpensesContext } from "../context/ExpensesContext";
 import UpdateLimits from "./UpdateLimits";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import "./Limits.css";
 
 function LimitsTable(props) {
   const { limit, category, subID } = props;
   const { userData } = useGlobalUserContext();
-  const { refreshLimitsData, findLimitAndUpdate } = useGlobalLimitsContext();
+  const { refreshLimitsData } = useGlobalLimitsContext();
+  const { expensesThisMonthByCategory } = useGlobalExpensesContext();
   const [isEditing, setIsEditing] = useState(false);
+
+  const filteredByCurrentCategory = expensesThisMonthByCategory.filter(
+    (expItem) => expItem.category === category
+  );
+
+  const allExpensesCurrentMonthByCategory = filteredByCurrentCategory.reduce(
+    (n, { sum }) => n + sum,
+    0
+  );
+  console.log(allExpensesCurrentMonthByCategory);
 
   return (
     <>
@@ -19,11 +33,13 @@ function LimitsTable(props) {
         <div className="col-3 col-lg-2 cell">{category}</div>
 
         {isEditing === false && (
-          <div className="col-4 col-lg-2 cell cell-limit">{limit} </div>
+          <div className="col-4 col-lg-4 cell cell-limit">
+            {"Limitas - " + limit}{" "}
+          </div>
         )}
 
         {isEditing && (
-          <div className="col-4 col-lg-2 cell cell-limit ">
+          <div className="col-4 col-lg-4 cell cell-limit ">
             <UpdateLimits
               subID={subID}
               category={category}
@@ -33,7 +49,7 @@ function LimitsTable(props) {
           </div>
         )}
 
-        <div className="col-5 col-lg-2 cell">
+        <div className="col-5 col-lg-4 cell">
           {" "}
           <Tooltip title="Redaguoti">
             <button
@@ -64,11 +80,21 @@ function LimitsTable(props) {
             </button>
           </Tooltip>
         </div>
-        <div className="col-lg-4 col-12 cell p-lg-0 p-4">
-          ČIA BUS PROGRESS BAR AT-54
+      </div>
+      <div className="row justify-content-center mb-4">
+        <div className="col-10">
+          {" "}
+          <ProgressBar
+            animated
+            striped
+            now={allExpensesCurrentMonthByCategory}
+            min={0}
+            max={limit}
+            label={`${allExpensesCurrentMonthByCategory}`}
+            className="custom-progress-bar"
+          />{" "}
         </div>
       </div>
-      <div className="row"></div>
     </>
   );
 }

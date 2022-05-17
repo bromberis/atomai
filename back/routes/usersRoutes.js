@@ -22,6 +22,7 @@ const {
   createUserLimits,
   findLimitAndUpdate,
   findLimitAndDelete,
+  getUserExpensesThisMonth,
 } = require("../controllers/usersController");
 
 const router = express.Router();
@@ -45,6 +46,7 @@ router.route("/:id/inc").patch(createUserIncome).get(getUserIncomeByMonth);
 router.route("/:id/exp/upd/:subID").patch(findExpensesDataAndUpdate);
 router.route("/:id/exp/dlt/:subID").patch(findExpensesAndDelete);
 router.route("/:id/exp/all").get(getAllUserExpensesByMonth);
+router.route("/:id/exp/thismonth").get(getUserExpensesThisMonth);
 router.route("/:id/exp").patch(createUserExpense).get(getUserExpensesByMonth);
 
 //limits

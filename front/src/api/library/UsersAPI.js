@@ -274,6 +274,11 @@ export async function getUserExpensesByMonth(id) {
   return res;
 }
 
+export async function getUserExpensesThisMonth(id) {
+  const res = await axiosUser.get(`/${id}/exp/thismonth`);
+  return res;
+}
+
 export async function getAllUserExpensesByMonth(id) {
   console.log(id);
   const res = await axiosUser.get(`/${id}/exp/all`);
