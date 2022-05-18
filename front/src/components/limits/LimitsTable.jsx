@@ -34,7 +34,7 @@ function LimitsTable(props) {
 
         {isEditing === false && (
           <div className="col-4 col-lg-4 cell cell-limit">
-            {"Limitas - " + limit}{" "}
+            {"Limitas: " + limit}{" "}
           </div>
         )}
 

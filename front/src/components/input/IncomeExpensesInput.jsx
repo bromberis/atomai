@@ -50,6 +50,7 @@ function IncomeExpensesInput() {
       data.date = new Date().toISOString().substr(0, 10);
     }
 
+    console.log(data);
     display == "income"
       ? createUserIncome(user._id, data).then(() => {
           updateUserData(user._id);
@@ -144,6 +145,7 @@ function IncomeExpensesInput() {
                   min="2010-01-01"
                   max="2099-01-01"
                   defaultValue={new Date().toISOString().substr(0, 10)}
+                  {...register("date")}
                 />
               </div>
             </div>
