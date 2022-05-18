@@ -82,7 +82,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -91,7 +91,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -100,7 +100,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
     text: "Klaida ištaisyta!",
     icon: "success",
     button: "Gerai",
-    timer: 1500,
+    timer: 2000,
   });
 
   return response;
@@ -115,7 +115,7 @@ export async function findIncomeAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -124,7 +124,7 @@ export async function findIncomeAndDelete(id, subID) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 }
@@ -140,7 +140,7 @@ export async function createUserIncome(id, data) {
         text: "Įrašas išsaugotas!",
         button: "Gerai",
         icon: "success",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -149,7 +149,7 @@ export async function createUserIncome(id, data) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -177,7 +177,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -186,7 +186,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -202,7 +202,7 @@ export async function findExpensesAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -211,7 +211,7 @@ export async function findExpensesAndDelete(id, subID) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 }
@@ -227,7 +227,7 @@ export async function createUserExpense(id, data) {
         text: "Įrašas išsaugotas!",
         button: "Gerai",
         icon: "success",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -236,7 +236,7 @@ export async function createUserExpense(id, data) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -268,7 +268,7 @@ export async function loginUser(data) {
         text: "Duomenys blogai suvesti, galimai rašybos klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -307,7 +307,7 @@ export async function createUserLimits(id, data) {
         text: "Įrašas išsaugotas!",
         button: "Gerai",
         icon: "success",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -316,7 +316,7 @@ export async function createUserLimits(id, data) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -332,7 +332,7 @@ export async function findLimitAndUpdate(data, id, subID) {
         text: "Atnaujinta!",
         icon: "success",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -341,7 +341,7 @@ export async function findLimitAndUpdate(data, id, subID) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 
@@ -356,7 +356,7 @@ export async function findLimitAndDelete(id, subID) {
         text: "Ištrinta!",
         icon: "success",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     })
     .catch((error) => {
@@ -365,7 +365,7 @@ export async function findLimitAndDelete(id, subID) {
         text: "Klaida!",
         icon: "error",
         button: "Gerai",
-        timer: 1500,
+        timer: 2000,
       });
     });
 }

@@ -14,7 +14,6 @@ const LimitsProvider = ({ children }) => {
   useEffect(() => {
     if (userData != undefined && userData.hasOwnProperty("email")) {
       getAllUserLimits(userData._id).then((res) => {
-        console.log(res.data.data.limits);
         setLimits(res.data.data.limits);
       });
     }
