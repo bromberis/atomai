@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import UsersTable from "./UsersTable";
 import { createUser, getEmail, getUsersByEmail } from "../../api/library/UsersAPI";
+import "./Users.css";
 
 export default function UsersSearch() {
   const {
