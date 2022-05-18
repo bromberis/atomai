@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {
   getUsersByEmail,
   getAllUsers,
@@ -14,6 +15,7 @@ const {
   createUserExpense,
   getEmail,
   loginUser,
+  updateUserById,
   getUserIncomeByMonth,
   getUserExpensesByMonth,
   getAllUserIncomeByMonth,
@@ -27,6 +29,7 @@ const {
 
 const router = express.Router();
 
+router.route("/updateUser").post(updateUserById);
 router.route("/userByEmail").post(getUsersByEmail);
 router.route("/login").post(loginUser);
 router.route("/register").post(createUser);

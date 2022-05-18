@@ -102,7 +102,7 @@ export default function Users() {
             <div className="row">
               <div className="col-12">
                 <button type="submit" className="add-new-user-button">
-                  Prideti
+                  Pridėti
                 </button>
               </div>
             </div>
