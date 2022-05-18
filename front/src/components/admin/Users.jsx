@@ -98,17 +98,11 @@ export default function Users() {
                 {errors?.password?.type === "pattern" && "Turi būti bent 1 didžioji raidė ir bent 1 simbolis"}
               </span>
             </div>
-            <div className="row">
-              <div className="col-12">
-                <input type="checkbox" {...register("isAdmin")}></input>
-                <label htmlFor="isAdmin">Administratorius</label>
-              </div>
-            </div>
 
             <div className="row">
               <div className="col-12">
                 <button type="submit" className="add-new-user-button">
-                  Prideti
+                  Pridėti
                 </button>
               </div>
             </div>

@@ -6,6 +6,7 @@
 .add-new-user-button {
   padding-top: 20vh;
   margin-top: 3vh;
+  margin-right: 1.5vw;
   padding: 0.5em 1em;
   transition: 0.3s;
   cursor: pointer;
@@ -15,8 +16,9 @@
 }
 
 .find-users-button {
-  margin-right: 1.5vw;
   padding-top: 20vh;
+  margin-right: 1.5vw;
+
   margin-top: 3vh;
   padding: 0.5em 1em;
   transition: 0.3s;
