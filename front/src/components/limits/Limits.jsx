@@ -47,10 +47,9 @@ function Limits() {
     <div className="container py-4">
       <div className="row">
         {/* <h3 className="col text-center">Limitai</h3> */}
-        <p className="text-center fs-4">
-          Čia galite nusistatyti norimus limitus pasirinktoms išlaidų
-          kategorijoms.
-        </p>
+        <h3 className="text-center fs-4">
+          Limitų pasirinkimas išlaidų kategorijoms
+        </h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row justify-content-center">
