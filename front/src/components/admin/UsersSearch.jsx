@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import UsersTable from "./UsersTable";
+import { v4 as uuidv4 } from "uuid";
 import { createUser, getEmail, getUsersByEmail } from "../../api/library/UsersAPI";
 import "./Users.css";
 
@@ -21,11 +22,11 @@ export default function UsersSearch() {
       setUsers(res.data.data.users);
     });
   }
-  console.log(users);
+
   let usersData;
   if (users.length > 0) {
     usersData = users.map((user) => {
-      return <UsersTable name={user.name} email={user.email} id={user._id} />;
+      return <UsersTable name={user.name} email={user.email} id={user._id} key={uuidv4()} />;
     });
   }
   return (
