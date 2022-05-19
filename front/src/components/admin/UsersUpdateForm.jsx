@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { updateUserById } from "../../api/library/UsersAPI";
 
-export default function UsersUpdateForm({ name, email, id }) {
+export default function UsersUpdateForm({ name, email, id, setIsEditing, searchUsers }) {
   const {
     register,
     handleSubmit,
@@ -17,54 +17,66 @@ export default function UsersUpdateForm({ name, email, id }) {
     data.id = id;
     console.log(data);
     updateUserById(data);
+    reset();
+    setIsEditing(false);
+    searchUsers({ email: data.email });
   }
   return (
     <div className="container pt-4">
-      <div className="row">
-        <div className="col-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Vardas"
-            {...register("name", {
-              required: true,
-              pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9]*$/i,
-              maxLength: 12,
-              minLength: 2,
-            })}
-          />
-          <span className="text-danger fw-light">
-            {errors.name?.type === "pattern" && "Negali būti specialų simbolių"}
-            {errors.name?.type === "required" && "Vardas būtinas"}
-            {errors.name?.type === "minLength" && "Turi būti bent 2 simboliai"}
-            {errors.name?.type === "maxLength" && "Ne daugiau kaip 12 simbolių"}
-          </span>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="row">
+          <div className="col-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Vardas"
+              defaultValue={name}
+              {...register("name", {
+                required: true,
+                pattern: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9]*$/i,
+                maxLength: 12,
+                minLength: 2,
+              })}
+            />
+            <span className="text-danger fw-light">
+              {errors.name?.type === "pattern" && "Negali būti specialų simbolių"}
+              {errors.name?.type === "required" && "Vardas būtinas"}
+              {errors.name?.type === "minLength" && "Turi būti bent 2 simboliai"}
+              {errors.name?.type === "maxLength" && "Ne daugiau kaip 12 simbolių"}
+            </span>
+          </div>
+          <div className="col-4">
+            <input
+              type="email"
+              id="email-register"
+              placeholder="El. paštas"
+              defaultValue={email}
+              {...register("email", {
+                required: true,
+                maxLength: 50,
+              })}
+            />
+            <span className="text-danger fw-light">
+              {errors.email?.type === "required" && "El.paštas būtinas"}
+              {errors.email?.type === "maxLength" && "Ne daugiau kaip 50 simbolių"}
+              {errors.email?.type === "checkEmail" && "El. paštas jau naudojamas."}
+            </span>
+          </div>
+          <div className="col-2">
+            <button type="submit">
+              <AiOutlineCheck color="#3a3845" fontSize="1.5em" />
+            </button>
+            <button
+              onClick={() => {
+                reset();
+                setIsEditing(false);
+              }}
+            >
+              <AiOutlineClose color="#3a3845" fontSize="1.5em" />
+            </button>
+          </div>
         </div>
-        <div className="col-4">
-          <input
-            type="email"
-            id="email-register"
-            placeholder="El. paštas"
-            {...register("email", {
-              required: true,
-              maxLength: 50,
-            })}
-          />
-          <span className="text-danger fw-light">
-            {errors.email?.type === "required" && "El.paštas būtinas"}
-            {errors.email?.type === "maxLength" && "Ne daugiau kaip 50 simbolių"}
-            {errors.email?.type === "checkEmail" && "El. paštas jau naudojamas."}
-          </span>
-        </div>
-        <div className="col-2">
-          <button type="submit">
-            <AiOutlineCheck color="#3a3845" fontSize="1.5em" />
-          </button>
-          <button>
-            <AiOutlineClose color="#3a3845" fontSize="1.5em" />
-          </button>
-        </div>
-      </div>
+      </form>
     </div>
     // <div className="container vertical-center">
     //   <form onSubmit={handleSubmit(onSubmit)}>
