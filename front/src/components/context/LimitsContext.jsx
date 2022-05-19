@@ -12,7 +12,7 @@ const LimitsProvider = ({ children }) => {
   const { userData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    if (userData != undefined && userData.hasOwnProperty("email")) {
+    if (userData !== undefined && userData.hasOwnProperty("email")) {
       getAllUserLimits(userData._id).then((res) => {
         setLimits(res.data.data.limits);
       });

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-  getAllUsersData,
+  // getAllUsersData,
   createUserIncome,
   createUserExpense,
-  getUserById,
+  // getUserById,
 } from "../../api/library/UsersAPI";
 import { useForm } from "react-hook-form";
 import "./IncomeExpensesInput.css";
@@ -19,11 +19,10 @@ function IncomeExpensesInput() {
   let [income, setIncome] = useState({ category: "Alga", name: "" });
   let [expense, setExpense] = useState({ category: "Kita", name: "" });
 
-  const { incomeThisMonth, getUserID } = useGlobalContext();
-  const { expensesThisMonth, getExpUserID } = useGlobalExpensesContext();
+  const { incomeThisMonth } = useGlobalContext();
+  const { expensesThisMonth } = useGlobalExpensesContext();
 
-  const { userData, setUserData, updateUserData } =
-    useGlobalUserContext(UserContext);
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
     setUser(userData);
@@ -51,7 +50,7 @@ function IncomeExpensesInput() {
     }
 
     console.log(data);
-    display == "income"
+    display === "income"
       ? createUserIncome(user._id, data).then(() => {
           updateUserData(user._id);
         })
