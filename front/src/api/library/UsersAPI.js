@@ -30,26 +30,8 @@ export async function getAllUsersData() {
 //     });
 // }
 export async function createUser(data) {
-  const res = await axiosUser
-    .post("/register", JSON.stringify(data))
-    .then((result) => {
-      console.log("Success:", result);
-      swal({
-        text: "Registracija sekminga, dabar galite prisijungti",
-        icon: "success",
-        button: "Puiku",
-        timer: 2000,
-      });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      swal({
-        text: "Toks vartotojas jau egzistuoja",
-        icon: "error",
-        button: "Gerai",
-        timer: 5000,
-      });
-    });
+  const res = await axiosUser.post("/register", JSON.stringify(data));
+
   console.log(res);
 }
 

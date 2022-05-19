@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { createUser, getEmail, getUsersByEmail } from "../../api/library/UsersAPI";
 import "./Users.css";
+import swal from "sweetalert";
 
 import UsersSearch from "./UsersSearch";
 
@@ -22,7 +23,25 @@ export default function Users() {
 
   function onSubmit(data) {
     console.log(data);
-    createUser(data);
+    createUser(data)
+      .then((result) => {
+        console.log("Success:", result);
+        swal({
+          text: "Vartotojas pridėtas",
+          icon: "success",
+          button: "Puiku",
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        swal({
+          text: "Toks vartotojas jau egzistuoja",
+          icon: "error",
+          button: "Gerai",
+          timer: 5000,
+        });
+      });
   }
 
   return (
