@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 import HistoryTable from "./HistoryTable.js";
+import "./History.css";
 
 function UsersList(props) {
   const { expensesCategories } = useGlobalCategoriesContext();
@@ -52,33 +53,35 @@ function UsersList(props) {
 
   useEffect(() => {
     setUsers(userData);
-  });
+  }, []);
 
-  if (users != undefined && users.hasOwnProperty("email")) {
+  if (users !== undefined && users.hasOwnProperty("email")) {
     let { income } = users;
     let { expenses } = users;
 
     let incomeExpenses = [...income, ...expenses];
 
-    const filteredData = incomeExpenses.filter(
-      (item) => item.date >= startDate && item.date <= endDate
-    );
-    console.log(startDate);
-    console.log(endDate);
+    const filteredData = incomeExpenses.filter((item) => {
+      return (
+        item.date.slice(0, 10) >= startDate && item.date.slice(0, 10) <= endDate
+      );
+    });
+    var filteredTypeCategory;
+    var total;
 
     // type and category filter
     if (type === "expenses" && expCategory !== "allexp") {
-      var filteredTypeCategory = filteredData.filter(
+      filteredTypeCategory = filteredData.filter(
         (item) => item.type === "expenses" && item.category === expCategory
       );
-      var total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+      total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
     } else if (type === "expenses") {
-      var filteredTypeCategory = filteredData.filter(
+      filteredTypeCategory = filteredData.filter(
         (item) => item.type === "expenses" && expCategory === "allexp"
       );
-      var total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+      total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
     } else if (type === "all") {
-      var filteredTypeCategory = filteredData.filter(
+      filteredTypeCategory = filteredData.filter(
         (item) => item.type === "expenses" || item.type === "income"
       );
       const inc = filteredData
@@ -87,18 +90,20 @@ function UsersList(props) {
       const exp = filteredData
         .filter((item) => item.type === "expenses")
         .reduce((n, { sum }) => n + sum, 0);
-      var total = inc - exp;
-    } else if (type === "income") {
-      var filteredTypeCategory = filteredData.filter(
-        (item) => item.type === "income" && incCategory === "allinc"
-      );
-      var total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+      total = inc - exp;
     } else if (type === "income" && incCategory !== "allinc") {
-      var filteredTypeCategory = filteredData.filter(
+      filteredTypeCategory = filteredData.filter(
         (item) => item.type === "income" && item.category === incCategory
       );
-      var total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+      total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+    } else if (type === "income") {
+      filteredTypeCategory = filteredData.filter(
+        (item) => item.type === "income" && incCategory === "allinc"
+      );
+      total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
     }
+    console.log(type);
+    console.log(incCategory);
 
     // final sort by createdAt date
     const filteredDataSortedByDate = filteredTypeCategory.sort(sortByDate);
@@ -125,7 +130,7 @@ function UsersList(props) {
       <div className="container pl-0 ">
         <form>
           <div className="row pt-3">
-            <div className="col-4">
+            <div className="col-6">
               <input
                 className="rounded-0 input-custom"
                 type="date"
@@ -137,7 +142,7 @@ function UsersList(props) {
                 onChange={updateStartDate}
               />
             </div>
-            <div className="col-4">
+            <div className="col-6">
               <input
                 className="rounded-0 input-custom"
                 type="date"
@@ -149,7 +154,7 @@ function UsersList(props) {
                 onChange={updateEndDate}
               />
             </div>
-            <div className="col-4">
+            <div className="col-6">
               <select className="rounded-0 input-custom" onChange={updateType}>
                 <option value="all">Visi įvykiai</option>
                 <option value="income">Pajamos</option>
@@ -157,8 +162,12 @@ function UsersList(props) {
               </select>
             </div>
             {type === "expenses" && (
-              <div className="col-4 input-custom">
-                <select onChange={updateExpCategory}>
+              <div className="col-6">
+                <select
+                  onChange={updateExpCategory}
+                  className="input-custom"
+                  defaultValue={expCategory}
+                >
                   <option value="allexp">Visos išlaidos</option>
                   {expensesCategories.map((data) => {
                     const { _id, category } = data;
@@ -172,8 +181,12 @@ function UsersList(props) {
               </div>
             )}
             {type === "income" && (
-              <div className="col-3 input-custom">
-                <select onChange={updateIncCategory}>
+              <div className="col-6 ">
+                <select
+                  onChange={updateIncCategory}
+                  className="input-custom"
+                  defaultValue={incCategory}
+                >
                   <option value="allinc">Visos pajamos</option>
                   <option value="Alga">Alga</option>
                   <option value="Premija">Premija</option>
@@ -187,12 +200,23 @@ function UsersList(props) {
           </div>
         </form>
         <div className="row">
-          <div className="col-3">
-            {total !== undefined && <p>Balansas: {total.toFixed(2)}</p>}
+          <div className="col custom-balance">
+            <p>
+              {total !== undefined && type === "expenses" && (
+                <span>Visos išlaidos: </span>
+              )}
+              {total !== undefined && type === "income" && (
+                <span>Visos pajamos : </span>
+              )}
+              {total !== undefined && type === "all" && (
+                <span>Bendras balansas : </span>
+              )}
+              <span className="fw-bold">{total.toFixed(2)}</span>{" "}
+            </p>
           </div>
         </div>
         <div className="row">
-          <div className="col">
+          <div className="col px-3">
             <table className="table">
               <thead className="mb-2">
                 <tr className="text-center">

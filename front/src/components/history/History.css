@@ -56,6 +56,11 @@
   width: 12vw;
 }
 
-.custom-input {
+/* .custom-input {
   border: 0.5px solid grey;
+} */
+
+.custom-balance {
+  font-size: 1.1rem;
+  margin: 15px 15px;
 }
