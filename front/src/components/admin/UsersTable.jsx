@@ -1,8 +1,23 @@
 import React, { useState } from "react";
 import UsersUpdateForm from "./UsersUpdateForm";
 import { BsTrash, BsPencil } from "react-icons/bs";
+import { deleteUserById } from "../../api/library/UsersAPI";
+import swal from "sweetalert";
 
-export default function UsersTable({ name, email, id }) {
+export default function UsersTable({ name, email, id, reset, setUsers, searchUsers }) {
+  function deleteUser() {
+    swal({
+      title: "Ar tikrai norite ištrinti šį vartotoją?",
+      icon: "warning",
+      buttons: ["Atšaukti", "Gerai"],
+    }).then((isConfirm) => {
+      if (isConfirm) {
+        deleteUserById(id);
+        reset();
+        setUsers({});
+      }
+    });
+  }
   const [isEditing, setIsEditing] = useState(false);
   return (
     <>
@@ -16,7 +31,7 @@ export default function UsersTable({ name, email, id }) {
               <button className="pr-4" onClick={() => setIsEditing(!isEditing)}>
                 <BsPencil color="#3a3845" fontSize="1.5em" />
               </button>
-              <button>
+              <button onClick={() => deleteUser()}>
                 <BsTrash className="ml-4" color="#bc6e7f" fontSize="1.5em" />
               </button>
             </div>
@@ -24,7 +39,7 @@ export default function UsersTable({ name, email, id }) {
         </div>
       </>
 
-      {isEditing == true && <UsersUpdateForm name={name} email={email} id={id} />}
+      {isEditing == true && <UsersUpdateForm name={name} email={email} setIsEditing={setIsEditing} searchUsers={searchUsers} id={id} />}
     </>
   );
 }

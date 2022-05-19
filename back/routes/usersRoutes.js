@@ -6,7 +6,7 @@ const {
   createUser,
   getUserById,
   updateUser,
-  deleteUser,
+  deleteUserById,
   findIncomeDataAndUpdate,
   findExpensesDataAndUpdate,
   findIncomeAndDelete,
@@ -29,6 +29,7 @@ const {
 
 const router = express.Router();
 
+router.route("/deleteUser/:id").get(deleteUserById);
 router.route("/updateUser").post(updateUserById);
 router.route("/userByEmail").post(getUsersByEmail);
 router.route("/login").post(loginUser);
@@ -37,7 +38,7 @@ router.route("/register").post(createUser);
 router.route("/").get(getAllUsers);
 router.route("/email").get(getEmail);
 
-router.route("/:id").get(getUserById).patch(updateUser).delete(deleteUser);
+router.route("/:id").get(getUserById).patch(updateUser);
 
 //income
 

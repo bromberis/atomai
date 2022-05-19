@@ -34,6 +34,18 @@ export async function createUser(data) {
 
   console.log(res);
 }
+// delete user
+export async function deleteUserById(id) {
+  const res = await axiosUser.get(`/deleteUser/${id}`).then((result) => {
+    swal({
+      text: "Ištrinta!",
+      icon: "success",
+      button: "Gerai",
+      timer: 2000,
+    });
+  });
+  return res;
+}
 
 // find user By email
 export async function getUsersByEmail(email) {
@@ -51,8 +63,15 @@ export async function getEmail(email) {
 
 // update user by id
 export async function updateUserById(data) {
-  const res = await axiosUser.post(`/updateUser`, JSON.stringify(data));
-  //console.log(res);
+  const res = await axiosUser.post(`/updateUser`, JSON.stringify(data)).then((result) => {
+    console.log("Success:", result);
+    swal({
+      text: "Vartotojas redaguotas",
+      icon: "success",
+      button: "Gerai",
+      timer: 2000,
+    });
+  });
 
   return res;
 }
