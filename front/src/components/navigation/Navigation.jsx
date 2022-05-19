@@ -30,7 +30,13 @@ export default function Navigation() {
       <nav className="text-center">
         <ul>
           <li className="logo">
-            <Link to={userData != undefined && userData.hasOwnProperty("email") ? "/incexp" : "/"}>
+            <Link
+              to={
+                userData != undefined && userData.hasOwnProperty("email")
+                  ? "/incexp"
+                  : "/"
+              }
+            >
               <button className={`navigation-button `}>
                 <SiAtom color="#f4efe7" fontSize="3rem" />
               </button>
@@ -47,7 +53,8 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <Link to="/statistics">
               <button className={`navigation-button ${isDisabled()}`}>
-                <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Statistika</p>
+                <GiHistogram color="#f4efe7" fontSize="3rem" />{" "}
+                <p>Statistika</p>
               </button>
             </Link>
           </li>
@@ -61,16 +68,19 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <Link to="/history">
               <button className={`navigation-button ${isDisabled()}`}>
-                <AiOutlineHistory color="#f4efe7" fontSize="3rem" /> <p>Istorija</p>
+                <AiOutlineHistory color="#f4efe7" fontSize="3rem" />{" "}
+                <p>Istorija</p>
               </button>
             </Link>
           </li>
           <li className={`${isDisabled()}`}>
-            <CSVLink data={userData.expenses} filename={"islaidos.csv"} target="_blank">
-              <button className={`navigation-button custom-export ${isDisabled()}`}>
-                <FiDownload color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
-              </button>
-            </CSVLink>
+            {/* <CSVLink data={userData.expenses} filename={"islaidos.csv"} target="_blank"> */}
+            <button
+              className={`navigation-button custom-export ${isDisabled()}`}
+            >
+              <FiDownload color="#f4efe7" fontSize="3rem" /> <p>Eksportuoti</p>
+            </button>
+            {/* </CSVLink> */}
           </li>
           <li className={`${isDisabled()}`}>
             <button
