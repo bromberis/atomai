@@ -49,7 +49,7 @@ export default function Users() {
       <div className="container text-center">
         <div className="row">
           <div className="col-10">
-            <h2 className="admin-page-titles">Prideti nauja vartotoja</h2>
+            <h2 className="admin-page-titles">Pridėti naują vartotoją</h2>
           </div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
