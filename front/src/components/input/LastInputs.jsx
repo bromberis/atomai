@@ -1,6 +1,6 @@
 import React from "react";
 import { useGlobalUserContext } from "../context/UserContext";
-import HistoryTableThree from "./HistoryTableThree.jsx";
+import HistoryTableFive from "./HistoryTableFive.jsx";
 
 function LastInputs() {
   const { userData } = useGlobalUserContext();
@@ -24,7 +24,7 @@ function LastInputs() {
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
-        <HistoryTableThree
+        <HistoryTableFive
           key={item._id}
           id={item._id}
           name={item.name}
