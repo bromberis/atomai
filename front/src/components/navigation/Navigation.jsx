@@ -74,7 +74,11 @@ export default function Navigation() {
             </Link>
           </li>
           <li className={`${isDisabled()}`}>
-            <CSVLink data={userData.expenses}>
+            <CSVLink
+              data={userData.expenses}
+              filename={"islaidos.csv"}
+              target="_blank"
+            >
               <button
                 className={`navigation-button custom-export ${isDisabled()}`}
               >
