@@ -22,6 +22,7 @@ function UsersList(props) {
   const [type, setType] = useState("all");
   const [expCategory, setExpCategory] = useState("allexp");
   const [incCategory, setIncCategory] = useState("allinc");
+  const [ignoreDates, setIgnoreDates] = useState(false);
 
   function sortByDate(a, b) {
     if (a.createdAt < b.createdAt) {
@@ -51,6 +52,10 @@ function UsersList(props) {
     setIncCategory(event.target.value);
   };
 
+  const updateIgnoreDates = (event) => {
+    setIgnoreDates(event.target.checked);
+  };
+
   useEffect(() => {
     setUsers(userData);
   }, []);
@@ -70,13 +75,31 @@ function UsersList(props) {
     var total;
 
     // type and category filter
-    if (type === "expenses" && expCategory !== "allexp") {
+    if (
+      type === "expenses" &&
+      expCategory !== "allexp" &&
+      ignoreDates === false
+    ) {
       filteredTypeCategory = filteredData.filter(
         (item) => item.type === "expenses" && item.category === expCategory
       );
       total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
-    } else if (type === "expenses") {
+    } else if (type === "expenses" && ignoreDates === false) {
       filteredTypeCategory = filteredData.filter(
+        (item) => item.type === "expenses" && expCategory === "allexp"
+      );
+      total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+    } else if (
+      type === "expenses" &&
+      expCategory !== "allexp" &&
+      ignoreDates === true
+    ) {
+      filteredTypeCategory = incomeExpenses.filter(
+        (item) => item.type === "expenses" && item.category === expCategory
+      );
+      total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
+    } else if (type === "expenses" && ignoreDates === true) {
+      filteredTypeCategory = incomeExpenses.filter(
         (item) => item.type === "expenses" && expCategory === "allexp"
       );
       total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
@@ -102,8 +125,6 @@ function UsersList(props) {
       );
       total = filteredTypeCategory.reduce((n, { sum }) => n + sum, 0);
     }
-    console.log(type);
-    console.log(incCategory);
 
     // final sort by createdAt date
     const filteredDataSortedByDate = filteredTypeCategory.sort(sortByDate);
@@ -200,20 +221,40 @@ function UsersList(props) {
           </div>
         </form>
         <div className="row">
-          <div className="col custom-balance">
-            <p>
-              {total !== undefined && type === "expenses" && (
-                <span>Visos išlaidos: </span>
-              )}
-              {total !== undefined && type === "income" && (
-                <span>Visos pajamos : </span>
-              )}
-              {total !== undefined && type === "all" && (
-                <span>Bendras balansas : </span>
-              )}
-              <span className="fw-bold">{total.toFixed(2)}</span>{" "}
-            </p>
+          <div className="col-6 custom-balance">
+            {total !== undefined && type === "expenses" && (
+              <p>
+                Visos išlaidos:{" "}
+                <span className="fw-bold">{total.toFixed(2)}</span>
+              </p>
+            )}
+            {total !== undefined && type === "income" && (
+              <p>
+                Visos pajamos :{" "}
+                <span className="fw-bold">{total.toFixed(2)}</span>
+              </p>
+            )}
+            {total !== undefined && type === "all" && (
+              <p>
+                Bendras balansas :{" "}
+                <span className="fw-bold">{total.toFixed(2)}</span>
+              </p>
+            )}
           </div>
+          {type === "expenses" && (
+            <div className="col-6">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                Ignoruoti datas, visos kategorijos išlaidos
+              </label>
+              <input
+                className="custom-box"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                onChange={updateIgnoreDates}
+              />
+            </div>
+          )}
         </div>
         <div className="row">
           <div className="col px-3">

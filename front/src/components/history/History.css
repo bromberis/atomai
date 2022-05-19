@@ -62,5 +62,11 @@
 
 .custom-balance {
   font-size: 1.1rem;
-  margin: 15px 15px;
+  margin: auto 0;
+}
+
+.custom-box {
+  width: 5%;
+  height: 35%;
+  margin-left: 2%;
 }
