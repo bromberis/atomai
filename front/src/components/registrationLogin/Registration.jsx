@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createUser, getEmail, getUserById } from "../../api/library/UsersAPI";
 import "./Registration.css";
+import swal from "sweetalert";
 
 export default function Registration() {
   const {
@@ -17,7 +18,25 @@ export default function Registration() {
   var salt = bcrypt.genSaltSync(10);
 
   function onSubmit(data) {
-    createUser(data);
+    createUser(data)
+      .then((result) => {
+        console.log("Success:", result);
+        swal({
+          text: "Registracija sekminga, dabar galite prisijungti",
+          icon: "success",
+          button: "Puiku",
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        swal({
+          text: "Toks vartotojas jau egzistuoja",
+          icon: "error",
+          button: "Gerai",
+          timer: 5000,
+        });
+      });
     reset();
   }
 

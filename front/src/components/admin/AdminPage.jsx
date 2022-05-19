@@ -7,7 +7,7 @@ export default function Admin() {
       <div>
         <button onClick={() => setDisplay("category")}>Kategorijos</button>
         <button onClick={() => setDisplay("users")}>Vartotojai</button>
-        <button onClick={() => setDisplay("logs")}>Zurnalas</button>
+        <button onClick={() => setDisplay("logs")}>Žurnalas</button>
       </div>
       {display == "users" && <Users />}
     </>
