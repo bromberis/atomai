@@ -34,7 +34,7 @@ function UpdateCategory(props) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
-        className="rounded-0  "
+        className="rounded-0 input-custom-admin "
         type="text"
         name="category"
         id="category"
