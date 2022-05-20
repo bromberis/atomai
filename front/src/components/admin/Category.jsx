@@ -18,7 +18,7 @@ function Category() {
     <div className="container">
       {" "}
       <div className="row pt-4 row-button d-flex justify-content-end">
-        <div className="col-7 col-custom  ">
+        {/* <div className="col-7 col-custom  ">
           <button
             onClick={() => setDisplay("income")}
             className="income-btn-admin"
@@ -33,8 +33,9 @@ function Category() {
           </button>
         </div>
       </div>
-      {display == "income" && <p>Pajamos</p>}
-      {display === "expenses" && (
+      {display == "income" && <p>Pajamos</p>} */}
+        {/* {display === "expenses" && ( */}
+
         <div className="row justify-content-center">
           {" "}
           <div className="col-10">
@@ -50,9 +51,8 @@ function Category() {
               </tbody>
             </table>
           </div>
-          {/* div.col */}
         </div>
-      )}
+      </div>
     </div>
   );
 }

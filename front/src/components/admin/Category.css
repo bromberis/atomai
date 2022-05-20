@@ -19,6 +19,7 @@
 
 .input-custom-admin {
   height: 2rem;
+  width: 45%;
 }
 
 .col-custom button {
@@ -37,7 +38,4 @@
 .expenses-btn-admin {
   border-right: 0.5px solid grey;
   background-color: #ecd6db;
-}
-
-.row-button {
 }
