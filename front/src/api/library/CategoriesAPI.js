@@ -1,4 +1,5 @@
 import axiosCategories from "../apiCategories";
+import swal from "sweetalert";
 
 export async function getAllExpCategories() {
   const res = await axiosCategories.get("/expcategories");
@@ -11,18 +12,28 @@ export async function getExpCategoryById(id) {
 }
 
 export async function updateExpCategory(id, data) {
-  let resultCategories;
   const response = await axiosCategories
-    .patch(`/expcategories/${id}/`, JSON.stringify(data))
+    .patch(`/expcategories/${id}`, JSON.stringify(data))
     .then((result) => {
-      resultCategories = result.data.data.categories;
       console.log("Success:", result);
+      swal({
+        text: "Atnaujinta!",
+        icon: "success",
+        button: "Gerai",
+        timer: 2000,
+      });
     })
     .catch((error) => {
       console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 2000,
+      });
     });
 
-  return resultCategories;
+  return response;
 }
 
 export async function createExpCategory(data) {
@@ -38,12 +49,15 @@ export async function createExpCategory(data) {
 }
 
 export async function deleteExpCategory(id) {
-  const response = await axiosCategories
-    .patch(`/expcategories/${id}`)
+  const res = await axiosCategories
+    .get(`/expcategories/dlt/${id}`)
     .then((result) => {
-      console.log("Success:", result);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+      swal({
+        text: "Ištrinta!",
+        icon: "success",
+        button: "Gerai",
+        timer: 2000,
+      });
     });
+  return res;
 }

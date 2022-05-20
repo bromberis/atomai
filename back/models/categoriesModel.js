@@ -13,7 +13,7 @@ const CategoriesExp = new mongoose.model(
 );
 
 const testCategories = new CategoriesExp({
-  category: "Maistas",
+  category: "neaišku",
 });
 
 // testCategories.save();

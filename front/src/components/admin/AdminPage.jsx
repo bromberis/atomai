@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Users from "./Users";
+import Category from "./Category";
+import { useGlobalCategoriesContext } from "../context/CategoriesContext";
+
 export default function Admin() {
   const [display, setDisplay] = useState("users");
   return (
@@ -10,6 +13,7 @@ export default function Admin() {
         <button onClick={() => setDisplay("logs")}>Žurnalas</button>
       </div>
       {display == "users" && <Users />}
+      {display === "category" && <Category />}
     </>
   );
 }

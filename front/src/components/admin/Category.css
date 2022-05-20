@@ -1,0 +1,43 @@
+/* table {
+  margin: 0;
+} */
+
+.custom-table-admin th {
+  padding: 2vh 12vw;
+  background-color: #f4efe7;
+}
+
+.custom-table-td-admin {
+  padding: 0.3vh 0;
+  text-align: center;
+}
+
+.custom-table-admin th,
+.custom-table-td-admin {
+  border: 0.5px solid grey;
+}
+
+.input-custom-admin {
+  height: 2rem;
+}
+
+.col-custom button {
+  padding: 2vh 5.7vw;
+  border-top: 0.5px solid grey;
+  border-bottom: 0.5px solid grey;
+  margin-bottom: 4vh;
+}
+
+.income-btn-admin {
+  border-right: 0.5px solid grey;
+  border-left: 0.5px solid grey;
+  background-color: #dbecd6;
+}
+
+.expenses-btn-admin {
+  border-right: 0.5px solid grey;
+  background-color: #ecd6db;
+}
+
+.row-button {
+}
