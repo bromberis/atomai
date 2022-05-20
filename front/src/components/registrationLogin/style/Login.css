@@ -1,6 +1,5 @@
 .Login-container {
-  max-width: 100%;
-  padding: 1em;
+  padding-top: 1em;
 }
 
 .Login-form {
@@ -12,28 +11,36 @@
   align-content: center;
 }
 
-.Login-button {
-  display: flex;
-  gap: 10px;
-}
-
 .Login-button button {
   padding: 0.5em 1em;
   transition: 0.3s;
   cursor: pointer;
   background-color: #f4efe7;
-  width: 18vw;
   border: 0.5px solid grey;
+  gap: 10px;
+  text-align: center;
+  width: 25vw;
 }
 
 .Login-form input {
-  max-width: 50%;
-}
-.Login-button button {
-  max-width: 100%;
+  width: 25vw;
 }
 
 .Login-button button:hover {
   background-color: #3a3845;
   color: #f4efe7;
+}
+
+@media only screen and (max-width: 993px) {
+  .Login-form input {
+    width: 45vw;
+  }
+  .Login-button button {
+    width: 45vw;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
 }

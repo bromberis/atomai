@@ -30,7 +30,7 @@ function Login(props) {
     <div className="Login-container container">
       <div className="row">
         <div className="col">
-          <h1>Prisijungimas</h1>
+          <h1 className="pb-3">Prisijungimas</h1>
         </div>
         <div className="row">
           <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +46,9 @@ function Login(props) {
                 },
               })}
             />
-            <span className="error text-danger fw-light">{errors.email?.message}</span>
+            <span className="error text-danger fw-light">
+              {errors.email?.message}
+            </span>
 
             <input
               type="password"
@@ -64,7 +66,9 @@ function Login(props) {
                 },
               })}
             />
-            <span className="error text-danger fw-light">{errors.password?.message}</span>
+            <span className="error text-danger fw-light">
+              {errors.password?.message}
+            </span>
             <div className="Login-button">
               <button className="custom-button" type="submit">
                 Prisijungti
