@@ -51,7 +51,9 @@ export default function UsersSearch() {
           </div>
           <div className="row justify-content-center">
             <div className="col-6 ">
-              <input type="text" placeholder="Vartotojo el.paštas" {...register("email", { minLength: 1 })} />
+              <input type="text" placeholder="Vartotojo el.paštas" {...register("email", { minLength: 2, required: true })} />
+              {errors.email?.type === "minLength" && "Bent 2 simboliai"}
+              {errors.email?.type === "required" && "Bent 2 simbloiai"}
             </div>
           </div>
           <div className="row">

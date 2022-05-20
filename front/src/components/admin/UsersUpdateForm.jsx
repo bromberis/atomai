@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { updateUserById } from "../../api/library/UsersAPI";
 
@@ -11,15 +12,38 @@ export default function UsersUpdateForm({ name, email, id, setIsEditing, searchU
 
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(true);
+    }, 500);
+  }, [loading]);
 
   function onSubmit(data) {
-    console.log(id);
     data.id = id;
-    console.log(data);
-    updateUserById(data);
+    updateUserById(data)
+      .then((res) => {
+        swal({
+          text: "Vartotojas redaguotas",
+          icon: "success",
+          button: "Gerai",
+          timer: 2000,
+        });
+        console.log(res.data.status);
+        searchUsers({ email: data.email });
+      })
+      .catch((err) => {
+        swal({
+          text: "Toks el.paštas jau registruotas",
+          icon: "error",
+          button: "Gerai",
+          timer: 5000,
+        });
+      });
+
     reset();
     setIsEditing(false);
-    searchUsers({ email: data.email });
   }
   return (
     <div className="container pt-4">
@@ -62,9 +86,9 @@ export default function UsersUpdateForm({ name, email, id, setIsEditing, searchU
               {errors.email?.type === "checkEmail" && "El. paštas jau naudojamas."}
             </span>
           </div>
-          <div className="col-2">
+          <div className="text-start col-4">
             <button type="submit">
-              <AiOutlineCheck color="#3a3845" fontSize="1.5em" />
+              <AiOutlineCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
             <button
               onClick={() => {
@@ -72,7 +96,7 @@ export default function UsersUpdateForm({ name, email, id, setIsEditing, searchU
                 setIsEditing(false);
               }}
             >
-              <AiOutlineClose color="#3a3845" fontSize="1.5em" />
+              <AiOutlineClose color="#bc6e7f" fontSize="1.5em" />
             </button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-const Logs = require("./../models/logsModel");
+const Logs = require("../models/logsModel");
 
 exports.createNewLog = async (req, res) => {
   try {

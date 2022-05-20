@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const logs = mongoose.Schema(
+const logsschema = new mongoose.Schema(
   {
     userID: { type: String },
-    actions: [],
+    logs: [{ category: { type: String }, log: { type: String } }],
   },
   { timestamps: true }
 );
 
-const Logs = new mongoose.model("Logs", logs);
+const Logs = new mongoose.model("Logs", logsschema);
 
 module.exports = Logs;

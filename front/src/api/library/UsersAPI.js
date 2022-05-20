@@ -31,8 +31,7 @@ export async function getAllUsersData() {
 // }
 export async function createUser(data) {
   const res = await axiosUser.post("/register", JSON.stringify(data));
-
-  console.log(res);
+  return res;
 }
 // delete user
 export async function deleteUserById(id) {
@@ -49,7 +48,6 @@ export async function deleteUserById(id) {
 
 // find user By email
 export async function getUsersByEmail(email) {
-  console.log(email);
   const res = await axiosUser.post(`/userByEmail`, JSON.stringify(email));
   return res;
 }
@@ -63,15 +61,26 @@ export async function getEmail(email) {
 
 // update user by id
 export async function updateUserById(data) {
-  const res = await axiosUser.post(`/updateUser`, JSON.stringify(data)).then((result) => {
-    console.log("Success:", result);
-    swal({
-      text: "Vartotojas redaguotas",
-      icon: "success",
-      button: "Gerai",
-      timer: 2000,
-    });
-  });
+  const res = await axiosUser.patch(`/updateUser`, JSON.stringify(data));
+  // .then((result) => {
+  //   response = result;
+  //   console.log("Success:", result);
+  //   swal({
+  //     text: "Vartotojas redaguotas",
+  //     icon: "success",
+  //     button: "Gerai",
+  //     timer: 2000,
+  //   });
+  // })
+  // .catch((err) => {
+  //   console.error("Error:", err);
+  //   swal({
+  //     text: "Toks el.paštas jau registruotas",
+  //     icon: "error",
+  //     button: "Gerai",
+  //     timer: 5000,
+  //   });
+  // });
 
   return res;
 }
