@@ -39,3 +39,15 @@
   border-right: 0.5px solid grey;
   background-color: #ecd6db;
 }
+
+.custom-button-submit {
+  border: 0.5px solid grey;
+  margin: 1rem;
+  height: 3rem;
+  padding: 0 3rem;
+  background-color: #f4efe7;
+}
+
+.input-custom-add {
+  height: 3rem;
+}

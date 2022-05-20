@@ -10,6 +10,7 @@ import "./IncomeExpensesInput.css";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import { useGlobalContext } from "../context/IncomeContext";
 import { useGlobalExpensesContext } from "../context/ExpensesContext";
+import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 import { Link } from "react-router-dom";
 import LastInputs from "./LastInputs";
 
@@ -18,6 +19,7 @@ function IncomeExpensesInput() {
   let [user, setUser] = useState({});
   let [income, setIncome] = useState({ category: "Alga", name: "" });
   let [expense, setExpense] = useState({ category: "Kita", name: "" });
+  const { expensesCategories } = useGlobalCategoriesContext();
 
   const { incomeThisMonth } = useGlobalContext();
   const { expensesThisMonth } = useGlobalExpensesContext();
@@ -172,13 +174,14 @@ function IncomeExpensesInput() {
                     id="category"
                     {...register("category", { required: true })}
                   >
-                    <option value="Kita">Kita</option>
-                    <option value="Maistas">Maistas</option>
-
-                    <option value="Pramogos">Pramogos</option>
-                    <option value="Mokesčiai">Mokesčiai</option>
-                    <option value="Rūbai">Rūbai</option>
-                    <option value="Transportas">Transportas</option>
+                    {expensesCategories.map((data) => {
+                      const { _id, category } = data;
+                      return (
+                        <option key={_id} value={category}>
+                          {category}
+                        </option>
+                      );
+                    })}
                   </select>
                 )}
               </div>
