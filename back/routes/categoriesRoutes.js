@@ -15,7 +15,8 @@ router.route("/expcategories").get(getAllExpCategories).post(createExpCategory);
 router
   .route("/expcategories/:id")
   .get(getExpCategoryById)
-  .patch(updateExpCategory)
-  .delete(deleteExpCategory);
+  .patch(updateExpCategory);
+
+router.route("/expcategories/dlt/:id").get(deleteExpCategory);
 
 module.exports = router;

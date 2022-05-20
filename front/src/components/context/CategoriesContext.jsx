@@ -17,10 +17,17 @@ const CategoriesProvider = ({ children }) => {
     }
   }, [userData]);
 
+  function refreshCategoriesData(id) {
+    getAllExpCategories().then((res) => {
+      setExpensesCategories(res.data.data.categories);
+    });
+  }
+
   return (
     <CategoriesContext.Provider
       value={{
         expensesCategories,
+        refreshCategoriesData,
       }}
     >
       {children}
