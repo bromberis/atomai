@@ -32,6 +32,7 @@ export default function Users() {
           button: "Puiku",
           timer: 2000,
         });
+        reset();
       })
       .catch((error) => {
         console.error("Error:", error);

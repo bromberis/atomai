@@ -380,28 +380,30 @@ exports.getUserById = async (req, res) => {
 };
 
 // Atnaujinti esamą userį
-exports.updateUser = async (req, res) => {
-  try {
-    const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
-      // atnaujinus duomenis - gauti atnaujintą studento informaciją
-      new: true,
-      // papildomai patikrintų duomenis pagal DB schemą (studentModel)
-      runValidators: true,
-    });
+// exports.updateUser = async (req, res) => {
+//   try {
+//     const isEmailTaken = await Users.findOne({ email: req.body.email });
+//     if (isEmailTaken) return res.status(400).send("Toks el.paštas jau registruotas");
+//     const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
+//       // atnaujinus duomenis - gauti atnaujintą studento informaciją
+//       new: true,
+//       // papildomai patikrintų duomenis pagal DB schemą (studentModel)
+//       runValidators: true,
+//     });
 
-    res.status(200).json({
-      status: "success",
-      data: {
-        user: user,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         user: user,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };
 
 // Pašalinti userį pagal ID
 exports.deleteUserById = async (req, res) => {
@@ -727,20 +729,46 @@ exports.findLimitAndDelete = async (req, res) => {
 };
 
 exports.updateUserById = async (req, res) => {
-  console.log(req.body);
-  console.log(req.body.id);
+  const { email } = req.body;
   try {
-    await Users.findByIdAndUpdate(req.body.id, req.body);
-    res.status(200).json({
-      status: "success",
-      data: Users,
-    });
+    console.log(req.body);
+    const isEmailTaken = await Users.findOne({ email: req.body.email });
+
+    if (isEmailTaken) {
+      if (req.body.email == isEmailTaken.email) {
+        const user = await Users.findByIdAndUpdate(req.body.id, req.body);
+        res.status(200).json({
+          status: "success",
+          data: user,
+        });
+      } else {
+        throw "TESTAS";
+      }
+    } else {
+      const user = await Users.findByIdAndUpdate(req.body.id, req.body);
+      res.status(200).json({
+        status: "success",
+        data: user,
+      });
+    }
   } catch (err) {
+    console.log(err);
     res.status(404).json({
       status: "fail",
       message: err,
     });
   }
+
+  // res.status(404).json({
+  //   status: "fail",
+  //   message: err,
+  // });
+
+  //   res.status(404).json({
+  //     status: "fail",
+  //     message: err,
+  //   });
+  // }
 };
 
 // exports.deleteUser = async (req, res) => {

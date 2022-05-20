@@ -22,11 +22,11 @@ export default function UsersTable({ name, email, id, reset, setUsers, searchUse
   return (
     <>
       <>
-        <div className="container mt-4">
+        <div className="container text-start mt-4">
           <div className="row">
             <div className="col-4"> {name}</div>
             <div className="col-4">{email}</div>
-            <div className="col-4">
+            <div className=" col-4">
               {" "}
               <button className="pr-4" onClick={() => setIsEditing(!isEditing)}>
                 <BsPencil color="#3a3845" fontSize="1.5em" />

@@ -31,8 +31,7 @@ export async function getAllUsersData() {
 // }
 export async function createUser(data) {
   const res = await axiosUser.post("/register", JSON.stringify(data));
-
-  console.log(res);
+  return res;
 }
 // delete user
 export async function deleteUserById(id) {
@@ -49,7 +48,6 @@ export async function deleteUserById(id) {
 
 // find user By email
 export async function getUsersByEmail(email) {
-  console.log(email);
   const res = await axiosUser.post(`/userByEmail`, JSON.stringify(email));
   return res;
 }
@@ -63,6 +61,9 @@ export async function getEmail(email) {
 
 // update user by id
 export async function updateUserById(data) {
+
+  const res = await axiosUser.patch(`/updateUser`, JSON.stringify(data));
+ 
   const res = await axiosUser
     .post(`/updateUser`, JSON.stringify(data))
     .then((result) => {
@@ -74,6 +75,7 @@ export async function updateUserById(data) {
         timer: 2000,
       });
     });
+
 
   return res;
 }
