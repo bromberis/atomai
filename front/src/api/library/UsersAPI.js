@@ -61,26 +61,21 @@ export async function getEmail(email) {
 
 // update user by id
 export async function updateUserById(data) {
+
   const res = await axiosUser.patch(`/updateUser`, JSON.stringify(data));
-  // .then((result) => {
-  //   response = result;
-  //   console.log("Success:", result);
-  //   swal({
-  //     text: "Vartotojas redaguotas",
-  //     icon: "success",
-  //     button: "Gerai",
-  //     timer: 2000,
-  //   });
-  // })
-  // .catch((err) => {
-  //   console.error("Error:", err);
-  //   swal({
-  //     text: "Toks el.paštas jau registruotas",
-  //     icon: "error",
-  //     button: "Gerai",
-  //     timer: 5000,
-  //   });
-  // });
+ 
+  const res = await axiosUser
+    .post(`/updateUser`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Vartotojas redaguotas",
+        icon: "success",
+        button: "Gerai",
+        timer: 2000,
+      });
+    });
+
 
   return res;
 }
@@ -265,7 +260,10 @@ export async function loginUser(data) {
   // console.log(data);
   let response;
   const res = await axiosUser
-    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
+    .post(
+      `/login?email=${data.email}&password=${data.password}`,
+      JSON.stringify(data)
+    )
     .then((result) => {
       response = result;
       // console.log("Success:", result.data.user);
@@ -302,7 +300,7 @@ export async function getUserExpensesThisMonth(id) {
 }
 
 export async function getAllUserExpensesByMonth(id) {
-  console.log(id);
+  // console.log(id);
   const res = await axiosUser.get(`/${id}/exp/all`);
   return res;
 }

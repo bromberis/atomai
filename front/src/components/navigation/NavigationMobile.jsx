@@ -4,10 +4,11 @@ import { SiAtom } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
+import { CSVLink } from "react-csv";
 
 export default function NavigationMobile() {
   let navigate = useNavigate();
-  const { signOut } = useGlobalUserContext(UserContext);
+  const { signOut, userData } = useGlobalUserContext(UserContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-light nav-small-custom">
       <div className="container-fluid">
@@ -48,10 +49,16 @@ export default function NavigationMobile() {
                 Istorija
               </a>
             </li>
-            <li className="nav-item text-center no-border">
-              <a className="nav-link" href="/history">
-                Eksportavimas
-              </a>
+            <li className="nav-item text-center no-border d-flex justify-content-center">
+              {userData.expenses !== undefined && (
+                <CSVLink
+                  data={userData.expenses}
+                  filename={"islaidos.csv"}
+                  target="_blank"
+                >
+                  <button className="nav-link">Eksportavimas</button>
+                </CSVLink>
+              )}
             </li>
             <hr />
             <li className="nav-item text-center no-border">

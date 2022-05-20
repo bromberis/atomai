@@ -17,10 +17,10 @@ export default function RegistrationLogin() {
   return (
     <div className="RegistrationLogin-container">
       <div className="">
-        <Registration />
+        <Login />
       </div>
       <div className="">
-        <Login />
+        <Registration />
       </div>
     </div>
   );

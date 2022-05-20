@@ -1,5 +1,9 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { getUserIncomeByMonth, getAllUsersData, getAllUserIncomeByMonth } from "../../api/library/UsersAPI";
+import {
+  getUserIncomeByMonth,
+  getAllUsersData,
+  getAllUserIncomeByMonth,
+} from "../../api/library/UsersAPI";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 
 const IncomeContext = createContext();
@@ -13,12 +17,12 @@ const IncomeProvider = ({ children }) => {
   const { userData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    console.log(`a`);
+    // console.log(`a`);
     setUserID(userData._id);
   }, [userData]);
 
   useEffect(() => {
-    console.log(`b`);
+    // console.log(`b`);
     if (userData != undefined && userData.hasOwnProperty("email")) {
       getUserIncomeByMonth(userData._id).then((res) => {
         setIncomeThisMonth(res.data.data.income);

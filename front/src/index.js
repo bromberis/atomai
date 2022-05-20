@@ -18,6 +18,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import { UserProvider } from "./components/context/UserContext";
 import { CategoriesProvider } from "./components/context/CategoriesContext";
 import { LimitsProvider } from "./components/context/LimitsContext";
+import Error from "./components/error/ErrorPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -47,6 +48,7 @@ root.render(
                   {/* Public Routes */}
                   <Route path="/" element={<App />}>
                     <Route path="/" element={<RegistrationLogin />} />
+                    <Route path="/*" element={<Error />} />
                   </Route>
                 </Routes>
               </BrowserRouter>

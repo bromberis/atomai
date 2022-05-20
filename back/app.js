@@ -3,7 +3,9 @@ const { get } = require("http");
 
 const usersRoutes = require("./routes/usersRoutes");
 const categoriesRoutes = require("./routes/categoriesRoutes");
+
 const logsRoutes = require("./routes/logsRoutes");
+
 
 const cors = require("cors");
 const app = express();
