@@ -1,32 +1,17 @@
-/* .reg-input-div {
-  padding-top: 20px;
-}
-.reg-input {
-  width: 50%;
-}
-.reg-button-register {
-  height: 50px;
-  width: 150px;
-  background-color: rgb(37, 70, 129);
-  font-size: 1.7rem;
-  margin-top: 50px;
-} */
-
 .Registration-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  gap: 20px;
+  gap: 10px;
 }
 
 .Registration-form input {
-  max-width: 50%;
+  width: 25vw;
 }
 
 .Registration-container {
-  padding: 1em;
+  padding-top: 1em;
 }
 
 .Registration-button {
@@ -44,10 +29,25 @@
   transition: 0.3s;
   cursor: pointer;
   background-color: #f4efe7;
-  width: 19.5vw;
+  width: 25vw;
   border: 0.5px solid grey;
+  color: #3a3845;
 }
 
 h1 {
   text-align: center;
+}
+
+@media only screen and (max-width: 993px) {
+  .Registration-form input {
+    width: 45vw;
+  }
+  .Registration-button button {
+    width: 45vw;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
 }

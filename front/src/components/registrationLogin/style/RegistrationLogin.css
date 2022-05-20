@@ -2,3 +2,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
+@media only screen and (max-width: 993px) {
+  .RegistrationLogin-container {
+    display: block;
+  }
+}
