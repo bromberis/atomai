@@ -61,21 +61,15 @@ export async function getEmail(email) {
 
 // update user by id
 export async function updateUserById(data) {
-
-  const res = await axiosUser.patch(`/updateUser`, JSON.stringify(data));
- 
-  const res = await axiosUser
-    .post(`/updateUser`, JSON.stringify(data))
-    .then((result) => {
-      console.log("Success:", result);
-      swal({
-        text: "Vartotojas redaguotas",
-        icon: "success",
-        button: "Gerai",
-        timer: 2000,
-      });
+  const res = await axiosUser.patch(`/updateUser`, JSON.stringify(data)).then((result) => {
+    console.log("Success:", result);
+    swal({
+      text: "Vartotojas redaguotas",
+      icon: "success",
+      button: "Gerai",
+      timer: 2000,
     });
-
+  });
 
   return res;
 }
@@ -260,10 +254,7 @@ export async function loginUser(data) {
   // console.log(data);
   let response;
   const res = await axiosUser
-    .post(
-      `/login?email=${data.email}&password=${data.password}`,
-      JSON.stringify(data)
-    )
+    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
     .then((result) => {
       response = result;
       // console.log("Success:", result.data.user);
