@@ -87,13 +87,15 @@ function Category() {
                 required: true,
                 maxLength: 20,
                 minLength: 2,
-                pattern: /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ\s]+$/i,
+                // pattern: /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ\s]+$/i,
+                pattern:
+                  /^[a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+(?: [a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+)*$/,
                 validate: {
                   find: (value) => {
                     let result = expensesCategories.map((a) =>
-                      UppercaseFirst(a.category)
+                      a.category.toUpperCase()
                     );
-                    return !result.includes(UppercaseFirst(value));
+                    return !result.includes(value.toUpperCase());
                   },
                 },
               })}
