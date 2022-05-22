@@ -87,7 +87,6 @@ function Category() {
                 required: true,
                 maxLength: 20,
                 minLength: 2,
-                // pattern: /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ\s]+$/i,
                 pattern:
                   /^[a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+(?: [a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+)*$/,
                 validate: {
