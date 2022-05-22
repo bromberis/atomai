@@ -27,3 +27,7 @@
   width: 19.5vw;
   border: 0.5px solid grey;
 }
+
+.admin-button {
+  background-color: white;
+}

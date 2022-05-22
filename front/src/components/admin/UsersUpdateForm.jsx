@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { updateUserById } from "../../api/library/UsersAPI";
+import "./Users.css";
 
 export default function UsersUpdateForm({ name, email, id, setIsEditing, searchUsers }) {
   const {
@@ -87,10 +88,11 @@ export default function UsersUpdateForm({ name, email, id, setIsEditing, searchU
             </span>
           </div>
           <div className="text-start col-4">
-            <button type="submit">
+            <button type="submit" className="admin-button">
               <AiOutlineCheck color="#7fbc6e" fontSize="1.5em" />
             </button>
             <button
+              className="admin-button"
               onClick={() => {
                 reset();
                 setIsEditing(false);
