@@ -6,7 +6,8 @@ import { updateExpCategory } from "../../api/library/CategoriesAPI";
 import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 
 function UpdateCategory(props) {
-  const { refreshCategoriesData } = useGlobalCategoriesContext();
+  const { expensesCategories, refreshCategoriesData } =
+    useGlobalCategoriesContext();
 
   const { setIsEditing, id, category } = props;
 
@@ -43,7 +44,16 @@ function UpdateCategory(props) {
           required: true,
           maxLength: 20,
           minLength: 2,
-          pattern: /^[A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ\s]+$/i,
+          pattern:
+            /^[a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+(?: [a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+)*$/,
+          validate: {
+            find: (value) => {
+              let result = expensesCategories.map((a) =>
+                a.category.toUpperCase()
+              );
+              return !result.includes(value.toUpperCase());
+            },
+          },
         })}
       />
       <Tooltip title="Patvirtinti">
@@ -61,7 +71,9 @@ function UpdateCategory(props) {
         </button>
       </Tooltip>
       {errors.category && (
-        <div className="text-danger fw-light">2-20 simbolių, tik raidės.</div>
+        <div className="text-danger fw-light">
+          2-20 simbolių, tik raidės. Kategorija negali kartotis.
+        </div>
       )}
     </form>
   );
