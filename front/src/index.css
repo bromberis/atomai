@@ -11,13 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.errorAtomImg {
-  width: 190px;
-  height: 190px;
+.AtomImg {
+  height: 40vmin;
+  pointer-events: none;
   position: absolute;
-  left: 45%;
-  top: 43%;
-  transform: translate(-50%, -50%);
+  left: 25%;
+  top: 23%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .AtomImg {
+    animation: AtomImg-spin infinite 20s linear;
+  }
 }
 
 .text {
@@ -27,6 +32,7 @@ code {
   top: 200px;
   display: flex;
   flex-direction: column;
+  color: #3a3845;
 }
 
 .text h2 {
@@ -43,5 +49,14 @@ code {
   margin: 10px 0;
   text-decoration: none;
   font-size: 1.4rem;
-  color: red;
+  color: #bc6e7f;
+}
+
+@keyframes AtomImg-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

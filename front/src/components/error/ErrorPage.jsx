@@ -1,15 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import atom from "../../image/logo.svg";
 
 function ErrorPage() {
   return (
     <div className="error">
       <div className="img">
-        <img
-          src={require("../../image/atom.png")}
-          alt="atom"
-          className="errorAtomImg"
-        />
+        <img src={atom} alt="atom" className="AtomImg" />
       </div>
       <div className="text">
         <h2>404</h2>
