@@ -28,10 +28,10 @@ export default function UsersTable({ name, email, id, reset, setUsers, searchUse
             <div className="col-4">{email}</div>
             <div className=" col-4">
               {" "}
-              <button className="pr-4" onClick={() => setIsEditing(!isEditing)}>
+              <button className="pr-4 admin-button" onClick={() => setIsEditing(!isEditing)}>
                 <BsPencil color="#3a3845" fontSize="1.5em" />
               </button>
-              <button onClick={() => deleteUser()}>
+              <button className="admin-button" onClick={() => deleteUser()}>
                 <BsTrash className="ml-4" color="#bc6e7f" fontSize="1.5em" />
               </button>
             </div>
