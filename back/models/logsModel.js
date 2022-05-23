@@ -5,6 +5,9 @@ const logsschema = new mongoose.Schema({
   userID: { type: String },
   action: { type: String },
   time: { type: Date },
+  sum: { type: Number },
+  name: { type: String },
+  email: { type: String },
 });
 
 const Logs = new mongoose.model("Logs", logsschema);

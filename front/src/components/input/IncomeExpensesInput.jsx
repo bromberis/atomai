@@ -55,11 +55,11 @@ function IncomeExpensesInput() {
     console.log(data);
     display === "income"
       ? createUserIncome(user._id, data).then(() => {
-          createNewLog({ category: "income", userID: user._id, action: `${user.name} added new income. Sum: ${data.sum}. Time: ${new Date()}`, time: new Date() });
+          createNewLog({ category: "income", userID: user._id, action: `${user.name} added new income. Sum: ${data.sum}. Time: ${new Date()}`, time: new Date(), sum: data.sum, name: user.name, email: user.email });
           updateUserData(user._id);
         })
       : createUserExpense(user._id, data).then(() => {
-          createNewLog({ category: "expense", userID: user._id, action: `${user.name} added new expense. Sum: ${data.sum}. Time: ${new Date()}`, time: new Date() });
+          createNewLog({ category: "expense", userID: user._id, action: `${user.name} added new expense. Sum: ${data.sum}. Time: ${new Date()}`, time: new Date(), sum: data.sum, name: user.name, email: user.email });
           updateUserData(user._id);
         });
   }

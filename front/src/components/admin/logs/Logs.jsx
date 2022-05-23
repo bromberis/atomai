@@ -17,7 +17,7 @@ export default function Logs() {
   }, []);
   console.log(logs);
   let allLogs = logs.map((log) => {
-    return <LogsList action={log.action} key={uuidv4()} />;
+    return <LogsList log={log} key={uuidv4()} />;
   });
 
   let filteredLogs = logs.filter((log) => log.category == categoryFilter);

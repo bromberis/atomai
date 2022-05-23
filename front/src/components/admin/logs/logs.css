@@ -1,0 +1,10 @@
+.log-button {
+  background-color: white;
+}
+.extraInfoPanel {
+  border: black 2px solid;
+}
+.innerExtraInfoPanel {
+  margin-left: 2vw;
+  margin-top: 2vh;
+}
