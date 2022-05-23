@@ -38,7 +38,7 @@ router.route("/register").post(createUser);
 router.route("/").get(getAllUsers);
 router.route("/email").get(getEmail);
 
-//router.route("/:id").get(getUserById).patch(updateUser);
+router.route("/:id").get(getUserById);
 
 //income
 

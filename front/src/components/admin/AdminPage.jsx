@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Users from "./Users";
 import Category from "./Category";
+import Logs from "./logs/Logs";
 import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 
 export default function Admin() {
@@ -14,6 +15,7 @@ export default function Admin() {
       </div>
       {display == "users" && <Users />}
       {display === "category" && <Category />}
+      {display === "logs" && <Logs />}
     </>
   );
 }

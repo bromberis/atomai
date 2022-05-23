@@ -1,9 +1,10 @@
 const express = require("express");
 
-const { createNewLog, registerNewUser } = require("./../controllers/logsController");
+const { createNewLog, getAllLogs } = require("./../controllers/logsController");
 
 const router = express.Router();
 
-router.route("/logs").post(createNewLog).get(registerNewUser);
+router.route("/newLog/").post(createNewLog);
+router.route("/allLogs").get(getAllLogs);
 
 module.exports = router;

@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 
-const logsschema = new mongoose.Schema(
-  {
-    userID: { type: String },
-    logs: [{ category: { type: String }, log: { type: String } }],
-  },
-  { timestamps: true }
-);
+const logsschema = new mongoose.Schema({
+  category: { type: String },
+  userID: { type: String },
+  action: { type: String },
+  time: { type: Date },
+});
 
 const Logs = new mongoose.model("Logs", logsschema);
 
