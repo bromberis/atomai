@@ -39,8 +39,8 @@ function Category() {
   return (
     <div className="container">
       {" "}
-      <div className="row pt-4 row-button d-flex justify-content-end">
-        {/* <div className="col-7 col-custom  ">
+      {/* <div className="row pt-4 row-button d-flex justify-content-end"> */}
+      {/* <div className="col-7 col-custom  ">
           <button
             onClick={() => setDisplay("income")}
             className="income-btn-admin"
@@ -56,27 +56,63 @@ function Category() {
         </div>
       </div>
       {display == "income" && <p>Pajamos</p>} */}
-        {/* {display === "expenses" && ( */}
+      {/* {display === "expenses" && ( */}
+      <div className="row justify-content-center mt-5">
+        {" "}
+        <div className="col-9 p-0">
+          <table className="custom-table-admin m-0">
+            <thead>
+              <tr className="text-center">
+                <th scope="col">Kategorijos</th>
+                <th scope="col">Veiksmai</th>
+              </tr>
+            </thead>
+            <tbody className="align-middle">
+              <>{categoriesData}</>
+              <tr>
+                <td className="custom-table-td-admin" colSpan="2">
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <input
+                      className="rounded-0 input-custom-admin input-custom-add "
+                      type="text"
+                      name="category"
+                      id="category"
+                      {...register("category", {
+                        required: true,
+                        maxLength: 20,
+                        minLength: 2,
 
-        <div className="row justify-content-center">
-          {" "}
-          <div className="col-10">
-            <table className="custom-table-admin m-0">
-              <thead>
-                <tr className="text-center">
-                  <th scope="col">Išlaidų kategorijos</th>
-                  <th scope="col">Veiksmai</th>
-                </tr>
-              </thead>
-              <tbody className="align-middle">
-                <>{categoriesData}</>
-              </tbody>
-            </table>
-          </div>
+                        pattern:
+                          /^[a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+(?: [a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+)*$/,
+                        validate: {
+                          find: (value) => {
+                            let result = expensesCategories.map((a) =>
+                              a.category.toUpperCase()
+                            );
+                            return !result.includes(value.toUpperCase());
+                          },
+                        },
+                      })}
+                    />
+
+                    <button className=" custom-button-submit " type="submit">
+                      Pridėti naują kategoriją
+                    </button>
+                  </form>
+                  {errors.category && (
+                    <div className=" col-10 text-danger fw-light text-start ps-3 ">
+                      2-20 simbolių, tik raidės. Kategorija negali kartotis.
+                    </div>
+                  )}
+                </td>
+                <td className="custom-table-td-admin"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div className="row d-flex justify-content-end pt-5 ">
-        <div className="col-8 ">
+      {/* <div className="row d-flex justify-content-center pt-5 ">
+        <div className="col-lg-10 ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               className="rounded-0 input-custom-admin input-custom-add "
@@ -87,6 +123,7 @@ function Category() {
                 required: true,
                 maxLength: 20,
                 minLength: 2,
+
                 pattern:
                   /^[a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+(?: [a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+)*$/,
                 validate: {
@@ -106,11 +143,11 @@ function Category() {
           </form>
         </div>
         {errors.category && (
-          <div className="text-danger fw-light text-center">
+          <div className=" col-10 text-danger fw-light ">
             2-20 simbolių, tik raidės. Kategorija negali kartotis.
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

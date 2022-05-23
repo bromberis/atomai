@@ -40,6 +40,7 @@ router.route("/email").get(getEmail);
 
 router.route("/:id").get(getUserById);
 
+
 //income
 
 router.route("/:id/inc/upd/:subID").patch(findIncomeDataAndUpdate);
