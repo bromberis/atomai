@@ -729,11 +729,10 @@ exports.findLimitAndDelete = async (req, res) => {
 };
 
 exports.updateUserById = async (req, res) => {
-  const { email } = req.body;
   try {
     console.log(req.body);
     const isEmailTaken = await Users.findOne({ email: req.body.email });
-
+    console.log(isEmailTaken == true);
     if (isEmailTaken) {
       if (req.body.email == isEmailTaken.email) {
         const user = await Users.findByIdAndUpdate(req.body.id, req.body);
@@ -742,7 +741,10 @@ exports.updateUserById = async (req, res) => {
           data: user,
         });
       } else {
-        throw "TESTAS";
+        res.status(404).json({
+          status: "fail",
+          message: err,
+        });
       }
     } else {
       const user = await Users.findByIdAndUpdate(req.body.id, req.body);
