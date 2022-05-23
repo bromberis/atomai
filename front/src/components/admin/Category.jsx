@@ -57,13 +57,13 @@ function Category() {
       </div>
       {display == "income" && <p>Pajamos</p>} */}
       {/* {display === "expenses" && ( */}
-      <div className="row justify-content-center">
+      <div className="row justify-content-center mt-5">
         {" "}
-        <div className="col-10">
+        <div className="col-9 p-0">
           <table className="custom-table-admin m-0">
             <thead>
               <tr className="text-center">
-                <th scope="col">Išlaidų kategorijos</th>
+                <th scope="col">Kategorijos</th>
                 <th scope="col">Veiksmai</th>
               </tr>
             </thead>
