@@ -13,6 +13,7 @@ import { useGlobalExpensesContext } from "../context/ExpensesContext";
 import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 import { Link } from "react-router-dom";
 import LastInputs from "./LastInputs";
+import { createNewLog } from "../../api/library/logsApi";
 
 function IncomeExpensesInput() {
   const [display, setDisplay] = useState("income");
@@ -54,9 +55,11 @@ function IncomeExpensesInput() {
     console.log(data);
     display === "income"
       ? createUserIncome(user._id, data).then(() => {
+          createNewLog({ category: "income", userID: user._id, action: `${user.name} added new income. Sum: ${data.sum}. Time: ${new Date()}`, time: new Date() });
           updateUserData(user._id);
         })
       : createUserExpense(user._id, data).then(() => {
+          createNewLog({ category: "expense", userID: user._id, action: `${user.name} added new expense. Sum: ${data.sum}. Time: ${new Date()}`, time: new Date() });
           updateUserData(user._id);
         });
   }
@@ -77,9 +80,7 @@ function IncomeExpensesInput() {
     <>
       <div className="container mt-3  p-3 ">
         <div className="row">
-          <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">
-            Labas, {user.name} !
-          </div>
+          <div className="col-lg-7 col-md-7 col-sm-12 p-0 hello-msg text-lg-start text-md-start text-center pb-md-0 pb-4">Labas, {user.name} !</div>
 
           <div className="col-lg-5 col-md-5 col-sm-12 text-end p-0">
             <button
@@ -106,9 +107,7 @@ function IncomeExpensesInput() {
           <form
             className="border-main"
             onChange={(e) => {
-              display === "income"
-                ? updateIncomeObject(e)
-                : updateExpenseObject(e);
+              display === "income" ? updateIncomeObject(e) : updateExpenseObject(e);
             }}
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -129,37 +128,18 @@ function IncomeExpensesInput() {
                     maxLength: 10,
                   })}
                 />
-                {errors.sum && (
-                  <span className="text-danger fw-light">
-                    Būtinas laukas. Ne daugiau 10 simbolių, negali būti
-                    neigiamas skaičius.
-                  </span>
-                )}
+                {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
               </div>
 
               <div className="col-lg-6 col-md-6 p-2">
-                <input
-                  className="rounded-0 input-custom"
-                  type="date"
-                  name="date"
-                  id="date-inp"
-                  min="2010-01-01"
-                  max="2099-01-01"
-                  defaultValue={new Date().toISOString().substr(0, 10)}
-                  {...register("date")}
-                />
+                <input className="rounded-0 input-custom" type="date" name="date" id="date-inp" min="2010-01-01" max="2099-01-01" defaultValue={new Date().toISOString().substr(0, 10)} {...register("date")} />
               </div>
             </div>
 
             <div className="row bottom-space">
               <div className="col-lg-6 col-md-6 p-2">
                 {display === "income" ? (
-                  <select
-                    className=" input-custom rounded-0"
-                    name="category"
-                    id="category"
-                    {...register("category", { required: true })}
-                  >
+                  <select className=" input-custom rounded-0" name="category" id="category" {...register("category", { required: true })}>
                     <option value="Alga">Alga</option>
                     <option value="Premija">Premija</option>
                     <option value="Dovana">Dovana</option>
@@ -168,12 +148,7 @@ function IncomeExpensesInput() {
                     <option value="Kita">Kita</option>
                   </select>
                 ) : (
-                  <select
-                    className="input-custom rounded-0"
-                    name="category"
-                    id="category"
-                    {...register("category", { required: true })}
-                  >
+                  <select className="input-custom rounded-0" name="category" id="category" {...register("category", { required: true })}>
                     {expensesCategories.map((data) => {
                       const { _id, category } = data;
                       return (
@@ -198,11 +173,7 @@ function IncomeExpensesInput() {
                     maxLength: 30,
                   })}
                 />
-                {errors.name && (
-                  <span className="text-danger fw-light">
-                    Daugiausiai 30 simbolių.
-                  </span>
-                )}
+                {errors.name && <span className="text-danger fw-light">Daugiausiai 30 simbolių.</span>}
               </div>
             </div>
 
@@ -210,17 +181,11 @@ function IncomeExpensesInput() {
               <div className="col-12 text-center">
                 {/* SUBMIT BUTTON */}
                 {display === "income" ? (
-                  <button
-                    className=" col-5 col-lg-4 btn-submit-input btn-all"
-                    type="submit"
-                  >
+                  <button className=" col-5 col-lg-4 btn-submit-input btn-all" type="submit">
                     Pridėti pajamas
                   </button>
                 ) : (
-                  <button
-                    className=" col-5 col-lg-4 btn-submit-expenses btn-all"
-                    type="submit"
-                  >
+                  <button className=" col-5 col-lg-4 btn-submit-expenses btn-all" type="submit">
                     Pridėti išlaidas
                   </button>
                 )}
@@ -230,10 +195,7 @@ function IncomeExpensesInput() {
               <div className="text-center col-12 ">
                 <Link to="/statistics">
                   <button type="button" className="col-5 col-lg-4   balance ">
-                    Šio mėnesio balansas:{" "}
-                    <span className="fw-bold">
-                      {(incomeThisMonth - expensesThisMonth).toFixed(2)}
-                    </span>
+                    Šio mėnesio balansas: <span className="fw-bold">{(incomeThisMonth - expensesThisMonth).toFixed(2)}</span>
                   </button>
                 </Link>
               </div>

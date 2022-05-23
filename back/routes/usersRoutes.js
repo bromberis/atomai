@@ -39,7 +39,7 @@ router.route("/").get(getAllUsers);
 router.route("/email").get(getEmail);
 
 router.route("/:id").get(getUserById);
-//.patch(updateUser);
+
 
 //income
 
