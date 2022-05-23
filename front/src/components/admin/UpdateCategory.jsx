@@ -71,7 +71,7 @@ function UpdateCategory(props) {
         </button>
       </Tooltip>
       {errors.category && (
-        <div className="text-danger fw-light">
+        <div className="text-danger fw-light text-start ps-3">
           2-20 simbolių, tik raidės. Kategorija negali kartotis.
         </div>
       )}

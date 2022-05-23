@@ -99,6 +99,11 @@ function Category() {
                       Pridėti naują kategoriją
                     </button>
                   </form>
+                  {errors.category && (
+                    <div className=" col-10 text-danger fw-light text-start ps-3 ">
+                      2-20 simbolių, tik raidės. Kategorija negali kartotis.
+                    </div>
+                  )}
                 </td>
                 <td className="custom-table-td-admin"></td>
               </tr>
