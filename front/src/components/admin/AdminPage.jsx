@@ -15,34 +15,22 @@ export default function Admin() {
       <div className="container ">
         <div className="row ">
           <div className="col-11 d-flex justify-content-end border-custom p-0">
-            <button
-              className="btn-main-admin"
-              onClick={() => setDisplay("category")}
-            >
+            <button className="btn-main-admin" onClick={() => setDisplay("category")}>
               Kategorijos
             </button>
-            <button
-              className="btn-main-admin"
-              onClick={() => setDisplay("users")}
-            >
+            <button className="btn-main-admin" onClick={() => setDisplay("users")}>
               Vartotojai
             </button>
-            <button
-              className="btn-main-admin"
-              onClick={() => setDisplay("logs")}
-            >
+            <button className="btn-main-admin" onClick={() => setDisplay("logs")}>
               Žurnalas
             </button>
           </div>
-          {display == "users" && <Users />}
-          {display === "category" && <Category />}
         </div>
       </div>
 
       {display == "users" && <Users />}
       {display === "category" && <Category />}
       {display === "logs" && <Logs />}
-
     </>
   );
 }
