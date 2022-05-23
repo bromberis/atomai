@@ -252,32 +252,11 @@ export async function createUserExpense(id, data) {
 
 export async function loginUser(data) {
   // console.log(data);
-  let response;
-  const res = await axiosUser
-    .post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data))
-    .then((result) => {
-      response = result;
-      // console.log("Success:", result.data.user);
-      // setUser(result.data.data.user);
-      swal({
-        text: "Pavyko prisijungti!",
-        icon: "success",
-        button: "Puiku",
-        timer: 5000,
-      });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      swal({
-        text: "Duomenys blogai suvesti, galimai rašybos klaida!",
-        icon: "error",
-        button: "Gerai",
-        timer: 2000,
-      });
-    });
+
+  const res = await axiosUser.post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data));
 
   // console.log(`here`, response);
-  return response;
+  return res;
 }
 
 export async function getUserExpensesByMonth(id) {

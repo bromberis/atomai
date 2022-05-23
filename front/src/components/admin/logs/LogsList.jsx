@@ -5,6 +5,7 @@ export default function LogsList({ log }) {
   const [extraInfo, setExtraInfo] = useState(false);
   return (
     <div>
+      <div></div>
       <p>
         <button className="log-button" onClick={() => setExtraInfo(!extraInfo)}>
           {log.action}
@@ -16,17 +17,17 @@ export default function LogsList({ log }) {
             <div className="extraInfoPanel">
               <div className="innerExtraInfoPanel">
                 <h5>Papildoma informacija:</h5>
-                <p></p>
+
                 <p>Vartotojo ID: {log.userID}</p>
                 <p>Vartotojo vardas: {log.name}</p>
-                <p>Vartotojo el.pastas: {log.email}</p>
+                <p>Vartotojo el.paštas: {log.email}</p>
                 <p>
-                  Kategorija: {log.category == "income" && "pajama"}
-                  {log.category == "expense" && "islaida"}
+                  {log.category == "income" || log.category == "expense" ? "Kategorija:" : null} {log.category == "income" && `pajamos/${log.incexpCategory}`}
+                  {log.category == "expense" && `išlaidos/${log.incexpCategory}`}
                 </p>
 
-                <p>Data: {log.time}</p>
                 <p>{log.sum && `Suma: ${log.sum}`}</p>
+                <p>Data: {log.time}</p>
               </div>
             </div>
           </>

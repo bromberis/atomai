@@ -8,3 +8,20 @@
   margin-left: 2vw;
   margin-top: 2vh;
 }
+
+.search-title {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.button-reset {
+  padding: 0.5em 1em;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #f4efe7;
+  border: 0.5px solid grey;
+  height: 3rem;
+  width: 50%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
