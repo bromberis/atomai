@@ -75,6 +75,7 @@ export async function updateUserById(data) {
 }
 
 export async function getUserById(id) {
+  console.log(id);
   const res = await axiosUser.get(`/${id}`);
   return res;
 }

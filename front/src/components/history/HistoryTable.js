@@ -13,16 +13,15 @@ import { createNewLog } from "../../api/library/logsApi";
 
 function HistoryTable({ getUsers, username, name, category, email, date, sum, dateCreated, id, type, income, userID }) {
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
-  const [userData2, setUserData2] = useState({});
   let UppercaseFirst = (str) => {
     let newStr = str.charAt(0).toUpperCase() + str.slice(1);
     return newStr;
   };
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    setUserData2(userData);
+    setUser(userData);
   }, [userData]);
-
   let colorClass = (str) => {
     if (str === "income") {
       return "text-income text-center ";
@@ -113,7 +112,6 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
                             button: "Gerai",
                             timer: 2000,
                           });
-
                           updateUserData(userData._id);
                           createNewLog({
                             category: "income",
