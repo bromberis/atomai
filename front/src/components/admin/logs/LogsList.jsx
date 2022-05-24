@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./logs.css";
 
-export default function LogsList({ log }) {
+export default function LogsList({ log, disableExtraInfo }) {
   const [extraInfo, setExtraInfo] = useState(false);
+
   return (
     <div>
       <div></div>
-      <p>
+      <p className="log">
         <button className="log-button" onClick={() => setExtraInfo(!extraInfo)}>
           {log.action}
         </button>
