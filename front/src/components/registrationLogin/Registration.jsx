@@ -21,7 +21,7 @@ export default function Registration() {
     createUser(data)
       .then((result) => {
         let user = result.data.data.user;
-        createNewLog({ category: "registration", userID: user._id, action: `Vartotojas ${user.name} užsiregistravo. Laikas: ${new Date()}`, time: new Date(), sum: data.sum, name: user.name, email: user.email });
+        createNewLog({ category: "registration", userID: user._id, action: `Vartotojas ${user.name} užsiregistravo. Data: ${new Date().getDate()}`, time: new Date(), sum: data.sum, name: user.name, email: user.email });
         console.log(result.data.data.user._id);
         console.log("Success:", result);
         swal({

@@ -57,8 +57,9 @@ function IncomeExpensesInput() {
       ? createUserIncome(user._id, data).then(() => {
           createNewLog({
             category: "income",
+            type: "add",
             userID: user._id,
-            action: `Vartotojas ${user.name} pridėjo naujas pajamas. Suma: ${data.sum}. Laikas: ${new Date()}`,
+            action: `Vartotojas ${user.name} pridėjo naujas pajamas. Suma: ${data.sum}. Data: ${new Date()}`,
             time: new Date(),
             sum: data.sum,
             name: user.name,
@@ -70,8 +71,9 @@ function IncomeExpensesInput() {
       : createUserExpense(user._id, data).then(() => {
           createNewLog({
             category: "expense",
+            type: "add",
             userID: user._id,
-            action: `Vartotojas ${user.name} pridėjo naujas išlaidas. Suma: ${data.sum}. Laikas: ${new Date()}`,
+            action: `Vartotojas ${user.name} pridėjo naujas išlaidas. Suma: ${data.sum}. Data: ${new Date()}`,
             time: new Date(),
             sum: data.sum,
             name: user.name,

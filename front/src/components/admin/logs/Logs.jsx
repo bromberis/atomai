@@ -14,8 +14,6 @@ export default function Logs() {
   const [categoryFilter, setCategoryFilter] = useState(false);
   const [emailFilter, setEmailFilter] = useState(false);
 
-  const pageCount = Math.ceil(logs.length / logsPerPage);
-
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -27,6 +25,12 @@ export default function Logs() {
       console.log(res.data.data);
     });
   }, []);
+
+  //   let logsByDate = logs.reverse();
+  //   for (var i = logs.length - 1; i > 0; i--) {
+  //     logsByDate.push(logs[i]);
+  //   }
+  //   console.log(logsByDate);
 
   const displayLogs = logs
 
@@ -41,14 +45,15 @@ export default function Logs() {
         return log;
       }
     })
-
     .slice(pagesVisited, pagesVisited + logsPerPage)
-
     .map((log) => {
       return <LogsList log={log} key={uuidv4()} />;
     });
   //   let test = logs.reverse();
   //   console.log(logs, test);
+  const pageCount = Math.ceil(logs.length / logsPerPage);
+  console.log(displayLogs.length);
+
   return (
     <div className="container">
       <div className="row">
@@ -56,7 +61,9 @@ export default function Logs() {
           <h2 className="search-title">Ieškoti pagal kategoriją</h2>
           <form
             onChange={(e) => {
-              e.target.options[e.target.selectedIndex].index == 0 ? setCategoryFilter(false) : setCategoryFilter(e.target.options[e.target.selectedIndex].value);
+              {
+                e.target.options[e.target.selectedIndex].index == 0 ? setCategoryFilter(false) : setCategoryFilter(e.target.options[e.target.selectedIndex].value);
+              }
             }}
           >
             <select name="category" id="category">
@@ -90,23 +97,21 @@ export default function Logs() {
             </div>
           </form>
         </div>
-        <div>{/* <h2>Rasta įrašų: {categoryFilter != false ? allLogsFiltered.length : logs.length}</h2> */}</div>
       </div>
-      {/* {categoryFilter == false && allLogs}
-      {categoryFilter != undefined && allLogsFiltered} */}
+
       <div>
         {displayLogs}
         <div className="row">
           <div className="navigation-pagination col-12">
             {" "}
             <ReactPaginate
+              previousLabel="Atgal"
               nextLabel={"Pirmyn"}
               pageCount={pageCount}
               onPageChange={changePage}
               containerClassName={"paginationButtons"}
               nextLinkClassName={"previuosButtons"}
               disabledClassName={"paginationDisabled"}
-              previousLabel="Atgal"
               activeClassName={"paginationActive"}
             />
           </div>
