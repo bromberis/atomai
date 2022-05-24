@@ -23,8 +23,13 @@ export default function LogsList({ log, disableExtraInfo }) {
                 <p>Vartotojo vardas: {log.name}</p>
                 <p>Vartotojo el.paštas: {log.email}</p>
                 <p>
-                  {log.category == "income" || log.category == "expense" ? "Kategorija:" : null} {log.category == "income" && `pajamos/${log.incexpCategory}`}
-                  {log.category == "expense" && `išlaidos/${log.incexpCategory}`}
+                  {log.category == "income" || log.category == "expense" ? "Kategorija:" : null} {log.category == "income" && `Pajamos/${log.incexpCategory}`}
+                  {log.category == "expense" && `Išlaidos/${log.incexpCategory}`}
+                </p>
+                <p>
+                  {log.type && "Tipas:"} {log.type == "delete" && "Ištrinimas"}
+                  {log.type == "add" && "Pridėjimas"}
+                  {log.type == "edit" && "Koregavimas"}
                 </p>
 
                 <p>{log.sum && `Suma: ${log.sum}`}</p>

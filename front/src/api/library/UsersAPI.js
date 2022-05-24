@@ -75,6 +75,7 @@ export async function updateUserById(data) {
 }
 
 export async function getUserById(id) {
+  console.log(id);
   const res = await axiosUser.get(`/${id}`);
   return res;
 }
@@ -114,26 +115,8 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
 }
 
 export async function findIncomeAndDelete(id, subID) {
-  const response = await axiosUser
-    .patch(`/${id}/inc/dlt/${subID}`)
-    .then((result) => {
-      console.log("Success:", result);
-      swal({
-        text: "Ištrinta!",
-        icon: "success",
-        button: "Gerai",
-        timer: 2000,
-      });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      swal({
-        text: "Klaida!",
-        icon: "error",
-        button: "Gerai",
-        timer: 2000,
-      });
-    });
+  const response = await axiosUser.patch(`/${id}/inc/dlt/${subID}`);
+  return response;
 }
 
 export async function createUserIncome(id, data) {
@@ -201,26 +184,8 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
 }
 
 export async function findExpensesAndDelete(id, subID) {
-  const response = await axiosUser
-    .patch(`/${id}/exp/dlt/${subID}`)
-    .then((result) => {
-      console.log("Success:", result);
-      swal({
-        text: "Ištrinta!",
-        icon: "success",
-        button: "Gerai",
-        timer: 2000,
-      });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      swal({
-        text: "Klaida!",
-        icon: "error",
-        button: "Gerai",
-        timer: 2000,
-      });
-    });
+  const response = await axiosUser.patch(`/${id}/exp/dlt/${subID}`);
+  return response;
 }
 
 export async function createUserExpense(id, data) {

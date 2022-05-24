@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./History.css";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import { FiMoreHorizontal } from "react-icons/fi";
@@ -12,6 +12,9 @@ import {
 import swal from "sweetalert";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import Tooltip from "@mui/material/Tooltip";
+
+import { createNewLog } from "../../api/library/logsApi";
+
 function HistoryTable({
   getUsers,
   name,
@@ -26,11 +29,18 @@ function HistoryTable({
 }) {
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
+
+function HistoryTable({ getUsers, username, name, category, email, date, sum, dateCreated, id, type, income, userID }) {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
   let UppercaseFirst = (str) => {
     let newStr = str.charAt(0).toUpperCase() + str.slice(1);
     return newStr;
   };
+  const [user, setUser] = useState({});
 
+  useEffect(() => {
+    setUser(userData);
+  }, [userData]);
   let colorClass = (str) => {
     if (str === "income") {
       return "text-income text-center ";
@@ -122,13 +132,70 @@ function HistoryTable({
                 }).then((isConfirm) => {
                   if (isConfirm) {
                     if (type === "income") {
-                      findIncomeAndDelete(userData._id, id).then(() =>
-                        updateUserData(userData._id)
-                      );
+
+                    
+                      findIncomeAndDelete(userID, id)
+                        .then((res) => {
+                          swal({
+                            text: "Ištrinta!",
+                            icon: "success",
+                            button: "Gerai",
+                            timer: 2000,
+                          });
+                          updateUserData(userData._id);
+                          createNewLog({
+                            category: "income",
+                            type: "delete",
+                            incexpCategory: category,
+                            userID: id,
+                            action: `Vartotojas ${username} ištrynė pajamų irašą. Data: ${new Date()}`,
+                            time: new Date(),
+                            sum: sum,
+                            name: username,
+                            email: email,
+                          });
+                        })
+                        .catch((error) => {
+                          console.error("Error:", error);
+                          swal({
+                            text: "Klaida!",
+                            icon: "error",
+                            button: "Gerai",
+                            timer: 2000,
+                          });
+                        });
                     } else if (type === "expenses") {
-                      findExpensesAndDelete(userData._id, id).then(() =>
-                        updateUserData(userData._id)
-                      );
+                      findExpensesAndDelete(userID, id)
+                        .then((res) => {
+                          swal({
+                            text: "Ištrinta!",
+                            icon: "success",
+                            button: "Gerai",
+                            timer: 2000,
+                          });
+                          updateUserData(userID);
+                          createNewLog({
+                            category: "expense",
+                            type: "delete",
+                            incexpCategory: category,
+                            userID: id,
+                            action: `Vartotojas ${username} ištrynė išlaidų įrašą. Data: ${new Date()}`,
+                            time: new Date(),
+                            sum: sum,
+                            name: username,
+                            email: email,
+                          });
+                        })
+                        .catch((error) => {
+                          console.error("Error:", error);
+                          swal({
+                            text: "Klaida!",
+                            icon: "error",
+                            button: "Gerai",
+                            timer: 2000,
+                          });
+                        });
+
                     }
                   }
                 })
@@ -144,6 +211,10 @@ function HistoryTable({
           <EditIncomeHistoryForm
             key={id}
             id={id}
+
+            username={username}
+            email={email}
+
             name={name}
             category={category}
             date={date}
@@ -161,6 +232,8 @@ function HistoryTable({
             getUsers={getUsers}
             key={id}
             id={id}
+            username={username}
+            email={email}
             name={name}
             category={category}
             date={date}

@@ -1,4 +1,3 @@
-import { identity } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Outlet, Navigate, useNavigate } from "react-router-dom";
 import { useGlobalUserContext, UserContext } from "./context/UserContext";

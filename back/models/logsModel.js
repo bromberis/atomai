@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const logsschema = new mongoose.Schema({
   category: { type: String },
+  type: { type: String },
   userID: { type: String },
   action: { type: String },
   time: { type: String },
