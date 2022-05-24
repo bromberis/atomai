@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import "./style/Login.css";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { createNewLog } from "../../api/library/logsApi";
 
 function Login(props) {
   console.log(props);
@@ -16,14 +18,32 @@ function Login(props) {
 
   let navigate = useNavigate();
   function onSubmit(data) {
-    doLogin(data).then((res) => {
-      console.log(res);
-      if (res.status == 200) {
-        setTimeout(() => {
-          navigate("/incexp");
-        }, 1000);
-      }
-    });
+    doLogin(data)
+      .then((res) => {
+        let user = res.data.user;
+
+        swal({
+          text: "Pavyko prisijungti!",
+          icon: "success",
+          button: "Puiku",
+          timer: 5000,
+        });
+        createNewLog({ category: "login", userID: user._id, action: `Vartotojas ${user.name} prisijungė. Laikas: ${new Date()}`, time: new Date(), sum: data.sum, name: user.name, email: user.email });
+        if (res.status == 200) {
+          setTimeout(() => {
+            navigate("/incexp");
+          }, 1000);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        swal({
+          text: "Duomenys blogai suvesti, galimai rašybos klaida!",
+          icon: "error",
+          button: "Gerai",
+          timer: 2000,
+        });
+      });
   }
 
   return (
@@ -46,9 +66,7 @@ function Login(props) {
                 },
               })}
             />
-            <span className="error text-danger fw-light">
-              {errors.email?.message}
-            </span>
+            <span className="error text-danger fw-light">{errors.email?.message}</span>
 
             <input
               type="password"
@@ -66,9 +84,7 @@ function Login(props) {
                 },
               })}
             />
-            <span className="error text-danger fw-light">
-              {errors.password?.message}
-            </span>
+            <span className="error text-danger fw-light">{errors.password?.message}</span>
             <div className="Login-button">
               <button className="custom-button" type="submit">
                 Prisijungti

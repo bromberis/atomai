@@ -1,0 +1,99 @@
+.log-button {
+  background-color: white;
+}
+.extraInfoPanel {
+  border: black 2px solid;
+}
+.innerExtraInfoPanel {
+  margin-left: 2vw;
+  margin-top: 2vh;
+}
+
+.search-title {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.button-reset {
+  padding: 0.5em 1em;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #f4efe7;
+  border: 0.5px solid grey;
+  height: 3rem;
+  width: 50%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+.ReadOnlyRow-button {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.EditIncome-button button,
+.EditExpenses-button button {
+  margin-left: 0.625em;
+}
+.EditIncome-button button,
+.EditExpenses-button button,
+.ReadOnlyRow-button button {
+  padding: 0.5em 1.5em;
+}
+
+/* pagination buttons */
+
+.paginationButtons {
+  width: 80%;
+  height: 60px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationButtons a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #4e72a4;
+  color: #4e72a4;
+  cursor: pointer;
+}
+
+.paginationButtons a:hover {
+  color: white;
+  background-color: #4e72a4;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #4e72a4;
+}
+
+/* search imput */
+
+.search-box {
+  margin: 2em 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search-box input {
+  margin-top: 12px;
+  width: 300px;
+  height: 30px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+.log {
+  border: solid black 1.5px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin: -1px;
+}
+.navigation-pagination {
+  padding-top: 4vh;
+}
