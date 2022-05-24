@@ -5,11 +5,30 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import { ImArrowLeft2 } from "react-icons/im";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
-import { findIncomeAndDelete, findExpensesAndDelete } from "../../api/library/UsersAPI";
+import {
+  findIncomeAndDelete,
+  findExpensesAndDelete,
+} from "../../api/library/UsersAPI";
 import swal from "sweetalert";
 import { useGlobalUserContext, UserContext } from "../context/UserContext";
 import Tooltip from "@mui/material/Tooltip";
+
 import { createNewLog } from "../../api/library/logsApi";
+
+function HistoryTable({
+  getUsers,
+  name,
+  category,
+  date,
+  sum,
+  dateCreated,
+  id,
+  type,
+  income,
+  userID,
+}) {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
+
 
 function HistoryTable({ getUsers, username, name, category, email, date, sum, dateCreated, id, type, income, userID }) {
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
@@ -69,17 +88,25 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
         <td className={colorClassSum(type)}>{addOperator(sum, type)}</td>
         <td className="smaller-td">{category}</td>
         <td>
-          {nameLength ? name !== undefined && UppercaseFirst(name) : name !== undefined && UppercaseFirst(name).substring(0, 15)}
+          {nameLength
+            ? name !== undefined && UppercaseFirst(name)
+            : name !== undefined && UppercaseFirst(name).substring(0, 15)}
           {name !== undefined && nameLength === false && name.length > 15 && (
             <Tooltip title="Pilnas tekstas">
-              <button onClick={changeNameLengthStatus} className="btn custom-button-more">
+              <button
+                onClick={changeNameLengthStatus}
+                className="btn custom-button-more"
+              >
                 <FiMoreHorizontal />
               </button>
             </Tooltip>
           )}
           {name !== undefined && name.length > 15 && nameLength === true && (
             <Tooltip title="Atgal">
-              <button onClick={changeNameLengthStatus} className="btn custom-button-more">
+              <button
+                onClick={changeNameLengthStatus}
+                className="btn custom-button-more"
+              >
                 <ImArrowLeft2 />
               </button>
             </Tooltip>
@@ -87,7 +114,10 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
         </td>
         <td className="smaller-td">
           <Tooltip title="Redaguoti">
-            <button className="btn m-1 custom-button-edit" onClick={() => setEditFormStatus(!editFormStatus)}>
+            <button
+              className="btn m-1 custom-button-edit"
+              onClick={() => setEditFormStatus(!editFormStatus)}
+            >
               <BsPencil color="#3a3845" fontSize="1.5em" />
             </button>
           </Tooltip>
@@ -102,8 +132,8 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
                 }).then((isConfirm) => {
                   if (isConfirm) {
                     if (type === "income") {
-                      console.log(userID, id);
-                      console.log(userData._id);
+
+                    
                       findIncomeAndDelete(userID, id)
                         .then((res) => {
                           swal({
@@ -165,6 +195,7 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
                             timer: 2000,
                           });
                         });
+
                     }
                   }
                 })
@@ -180,8 +211,10 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
           <EditIncomeHistoryForm
             key={id}
             id={id}
+
             username={username}
             email={email}
+
             name={name}
             category={category}
             date={date}
