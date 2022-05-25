@@ -27,7 +27,7 @@ function Login() {
           button: "Puiku",
           timer: 5000,
         });
-        createNewLog({ category: "login", userID: user._id, action: `Vartotojas ${user.name} prisijungė. Data: ${new Date()}`, time: new Date(), sum: data.sum, name: user.name, email: user.email });
+        createNewLog({ category: "login", userID: user._id, action: `Vartotojas ${user.name} prisijungė. Data: ${new Date().toLocaleString()}`, time: new Date().toLocaleString(), sum: data.sum, name: user.name, email: user.email });
         if (res.status == 200) {
           setTimeout(() => {
             navigate("/incexp");

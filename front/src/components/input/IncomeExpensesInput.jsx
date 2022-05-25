@@ -39,7 +39,7 @@ function IncomeExpensesInput() {
     e.preventDefault();
     expense[e.target.name] = e.target.value;
   }
-
+  console.log(new Date().toLocaleString());
   function submitNewIncomeExpense(data) {
     if ("date" in data) {
       // console.log(income);
@@ -52,15 +52,14 @@ function IncomeExpensesInput() {
       data.date = new Date().toISOString().substr(0, 10);
     }
 
-    console.log(data);
     display === "income"
       ? createUserIncome(user._id, data).then(() => {
           createNewLog({
             category: "income",
             type: "add",
             userID: user._id,
-            action: `Vartotojas ${user.name} pridėjo naujas pajamas. Suma: ${data.sum}. Data: ${new Date()}`,
-            time: new Date(),
+            action: `Vartotojas ${user.name} pridėjo naujas pajamas. Suma: ${data.sum}. Data: ${new Date().toLocaleString()}`,
+            time: new Date().toLocaleString(),
             sum: data.sum,
             name: user.name,
             email: user.email,
@@ -73,8 +72,8 @@ function IncomeExpensesInput() {
             category: "expense",
             type: "add",
             userID: user._id,
-            action: `Vartotojas ${user.name} pridėjo naujas išlaidas. Suma: ${data.sum}. Data: ${new Date()}`,
-            time: new Date(),
+            action: `Vartotojas ${user.name} pridėjo naujas išlaidas. Suma: ${data.sum}. Data: ${new Date().toLocaleString()}`,
+            time: new Date().toLocaleString(),
             sum: data.sum,
             name: user.name,
             email: user.email,
