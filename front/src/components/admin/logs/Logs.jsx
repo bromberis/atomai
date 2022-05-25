@@ -35,7 +35,6 @@ export default function Logs() {
   //   console.log(logsByDate);
 
   const allDisplayLogs = logs
-
     .filter((log) => {
       if (categoryFilter && emailFilter) {
         return log.category == categoryFilter && log.email.includes(emailFilter);
@@ -55,7 +54,7 @@ export default function Logs() {
   //   let test = logs.reverse();
   //   console.log(logs, test);
   console.log(logs);
-  const pageCount = Math.ceil(allDisplayLogs.length / logsPerPage);
+  const pageCount = Math.ceil(logs.length / logsPerPage);
   console.log(displayLogs.length);
 
   return (
