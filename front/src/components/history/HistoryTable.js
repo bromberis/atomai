@@ -125,7 +125,6 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
                           });
                         })
                         .catch((error) => {
-                          console.error("Error:", error);
                           swal({
                             text: "Klaida!",
                             icon: "error",
@@ -156,7 +155,6 @@ function HistoryTable({ getUsers, username, name, category, email, date, sum, da
                           });
                         })
                         .catch((error) => {
-                          console.error("Error:", error);
                           swal({
                             text: "Klaida!",
                             icon: "error",

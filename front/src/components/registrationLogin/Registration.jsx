@@ -22,8 +22,7 @@ export default function Registration() {
       .then((result) => {
         let user = result.data.data.user;
         createNewLog({ category: "registration", userID: user._id, action: `Vartotojas ${user.name} užsiregistravo. Data: ${new Date().toLocaleString()}`, time: new Date().toLocaleString(), sum: data.sum, name: user.name, email: user.email });
-        console.log(result.data.data.user._id);
-        console.log("Success:", result);
+
         swal({
           text: "Registracija sekminga, dabar galite prisijungti",
           icon: "success",
@@ -32,7 +31,6 @@ export default function Registration() {
         });
       })
       .catch((error) => {
-        console.error("Error:", error);
         swal({
           text: "Toks vartotojas jau egzistuoja",
           icon: "error",
@@ -80,7 +78,7 @@ export default function Registration() {
             validate: {
               checkEmail: async (value) => {
                 let pass = await getEmail(value);
-                console.log(pass, !pass);
+
                 return !pass;
                 //await getEmail(value);
               },

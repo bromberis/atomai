@@ -29,9 +29,6 @@ function UpdateLimits(props) {
   };
 
   function onSubmit() {
-    console.log(updateInfo);
-    console.log(userData._id);
-    console.log(subID);
     findLimitAndUpdate(updateInfo, userData._id, subID).then(() => {
       refreshLimitsData(userData._id);
     });
@@ -63,21 +60,12 @@ function UpdateLimits(props) {
           </button>
         </Tooltip>
         <Tooltip title="Atšaukti">
-          <button
-            type="button"
-            className="btn  custom-button-tr"
-            onClick={() => setIsEditing(false)}
-          >
+          <button type="button" className="btn  custom-button-tr" onClick={() => setIsEditing(false)}>
             <AiOutlineClose color="#3a3845" fontSize="1.5em" />
           </button>
         </Tooltip>
       </form>
-      {errors.limit && (
-        <span className="text-danger fw-light custom-error text-start">
-          Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
-          skaičius.
-        </span>
-      )}
+      {errors.limit && <span className="text-danger fw-light custom-error text-start">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
     </div>
   );
 }

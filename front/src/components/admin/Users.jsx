@@ -22,10 +22,8 @@ export default function Users() {
   useEffect(() => {}, [users]);
 
   function onSubmit(data) {
-    console.log(data);
     createUser(data)
       .then((result) => {
-        console.log("Success:", result);
         swal({
           text: "Vartotojas pridėtas",
           icon: "success",
@@ -35,7 +33,6 @@ export default function Users() {
         reset();
       })
       .catch((error) => {
-        console.error("Error:", error);
         swal({
           text: "Toks vartotojas jau egzistuoja",
           icon: "error",

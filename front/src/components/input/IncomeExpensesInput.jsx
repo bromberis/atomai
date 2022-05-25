@@ -39,15 +39,13 @@ function IncomeExpensesInput() {
     e.preventDefault();
     expense[e.target.name] = e.target.value;
   }
-  console.log(new Date().toLocaleString());
+
   function submitNewIncomeExpense(data) {
     if ("date" in data) {
-      // console.log(income);
     } else {
       data.date = new Date().toISOString().substr(0, 10);
     }
     if ("date" in data) {
-      // console.log(expense);
     } else {
       data.date = new Date().toISOString().substr(0, 10);
     }

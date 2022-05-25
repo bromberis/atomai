@@ -17,9 +17,7 @@ export default function UsersSearch() {
   } = useForm();
   const [users, setUsers] = useState({});
   function searchUsers(data) {
-    console.log(data);
     getUsersByEmail(data).then((res) => {
-      console.log(res);
       if (res.data.data.users.length < 1) {
         swal({
           text: "Tokio vartotoja nerasta",
@@ -28,7 +26,7 @@ export default function UsersSearch() {
           timer: 2000,
         });
       }
-      console.log(res.data.data.users);
+
       setUsers(res.data.data.users);
       reset();
     });
