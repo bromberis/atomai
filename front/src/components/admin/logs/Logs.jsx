@@ -20,7 +20,9 @@ export default function Logs() {
   const childFunc = React.useRef(null);
 
   useEffect(() => {
+    console.log(`hello?`);
     getAllLogs().then((res) => {
+      console.log(res);
       setLogs(res.data.data);
       console.log(res.data.data);
     });
@@ -32,8 +34,7 @@ export default function Logs() {
   //   }
   //   console.log(logsByDate);
 
-  const displayLogs = logs
-
+  const allDisplayLogs = logs
     .filter((log) => {
       if (categoryFilter && emailFilter) {
         return log.category == categoryFilter && log.email.includes(emailFilter);
@@ -45,12 +46,14 @@ export default function Logs() {
         return log;
       }
     })
-    .slice(pagesVisited, pagesVisited + logsPerPage)
+
     .map((log) => {
       return <LogsList log={log} key={uuidv4()} />;
     });
+  const displayLogs = allDisplayLogs.slice(pagesVisited, pagesVisited + logsPerPage);
   //   let test = logs.reverse();
   //   console.log(logs, test);
+  console.log(logs);
   const pageCount = Math.ceil(logs.length / logsPerPage);
   console.log(displayLogs.length);
 
@@ -62,7 +65,10 @@ export default function Logs() {
           <form
             onChange={(e) => {
               {
-                e.target.options[e.target.selectedIndex].index == 0 ? setCategoryFilter(false) : setCategoryFilter(e.target.options[e.target.selectedIndex].value);
+                {
+                  e.target.options[e.target.selectedIndex].index == 0 ? setCategoryFilter(false) : setCategoryFilter(e.target.options[e.target.selectedIndex].value);
+                  setPageNumber(1);
+                }
               }
             }}
           >
@@ -105,6 +111,9 @@ export default function Logs() {
           <div className="navigation-pagination col-12">
             {" "}
             <ReactPaginate
+              // onClick={()=>}
+              //   initialPage="test"
+
               previousLabel="Atgal"
               nextLabel={"Pirmyn"}
               pageCount={pageCount}

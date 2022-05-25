@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { createNewLog } from "../../api/library/logsApi";
 
-function Login(props) {
-  console.log(props);
+function Login() {
   const {
     register,
     handleSubmit,
