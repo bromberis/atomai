@@ -61,9 +61,9 @@ function UsersList(props) {
   if (users !== undefined && users.hasOwnProperty("email")) {
     // let { income } = users;
     // let { expenses } = users;
-
+    console.log(users);
     let incomeExpenses = [...userData.income, ...userData.expenses];
-
+    console.log(incomeExpenses);
     const filteredData = incomeExpenses.filter((item) => {
       return item.date.slice(0, 10) >= startDate && item.date.slice(0, 10) <= endDate;
     });
