@@ -99,7 +99,7 @@ export default function Logs() {
           <form onChange={(e) => setEmailFilter(e.target.value)}>
             <h2 className="search-title">Ieškoti pagal el.paštą</h2>
             <div>
-              <input type="text" placeholder="el.paštas" />
+              <input type="text" placeholder="El.paštas" />
             </div>
           </form>
         </div>

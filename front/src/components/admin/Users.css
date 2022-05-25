@@ -4,28 +4,21 @@
   padding-top: 3vh;
 }
 .add-new-user-button {
-  padding-top: 20vh;
-  margin-top: 3vh;
-  margin-right: 1.5vw;
-  padding: 0.5em 1em;
   transition: 0.3s;
   cursor: pointer;
   background-color: #f4efe7;
-  width: 19.5vw;
   border: 0.5px solid grey;
+  height: 100%;
+  width: 100%;
 }
 
 .find-users-button {
-  padding-top: 20vh;
-  margin-right: 1.5vw;
-
-  margin-top: 3vh;
-  padding: 0.5em 1em;
   transition: 0.3s;
   cursor: pointer;
   background-color: #f4efe7;
-  width: 19.5vw;
   border: 0.5px solid grey;
+  height: 100%;
+  width: 100%;
 }
 
 .admin-button {
