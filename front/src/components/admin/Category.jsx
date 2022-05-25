@@ -101,7 +101,7 @@ function Category() {
                 <td className="custom-table-td-admin"></td>
               </tr>
               <tr className="text-center">
-                <th scope="col">Kategorijos</th>
+                <th scope="col">Išlaidų kategorijos</th>
                 <th scope="col">Veiksmai</th>
               </tr>
             </thead>
