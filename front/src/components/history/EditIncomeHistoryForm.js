@@ -29,7 +29,6 @@ function EditIncomeHistoryForm({ username, email, name, category, date, sum, id,
   } = useForm();
 
   function onSubmit() {
-    console.log(userUpdateIncome);
     findIncomeDataAndUpdate(userUpdateIncome, userData._id, id).then(() => {
       updateUserData(userData._id);
       createNewLog({

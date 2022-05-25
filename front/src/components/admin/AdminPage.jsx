@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import Users from "./Users";
 import Category from "./Category";
-
 import Logs from "./logs/Logs";
-
 import "./Category.css";
-
-import { useGlobalCategoriesContext } from "../context/CategoriesContext";
 
 export default function Admin() {
   const [display, setDisplay] = useState("users");

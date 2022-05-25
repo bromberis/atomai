@@ -35,7 +35,6 @@ function Login() {
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
         swal({
           text: "Duomenys blogai suvesti, galimai rašybos klaida!",
           icon: "error",

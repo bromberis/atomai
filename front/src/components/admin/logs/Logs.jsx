@@ -3,7 +3,6 @@ import { getAllLogs } from "../../../api/library/logsApi";
 import LogsList from "./LogsList";
 import { v4 as uuidv4 } from "uuid";
 import ReactPaginate from "react-paginate";
-import { useForm } from "react-hook-form";
 
 export default function Logs() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -17,22 +16,12 @@ export default function Logs() {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  const childFunc = React.useRef(null);
 
   useEffect(() => {
-    console.log(`hello?`);
     getAllLogs().then((res) => {
-      console.log(res);
       setLogs(res.data.data);
-      console.log(res.data.data);
     });
   }, []);
-
-  //   let logsByDate = logs.reverse();
-  //   for (var i = logs.length - 1; i > 0; i--) {
-  //     logsByDate.push(logs[i]);
-  //   }
-  //   console.log(logsByDate);
 
   const allDisplayLogs = logs
     .filter((log) => {
@@ -51,11 +40,8 @@ export default function Logs() {
       return <LogsList log={log} key={uuidv4()} />;
     });
   const displayLogs = allDisplayLogs.slice(pagesVisited, pagesVisited + logsPerPage);
-  //   let test = logs.reverse();
-  //   console.log(logs, test);
-  console.log(logs);
+
   const pageCount = Math.ceil(logs.length / logsPerPage);
-  console.log(displayLogs.length);
 
   return (
     <div className="container">

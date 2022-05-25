@@ -17,45 +17,27 @@ function LimitsTable(props) {
   const { expensesThisMonthByCategory } = useGlobalExpensesContext();
   const [isEditing, setIsEditing] = useState(false);
 
-  const filteredByCurrentCategory = expensesThisMonthByCategory.filter(
-    (expItem) => expItem.category === category
-  );
+  const filteredByCurrentCategory = expensesThisMonthByCategory.filter((expItem) => expItem.category === category);
 
-  const allExpensesCurrentMonthByCategory = filteredByCurrentCategory.reduce(
-    (n, { sum }) => n + sum,
-    0
-  );
-  console.log(allExpensesCurrentMonthByCategory);
+  const allExpensesCurrentMonthByCategory = filteredByCurrentCategory.reduce((n, { sum }) => n + sum, 0);
 
   return (
     <>
       <div className="row limits-table text-center mt-3 py-1 justify-content-center ">
         <div className="col-3 col-lg-2 cell">{category}</div>
 
-        {isEditing === false && (
-          <div className="col-4 col-lg-4 cell cell-limit">
-            {"Limitas: " + limit}{" "}
-          </div>
-        )}
+        {isEditing === false && <div className="col-4 col-lg-4 cell cell-limit">{"Limitas: " + limit} </div>}
 
         {isEditing && (
           <div className="col-4 col-lg-4 cell cell-limit ">
-            <UpdateLimits
-              subID={subID}
-              category={category}
-              limit={limit}
-              setIsEditing={setIsEditing}
-            />
+            <UpdateLimits subID={subID} category={category} limit={limit} setIsEditing={setIsEditing} />
           </div>
         )}
 
         <div className="col-5 col-lg-4 cell">
           {" "}
           <Tooltip title="Redaguoti">
-            <button
-              className="btn m-1 custom-button-edit"
-              onClick={() => setIsEditing(!isEditing)}
-            >
+            <button className="btn m-1 custom-button-edit" onClick={() => setIsEditing(!isEditing)}>
               <BsPencil color="#3a3845" fontSize="1.5em" />
             </button>
           </Tooltip>
@@ -84,15 +66,7 @@ function LimitsTable(props) {
       <div className="row justify-content-center mb-4">
         <div className="col-10">
           {" "}
-          <ProgressBar
-            animated
-            striped
-            now={allExpensesCurrentMonthByCategory}
-            min={0}
-            max={limit}
-            label={`${allExpensesCurrentMonthByCategory}`}
-            className="custom-progress-bar"
-          />{" "}
+          <ProgressBar animated striped now={allExpensesCurrentMonthByCategory} min={0} max={limit} label={`${allExpensesCurrentMonthByCategory}`} className="custom-progress-bar" />{" "}
         </div>
       </div>
     </>

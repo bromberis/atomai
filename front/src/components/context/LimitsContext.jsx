@@ -21,7 +21,6 @@ const LimitsProvider = ({ children }) => {
 
   function refreshLimitsData(id) {
     getAllUserLimits(id).then((res) => {
-      console.log(res.data.data.limits);
       setLimits(res.data.data.limits);
     });
   }

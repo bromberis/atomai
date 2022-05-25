@@ -31,11 +31,10 @@ export default function UsersUpdateForm({ name, email, id, setIsEditing, searchU
           button: "Gerai",
           timer: 2000,
         });
-        console.log(res);
+
         searchUsers({ email: data.email });
       })
       .catch((err) => {
-        console.log(`asd`, err);
         swal({
           text: "Toks el.paštas jau registruotas",
           icon: "error",

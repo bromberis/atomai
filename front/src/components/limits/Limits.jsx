@@ -30,16 +30,8 @@ function Limits() {
     reset();
   }
   if (limits.length > 0) {
-    console.log(limits);
     limitsData = limits.map((item) => {
-      return (
-        <LimitsTable
-          key={item._id}
-          subID={item._id}
-          category={item.category}
-          limit={item.limit}
-        />
-      );
+      return <LimitsTable key={item._id} subID={item._id} category={item.category} limit={item.limit} />;
     });
   }
 
@@ -47,9 +39,7 @@ function Limits() {
     <div className="container py-4">
       <div className="row">
         {/* <h3 className="col text-center">Limitai</h3> */}
-        <h3 className="text-center fs-4">
-          Limitų pasirinkimas išlaidų kategorijoms
-        </h3>
+        <h3 className="text-center fs-4">Limitų pasirinkimas išlaidų kategorijoms</h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row justify-content-center">
@@ -74,11 +64,7 @@ function Limits() {
                 );
               })}
             </select>
-            {errors.category && errors.category !== "find" && (
-              <span className="text-danger fw-light">
-                Ši kategorija jau panaudota.
-              </span>
-            )}
+            {errors.category && errors.category !== "find" && <span className="text-danger fw-light">Ši kategorija jau panaudota.</span>}
           </div>
           <div className="col-lg-4 col-12 p-0 my-2 me-lg-1">
             <input
@@ -95,12 +81,7 @@ function Limits() {
                 maxLength: 10,
               })}
             />
-            {errors.limit && (
-              <span className="text-danger fw-light">
-                Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
-                skaičius.
-              </span>
-            )}
+            {errors.limit && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
           </div>
           <div className="col-lg-2 col-12 text-center my-2 p-0 me-lg-1">
             <button className="limits-button" type="submit">
