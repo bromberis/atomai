@@ -62,13 +62,6 @@ function Category() {
         <div className="col-9 p-0">
           <table className="custom-table-admin m-0">
             <thead>
-              <tr className="text-center">
-                <th scope="col">Kategorijos</th>
-                <th scope="col">Veiksmai</th>
-              </tr>
-            </thead>
-            <tbody className="align-middle">
-              <>{categoriesData}</>
               <tr>
                 <td className="custom-table-td-admin" colSpan="2">
                   <form onSubmit={handleSubmit(onSubmit)}>
@@ -107,6 +100,13 @@ function Category() {
                 </td>
                 <td className="custom-table-td-admin"></td>
               </tr>
+              <tr className="text-center">
+                <th scope="col">Kategorijos</th>
+                <th scope="col">Veiksmai</th>
+              </tr>
+            </thead>
+            <tbody className="align-middle">
+              <>{categoriesData}</>
             </tbody>
           </table>
         </div>
