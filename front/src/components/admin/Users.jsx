@@ -55,7 +55,7 @@ export default function Users() {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row">
-            <div className="col-4">
+            <div className="col-lg-3 col-sm-12">
               <input
                 type="text"
                 name="name"
@@ -74,7 +74,7 @@ export default function Users() {
                 {errors.name?.type === "maxLength" && "Ne daugiau kaip 12 simbolių"}
               </span>
             </div>
-            <div className="col-4">
+            <div className="col-lg-3 col-sm-12">
               <input
                 type="email"
                 id="email-register"
@@ -98,7 +98,7 @@ export default function Users() {
                 {errors.email?.type === "checkEmail" && "El. paštas jau naudojamas."}
               </span>
             </div>
-            <div className="col-4">
+            <div className="col-lg-3 col-sm-12">
               <input
                 type="password"
                 id="password"
@@ -118,13 +118,10 @@ export default function Users() {
                 {errors?.password?.type === "pattern" && "Turi būti bent 1 didžioji raidė ir bent 1 simbolis"}
               </span>
             </div>
-
-            <div className="row">
-              <div className="col-12">
-                <button type="submit" className="add-new-user-button">
-                  Pridėti
-                </button>
-              </div>
+            <div className="col-lg-3 col-sm-12">
+              <button type="submit" className="add-new-user-button">
+                Pridėti
+              </button>
             </div>
           </div>
         </form>
