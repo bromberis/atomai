@@ -40,10 +40,6 @@ export default function Logs() {
     .map((log) => {
       return <LogsList log={log} key={uuidv4()} />;
     });
-  //   const displayLogs = allDisplayLogs.slice(pagesVisited, pagesVisited + logsPerPage);
-  console.log(logs);
-  console.log(allDisplayLogs);
-  console.log(pagesVisited);
   const pageCount = Math.ceil(logs.length / logsPerPage);
 
   return (
