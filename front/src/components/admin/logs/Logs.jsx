@@ -35,12 +35,15 @@ export default function Logs() {
         return log;
       }
     })
+    .slice(pagesVisited, pagesVisited + logsPerPage)
 
     .map((log) => {
       return <LogsList log={log} key={uuidv4()} />;
     });
-  const displayLogs = allDisplayLogs.slice(pagesVisited, pagesVisited + logsPerPage);
-
+  //   const displayLogs = allDisplayLogs.slice(pagesVisited, pagesVisited + logsPerPage);
+  console.log(logs);
+  console.log(allDisplayLogs);
+  console.log(pagesVisited);
   const pageCount = Math.ceil(logs.length / logsPerPage);
 
   return (
@@ -53,7 +56,6 @@ export default function Logs() {
               {
                 {
                   e.target.options[e.target.selectedIndex].index == 0 ? setCategoryFilter(false) : setCategoryFilter(e.target.options[e.target.selectedIndex].value);
-                  setPageNumber(1);
                 }
               }
             }}
@@ -92,7 +94,7 @@ export default function Logs() {
       </div>
 
       <div>
-        {displayLogs}
+        {allDisplayLogs}
         <div className="row">
           <div className="navigation-pagination col-12">
             {" "}
