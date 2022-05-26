@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
-import { AiOutlineHome, AiOutlineHistory } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineHistory, AiOutlineLock } from "react-icons/ai";
 import { GiHistogram } from "react-icons/gi";
 import { SiAtom } from "react-icons/si";
 import { BiSortAlt2, BiLogOut } from "react-icons/bi";
@@ -113,7 +113,7 @@ export default function Navigation() {
           <li className={`${isDisabled()}`}>
             <Link to="/admin">
               <button className={`navigation-button ${isDisabledAdmin()}`}>
-                <GiHistogram color="#f4efe7" fontSize="3rem" /> <p>Admin</p>
+                <AiOutlineLock color="#f4efe7" fontSize="3rem" /> <p>Admin</p>
               </button>
             </Link>
           </li>
