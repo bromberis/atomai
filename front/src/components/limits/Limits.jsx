@@ -77,11 +77,11 @@ function Limits() {
               {...register("limit", {
                 required: true,
                 pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-
+                min: 0.01,
                 maxLength: 10,
               })}
             />
-            {errors.limit && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
+            {errors.limit && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius arba 0.</span>}
           </div>
           <div className="col-lg-2 col-12 text-center my-2 p-0 me-lg-1">
             <button className="limits-button" type="submit">

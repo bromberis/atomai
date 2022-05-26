@@ -15,7 +15,6 @@ export async function updateExpCategory(id, data) {
   const response = await axiosCategories
     .patch(`/expcategories/${id}`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Atnaujinta!",
         icon: "success",
@@ -24,7 +23,6 @@ export async function updateExpCategory(id, data) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -39,25 +37,18 @@ export async function updateExpCategory(id, data) {
 export async function createExpCategory(data) {
   const res = await axiosCategories
     .post("/expcategories", JSON.stringify(data))
-    .then((result) => {
-      console.log("Success:", result);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  console.log(res);
+    .then((result) => {})
+    .catch((error) => {});
 }
 
 export async function deleteExpCategory(id) {
-  const res = await axiosCategories
-    .get(`/expcategories/dlt/${id}`)
-    .then((result) => {
-      swal({
-        text: "Ištrinta!",
-        icon: "success",
-        button: "Gerai",
-        timer: 2000,
-      });
+  const res = await axiosCategories.get(`/expcategories/dlt/${id}`).then((result) => {
+    swal({
+      text: "Ištrinta!",
+      icon: "success",
+      button: "Gerai",
+      timer: 2000,
     });
+  });
   return res;
 }

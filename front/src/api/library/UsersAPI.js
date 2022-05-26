@@ -1,34 +1,11 @@
 import axiosUser from "../apiUsers";
 import swal from "sweetalert";
-//import { setUser } from "../../components/context/UserContext";
 
 export async function getAllUsersData() {
   const res = await axiosUser.get("/");
   return res;
 }
 
-// export async function createUser(data) {
-//   const response = await axiosUser
-//     .post("/", JSON.stringify(data))
-//     .then((result) => {
-//       console.log("Success:", result);
-//       swal({
-//         text: "Registracija sekminga, dabar galite prisijungti",
-//         icon: "success",
-//         button: "Gerai",
-//         timer: 1000,
-//       });
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//       swal({
-//         text: "Toks el. pastas jau egzistuoja",
-//         icon: "error",
-//         button: "Gerai",
-//         timer: 5000,
-//       });
-//     });
-// }
 export async function createUser(data) {
   const res = await axiosUser.post("/register", JSON.stringify(data));
   return res;
@@ -54,7 +31,6 @@ export async function getUsersByEmail(email) {
 // find email
 export async function getEmail(email) {
   const res = await axiosUser.get(`/email?email=${email}`);
-  //console.log(res);
 
   return res.data.data.users;
 }
@@ -62,7 +38,6 @@ export async function getEmail(email) {
 // update user by id
 export async function updateUserById(data) {
   const res = await axiosUser.patch(`/updateUser`, JSON.stringify(data)).then((result) => {
-    console.log("Success:", result);
     swal({
       text: "Vartotojas redaguotas",
       icon: "success",
@@ -75,7 +50,6 @@ export async function updateUserById(data) {
 }
 
 export async function getUserById(id) {
-  console.log(id);
   const res = await axiosUser.get(`/${id}`);
   return res;
 }
@@ -85,7 +59,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
   const response = await axiosUser
     .patch(`/${id}/inc/upd/${subID}`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
@@ -94,7 +67,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -125,7 +97,7 @@ export async function createUserIncome(id, data) {
     .patch(`/${id}/inc/`, JSON.stringify(data))
     .then((result) => {
       resultUser = result.data.data.user;
-      console.log("Success:", result);
+
       swal({
         text: "Įrašas išsaugotas!",
         button: "Gerai",
@@ -134,7 +106,6 @@ export async function createUserIncome(id, data) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -162,7 +133,6 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   const response = await axiosUser
     .patch(`/${id}/exp/upd/${subID}`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
@@ -171,7 +141,6 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -189,12 +158,9 @@ export async function findExpensesAndDelete(id, subID) {
 }
 
 export async function createUserExpense(id, data) {
-  console.log(id);
-  console.log(data);
   const response = await axiosUser
     .patch(`/${id}/exp/`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Įrašas išsaugotas!",
         button: "Gerai",
@@ -203,7 +169,6 @@ export async function createUserExpense(id, data) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -216,11 +181,7 @@ export async function createUserExpense(id, data) {
 }
 
 export async function loginUser(data) {
-  // console.log(data);
-
   const res = await axiosUser.post(`/login?email=${data.email}&password=${data.password}`, JSON.stringify(data));
-
-  // console.log(`here`, response);
   return res;
 }
 
@@ -235,7 +196,6 @@ export async function getUserExpensesThisMonth(id) {
 }
 
 export async function getAllUserExpensesByMonth(id) {
-  // console.log(id);
   const res = await axiosUser.get(`/${id}/exp/all`);
   return res;
 }
@@ -259,7 +219,6 @@ export async function createUserLimits(id, data) {
       });
     })
     .catch((error) => {
-      // console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -275,7 +234,6 @@ export async function findLimitAndUpdate(data, id, subID) {
   const response = await axiosUser
     .patch(`/${id}/limits/upd/${subID}`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Atnaujinta!",
         icon: "success",
@@ -284,7 +242,6 @@ export async function findLimitAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -308,7 +265,6 @@ export async function findLimitAndDelete(id, subID) {
       });
     })
     .catch((error) => {
-      // console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
