@@ -66,12 +66,12 @@ function EditIncomeHistoryForm({ username, email, name, category, date, sum, id,
               {...register("sum", {
                 required: true,
                 pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-
+                min: 0.01,
                 maxLength: 10,
               })}
               onChange={(e) => updateIncomeObject(e)}
             />
-            {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
+            {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius arba 0.</span>}
           </div>
           <div className="mb-1">
             <select className="custom-input" name="category" id="category" defaultValue={category} {...register("category", { required: true })} onChange={(e) => updateIncomeObject(e)}>

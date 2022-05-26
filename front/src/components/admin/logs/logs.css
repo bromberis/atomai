@@ -2,7 +2,7 @@
   background-color: white;
 }
 .extraInfoPanel {
-  border: black 2px solid;
+  border: solid lightgray 0.1px;
 }
 .innerExtraInfoPanel {
   margin-left: 2vw;

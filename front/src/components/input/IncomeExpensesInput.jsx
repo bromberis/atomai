@@ -141,11 +141,12 @@ function IncomeExpensesInput() {
                   {...register("sum", {
                     required: true,
                     pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-
+                    min: 0.01,
                     maxLength: 10,
                   })}
                 />
-                {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius.</span>}
+
+                {errors.sum && <span className="text-danger fw-light">Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas skaičius arba 0.</span>}
               </div>
 
               <div className="col-lg-6 col-md-6 p-2">
